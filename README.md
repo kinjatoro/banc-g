@@ -20,7 +20,7 @@ Lista de íconos -> https://mui.com/material-ui/material-icons/
 
 ### **PROMPS**
 
-#### BOTÓN `<Button/>`
+>#### BOTÓN `<Button/>`
 * color = 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | string
 * href = "google.com"
 * size = 'small' | 'medium' | 'large' | string
@@ -28,12 +28,16 @@ Lista de íconos -> https://mui.com/material-ui/material-icons/
 * startIcon = {</>}
 * endIcon = {</>}
 
+<br>
+
 #### ÍCONOS
 * color = 'inherit' | 'action' | 'disabled' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | string
 * fontSize = 'inherit' | 'large' | 'medium' | 'small' | string
 
 NOTA: cada ícono se maneja como componente único, es decir, si para botón tenemos `<Button/>`, para icono tenemos
 `<CreditCardt/>`, `<DoNotDisturb/>`, y así con cada uno.
+
+<br>
 
 #### ICON-BUTTON
 Siguen la estructura:
@@ -44,7 +48,8 @@ Siguen la estructura:
 ```      
 
 No tiene promps útiles.
-
+  
+<br>
 
 #### TIPOGRAFÍA `<Typography/>`
 * align = 'center' | 'justify' | 'left' | 'right'
