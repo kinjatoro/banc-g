@@ -17,7 +17,9 @@ Probar estilos -> https://bareynol.github.io/mui-theme-creator/
 * ÍCONOS -> `import {NombreIcono} from '@mui/icons-material';`
 * ICON-BUTTON -> `import {IconButton} from '@mui/material';`
 * TEMA -> `import {createTheme, ThemeProvider} from "@mui/material/styles";`
-
+* APPBAR -> `import { AppBar } from '@mui/material';`;
+* TOOLBAR -> `import { Toolbar } from '@mui/material';`;
+* CARD -> `import {Card, CardContent, CardActions} from '@mui/material`;
 
 ----
 
