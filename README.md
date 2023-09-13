@@ -25,7 +25,7 @@ Probar estilos -> https://bareynol.github.io/mui-theme-creator/
 
 ### **COMPONENTES PUROS DE MATERIAL UI**
 
-#### BOTÓN `<Button/>`
+#### [BOTÓN](https://mui.com/material-ui/api/button/) `<Button/>`
 * color = 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | string
 * href = "google.com"
 * size = 'small' | 'medium' | 'large' | string
@@ -35,7 +35,7 @@ Probar estilos -> https://bareynol.github.io/mui-theme-creator/
 
 <br>
 
-#### ÍCONOS
+#### [ÍCONOS](https://mui.com/material-ui/api/icon/)
 * color = 'inherit' | 'action' | 'disabled' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | string
 * fontSize = 'inherit' | 'large' | 'medium' | 'small' | string
 
@@ -44,7 +44,7 @@ NOTA: cada ícono se maneja como componente único, es decir, si para botón ten
 
 <br>
 
-#### ICON-BUTTON
+#### [ICON-BUTTON](https://mui.com/material-ui/api/icon-button/)
 Siguen la estructura:
 ```javascript 
 <IconButton>
@@ -56,14 +56,14 @@ No tiene props útiles.
   
 <br>
 
-#### TIPOGRAFÍA `<Typography/>`
+#### [TIPOGRAFÍA](https://mui.com/material-ui/api/typography/) `<Typography/>`
 * align = 'center' | 'justify' | 'left' | 'right'
 * variant = 'body1' | 'body2' | 'button' | 'caption' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'inherit' | 'overline' | 'subtitle1' | 'subtitle2' | string
 * color = 'primary' | 'secondary' | 'success'
 
 <br>
 
-#### TEMA `<ThemeProvider/>`
+#### [TEMA](https://mui.com/material-ui/customization/theming/#theme-provider) `<ThemeProvider/>`
 Sirve para agregar estilos CSS a cualquier componente React. Consta de dos partes:
 * CreateTheme (va entre los imports y App()):
 ```javascript
@@ -87,18 +87,58 @@ const theme = createTheme({
     </ThemeProvider>
 ```
 
-#### AppBar `<AppBar/>`
-
+#### [AppBar (atómico)](https://mui.com/material-ui/api/app-bar/) `<AppBar/>`
+* position = 'absolute' | 'fixed' | 'relative' | 'static' | 'sticky'
+* color = 'default' | 'inherit' | 'primary' | 'secondary' | 'transparent' | string
 <br>
 
-#### ToolBar `<ToolBar/>`
-
+#### [ToolBar](https://mui.com/material-ui/api/toolbar/) `<ToolBar/>`
+* variant = 'dense' | 'regular' | string
 <br>
 
-#### Card `<Card/>` `<CardContent>` `CardActions`
+#### [Card (como elemento atómico)](https://mui.com/material-ui/api/toolbar/) `<Card/>`
+
+* No tiene props útiles.
+
+#### [CardContent](https://mui.com/material-ui/api/toolbar/) `<CardContent/>`
+
+* No tiene props útiles.
+
+#### [CardActions](https://mui.com/material-ui/api/toolbar/) `<CardActions/>`
+
+* disableSpacing = "true" | "false"
 ---
 
 ### **COMPONENTES COMPUESTOS**
 
-#### NavBar
+Los componentes compuestos van en una carpeta aparte dentro del src llamada `components`
 
+#### [NavBar - AppBar Compuesto](https://mui.com/material-ui/react-app-bar/)
+
+Estructura básica del NavBar:
+```javascript
+    <AppBar position="static">
+        <Toolbar>
+
+        </Toolbar>
+      </AppBar>
+```
+
+
+#### [Card (como elemento compuesto)](https://mui.com/material-ui/react-card/) `<Card/>` `<CardContent/>` `<CardActions/>`
+Estructura básica de la carta:
+```javascript
+<Card>
+  <CardActionArea> 
+        <CardMedia/>
+
+        <CardContent>
+
+        </CardContent>
+  </CardActionArea>
+
+  <CardActions>
+      
+  </CardActions>
+</Card>
+```
