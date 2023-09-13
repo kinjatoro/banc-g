@@ -93,7 +93,7 @@ const theme = createTheme({
 
 <br>
 
-#### Card `<ToolBar/>`
+#### Card `<Card/>``<CardContent>``CardActions`
 ---
 
 ### **COMPONENTES COMPUESTOS**
