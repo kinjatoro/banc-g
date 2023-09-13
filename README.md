@@ -10,17 +10,17 @@ Lista de íconos -> https://mui.com/material-ui/material-icons/
 
 ### **IMPORTACIONES** 
 
-* TIPOGRAFÍA -> import {Typography} from '@mui/material'
-* BOTÓN -> import {Button} from '@mui/material';
-* ÍCONOS -> import {AcUnit} from '@mui/icons-material'
-* ICON-BUTTON -> import {IconButton} from '@mui/material';
+* TIPOGRAFÍA -> `import {Typography} from '@mui/material';`
+* BOTÓN -> `import {Button} from '@mui/material';`
+* ÍCONOS -> `import {AcUnit} from '@mui/icons-material';`
+* ICON-BUTTON -> `import {IconButton} from '@mui/material';`
 
 
 ----
 
-### **PROMPS**
+### **PROPS**
 
->#### BOTÓN `<Button/>`
+#### BOTÓN `<Button/>`
 * color = 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | string
 * href = "google.com"
 * size = 'small' | 'medium' | 'large' | string
@@ -47,7 +47,7 @@ Siguen la estructura:
 </IconButton>
 ```      
 
-No tiene promps útiles.
+No tiene props útiles.
   
 <br>
 
