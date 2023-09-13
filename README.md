@@ -86,6 +86,7 @@ const theme = createTheme({
      </Button>
     </ThemeProvider>
 ```
+<br>
 
 #### [AppBar (atómico)](https://mui.com/material-ui/api/app-bar/) `<AppBar/>`
 * position = 'absolute' | 'fixed' | 'relative' | 'static' | 'sticky'
@@ -100,9 +101,13 @@ const theme = createTheme({
 
 * No tiene props útiles.
 
+<br>
+
 #### [CardContent](https://mui.com/material-ui/api/toolbar/) `<CardContent/>`
 
 * No tiene props útiles.
+
+<br>
 
 #### [CardActions](https://mui.com/material-ui/api/toolbar/) `<CardActions/>`
 
