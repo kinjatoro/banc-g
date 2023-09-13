@@ -18,7 +18,7 @@ function App() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-      <Button color = "secondary">
+      <Button variant="contained" color = "secondary">
         BOTÓN DE PRUEBA
       </Button>
       </ThemeProvider>

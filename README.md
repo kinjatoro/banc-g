@@ -6,6 +6,8 @@ yo lo q hice es bajar el repositorio y copipastearle el node_modules de otro pro
 
 Lista de íconos -> https://mui.com/material-ui/material-icons/
 
+Probar estilos -> https://bareynol.github.io/mui-theme-creator/
+
 ---
 
 ### **IMPORTACIONES** 
@@ -19,7 +21,7 @@ Lista de íconos -> https://mui.com/material-ui/material-icons/
 
 ----
 
-### **PROPS**
+### **COMPONENTES PUROS DE MATERIAL UI**
 
 #### BOTÓN `<Button/>`
 * color = 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | string
@@ -61,7 +63,7 @@ No tiene props útiles.
 
 #### TEMA `<ThemeProvider/>`
 Sirve para agregar estilos CSS a cualquier componente React. Consta de dos partes:
-* CreateTheme:
+* CreateTheme (va entre los imports y App()):
 ```javascript
 const theme = createTheme({
   palette: {
@@ -82,3 +84,19 @@ const theme = createTheme({
      </Button>
     </ThemeProvider>
 ```
+
+#### AppBar `<AppBar/>`
+
+<br>
+
+#### ToolBar `<ToolBar/>`
+
+<br>
+
+#### Card `<ToolBar/>`
+---
+
+### **COMPONENTES COMPUESTOS**
+
+#### NavBar
+
