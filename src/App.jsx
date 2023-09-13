@@ -1,15 +1,27 @@
 import React from 'react';
-import { IconButton } from '@mui/material';
-import {AcUnit} from '@mui/icons-material'
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {Button} from '@mui/material';
 
-
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#000e35",
+    },
+    secondary: {
+      main: "#97b59d",
+    },
+  },
+});
 
 function App() {
+
   return (
     <div>
-      <IconButton>
-        <AcUnit/>
-      </IconButton>
+      <ThemeProvider theme={theme}>
+      <Button color = "secondary">
+        BOTÓN DE PRUEBA
+      </Button>
+      </ThemeProvider>
     </div>
   );
 }

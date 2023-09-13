@@ -12,8 +12,9 @@ Lista de íconos -> https://mui.com/material-ui/material-icons/
 
 * TIPOGRAFÍA -> `import {Typography} from '@mui/material';`
 * BOTÓN -> `import {Button} from '@mui/material';`
-* ÍCONOS -> `import {AcUnit} from '@mui/icons-material';`
+* ÍCONOS -> `import {NombreIcono} from '@mui/icons-material';`
 * ICON-BUTTON -> `import {IconButton} from '@mui/material';`
+* TEMA -> `import {createTheme, ThemeProvider} from "@mui/material/styles";`
 
 
 ----
@@ -55,3 +56,29 @@ No tiene props útiles.
 * align = 'center' | 'justify' | 'left' | 'right'
 * variant = 'body1' | 'body2' | 'button' | 'caption' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'inherit' | 'overline' | 'subtitle1' | 'subtitle2' | string
 * color = 'primary' | 'secondary' | 'success'
+
+<br>
+
+#### TEMA `<ThemeProvider/>`
+Sirve para agregar estilos CSS a cualquier componente React. Consta de dos partes:
+* CreateTheme:
+```javascript
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#000e35",
+    },
+    secondary: {
+      main: "#97b59d",
+    },
+  },
+});
+```
+* ThemeProvider:
+```javascript
+    <ThemeProvider theme={theme}>
+     <Button color = "secondary">
+        BOTÓN DE PRUEBA
+     </Button>
+    </ThemeProvider>
+```
