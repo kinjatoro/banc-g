@@ -93,7 +93,7 @@ const theme = createTheme({
 
 <br>
 
-#### Card `<Card/>``<CardContent>``CardActions`
+#### Card `<Card/>` `<CardContent>` `CardActions`
 ---
 
 ### **COMPONENTES COMPUESTOS**
