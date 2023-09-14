@@ -88,28 +88,28 @@ const theme = createTheme({
 ```
 <br>
 
-#### [AppBar (atómico)](https://mui.com/material-ui/api/app-bar/) `<AppBar/>`
+#### [APPBAR (atómico)](https://mui.com/material-ui/api/app-bar/) `<AppBar/>`
 * position = 'absolute' | 'fixed' | 'relative' | 'static' | 'sticky'
 * color = 'default' | 'inherit' | 'primary' | 'secondary' | 'transparent' | string
 <br>
 
-#### [ToolBar](https://mui.com/material-ui/api/toolbar/) `<ToolBar/>`
+#### [TOOLBAR](https://mui.com/material-ui/api/toolbar/) `<ToolBar/>`
 * variant = 'dense' | 'regular' | string
 <br>
 
-#### [Card (como elemento atómico)](https://mui.com/material-ui/api/toolbar/) `<Card/>`
+#### [CARD (como elemento atómico)](https://mui.com/material-ui/api/toolbar/) `<Card/>`
 
 * No tiene props útiles.
 
 <br>
 
-#### [CardContent](https://mui.com/material-ui/api/toolbar/) `<CardContent/>`
+#### [CARDCONTENT](https://mui.com/material-ui/api/toolbar/) `<CardContent/>`
 
 * No tiene props útiles.
 
 <br>
 
-#### [CardActions](https://mui.com/material-ui/api/toolbar/) `<CardActions/>`
+#### [CARDACTIONS](https://mui.com/material-ui/api/toolbar/) `<CardActions/>`
 
 * disableSpacing = "true" | "false"
 ---
@@ -118,7 +118,7 @@ const theme = createTheme({
 
 Los componentes compuestos van en una carpeta aparte dentro del src llamada `components`
 
-#### [NavBar - AppBar Compuesto](https://mui.com/material-ui/react-app-bar/)
+#### [NAVBAR - AppBar Compuesto](https://mui.com/material-ui/react-app-bar/)
 
 Estructura básica del NavBar:
 ```javascript
@@ -130,7 +130,7 @@ Estructura básica del NavBar:
 ```
 <br>
 
-#### [Card (como elemento compuesto)](https://mui.com/material-ui/react-card/) `<Card/>` `<CardContent/>` `<CardActions/>`
+#### [CARD (como elemento compuesto)](https://mui.com/material-ui/react-card/) `<Card/>` `<CardContent/>` `<CardActions/>`
 Estructura básica de la carta:
 ```javascript
 <Card>
