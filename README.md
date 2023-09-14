@@ -9,6 +9,14 @@ Lista de íconos -> https://mui.com/material-ui/material-icons/
 Probar estilos -> https://bareynol.github.io/mui-theme-creator/
 
 ---
+### **TEMPLATES** 
+* DEVIAS -> https://mui.com/store/previews/devias-kit/
+* BERRY -> https://mui.com/store/previews/berry-react-material-admin-free/
+* MANTIS -> https://mui.com/store/previews/mantis-free-react-admin-dashboard-template/
+* MINIMAL -> https://mui.com/store/previews/minimal-dashboard-free/
+* PAPERBASE -> https://mui.com/store/previews/paperbase/
+* ONE PIRATE -> https://mui.com/store/previews/onepirate/
+---
 
 ### **IMPORTACIONES** 
 
@@ -129,6 +137,8 @@ const Componente = () => {
 }
 export default Componente;
 ```
+
+<br>
 
 #### [NAVBAR - AppBar Compuesto](https://mui.com/material-ui/react-app-bar/)
 
