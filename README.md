@@ -128,7 +128,7 @@ Estructura básica del NavBar:
         </Toolbar>
       </AppBar>
 ```
-
+<br>
 
 #### [Card (como elemento compuesto)](https://mui.com/material-ui/react-card/) `<Card/>` `<CardContent/>` `<CardActions/>`
 Estructura básica de la carta:
