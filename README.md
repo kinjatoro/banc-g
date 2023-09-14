@@ -117,17 +117,17 @@ const theme = createTheme({
 ### **COMPONENTES COMPUESTOS**
 
 Los componentes compuestos van en una carpeta aparte dentro del src llamada `components`.
+
 La estructura básica es:
 ```javascript
 import React from 'react';
-const NavBar = () => {
+const Componente = () => {
     return (
         <div>
-
         </div>
     )
 }
-export default NavBar;
+export default Componente;
 ```
 
 #### [NAVBAR - AppBar Compuesto](https://mui.com/material-ui/react-app-bar/)
