@@ -1,6 +1,7 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {Button} from '@mui/material';
+import NavBar from './components/NavBar';
 
 const theme = createTheme({
   palette: {
@@ -17,11 +18,7 @@ function App() {
 
   return (
     <div>
-      <ThemeProvider theme={theme}>
-      <Button variant="contained" color = "secondary">
-        BOTÓN DE PRUEBA
-      </Button>
-      </ThemeProvider>
+      <NavBar/>
     </div>
   );
 }

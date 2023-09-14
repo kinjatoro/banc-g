@@ -97,26 +97,38 @@ const theme = createTheme({
 * variant = 'dense' | 'regular' | string
 <br>
 
-#### [CARD (como elemento atómico)](https://mui.com/material-ui/api/toolbar/) `<Card/>`
+#### [CARD (atómico)](https://mui.com/material-ui/api/toolbar/) `<Card/>`
 
 * No tiene props útiles.
 
 <br>
 
-#### [CARDCONTENT](https://mui.com/material-ui/api/toolbar/) `<CardContent/>`
+#### [CARD-CONTENT](https://mui.com/material-ui/api/toolbar/) `<CardContent/>`
 
 * No tiene props útiles.
 
 <br>
 
-#### [CARDACTIONS](https://mui.com/material-ui/api/toolbar/) `<CardActions/>`
+#### [CARD-ACTIONS](https://mui.com/material-ui/api/toolbar/) `<CardActions/>`
 
 * disableSpacing = "true" | "false"
 ---
 
 ### **COMPONENTES COMPUESTOS**
 
-Los componentes compuestos van en una carpeta aparte dentro del src llamada `components`
+Los componentes compuestos van en una carpeta aparte dentro del src llamada `components`.
+La estructura básica es:
+```javascript
+import React from 'react';
+const NavBar = () => {
+    return (
+        <div>
+
+        </div>
+    )
+}
+export default NavBar;
+```
 
 #### [NAVBAR - AppBar Compuesto](https://mui.com/material-ui/react-app-bar/)
 
@@ -130,7 +142,7 @@ Estructura básica del NavBar:
 ```
 <br>
 
-#### [CARD (como elemento compuesto)](https://mui.com/material-ui/react-card/) `<Card/>` `<CardContent/>` `<CardActions/>`
+#### [CARD (compuesto)](https://mui.com/material-ui/react-card/) `<Card/>` `<CardContent/>` `<CardActions/>`
 Estructura básica de la carta:
 ```javascript
 <Card>
