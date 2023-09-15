@@ -9,12 +9,6 @@ Lista de íconos -> https://mui.com/material-ui/material-icons/
 Probar estilos -> https://bareynol.github.io/mui-theme-creator/
 
 ---
-
-### **INSTALAR DEPENDENCIAS**
-`npm install react-router-dom react-helmet-async @faker-js/faker react-apexcharts @iconify/react simplebar-react date-fns @mui/lab react-hook-form numeral`
-
-
----
 ### **TEMPLATES** 
 * DEVIAS -> https://mui.com/store/previews/devias-kit/
 * BERRY -> https://mui.com/store/previews/berry-react-material-admin-free/
