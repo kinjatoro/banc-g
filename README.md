@@ -9,6 +9,12 @@ Lista de íconos -> https://mui.com/material-ui/material-icons/
 Probar estilos -> https://bareynol.github.io/mui-theme-creator/
 
 ---
+
+### **INSTALAR DEPENDENCIAS**
+`npm install react-router-dom react-helmet-async @faker-js/faker react-apexcharts @iconify/react simplebar-react date-fns @mui/lab react-hook-form numeral`
+
+
+---
 ### **TEMPLATES** 
 * DEVIAS -> https://mui.com/store/previews/devias-kit/
 * BERRY -> https://mui.com/store/previews/berry-react-material-admin-free/
@@ -25,9 +31,11 @@ Probar estilos -> https://bareynol.github.io/mui-theme-creator/
 * ÍCONOS -> `import {NombreIcono} from '@mui/icons-material';`
 * ICON-BUTTON -> `import {IconButton} from '@mui/material';`
 * TEMA -> `import {createTheme, ThemeProvider} from "@mui/material/styles";`
-* APPBAR -> `import { AppBar } from '@mui/material';`;
-* TOOLBAR -> `import { Toolbar } from '@mui/material';`;
-* CARD -> `import {Card, CardContent, CardActions} from '@mui/material`;
+* APPBAR -> `import { AppBar } from '@mui/material';`
+* TOOLBAR -> `import { Toolbar } from '@mui/material';`
+* CARD -> `import {Card, CardContent, CardActions} from '@mui/material';`
+* NAVBAR -> `import NavBar from './components/NavBar';`
+* LISTA -> `import {List,ListItem,ListItemIcon,ListItemText,Divider} from '@mui/material';`
 
 ----
 
@@ -103,23 +111,6 @@ const theme = createTheme({
 
 #### [TOOLBAR](https://mui.com/material-ui/api/toolbar/) `<ToolBar/>`
 * variant = 'dense' | 'regular' | string
-<br>
-
-#### [CARD (atómico)](https://mui.com/material-ui/api/toolbar/) `<Card/>`
-
-* No tiene props útiles.
-
-<br>
-
-#### [CARD-CONTENT](https://mui.com/material-ui/api/toolbar/) `<CardContent/>`
-
-* No tiene props útiles.
-
-<br>
-
-#### [CARD-ACTIONS](https://mui.com/material-ui/api/toolbar/) `<CardActions/>`
-
-* disableSpacing = "true" | "false"
 ---
 
 ### **COMPONENTES COMPUESTOS**
@@ -168,4 +159,12 @@ Estructura básica de la carta:
       
   </CardActions>
 </Card>
+```
+<br>
+
+#### [Lista (compuesto)](https://mui.com/material-ui/react-list/) `<List/>` `<ListItem/>` `<ListItemIcon/>` `<ListItemText/>``<Divider/>`
+
+Estructura básica de la lista:
+```javascript
+
 ```
