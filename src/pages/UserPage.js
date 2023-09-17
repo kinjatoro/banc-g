@@ -34,11 +34,11 @@ import USERLIST from '../_mock/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
+  { id: 'name', label: 'Nombre', alignRight: false },
+  { id: 'company', label: 'Servicio', alignRight: false },
+  { id: 'role', label: 'Fecha', alignRight: false },
+  { id: 'isVerified', label: 'Pagado', alignRight: false },
+  { id: 'status', label: 'Estado', alignRight: false },
   { id: '' },
 ];
 
@@ -155,7 +155,7 @@ export default function UserPage() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            Contrataciones de servicios
           </Typography>
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             New User
@@ -204,7 +204,7 @@ export default function UserPage() {
                         <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
 
                         <TableCell align="left">
-                          <Label color={(status === 'banned' && 'error') || 'success'}>{sentenceCase(status)}</Label>
+                          <Label color={(status === 'Cancelada' && 'error') || (status === 'Aceptada' && 'success') || 'primary'}>{sentenceCase(status)}</Label>
                         </TableCell>
 
                         <TableCell align="right">
