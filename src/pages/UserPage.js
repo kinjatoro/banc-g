@@ -37,7 +37,6 @@ const TABLE_HEAD = [
   { id: 'name', label: 'Nombre', alignRight: false },
   { id: 'company', label: 'Servicio', alignRight: false },
   { id: 'role', label: 'Fecha', alignRight: false },
-  { id: 'isVerified', label: 'Pagado', alignRight: false },
   { id: 'status', label: 'Estado', alignRight: false },
   { id: '' },
 ];
@@ -158,7 +157,7 @@ export default function UserPage() {
             Contrataciones de servicios
           </Typography>
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New User
+            Nuevo Servicio
           </Button>
         </Stack>
 
@@ -179,7 +178,7 @@ export default function UserPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, company, avatarUrl, isVerified } = row;
+                    const { id, name, role, status, company, avatarUrl } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -201,7 +200,7 @@ export default function UserPage() {
 
                         <TableCell align="left">{role}</TableCell>
 
-                        <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                        
 
                         <TableCell align="left">
                           <Label color={(status === 'Cancelada' && 'error') || (status === 'Aceptada' && 'success') || 'primary'}>{sentenceCase(status)}</Label>

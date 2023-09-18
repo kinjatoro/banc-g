@@ -77,15 +77,11 @@ export default function Nav({ openNav, onCloseNav }) {
 
       <NavSection data={navConfig} />
 
-      <Box sx={{ flexGrow: 1 }} />
+  
 
-      <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>
-        <Stack alignItems="center" spacing={3} sx={{ pt: 5, borderRadius: 2, position: 'relative' }}>
-          <Box
-            component="img"
-            src="/assets/illustrations/illustration_avatar.png"
-            sx={{ width: 100, position: 'absolute', top: -50 }}
-          />
+      <Box sx={{ px: 2.5, pb: 0, mt: 2 }}>
+        <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
+          
 
           <Box sx={{ textAlign: 'center' }}>
             <Typography gutterBottom variant="h6">
@@ -93,7 +89,7 @@ export default function Nav({ openNav, onCloseNav }) {
             </Typography>
           </Box>
 
-          <Button href="http://localhost:3000/login" target="_blank" variant="contained">
+          <Button href="http://localhost:3000/login" target="_blank" variant="contained" disableElevation ="true">
             Iniciar sesión
           </Button>
           <Button variant = 'outlined'>
