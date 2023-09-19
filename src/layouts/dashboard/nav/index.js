@@ -89,10 +89,10 @@ export default function Nav({ openNav, onCloseNav }) {
             </Typography>
           </Box>
 
-          <Button href="http://localhost:3000/login" target="_blank" variant="contained" disableElevation ="true">
+          <Button href="http://localhost:3000/login" variant="contained" disableElevation ="true">
             Iniciar sesión
           </Button>
-          <Button variant = 'outlined'>
+          <Button href="http://localhost:3000/register" variant = 'outlined'>
             Registarme
           </Button>
         </Stack>

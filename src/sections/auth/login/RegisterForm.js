@@ -10,7 +10,7 @@ import Iconify from '../../../components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function LoginForm() {
+export default function RegisterForm() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -22,8 +22,8 @@ export default function LoginForm() {
   return (
     <>
       <Stack spacing={3}>
-        <TextField name="correo" label="Correo electrónico" />
-
+        <TextField name="nombre" label="Nombre y Apellido" />
+        <TextField name="telefono" label="Telefono" />
         <TextField
           name="Contraseña"
           label="Contraseña"
@@ -40,18 +40,8 @@ export default function LoginForm() {
         />
       </Stack>
 
-      <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2}}>
-        
-        <Checkbox name="remember" label="Remember me" /> 
-        <Typography variant="subtitle2">
-        Recordar mi usuario y contraseña</Typography>
-        <Link variant="subtitle2" underline="hover" sx={{mx: 3}}>
-          ¿Olvidaste tu contraseña?
-        </Link>
-      </Stack>
-
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick}>
-        Iniciar Sesión
+      <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick} sx={{mt:3}}>
+        Registrarme
       </LoadingButton>
     </>
   );
