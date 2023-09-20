@@ -6,7 +6,7 @@ import { sample } from 'lodash';
 const users = [...Array(24)].map((_, index) => ({
   id: faker.datatype.uuid(),
   avatarUrl: `/assets/images/avatars/avatar_${index + 1}.jpg`,
-  name: sample(['Ezequiel', 'Neistadt',
+  name: sample(['Ezequiel', 'Neistadt', 'Agustín', 'Carlos', 'Manuel', 'José', 'Joaquín', 'Roberto', 'Gomez', 'Lopez', 'Perez', 'Díaz',
   'Luis', 'María', 'Fredes',
   'Lucas', 'Muras',
   'Juan Ignacio', 'Boiko',
@@ -16,27 +16,47 @@ const users = [...Array(24)].map((_, index) => ({
   'Nicolás', 'Parilla',
   'Santiago', 'Carrasco', 'Vera',
   'Macareno', 'Iacob', 'Meltor',]),
-  company: sample(['Clases de inglés',
+
+  servicio: sample(['Clases de inglés',
     'Clases de natación',
     'Clases de Guitarra',
     'Cuidado de niños',
     'Tutoría Escolar',
     'Clases de Piano',
-    'Clases particulares de Base de Datos']),
+    'Clases de BD']),
+
+  telefono: sample([
+    '11-3928-3234',
+    '11-6436-3455',
+    '11-7536-8463',
+    '11-3736-2346',
+    '11-2346-2347',
+    '11-2346-6462']),
   
-  status: sample(['Aceptada', 'Finalizada', 'Cancelada']),
-  role: sample([
-    '17/04/23',
-    '19/04/23',
-    '24/04/23',
-    '03/05/23',
-    '08/05/23',
-    '15/05/23',
-    '26/05/23',
-    '04/06/23',
-    '13/06/23',
-    '28/06/23',
+  mail: sample([
+    'chocolatelover@gmail.com',
+    'adventureseeker@gmail.com',
+    'musicfanatic@gmail.com',
+    'beachbum@outlook.com',
+    'bookworm@outlook.com',
+    'sportsfan@outlook.com',
+    'pizzaenthusiast@hotmail.com',
+    'techgeek@hotmail.com',
+    'travelbug@hotmail.com',
+    'hikingspirit@yahoo.com',
   ]),
+
+  horario: sample([
+    '18:00',
+    '19:00',
+    '20:00',
+    '21:00',
+    '22:00',
+    '17:00',
+    '14:00',
+  ]),
+
+  status: sample(['Aceptada', 'Finalizada', 'Cancelada']),
 }));
 
 export default users;

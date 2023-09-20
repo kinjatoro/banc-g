@@ -34,9 +34,11 @@ import USERLIST from '../_mock/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Nombre', alignRight: false },
-  { id: 'company', label: 'Servicio', alignRight: false },
-  { id: 'role', label: 'Fecha', alignRight: false },
+  { id: 'name', label: 'Alumno', alignRight: false },
+  { id: 'servicio', label: 'Servicio', alignRight: false },
+  { id: 'telefono', label: 'Telefono', alignRight: false },
+  { id: 'mail', label: 'Mail', alignRight: false },
+  { id: 'horario', label: 'Horario', alignRight: false },
   { id: 'status', label: 'Estado', alignRight: false },
   { id: '' },
 ];
@@ -178,7 +180,7 @@ export default function UserPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, company, avatarUrl } = row;
+                    const { id, name, servicio, telefono, mail, horario,status, avatarUrl } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -196,10 +198,10 @@ export default function UserPage() {
                           </Stack>
                         </TableCell>
 
-                        <TableCell align="left">{company}</TableCell>
-
-                        <TableCell align="left">{role}</TableCell>
-
+                        <TableCell align="left">{servicio}</TableCell>
+                        <TableCell align="left">{telefono}</TableCell>
+                        <TableCell align="left">{mail}</TableCell>
+                        <TableCell align="left">{horario}</TableCell>
                         
 
                         <TableCell align="left">
