@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 // @mui
 import {
   Box,
-  Radio,
   Stack,
   Button,
   Drawer,
@@ -66,7 +65,6 @@ export default function ShopFilterSidebar({ openFilter, onOpenFilter, onCloseFil
              
                 
               <Typography variant="subtitle1" gutterBottom >
-    
                 Categoria
               </Typography>
              
