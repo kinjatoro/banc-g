@@ -1,6 +1,10 @@
+import { useState } from 'react';
+
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { Grid, Button, Container, Stack, Typography } from '@mui/material';
+
+import { ProductSort, ProductFilterSidebar } from '../sections/@dashboard/products';
 // components
 import Iconify from '../components/iconify';
 import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
@@ -18,7 +22,19 @@ const SORT_OPTIONS = [
 // ----------------------------------------------------------------------
 
 export default function BlogPage() {
+  const [openFilter, setOpenFilter] = useState(false);
+
+  const handleOpenFilter = () => {
+    setOpenFilter(true);
+  };
+
+  const handleCloseFilter = () => {
+    setOpenFilter(false);
+  };
+  
   return (
+
+  
     <>
       <Helmet>
         <title> Dashboard: Blog | Minimal UI </title>
@@ -37,6 +53,16 @@ export default function BlogPage() {
         <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between">
           <BlogPostsSearch posts={POSTS} />
           <BlogPostsSort options={SORT_OPTIONS} />
+          <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
+          <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
+            <ProductFilterSidebar
+              openFilter={openFilter}
+              onOpenFilter={handleOpenFilter}
+              onCloseFilter={handleCloseFilter}
+            />
+            <ProductSort />
+          </Stack>
+        </Stack>
         </Stack>
 
         <Grid container spacing={3}>
