@@ -4,10 +4,12 @@ import { Helmet } from 'react-helmet-async';
 // @mui
 import { Grid, Button, Container, Stack, Typography, Box } from '@mui/material';
 
-import { ProductSort, ProductFilterSidebar } from '../sections/@dashboard/products';
+import { ProductSort} from '../sections/@dashboard/products';
+
 // components
 import Iconify from '../components/iconify';
-import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
+
+import { BlogPostCard, BlogPostsSort, BlogPostsSearch,ProductFilterSidebar } from '../sections/@dashboard/blog';
 // mock
 import POSTS from '../_mock/blog';
 
