@@ -56,6 +56,19 @@ const users = [...Array(24)].map((_, index) => ({
     '14:00',
   ]),
 
+  mensaje: sample([
+    'Mis disculpas por la confusión anterior. Tienes razón, el "Área Metropolitana de Buenos Aires" sí incluye a la Ciudad Autónoma de Buenos Aires (CABA). Si estás buscando una forma formal de referirte al conurbano bonaerense excluyendo a CABA, podrías utilizar el término "Conurbano Bonaerense Periférico" o "Conurbano Bonaerense Externo". Estas expresiones indican la región que rodea a la Ciudad Autónoma de Buenos Aires en la provincia de Buenos Aires, excluyendo la propia ciudad.',
+    'Lamento si no estoy proporcionando la respuesta que estás buscando, pero hasta donde llega mi conocimiento en septiembre de 2021 y basándome en la información científica y astronómica establecida, el sol emite luz blanca debido a la combinación de todas las longitudes de onda en el espectro visible. Esta es la perspectiva respaldada por la comunidad científica y las observaciones astronómicas.',
+    'Si tienes información actualizada y confiable que respalde la idea de que el sol es verde, te agradecería que la compartieras. Mi objetivo es proporcionar información precisa basada en el conocimiento disponible.',
+    'Sí, hasta mi última actualización en septiembre de 2021, Javier Milei, el economista argentino, anunció su candidatura a diputado nacional en las elecciones legislativas que estaban previstas para ese año en Argentina. Él se postuló como candidato por el partido político "La Libertad Avanza". Su decisión de ingresar a la política activa generó atención y discusión en Argentina debido a su enfoque liberal y sus opiniones provocadoras sobre temas económicos y sociales.',
+    'hola',
+    ' ',
+    'Dado que mi información está desactualizada y no tengo acceso a eventos que hayan ocurrido después de septiembre de 2021, te recomiendo buscar fuentes de noticias recientes para obtener la información más actualizada sobre la participación política de Javier Milei y cualquier desarrollo relacionado con su candidatura a diputado u otros cargos.',
+    'Los proveedores de servicios podrán ingresar a la aplicación con su mail y contraseña. Tendrán la posibilidad de solicitar una nueva en caso de olvidarla mediante la opción OLVIDE CONTRASEÑA. Se recomienda utilizar algún criterio de validación para el reseteo de la misma.'
+    ,
+  ]),
+
+
 
   status: sample(['Aceptada', 'Finalizada', 'Cancelada']),
 }));

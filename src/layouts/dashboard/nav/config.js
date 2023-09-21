@@ -26,6 +26,11 @@ const navConfig = [
     path: '/dashboard/blog',
     icon: icon('ic_blog'),
   },
+  {
+    title: 'mensajes',
+    path: '/dashboard/mensajes',
+    icon: icon('ic_lock'),
+  },
 ];
 
 export default navConfig;
