@@ -68,7 +68,7 @@ export default function RegisterPage() {
 
             <Typography variant="body2" sx={{ mb: 5 }}>
               ¿Ya tenés cuenta? {''}
-              <Link variant="subtitle2">Iniciar Sesión</Link>
+              <Link variant="subtitle2" href="http://localhost:3000/login">Iniciar Sesión</Link>
             </Typography>
 
             <RegisterForm />

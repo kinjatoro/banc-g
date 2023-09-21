@@ -56,6 +56,7 @@ const users = [...Array(24)].map((_, index) => ({
     '14:00',
   ]),
 
+
   status: sample(['Aceptada', 'Finalizada', 'Cancelada']),
 }));
 

@@ -37,8 +37,9 @@ const TABLE_HEAD = [
   { id: 'name', label: 'Alumno', alignRight: false },
   { id: 'servicio', label: 'Servicio', alignRight: false },
   { id: 'telefono', label: 'Telefono', alignRight: false },
-  { id: 'mail', label: 'Mail', alignRight: false },
+  { id: 'mail', label: 'Correo Electrónico', alignRight: false },
   { id: 'horario', label: 'Horario', alignRight: false },
+
   { id: 'status', label: 'Estado', alignRight: false },
   { id: '' },
 ];
@@ -150,7 +151,7 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title> User | Minimal UI </title>
+        <title> Contrataciones de Servicios </title>
       </Helmet>
 
       <Container>
@@ -202,7 +203,6 @@ export default function UserPage() {
                         <TableCell align="left">{telefono}</TableCell>
                         <TableCell align="left">{mail}</TableCell>
                         <TableCell align="left">{horario}</TableCell>
-                        
 
                         <TableCell align="left">
                           <Label color={(status === 'Cancelada' && 'error') || (status === 'Aceptada' && 'success') || 'primary'}>{sentenceCase(status)}</Label>
@@ -282,12 +282,12 @@ export default function UserPage() {
       >
         <MenuItem>
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-          Edit
+          Editar
         </MenuItem>
 
         <MenuItem sx={{ color: 'error.main' }}>
           <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
-          Delete
+          Eliminar
         </MenuItem>
       </Popover>
     </>

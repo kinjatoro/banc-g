@@ -68,7 +68,7 @@ export default function LoginPage() {
 
             <Typography variant="body2" sx={{ mb: 5 }}>
               ¿No tenés cuenta? {''}
-              <Link variant="subtitle2">Registrarse</Link>
+              <Link variant="subtitle2" href="http://localhost:3000/register">Registrate</Link>
             </Typography>
 
             <LoginForm />

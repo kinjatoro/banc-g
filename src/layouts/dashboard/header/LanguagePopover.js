@@ -6,21 +6,13 @@ import { Box, MenuItem, Stack, IconButton, Popover } from '@mui/material';
 // ----------------------------------------------------------------------
 
 const LANGS = [
+
   {
-    value: 'en',
-    label: 'English',
-    icon: '/assets/icons/ic_flag_en.svg',
+    value: 'ar',
+    label: 'Argentina',
+    icon: '/assets/icons/Wikipedia-Flags-AR-Argentina-Flag.svg',
   },
-  {
-    value: 'de',
-    label: 'German',
-    icon: '/assets/icons/ic_flag_de.svg',
-  },
-  {
-    value: 'fr',
-    label: 'French',
-    icon: '/assets/icons/ic_flag_fr.svg',
-  },
+
 ];
 
 // ----------------------------------------------------------------------
@@ -48,8 +40,9 @@ export default function LanguagePopover() {
             bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.action.focusOpacity),
           }),
         }}
-      >
+      > 
         <img src={LANGS[0].icon} alt={LANGS[0].label} />
+        
       </IconButton>
 
       <Popover
