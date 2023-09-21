@@ -1,46 +1,43 @@
 // component
 import SvgColor from '../../../components/svg-color';
 
+import Iconify from '../../../components/iconify';
+
 // ----------------------------------------------------------------------
 
 const icon = (name) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />;
 
 const navConfig = [
   {
-    title: 'dashboard',
+    title: 'Inicio',
     path: '/dashboard/app',
-    icon: icon('ic_analytics'),
-  },
-  {
-    title: 'Contrataciones',
-    path: '/dashboard/user',
-    icon: icon('ic_user'),
-  },
-  {
-    title: 'product',
-    path: '/dashboard/products',
-    icon: icon('ic_cart'),
+    icon: <Iconify icon={"eva:heart-fill"} />,   
   },
   {
     title: 'servicios',
     path: '/dashboard/blog',
-    icon: icon('ic_blog'),
+    icon: <Iconify icon={"eva:briefcase-fill"} />,  
+  },
+  {
+    title: 'Contrataciones',
+    path: '/dashboard/user',
+    icon: <Iconify icon={"eva:people-fill"} />,
   },
   {
     title: 'mensajes',
     path: '/dashboard/mensajes',
-    icon: icon('ic_lock'),
+    icon: <Iconify icon={'eva:message-square-fill'} />  
   },
   {
     title: 'mis publicaciones',
     path: '/dashboard/mispublicaciones',
-    icon: icon('ic_lock'),
+    icon: <Iconify icon={'eva:layers-fill'} />
   },
   {
     title: 'comentarios',
     path: '/dashboard/comentarios',
-    icon: icon('ic_lock'),
-  },
+    icon: <Iconify icon={'eva:archive-fill'} />
+  },  
 ];
 
 export default navConfig;

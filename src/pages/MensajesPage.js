@@ -154,9 +154,6 @@ export default function UserPage() {
           <Typography variant="h4" gutterBottom>
             Mensajes
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            Nuevo Mensaje
-          </Button>
         </Stack>
 
         <Card>
@@ -268,10 +265,6 @@ export default function UserPage() {
           },
         }}
       >
-        <MenuItem>
-          <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-          Editar
-        </MenuItem>
 
         <MenuItem sx={{ color: 'error.main' }}>
           <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
