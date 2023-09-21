@@ -11,6 +11,8 @@ import ProductsPage from './pages/ProductsPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 import MensajesPage from './pages/MensajesPage';
+import MisPublicacionesPage from './pages/MisPublicacionesPage';
+import ComentariosPage from './pages/ComentariosPage';
 
 // ----------------------------------------------------------------------
 
@@ -26,6 +28,8 @@ export default function Router() {
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
         { path: 'mensajes', element: <MensajesPage /> },
+        { path: 'mispublicaciones', element: <MisPublicacionesPage /> },
+        { path: 'comentarios', element: <ComentariosPage /> },
       ],
     },
     {

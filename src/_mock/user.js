@@ -71,6 +71,16 @@ const users = [...Array(24)].map((_, index) => ({
 
 
   status: sample(['Aceptada', 'Finalizada', 'Cancelada']),
+
+  duracion: sample(['2 meses', '1 mes', '1 año']),
+  frecuencia: sample(['Diario', 'Semanal', 'Mensual']),
+  costo: sample(['$2', '$5', '$7','$10','$15','$20','$50','$60','$100']),
+
+  estado: sample(['Publicado', 'Pausado']),
+
+  estadoComentario: sample(['Rechazado','Aceptado','Pendiente Revision']),
+  comentario: sample(['Muy bueno','Una mierda','Like si lo ves en 2023','Tipazo','Primer comentario!','El peor profe q alguna vez tuve la desgracia de conocer'])
+
 }));
 
 export default users;

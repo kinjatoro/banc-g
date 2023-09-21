@@ -31,6 +31,16 @@ const navConfig = [
     path: '/dashboard/mensajes',
     icon: icon('ic_lock'),
   },
+  {
+    title: 'mis publicaciones',
+    path: '/dashboard/mispublicaciones',
+    icon: icon('ic_lock'),
+  },
+  {
+    title: 'comentarios',
+    path: '/dashboard/comentarios',
+    icon: icon('ic_lock'),
+  },
 ];
 
 export default navConfig;
