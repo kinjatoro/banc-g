@@ -7,9 +7,6 @@ import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/iconify';
 
-// AXIOS API
-import axios from '../../../api/axios';
-
 
 // ----------------------------------------------------------------------
 
