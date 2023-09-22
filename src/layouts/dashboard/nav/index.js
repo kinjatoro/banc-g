@@ -78,25 +78,25 @@ export default function Nav({ openNav, onCloseNav }) {
       <NavSection data={navConfig} />
 
   
-
+      
       <Box sx={{ px: 2.5, pb: 0, mt: 2 }}>
-        <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
-          
+      <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
+        
 
-          <Box sx={{ textAlign: 'center' }}>
-            <Typography gutterBottom variant="h6">
-              ¿Sos proveedor?
-            </Typography>
-          </Box>
+        <Box sx={{ textAlign: 'center' }}>
+          <Typography gutterBottom variant="h6">
+            ¿Sos proveedor?
+          </Typography>
+        </Box>
 
-          <Button href="http://localhost:3000/login" variant="contained" disableElevation ="true">
-            Iniciar sesión
-          </Button>
-          <Button href="http://localhost:3000/register" variant = 'outlined'>
-            Registarme
-          </Button>
-        </Stack>
-      </Box>
+        <Button href="http://localhost:3000/login" variant="contained" disableElevation ="true">
+          Iniciar sesión
+        </Button>
+        <Button href="http://localhost:3000/register" variant = 'outlined'>
+          Registarme
+        </Button>
+      </Stack>
+     </Box>
     </Scrollbar>
   );
 
