@@ -7,6 +7,8 @@ import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/iconify';
 
+import { useAuth } from '../../../Auth'
+
 
 // ----------------------------------------------------------------------
 
@@ -15,8 +17,11 @@ export default function LoginForm() {
 
   const [showPassword, setShowPassword] = useState(false);
 
+  const { auth, setAuth } = useAuth();
+
   const handleClick = () => {
     navigate('/dashboard');
+    setAuth(true);
   };
 
   return (

@@ -14,6 +14,7 @@ import Scrollbar from '../../../components/scrollbar';
 import NavSection from '../../../components/nav-section';
 //
 import navConfig from './config';
+import navConfigLogged from './configLogged';
 
 import { useAuth } from '../../../Auth'
 
@@ -76,6 +77,7 @@ export default function Nav({ openNav, onCloseNav }) {
         <Logo />
       </Box>
 
+      {auth ? (
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none">
           <StyledAccount>
@@ -92,9 +94,8 @@ export default function Nav({ openNav, onCloseNav }) {
             </Box>
           </StyledAccount>
         </Link>
-      </Box>
-
-      <NavSection data={navConfig} />
+      </Box>) : (<></>)}
+      {auth ? (<NavSection data={navConfigLogged} />) : (<><NavSection data={navConfig}/></>)}
 
   
       
@@ -102,7 +103,7 @@ export default function Nav({ openNav, onCloseNav }) {
       <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
         
       {auth ? (
-           <><Button onClick={handleAuth} variant='outlined' color="error">
+           <><Button onClick={handleAuth} variant='outlined' color="error" href="http://localhost:3001/dashboard/app">
             Cerrar sesión
             </Button></>
             ) : (

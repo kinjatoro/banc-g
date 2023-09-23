@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Typography, Container } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
+import { useAuth } from '../../../Auth'
+
 // components
 import Iconify from '../../../components/iconify';
 
@@ -14,9 +16,11 @@ export default function RegisterForm() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+  const { auth, setAuth } = useAuth();
 
   const handleClick = () => {
     navigate('/dashboard', { replace: true });
+    setAuth(true);
   };
 
   return (
