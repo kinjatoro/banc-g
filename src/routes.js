@@ -30,16 +30,14 @@ export default function Router() {
         { path: 'mensajes', element: <MensajesPage /> },
         { path: 'mispublicaciones', element: <MisPublicacionesPage /> },
         { path: 'comentarios', element: <ComentariosPage /> },
+        
+
       ],
     },
-    {
-      path: 'login',
-      element: <LoginPage />,
-    },
-    {
-      path: 'register',
-      element: <RegisterPage />,
-    },
+   
+    {path: 'login', element: <LoginPage />,},
+    {path: 'register', element: <RegisterPage />,},
+    
     {
       element: <SimpleLayout />,
       children: [

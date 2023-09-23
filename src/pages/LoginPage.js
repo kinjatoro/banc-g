@@ -10,6 +10,8 @@ import Iconify from '../components/iconify';
 // sections
 import { LoginForm } from '../sections/auth/login';
 
+
+
 // ----------------------------------------------------------------------
 
 const StyledRoot = styled('div')(({ theme }) => ({
@@ -43,6 +45,7 @@ const StyledContent = styled('div')(({ theme }) => ({
 export default function LoginPage() {
   const mdUp = useResponsive('up', 'md');
 
+
   return (
     <>
       <Helmet>
@@ -68,10 +71,13 @@ export default function LoginPage() {
 
             <Typography variant="body2" sx={{ mb: 5 }}>
               ¿No tenés cuenta? {''}
-              <Link variant="subtitle2" href="http://localhost:3000/register">Registrate</Link>
+              <Link variant="subtitle2" to="http://localhost:3000/register">Registrate</Link>
             </Typography>
 
             <LoginForm />
+
+
+
           </StyledContent>
         </Container>
       </StyledRoot>

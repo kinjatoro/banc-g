@@ -4,6 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Button, Typography, Container, Box } from '@mui/material';
 
+
 // ----------------------------------------------------------------------
 
 const StyledContent = styled('div')(({ theme }) => ({
@@ -15,6 +16,8 @@ const StyledContent = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   padding: theme.spacing(12, 0),
 }));
+
+
 
 // ----------------------------------------------------------------------
 
@@ -45,6 +48,8 @@ export default function Page404() {
           <Button to="/" size="large" variant="contained" component={RouterLink}>
             Go to Home
           </Button>
+
+          
         </StyledContent>
       </Container>
     </>

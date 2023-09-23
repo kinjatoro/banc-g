@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Navigate, useNavigate } from 'react-router-dom';
 // @mui
 import { styled, alpha } from '@mui/material/styles';
 import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
@@ -14,6 +14,7 @@ import Scrollbar from '../../../components/scrollbar';
 import NavSection from '../../../components/nav-section';
 //
 import navConfig from './config';
+
 
 // ----------------------------------------------------------------------
 
@@ -37,6 +38,8 @@ Nav.propTypes = {
 export default function Nav({ openNav, onCloseNav }) {
   const { pathname } = useLocation();
 
+  const navigate = useNavigate();
+
   const isDesktop = false;
 
   useEffect(() => {
@@ -45,6 +48,11 @@ export default function Nav({ openNav, onCloseNav }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
+
+  const handleClick = () => {
+    navigate('/login');
+  }
+
 
   const renderContent = (
     <Scrollbar
@@ -89,7 +97,7 @@ export default function Nav({ openNav, onCloseNav }) {
           </Typography>
         </Box>
 
-        <Button href="http://localhost:3000/login" variant="contained" disableElevation ="true">
+        <Button onClick={handleClick} variant="contained" disableElevation ="true">
           Iniciar sesión
         </Button>
         <Button href="http://localhost:3000/register" variant = 'outlined'>
