@@ -74,14 +74,18 @@ export default function Nav({ openNav, onCloseNav }) {
       }}
     >
       
-      <Box sx={{ px: 2.5, pb: 1, pt:3, display: 'inline-flex'  }}>
-        <Logo />
-        PRUEBA
-        
+      <Box sx={{ px: 2.5, pb: 1, pt: 3, display: 'flex', alignItems: 'center' }}>
+        <Box>
+          <Logo />
+       </Box>
+       <Typography variant="h6" sx={{ marginLeft: 2, color: 'text.primary'}}>
+           Bienvenido a Neilo.
+       </Typography>
       </Box>
 
+
       {auth ? (
-      <Box sx={{ mb: 5, mx: 2.5 }}>
+      <Box sx={{ mb: 2, mx: 2.5 }}>
         <Link underline="none">
           <StyledAccount>
             <Avatar src={account.photoURL} alt="photoURL" />
