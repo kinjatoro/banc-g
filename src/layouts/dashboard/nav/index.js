@@ -53,6 +53,10 @@ export default function Nav({ openNav, onCloseNav }) {
     navigate('/login');
   }
 
+  const handleClick2 = () => {
+    navigate('/register');
+  }
+
 
   const renderContent = (
     <Scrollbar
@@ -100,7 +104,7 @@ export default function Nav({ openNav, onCloseNav }) {
         <Button onClick={handleClick} variant="contained" disableElevation ="true">
           Iniciar sesión
         </Button>
-        <Button href="http://localhost:3000/register" variant = 'outlined'>
+        <Button onClick={handleClick2} variant = 'outlined'>
           Registarme
         </Button>
       </Stack>
