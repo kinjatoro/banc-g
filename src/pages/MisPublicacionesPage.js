@@ -158,7 +158,7 @@ export default function UserPage() {
             Mis Publicaciones
           </Typography>
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            Nuevo Servicio
+            Nueva publicación
           </Button>
         </Stack>
 

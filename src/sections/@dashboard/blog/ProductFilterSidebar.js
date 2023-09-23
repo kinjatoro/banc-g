@@ -118,7 +118,7 @@ export default function ShopFilterSidebar({ openFilter, onOpenFilter, onCloseFil
             variant="outlined"
             startIcon={<Iconify icon="ic:round-clear-all" />}
           >
-            Limpiar filtros
+            Buscar
           </Button>
         </Box>
       </Drawer>

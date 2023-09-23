@@ -31,8 +31,6 @@ import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
 // mock
 import USERLIST from '../_mock/user';
 
-import { useAuth } from '../Auth'
-
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
@@ -78,12 +76,6 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function UserPage() {
-
-  const { auth, setAuth } = useAuth();
-
-  const handleClick2 = () => {
-    setAuth(true);
-  };
 
   const [open, setOpen] = useState(null);
 
@@ -163,19 +155,11 @@ export default function UserPage() {
         <title> Contrataciones de Servicios </title>
       </Helmet>
       
-      {auth ? (
-           <p>¡Estás autenticado!</p>
-            ) : (
-         <Button onClick={handleClick2}>PRUEBA</Button>
-         )}
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             Contrataciones de servicios
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            Nuevo Servicio
-          </Button>
         </Stack>
 
         <Card>
