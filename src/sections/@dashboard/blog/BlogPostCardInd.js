@@ -52,12 +52,12 @@ const StyledCover = styled('img')({
 
 // ----------------------------------------------------------------------
 
-BlogPostCard.propTypes = {
+BlogPostCardInd.propTypes = {
   post: PropTypes.object.isRequired,
   index: PropTypes.number,
 };
 
-export default function BlogPostCard({ post, index }) {
+export default function BlogPostCardInd({ post, index }) {
   const { cover, title, view, comment, share, author, createdAt } = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
@@ -75,7 +75,7 @@ export default function BlogPostCard({ post, index }) {
   };
 
   return (
-    <Grid item xs={12} sm={latestPostLarge ? 12 : 6} md={latestPostLarge ? 6 : 3}>
+    <Grid item xs={12} sm={12} md={12}>
       <Card sx={{ position: 'relative' }}>
         <StyledCardMedia
           sx={{

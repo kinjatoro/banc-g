@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { useParams } from 'react-router-dom';
+
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { Grid, Button, Container, Stack, Typography, Box } from '@mui/material';
@@ -9,7 +11,7 @@ import { ProductSort} from '../sections/@dashboard/products';
 // components
 import Iconify from '../components/iconify';
 
-import { BlogPostCard, BlogPostsSort, BlogPostsSearch,ProductFilterSidebar } from '../sections/@dashboard/blog';
+import {BlogPostCardInd} from '../sections/@dashboard/blog';
 // mock
 import POSTS from '../_mock/blog';
 
@@ -17,6 +19,7 @@ import POSTS from '../_mock/blog';
 
 export default function BlogPage() {
   const [openFilter, setOpenFilter] = useState(false);
+
   
 
   const handleOpenFilter = () => {
@@ -28,41 +31,31 @@ export default function BlogPage() {
   };
 
 
+
+  const { idBlog } = useParams();
+  const index = parseInt(idBlog, 10); 
+  const post = POSTS[index-1];
   
   return (
 
   
     <>
       <Helmet>
-        <title> Dashboard: Blog | Minimal UI </title>
+        <title> {post.title} </title>
       </Helmet>
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2}>
           <Typography variant="h3" gutterBottom>
-            Servicios
+          {post.title}
           </Typography>
           
         </Stack>
 
-        <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between">
-          <BlogPostsSearch posts={POSTS} />
-         
-            <Box>
-            <ProductFilterSidebar
-              openFilter={openFilter}
-              onOpenFilter={handleOpenFilter}
-              onCloseFilter={handleCloseFilter}
-            />
-            <ProductSort />
-            </Box>
-
-        </Stack>
-
         <Grid container spacing={3}>
-          {POSTS.map((post, index) => (
-            <BlogPostCard post={post} index={index} />
-          ))}
+        
+            <BlogPostCardInd key={post.id} post={post} index={index} />
+            
         </Grid>
       </Container>
     </>

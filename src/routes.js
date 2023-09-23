@@ -13,6 +13,7 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import MensajesPage from './pages/MensajesPage';
 import MisPublicacionesPage from './pages/MisPublicacionesPage';
 import ComentariosPage from './pages/ComentariosPage';
+import IndividualBlog from './pages/IndividualBlog';
 
 // ----------------------------------------------------------------------
 
@@ -30,11 +31,11 @@ export default function Router() {
         { path: 'mensajes', element: <MensajesPage /> },
         { path: 'mispublicaciones', element: <MisPublicacionesPage /> },
         { path: 'comentarios', element: <ComentariosPage /> },
-        
+        { path: 'individualblog/:idBlog', element: <IndividualBlog />,},
 
       ],
     },
-   
+    
     {path: 'login', element: <LoginPage />,},
     {path: 'register', element: <RegisterPage />,},
     
