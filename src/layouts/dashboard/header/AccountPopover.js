@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
+
 // mocks_
 import account from '../../../_mock/account';
 import accountNo from '../../../_mock/accountNo';
@@ -11,28 +13,11 @@ import { useAuth } from '../../../Auth'
 // ----------------------------------------------------------------------
 
 
-
-const MENU_OPTIONS = [
-  {
-    label: 'Home',
-    icon: 'eva:home-fill',
-  },
-  {
-    label: 'Profile',
-    icon: 'eva:person-fill',
-  },
-  {
-    label: 'Settings',
-    icon: 'eva:settings-2-fill',
-  },
-];
-
-// ----------------------------------------------------------------------
-
 export default function AccountPopover() {
 
   const { auth, setAuth } = useAuth();
   const [open, setOpen] = useState(null);
+  const navigate = useNavigate();
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -41,6 +26,23 @@ export default function AccountPopover() {
   const handleClose = () => {
     setOpen(null);
   };
+
+  const handleAuth = () => {
+    setOpen(null);
+    setAuth(false);
+    navigate('/dashboard/app');
+  };
+
+  const handleInicio = () => {
+    setOpen(null);
+    navigate('/dashboard/app');
+  };
+
+  const handleServicios = () => {
+    setOpen(null);
+    navigate('/dashboard/blog');
+  };
+
 
   return (
     <>
@@ -96,18 +98,25 @@ export default function AccountPopover() {
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         <Stack sx={{ p: 1 }}>
-          {MENU_OPTIONS.map((option) => (
-            <MenuItem key={option.label} onClick={handleClose}>
-              {option.label}
+          
+            <MenuItem onClick={handleInicio}>
+              Inicio
             </MenuItem>
-          ))}
+
+            <MenuItem onClick={handleServicios}>
+              Servicios
+            </MenuItem>
+          
         </Stack>
 
+        {auth ? (<>
         <Divider sx={{ borderStyle: 'dashed' }} />
+        
+        <MenuItem onClick={handleAuth} sx={{ m: 1 }}>
+          Cerrar sesión
+        </MenuItem></>) : (<></>)}
 
-        <MenuItem onClick={handleClose} sx={{ m: 1 }}>
-          Logout
-        </MenuItem>
+
       </Popover>
     </>
   );

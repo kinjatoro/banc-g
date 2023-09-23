@@ -47,6 +47,7 @@ export default function Nav({ openNav, onCloseNav }) {
 
   const { auth, setAuth } = useAuth();
   const handleAuth = () => {
+    onCloseNav();
     setAuth(false);
   };
 
