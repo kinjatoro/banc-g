@@ -15,6 +15,8 @@ import NavSection from '../../../components/nav-section';
 //
 import navConfig from './config';
 
+import { useAuth } from '../../../Auth'
+
 
 // ----------------------------------------------------------------------
 
@@ -41,6 +43,11 @@ export default function Nav({ openNav, onCloseNav }) {
   const navigate = useNavigate();
 
   const isDesktop = false;
+
+  const { auth, setAuth } = useAuth();
+  const handleAuth = () => {
+    setAuth(false);
+  };
 
   useEffect(() => {
     if (openNav) {
@@ -94,19 +101,24 @@ export default function Nav({ openNav, onCloseNav }) {
       <Box sx={{ px: 2.5, pb: 0, mt: 2 }}>
       <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
         
+      {auth ? (
+           <><Button onClick={handleAuth} variant='outlined' color="error">
+            Cerrar sesión
+            </Button></>
+            ) : (
+            <><Box sx={{ textAlign: 'center' }}>
+                <Typography gutterBottom variant="h6">
+                  ¿Sos proveedor?
+                </Typography>
+              </Box><Button onClick={handleClick} variant="contained" disableElevation="true">
+                  Iniciar sesión
+                </Button><Button onClick={handleClick2} variant='outlined'>
+                  Registarme
+                </Button></>
+         )}
 
-        <Box sx={{ textAlign: 'center' }}>
-          <Typography gutterBottom variant="h6">
-            ¿Sos proveedor?
-          </Typography>
-        </Box>
 
-        <Button onClick={handleClick} variant="contained" disableElevation ="true">
-          Iniciar sesión
-        </Button>
-        <Button onClick={handleClick2} variant = 'outlined'>
-          Registarme
-        </Button>
+        
       </Stack>
      </Box>
     </Scrollbar>
