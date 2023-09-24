@@ -44,25 +44,29 @@ export default function DashboardAppPage() {
 
 
         <Grid container spacing={2}>
-          <Grid xs={12} md={6}>  
+          <Grid xs={12} lg={6}>  
             <Grid className="Altura" sx={{display: "flex", flexDirection: 'column', alignItems: 'center', justifyContent: "center"}}>
               <Grid>
                 <Typography variant='h1' align = 'center'>Bienvenido a <span className="color-change">Neilo</span></Typography>
                 <Typography variant='h4' align='center'>El aprendizaje se adapta a vos.</Typography>
               </Grid>
+              
               <Grid sx={{display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "center", mt:4}}>
                 <Button variant = "contained" size ='large' sx={{mx:2}} >Soy alumno</Button>
                 <Button variant = "outlined" size ='large'>Soy profesor</Button>
               </Grid>
+              
             </Grid>
           </Grid>
 
 
           
-          <Grid xs={6} sx={{display: "flex", alignItems: 'center', justifyContent: "center"}}>
+          <Grid className='Ocultar' xs={6} sx={{display: "flex", alignItems: 'center', justifyContent: "center", position: "relative"}}>
+            
            <img className='StaticLogo' src={gorro} alt="Static Logo" />
-           <img className='RotatingLogo' src={milogo} alt="Static Logo" />
+           <img className='RotatingLogo' src={milogo} alt="Static Logo"/>
           </Grid>
+          
 
         </Grid>
 

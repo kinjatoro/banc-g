@@ -31,13 +31,10 @@
 .RotatingLogo {
   width: 450px; 
   height: 450px;
-  top: 130px; 
-  left: 870px; 
+  top: -21px;  
+  right: 178px; 
   animation: rotate 10s linear infinite; 
-   position: absolute;  
-
-
-
+  position: absolute;  
   z-index: 2;
 }
 
@@ -56,12 +53,14 @@
   height: 500px;
   position: absolute; 
   z-index: 1; 
+  right:134px;
 }
 
-.Altura{
-  height: 300px;
-  margin-left: 180px;
-}
+@media (min-width: 1200px) {
+  .Altura{
+    height: 300px;
+    margin-left: 180px;
+  }}
 
 @keyframes color-change-animation {
   0% {
@@ -85,7 +84,12 @@
   }
 }
 
-/* Aplicar la animación a la clase "color-change" */
+
 .color-change {
-  animation: color-change-animation 4s linear infinite; /* Cambiar de color cada 2 segundos */
+  animation: color-change-animation 4s linear infinite; 
 }
+
+@media (max-width: 1200px) {
+  .Ocultar {
+    display: none; 
+  }}
