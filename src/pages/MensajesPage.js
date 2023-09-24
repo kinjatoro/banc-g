@@ -146,7 +146,7 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title> Mensajes </title>
+        <title> Mensajes | Neilo </title>
       </Helmet>
 
       <Container>

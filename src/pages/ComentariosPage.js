@@ -150,7 +150,7 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title> Comentarios </title>
+        <title> Comentarios | Neilo </title>
       </Helmet>
 
       <Container>

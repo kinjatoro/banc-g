@@ -34,7 +34,7 @@ export default function BlogPage() {
   
     <>
       <Helmet>
-        <title> Dashboard: Blog | Minimal UI </title>
+        <title> Servicios | Neilo </title>
       </Helmet>
 
       <Container>

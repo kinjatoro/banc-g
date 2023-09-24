@@ -1,8 +1,10 @@
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
+import '../App.css';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Grid, Container, Typography } from '@mui/material';
+import { Grid, Container, Typography, Box, Button } from '@mui/material';
 // components
 import Iconify from '../components/iconify';
 // sections
@@ -18,6 +20,11 @@ import {
   AppConversionRates,
 } from '../sections/@dashboard/app';
 
+import gorro from '../gorro.png';
+import milogo from '../logo.svg';
+
+
+
 // ----------------------------------------------------------------------
 
 export default function DashboardAppPage() {
@@ -26,13 +33,48 @@ export default function DashboardAppPage() {
   return (
     <>
       <Helmet>
-        <title> Dashboard | Minimal UI </title>
+        <title> Inicio | Neilo </title>
       </Helmet>
 
       <Container maxWidth="xl">
-        <Typography variant="h4" sx={{ mb: 5 }}>
-          Hi, Welcome back
-        </Typography>
+        <Typography variant="h4" sx={{ mb: 10 }}/>
+          
+        
+
+
+
+        <Grid container spacing={2}>
+          <Grid xs={12} md={6}>  
+            <Grid className="Altura" sx={{display: "flex", flexDirection: 'column', alignItems: 'center', justifyContent: "center"}}>
+              <Grid>
+                <Typography variant='h1' align = 'center'>Bienvenido a Neilo</Typography>
+                <Typography variant='h4' align='center'>El aprendizaje se adapta a vos.</Typography>
+              </Grid>
+              <Grid sx={{display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "center", mt:4}}>
+                <Button variant = "contained" size ='large' sx={{mx:2}} >Soy alumno</Button>
+                <Button variant = "outlined" size ='large'>Soy profesor</Button>
+              </Grid>
+            </Grid>
+          </Grid>
+
+
+          
+          <Grid xs={6} sx={{display: "flex", alignItems: 'center', justifyContent: "center"}}>
+           <img className='StaticLogo' src={gorro} alt="Static Logo" />
+           <img className='RotatingLogo' src={milogo} alt="Static Logo" />
+          </Grid>
+
+        </Grid>
+
+
+
+
+
+        <Box sx={{m: 100}} />
+
+        
+
+
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>

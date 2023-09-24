@@ -149,7 +149,7 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title> Mis Publicaciones </title>
+        <title> Mis Publicaciones | Neilo </title>
       </Helmet>
 
       <Container>

@@ -28,11 +28,37 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+.RotatingLogo {
+  width: 450px; 
+  height: 450px;
+  top: 130px; 
+  left: 870px; 
+  animation: rotate 10s linear infinite; 
+   position: absolute;  
+
+
+
+  z-index: 2;
+}
+
+@keyframes rotate {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+}
+
+.StaticLogo {
+  transform: rotate(25deg);
+  width: 500px; 
+  height: 500px;
+  position: absolute; 
+  z-index: 1; 
+}
+
+.Altura{
+  height: 300px;
+  margin-left: 180px;
 }
