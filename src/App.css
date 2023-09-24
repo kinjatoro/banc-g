@@ -62,3 +62,30 @@
   height: 300px;
   margin-left: 180px;
 }
+
+@keyframes color-change-animation {
+  0% {
+    color:#212B36 ; 
+  }
+
+  25% {
+    color:#4E20D1 ; 
+  }
+
+  50% {
+    color:#2065D1 ;
+  }
+
+  75% {
+    color:#4E20D1 ; 
+  }
+
+  100% {
+    color: #212B36; 
+  }
+}
+
+/* Aplicar la animación a la clase "color-change" */
+.color-change {
+  animation: color-change-animation 4s linear infinite; /* Cambiar de color cada 2 segundos */
+}

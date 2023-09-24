@@ -47,7 +47,7 @@ export default function DashboardAppPage() {
           <Grid xs={12} md={6}>  
             <Grid className="Altura" sx={{display: "flex", flexDirection: 'column', alignItems: 'center', justifyContent: "center"}}>
               <Grid>
-                <Typography variant='h1' align = 'center'>Bienvenido a Neilo</Typography>
+                <Typography variant='h1' align = 'center'>Bienvenido a <span className="color-change">Neilo</span></Typography>
                 <Typography variant='h4' align='center'>El aprendizaje se adapta a vos.</Typography>
               </Grid>
               <Grid sx={{display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "center", mt:4}}>
@@ -69,10 +69,9 @@ export default function DashboardAppPage() {
 
 
 
-
         <Box sx={{m: 100}} />
 
-        
+
 
 
 
