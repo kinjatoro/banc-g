@@ -269,7 +269,7 @@ export default function UserPage() {
         PaperProps={{
           sx: {
             p: 1,
-            width: 140,
+            width: 160,
             '& .MuiMenuItem-root': {
               px: 1,
               typography: 'body2',
@@ -280,7 +280,7 @@ export default function UserPage() {
       >
         <MenuItem>
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-          Editar
+          Editar estado
         </MenuItem>
 
         <MenuItem sx={{ color: 'error.main' }}>
