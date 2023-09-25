@@ -31,7 +31,7 @@
 .RotatingLogo {
   width: 450px; 
   height: 450px;
-  top: -40px;  
+  top: -54px;  
   right: 178px; 
   animation: rotate 10s linear infinite, fadeIn 1s ease-in-out;
   position: absolute;  
@@ -41,7 +41,7 @@
 
 
 .StaticLogo {
-  top: -117px;
+  top: -133px;
   transform: rotate(25deg);
   width: 500px; 
   height: 500px;
