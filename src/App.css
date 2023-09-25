@@ -31,11 +31,25 @@
 .RotatingLogo {
   width: 450px; 
   height: 450px;
-  top: -21px;  
+  top: -40px;  
   right: 178px; 
-  animation: rotate 10s linear infinite; 
+  animation: rotate 10s linear infinite, fadeIn 1s ease-in-out;
   position: absolute;  
   z-index: 2;
+}
+
+
+
+.StaticLogo {
+  top: -117px;
+  transform: rotate(25deg);
+  width: 500px; 
+  height: 500px;
+  position: absolute; 
+  z-index: 1; 
+  right:134px;
+  animation: fadeIn 1s ease-in-out;
+  
 }
 
 @keyframes rotate {
@@ -47,19 +61,11 @@
   }
 }
 
-.StaticLogo {
-  transform: rotate(25deg);
-  width: 500px; 
-  height: 500px;
-  position: absolute; 
-  z-index: 1; 
-  right:134px;
-}
-
 @media (min-width: 1200px) {
   .Altura{
     height: 300px;
     margin-left: 180px;
+    animation: caida 1s ease-in-out, fadeIn 1s ease-in-out; 
   }}
 
 @keyframes color-change-animation {
@@ -93,3 +99,21 @@
   .Ocultar {
     display: none; 
   }}
+
+@keyframes caida {
+  from {
+    transform: translateY(-5%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

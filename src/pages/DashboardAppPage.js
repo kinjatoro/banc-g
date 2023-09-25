@@ -48,10 +48,10 @@ export default function DashboardAppPage() {
             <Grid className="Altura" sx={{display: "flex", flexDirection: 'column', alignItems: 'center', justifyContent: "center"}}>
               <Grid>
                 <Typography variant='h1' align = 'center'>Bienvenido a <span className="color-change">Neilo</span></Typography>
-                <Typography variant='h4' align='center'>El aprendizaje se adapta a vos.</Typography>
+                <Typography variant='h4' align='center' sx={{mt:1}}>El aprendizaje se adapta a vos.</Typography>
               </Grid>
               
-              <Grid sx={{display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "center", mt:4}}>
+              <Grid sx={{display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "center", mt:3}}>
                 <Button variant = "contained" size ='large' sx={{mx:2}} >Soy alumno</Button>
                 <Button variant = "outlined" size ='large'>Soy profesor</Button>
               </Grid>
