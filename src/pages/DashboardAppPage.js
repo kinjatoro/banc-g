@@ -5,7 +5,7 @@ import { faker } from '@faker-js/faker';
 import '../App.css';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Grid, Container, Typography, Box, Button, AppBar, Toolbar } from '@mui/material';
+import { Grid, Container, Typography, Box, Button, AppBar, Toolbar, Chip, Stack } from '@mui/material';
 // components
 import Iconify from '../components/iconify';
 // sections
@@ -97,21 +97,31 @@ export default function DashboardAppPage() {
 
 
 
-        <Box sx={{m: 100}} />
+        <Box sx={{m: 50}} />
 
-        <Grid sx={{display: "flex",flexDirection: 'column', alignItems: 'center', justifyContent: "center", my:4}}>
+        <Grid sx={{display: "flex",flexDirection: 'column', alignItems: 'center', justifyContent: "center", my:4, px:2}}>
         <Typography variant="h2"  align = 'center'>
-          ¿Qué podés hacer en Neilo?
+          ¿Qué podés aprender en Neilo?
         </Typography>
-
-        <Button  variant = "contained" sx={{my:2, py:1}} onClick={handleClick} ><Typography variant="h6">Explorá nuestros servicios </Typography></Button>
+        <Grid sx={{display: "flex",flexDirection: 'row', alignItems: 'center', justifyContent: "center", my:4, px:2}}>
+        <Stack direction="row" spacing={1}>
+        
+          <Chip label="Matemática" color="primary"  sx={{ fontSize: '18px', height: '40px' }} />
+          <Chip label="Piano" color="primary"  sx={{ fontSize: '18px', height: '40px' }} />
+          <Chip label="Guitarra" color="primary"  sx={{ fontSize: '18px', height: '40px' }} />
+          <Chip label="Natación" color="primary"  sx={{ fontSize: '18px', height: '40px' }} />
+          <Chip label="Geografía" color="primary"  sx={{ fontSize: '18px', height: '40px' }} />
+          <Chip label="Inglés" color="primary"  sx={{ fontSize: '18px', height: '40px' }} />
+          <Chip label="Programación" color="primary"  sx={{ fontSize: '18px', height: '40px' }} />
+        </Stack>
+        </Grid>
         </Grid>
         
-        <Box sx={{m: 100}} />
+        <Box sx={{m: 50}} />
 
-        <Grid sx={{display: "flex",flexDirection: 'column', alignItems: 'center', justifyContent: "center", my:4}}>
+        <Grid sx={{display: "flex",flexDirection: 'column', alignItems: 'center', justifyContent: "center", my:30}}>
         <Typography variant="h2"  align = 'center'>
-        ¿Estás listo para empezar a aprender?
+        ¿Estás listo para empezar?
         </Typography>
 
         <Button  variant = "contained" sx={{my:2, py:1}} onClick={handleClick} ><Typography variant="h6">Explorá nuestros servicios </Typography></Button>
