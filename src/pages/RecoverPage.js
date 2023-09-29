@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, useState } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Link, Container, Typography, Divider, Stack, Button, TextField } from '@mui/material';
@@ -9,6 +9,8 @@ import useResponsive from '../hooks/useResponsive';
 import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
+
+
 
 
 
@@ -46,8 +48,10 @@ export default function LoginPage() {
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
 
+  const { state, setState } = useState();
+
   const handleClick = () => {
-    
+        setState(false);
   }
 
   return (
@@ -66,8 +70,7 @@ export default function LoginPage() {
         />
 
         
-
-        <Container maxWidth="sm">
+        (state ? (<><Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h3" gutterBottom>
                 Recuperar cuenta
@@ -85,10 +88,9 @@ export default function LoginPage() {
              Enviar Correo
               </Button>
 
-
-
           </StyledContent>
-        </Container>
+        </Container></>) : (<p>EL CORREO HA SIDO ENVIADO</p>))
+        
       </StyledRoot>
     </>
   );
