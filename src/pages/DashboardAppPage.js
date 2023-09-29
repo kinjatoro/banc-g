@@ -25,7 +25,6 @@ import gorro from '../gorro.png';
 import milogo from '../logo.svg';
 import { useAuth } from '../Auth';
 
-import CustomStepper from '../components/stepper/CustomStepper';
 
 
 
@@ -49,13 +48,20 @@ export default function DashboardAppPage() {
     navigate('/dashboard/mispublicaciones');  // para ir a mis publicaciones (profesor)
   }
 
+  const handleAuth = () => {
+    setAuth(true);
+ };
+ 
+ 
+
+
   return (
     <>
       <Helmet>
         <title> Inicio | Neilo </title>
       </Helmet>
 
-      <Container maxWidth="xl">
+      <Container sx={{mb: -10, ms: -3, me:-3 }} disableGutters maxWidth={false} >
         <Typography variant="h4" sx={{ mb: 15 }}/>
           
         
@@ -93,29 +99,34 @@ export default function DashboardAppPage() {
 
         <Box sx={{m: 100}} />
 
+        <Grid sx={{display: "flex",flexDirection: 'column', alignItems: 'center', justifyContent: "center", my:4}}>
+        <Typography variant="h2"  align = 'center'>
+          ¿Qué podés hacer en Neilo?
+        </Typography>
 
-        <CustomStepper/>
-
+        <Button  variant = "contained" sx={{my:2, py:1}} onClick={handleClick} ><Typography variant="h6">Explorá nuestros servicios </Typography></Button>
+        </Grid>
+        
+        <Box sx={{m: 100}} />
 
         <Grid sx={{display: "flex",flexDirection: 'column', alignItems: 'center', justifyContent: "center", my:4}}>
         <Typography variant="h2"  align = 'center'>
-          ¿Estás listo para empezar a aprender?
+        ¿Estás listo para empezar a aprender?
         </Typography>
 
         <Button  variant = "contained" sx={{my:2, py:1}} onClick={handleClick} ><Typography variant="h6">Explorá nuestros servicios </Typography></Button>
         </Grid>
 
-
-                <AppBar position="relative" sx={{top: 'auto',bottom: 0}}>
+              
+                <AppBar position="relative" sx={{top: 'auto',bottom: 0, width: '100%' }}  >
                   <Toolbar>
                     <Typography variant="body1">
                       © {new Date().getFullYear()} Neilo
                     </Typography>
                   </Toolbar>
                 </AppBar>
-        
-        
-        
+                
+      
       </Container>
     </>
   );

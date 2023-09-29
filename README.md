@@ -10,6 +10,8 @@ Lista de íconos -> https://mui.com/material-ui/material-icons/
 
 Probar estilos -> https://bareynol.github.io/mui-theme-creator/
 
+scrollbar -> `npm install perfect-scrollbar`
+
 ---
 ### **TEMPLATES** 
 * DEVIAS -> https://mui.com/store/previews/devias-kit/

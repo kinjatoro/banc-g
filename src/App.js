@@ -12,12 +12,12 @@ import ScrollToTop from './components/scroll-to-top';
 // ----------------------------------------------------------------------
 
 export default function App() {
-  return (
+  return (   
     <AuthProvider>
     <HelmetProvider>
       <BrowserRouter>
         <ThemeProvider>
-          <ScrollToTop />
+          <ScrollToTop />      
           <StyledChart />
           <Router />
         </ThemeProvider>
