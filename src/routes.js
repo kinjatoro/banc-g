@@ -14,6 +14,8 @@ import MensajesPage from './pages/MensajesPage';
 import MisPublicacionesPage from './pages/MisPublicacionesPage';
 import ComentariosPage from './pages/ComentariosPage';
 import IndividualBlog from './pages/IndividualBlog';
+import ExpPage from './pages/ExpPage';
+import RecoverPage from './pages/RecoverPage';
 
 // ----------------------------------------------------------------------
 
@@ -38,6 +40,8 @@ export default function Router() {
     
     {path: 'login', element: <LoginPage />,},
     {path: 'register', element: <RegisterPage />,},
+    {path: 'experiencia', element: <ExpPage />,},
+    {path: 'recupero', element: <RecoverPage />,},
     
     {
       element: <SimpleLayout />,

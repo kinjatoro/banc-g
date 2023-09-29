@@ -9,7 +9,7 @@ import useResponsive from '../hooks/useResponsive';
 import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
-import { RegisterForm } from '../sections/auth/login';
+import { ExpForm } from '../sections/auth/login';
 
 // ----------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ export default function RegisterPage() {
   return (
     <>
       <Helmet>
-        <title> Registro | Neilo </title>
+        <title> Experiencia | Neilo </title>
       </Helmet>
 
       <StyledRoot>
@@ -69,15 +69,13 @@ export default function RegisterPage() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h3" gutterBottom>
-              Registrarse
+            Experiencia
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 2 }}>
-              ¿Ya tenés cuenta? {''}
-              <Link variant="subtitle2" onClick={handleClick} sx={{ cursor: 'pointer' }}>Iniciar Sesión</Link>
+                Por favor, completá los datos con tu información profesional.
             </Typography>
-
-            <RegisterForm />
+            <ExpForm />
           </StyledContent>
         </Container>
       </StyledRoot>

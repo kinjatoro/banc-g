@@ -70,11 +70,11 @@ export default function LoginPage() {
 
         <Container maxWidth="sm">
           <StyledContent>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h3" gutterBottom>
               Iniciar Sesión
             </Typography>
 
-            <Typography variant="body2" sx={{ mb: 5 }}>
+            <Typography variant="body2" sx={{ mb: 2 }}>
               ¿No tenés cuenta? {''}
               <Link variant="subtitle2" onClick={handleClick} sx={{ cursor: 'pointer' }}>Registrate</Link>
             </Typography>

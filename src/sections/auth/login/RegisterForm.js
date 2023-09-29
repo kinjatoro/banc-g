@@ -23,11 +23,17 @@ export default function RegisterForm() {
     setAuth(true);
   };
 
+  const handleClick2 = () => {
+    navigate('/experiencia', { replace: true });
+    setAuth(true);
+  };
+
   return (
     <>
       <Stack spacing={3}>
         <TextField name="nombre" label="Nombre y Apellido" />
-        <TextField name="telefono" label="Telefono" />
+        <TextField name="mail" label="Correo Electrónico" />
+        <TextField name="telefono" label="Teléfono" />
         <TextField
           name="Contraseña"
           label="Contraseña"
@@ -44,8 +50,8 @@ export default function RegisterForm() {
         />
       </Stack>
 
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick} sx={{mt:3}}>
-        Registrarme
+      <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick2} sx={{mt:3}}>
+        Continuar
       </LoadingButton>
     </>
   );

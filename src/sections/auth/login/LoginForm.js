@@ -24,6 +24,10 @@ export default function LoginForm() {
     setAuth(true);
   };
 
+  const handleClick2 = () => {
+    navigate('/recupero');
+  }
+
   return (
     <>
       <Stack spacing={3}>
@@ -50,8 +54,8 @@ export default function LoginForm() {
         <Checkbox name="remember" label="Remember me" /> 
         <Typography variant="subtitle2">
         Recordar mi usuario y contraseña</Typography>
-        <Link variant="subtitle2" underline="hover" sx={{mx: 3}}>
-          ¿Olvidaste tu contraseña?
+        <Link variant="subtitle2" underline="hover" sx={{mx: 3}} onClick={handleClick2}>
+          ¿Olvidaste tu contraseña? 
         </Link>
       </Stack>
 

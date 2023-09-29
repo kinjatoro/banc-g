@@ -2,14 +2,15 @@ import { Helmet } from 'react-helmet-async';
 import { Navigate, useNavigate } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
+import { Link, Container, Typography, Divider, Stack, Button, TextField } from '@mui/material';
 // hooks
 import useResponsive from '../hooks/useResponsive';
 // components
 import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
-import { RegisterForm } from '../sections/auth/login';
+
+
 
 // ----------------------------------------------------------------------
 
@@ -41,18 +42,18 @@ const StyledContent = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function RegisterPage() {
+export default function LoginPage() {
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/login');
+    
   }
 
   return (
     <>
       <Helmet>
-        <title> Registro | Neilo </title>
+        <title> Recupero | Neilo </title>
       </Helmet>
 
       <StyledRoot>
@@ -69,15 +70,23 @@ export default function RegisterPage() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h3" gutterBottom>
-              Registrarse
+                Recuperar cuenta
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 2 }}>
-              ¿Ya tenés cuenta? {''}
-              <Link variant="subtitle2" onClick={handleClick} sx={{ cursor: 'pointer' }}>Iniciar Sesión</Link>
+              Por favor, ingresa tu correo electrónico {''}
             </Typography>
 
-            <RegisterForm />
+            <Stack spacing={3}>
+            <TextField name="correo" label="Correo electrónico" sx={{my:2}}/>
+             </Stack>
+
+            <Button fullWidth size="large" type="submit" variant="contained" onClick={handleClick}sx={{mt:2}} >
+             Enviar Correo
+              </Button>
+
+
+
           </StyledContent>
         </Container>
       </StyledRoot>
