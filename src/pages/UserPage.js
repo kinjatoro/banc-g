@@ -203,7 +203,12 @@ export default function UserPage() {
                         <TableCell align="left">{horario}</TableCell>
 
                         <TableCell align="left">
-                          <Label color={(status === 'Cancelada' && 'error') || (status === 'Aceptada' && 'success') || 'primary'}>{sentenceCase(status)}</Label>
+                          <Label color={(status === 'Cancelada' && 'error') || 
+                          (status === 'Aceptada' && 'success') || 
+                          (status === 'Pendiente' && 'warning')
+                           || 'primary'}>
+                            {sentenceCase(status)}
+                            </Label>
                         </TableCell>
 
                         <TableCell align="right">

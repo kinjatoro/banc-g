@@ -109,7 +109,7 @@ const posts = [...Array(23)].map((_, index) => ({
     '$800',
     '$850',
   ]),
-  share: sample(["1 Hora", "2 Horas","3 Horas", "4 Horas", "30 Min"]),
+  share: sample(["1 Hora", "2 Horas","3 Horas", "4 Horas", "30 Min."]),
   favorite: faker.datatype.number(),
   author: {
     name: sample([  'Ezequiel', 'Neistadt', 'Agustín', 'Carlos', 'Manuel', 'José', 'Joaquín', 'Roberto', 'Gomez', 'Lopez', 'Perez', 'Díaz',

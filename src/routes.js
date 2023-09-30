@@ -17,6 +17,8 @@ import IndividualBlog from './pages/IndividualBlog';
 import ExpPage from './pages/ExpPage';
 import RecoverPage from './pages/RecoverPage';
 import ContratarPage from './pages/ContratarPage';
+import CrearServicioPage from './pages/CrearServicioPage';
+
 
 
 // ----------------------------------------------------------------------
@@ -37,6 +39,7 @@ export default function Router() {
         { path: 'comentarios', element: <ComentariosPage /> },
         { path: 'individualblog/:idBlog', element: <IndividualBlog />,},
         { path: 'contratar', element: <ContratarPage />,},
+        { path: 'crearservicio', element: <CrearServicioPage />,},
 
       ],
     },

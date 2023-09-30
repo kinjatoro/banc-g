@@ -9,7 +9,7 @@ import useResponsive from '../hooks/useResponsive';
 import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
-import { ContratarForm } from '../sections/auth/login';
+import { CrearServicioForm } from '../sections/auth/login';
 
 // ----------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ const StyledContent = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function RegisterPage() {
+export default function CrearServicioPage() {
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
 
@@ -48,7 +48,7 @@ export default function RegisterPage() {
   return (
     <>
       <Helmet>
-        <title> Contratar | Neilo </title>
+        <title> Crear Servicio | Neilo </title>
       </Helmet>
 
       <StyledRoot>
@@ -56,13 +56,13 @@ export default function RegisterPage() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h3" gutterBottom>
-            Contratar servicio
+            Crear servicio
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 2 }}>
-                Por favor, llená el formulario con tus datos personales.
+                Por favor, completá los datos del nuevo servicio.
             </Typography>
-            <ContratarForm />
+            <CrearServicioForm />
           </StyledContent>
         </Container>
       </StyledRoot>

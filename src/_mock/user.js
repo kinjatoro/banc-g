@@ -70,7 +70,7 @@ const users = [...Array(24)].map((_, index) => ({
 
 
 
-  status: sample(['Aceptada', 'Finalizada', 'Cancelada']),
+  status: sample(['Aceptada', 'Finalizada', 'Cancelada','Pendiente']),
 
   duracion: sample(['2 meses', '1 mes', '1 año']),
   frecuencia: sample(['Diario', 'Semanal', 'Mensual']),

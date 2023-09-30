@@ -39,7 +39,7 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
 const StyledInfo = styled('div')(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
-  justifyContent: 'center',
+  justifyContent: 'start',
   color: theme.palette.text.disabled,
 }));
 
@@ -180,8 +180,8 @@ export default function BlogPostCard({ post, index }) {
                   }),
                 }}
               >
-                <Iconify icon={info.icon} sx={{ width: 16, height: 18, mr: 0.5 }} />
-                <Typography variant="body2">
+                <Iconify icon={info.icon} sx={{ width: 16, height: 18, mr: 0.5, mt:-1 }} />
+                <Typography variant="body2" sx={{mt:-1}}>
                   {(info.string)}
                   </Typography>
                 
@@ -189,9 +189,9 @@ export default function BlogPostCard({ post, index }) {
             ))}
             
           </StyledInfo>
-          <Stack sx={{alignItems: "center",  display: 'flex', flexDirection: "row", justifyContent:"center", mt: 3 }}> 
-          <Typography variant="h5" sx={{mx:2}}>{price}</Typography>
-          <Button onClick={handleClick} variant="outlined" sx={{mx:2}}>Ver más</Button>
+          <Stack sx={{alignItems: "center",  display: 'flex', flexDirection: "row", justifyContent:"space-between", mt: 2 }}> 
+          <Typography variant="h5">{price}</Typography>
+          <Button onClick={handleClick} variant="outlined">Ver más</Button>
           </Stack>
         </CardContent>
       </Card>

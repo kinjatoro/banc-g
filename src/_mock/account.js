@@ -1,8 +1,8 @@
 // ----------------------------------------------------------------------
 
 const account = {
-  displayName: 'Hans Landa',
-  email: 'hlanda@uade.edu.ar',
+  displayName: 'Cristopher Waltz',
+  email: 'cwaltz@uade.edu.ar',
   photoURL: '/assets/images/avatars/ID_20827.jpg',
 };
 

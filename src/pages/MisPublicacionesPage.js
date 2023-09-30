@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 // @mui
 import {
   Card,
@@ -126,6 +127,12 @@ export default function UserPage() {
     setSelected(newSelected);
   };
 
+  const navigate = useNavigate();
+
+  const handleClick2 = () => {
+    navigate('/dashboard/crearservicio');
+  }
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -157,8 +164,8 @@ export default function UserPage() {
           <Typography variant="h4" gutterBottom>
             Mis Publicaciones
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            Nueva publicación
+          <Button variant="contained" onClick={handleClick2} startIcon={<Iconify icon="eva:plus-fill" />}>
+            Nueva publicación 
           </Button>
         </Stack>
 
