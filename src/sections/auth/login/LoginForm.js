@@ -54,7 +54,7 @@ export default function LoginForm() {
         <Checkbox name="remember" label="Remember me" /> 
         <Typography variant="subtitle2">
         Recordar mi usuario y contraseña</Typography>
-        <Link variant="subtitle2" underline="hover" sx={{mx: 3}} onClick={handleClick2}>
+        <Link variant="subtitle2" underline="hover" sx={{mx: 3, cursor: 'pointer' }} onClick={handleClick2}>
           ¿Olvidaste tu contraseña? 
         </Link>
       </Stack>
