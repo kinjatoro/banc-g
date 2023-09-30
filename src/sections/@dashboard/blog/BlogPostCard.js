@@ -24,6 +24,7 @@ const StyledTitle = styled(Link)({
   WebkitLineClamp: 2,
   display: '-webkit-box',
   WebkitBoxOrient: 'vertical',
+  textDecoration: 'none',
 });
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
@@ -63,9 +64,9 @@ export default function BlogPostCard({ post, index }) {
   const latestPost = index === 501 || index === 502;
 
   const POST_INFO = [
-    { string: price, icon: 'clarity:dollar-solid' },
-    { string: view, icon: 'solar:calendar-bold-duotone' },
     { string: share, icon: 'mdi:clock' },
+    { string: view, icon: 'solar:calendar-bold-duotone' },
+    
   ];
 
   const navigate = useNavigate();
@@ -139,7 +140,7 @@ export default function BlogPostCard({ post, index }) {
           }}
         >
           
-          <Typography onClick={handleClick} gutterBottom variant="h6" sx={{ color: 'black', display: 'block', mt: -1,mb:1 }}>
+          <Typography  gutterBottom variant="h6" sx={{ color: 'black', mt: -1 }}>
             {title}            
            </Typography>
           
@@ -147,8 +148,9 @@ export default function BlogPostCard({ post, index }) {
           <StyledTitle
             color="inherit"
             variant="subtitle2"
-            underline="hover"
+            
             sx={{
+              
               ...(latestPostLarge && { typography: 'h5', height: 60 }),
               ...((latestPostLarge || latestPost) && {
                 color: 'common.white',
@@ -156,9 +158,9 @@ export default function BlogPostCard({ post, index }) {
             }}> 
 
             
-            <Box>
+              <Typography>
                {author.name} 
-            </Box>
+               </Typography>
             
           </StyledTitle>
           
@@ -179,14 +181,17 @@ export default function BlogPostCard({ post, index }) {
                 }}
               >
                 <Iconify icon={info.icon} sx={{ width: 16, height: 18, mr: 0.5 }} />
-                <Typography variant="caption">{(info.string)}</Typography>
+                <Typography variant="body2">
+                  {(info.string)}
+                  </Typography>
                 
               </Box>
             ))}
             
           </StyledInfo>
-          <Stack sx={{alignItems: "center"}}> 
-          <Button sx = {{mt: 3}} variant="outlined">Ver más</Button>
+          <Stack sx={{alignItems: "center",  display: 'flex', flexDirection: "row", justifyContent:"center", mt: 3 }}> 
+          <Typography variant="h5" sx={{mx:2}}>{price}</Typography>
+          <Button onClick={handleClick} variant="outlined" sx={{mx:2}}>Ver más</Button>
           </Stack>
         </CardContent>
       </Card>

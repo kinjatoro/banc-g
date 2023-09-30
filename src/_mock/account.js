@@ -1,8 +1,8 @@
 // ----------------------------------------------------------------------
 
 const account = {
-  displayName: 'Godio Claudio Jose',
-  email: 'godio@uade.edu.ar',
+  displayName: 'Hans Landa',
+  email: 'hlanda@uade.edu.ar',
   photoURL: '/assets/images/avatars/ID_20827.jpg',
 };
 
