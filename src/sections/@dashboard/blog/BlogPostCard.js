@@ -2,13 +2,14 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 // @mui
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Link, Card, Grid, Avatar, Typography, CardContent } from '@mui/material';
+import { Box, Link, Card, Grid, Avatar, Typography, CardContent,Button,Stack,Chip } from '@mui/material';
 // utils
 import { fDate } from '../../../utils/formatTime';
 import { fShortenNumber } from '../../../utils/formatNumber';
 //
 import SvgColor from '../../../components/svg-color';
 import Iconify from '../../../components/iconify';
+
 
 // ----------------------------------------------------------------------
 
@@ -37,8 +38,7 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
 const StyledInfo = styled('div')(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
-  justifyContent: 'flex-end',
-  marginTop: theme.spacing(3),
+  justifyContent: 'center',
   color: theme.palette.text.disabled,
 }));
 
@@ -58,14 +58,14 @@ BlogPostCard.propTypes = {
 };
 
 export default function BlogPostCard({ post, index }) {
-  const { cover, title, view, comment, share, author, createdAt } = post;
+  const { cover, title, view, price, share, author, createdAt } = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
 
   const POST_INFO = [
-    { number: comment, icon: 'eva:message-circle-fill' },
-    { number: view, icon: 'eva:eye-fill' },
-    { number: share, icon: 'eva:share-fill' },
+    { string: price, icon: 'clarity:dollar-solid' },
+    { string: view, icon: 'solar:calendar-bold-duotone' },
+    { string: share, icon: 'mdi:clock' },
   ];
 
   const navigate = useNavigate();
@@ -138,9 +138,11 @@ export default function BlogPostCard({ post, index }) {
             }),
           }}
         >
-          <Typography gutterBottom variant="caption" sx={{ color: 'text.disabled', display: 'block' }}>
-            {fDate(createdAt)}
-          </Typography>
+          
+          <Typography onClick={handleClick} gutterBottom variant="h6" sx={{ color: 'black', display: 'block', mt: -1,mb:1 }}>
+            {title}            
+           </Typography>
+          
 
           <StyledTitle
             color="inherit"
@@ -151,14 +153,21 @@ export default function BlogPostCard({ post, index }) {
               ...((latestPostLarge || latestPost) && {
                 color: 'common.white',
               }),
-            }}
-          >
-            <Box onClick={handleClick}>{title}</Box>
-          </StyledTitle>
+            }}> 
 
+            
+            <Box>
+               {author.name} 
+            </Box>
+            
+          </StyledTitle>
+          
           <StyledInfo>
+           
             {POST_INFO.map((info, index) => (
+              
               <Box
+                
                 key={index}
                 sx={{
                   display: 'flex',
@@ -169,11 +178,16 @@ export default function BlogPostCard({ post, index }) {
                   }),
                 }}
               >
-                <Iconify icon={info.icon} sx={{ width: 16, height: 16, mr: 0.5 }} />
-                <Typography variant="caption">{fShortenNumber(info.number)}</Typography>
+                <Iconify icon={info.icon} sx={{ width: 16, height: 18, mr: 0.5 }} />
+                <Typography variant="caption">{(info.string)}</Typography>
+                
               </Box>
             ))}
+            
           </StyledInfo>
+          <Stack sx={{alignItems: "center"}}> 
+          <Button sx = {{mt: 3}} variant="outlined">Ver más</Button>
+          </Stack>
         </CardContent>
       </Card>
     </Grid>
