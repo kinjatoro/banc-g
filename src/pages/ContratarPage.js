@@ -1,19 +1,15 @@
-import {useState} from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Navigate, useNavigate,  } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Link, Container, Typography, Divider, Stack, Button, TextField } from '@mui/material';
+import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
 // hooks
 import useResponsive from '../hooks/useResponsive';
 // components
 import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
-
-
-
-
+import { ContratarForm } from '../sections/auth/login';
 
 // ----------------------------------------------------------------------
 
@@ -36,7 +32,7 @@ const StyledSection = styled('div')(({ theme }) => ({
 const StyledContent = styled('div')(({ theme }) => ({
   maxWidth: 480,
   margin: 'auto',
-  minHeight: '100vh',
+  minHeight: 'auto',
   display: 'flex',
   justifyContent: 'center',
   flexDirection: 'column',
@@ -45,60 +41,31 @@ const StyledContent = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
 
-  const [state, setState ] = useState(true);
-
-  const handleClick = () => {
-        setState(false);
-  }
 
   return (
     <>
       <Helmet>
-        <title> Recupero | Neilo </title>
+        <title> Contratar | Neilo </title>
       </Helmet>
 
       <StyledRoot>
-        <Logo
-          sx={{
-            position: 'fixed',
-            top: { xs: 16, sm: 24, md: 40 },
-            left: { xs: 16, sm: 24, md: 40 },
-          }}
-        />
 
-        
-       { (state ? (<><Container maxWidth="sm">
+        <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h3" gutterBottom>
-                Recuperar cuenta
+            Contratar servicio
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 2 }}>
-              Por favor, ingresa tu correo electrónico {''}
+                Por favor, llená el formulario con tus datos personales.
             </Typography>
-
-            <Stack spacing={3}>
-            <TextField name="correo" label="Correo electrónico" sx={{my:2}}/>
-             </Stack>
-
-            <Button fullWidth size="large" type="submit" variant="contained" onClick={handleClick}sx={{mt:2}} >
-             Enviar Correo
-              </Button>
-
+            <ContratarForm />
           </StyledContent>
-        </Container></>) : (
-        
-        <StyledContent><Typography variant="h3" gutterBottom>
-        El correo fue enviado. 
-    </Typography>
-
-        </StyledContent>
-        ))}
-        
+        </Container>
       </StyledRoot>
     </>
   );

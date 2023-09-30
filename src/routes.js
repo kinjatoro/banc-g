@@ -16,6 +16,8 @@ import ComentariosPage from './pages/ComentariosPage';
 import IndividualBlog from './pages/IndividualBlog';
 import ExpPage from './pages/ExpPage';
 import RecoverPage from './pages/RecoverPage';
+import ContratarPage from './pages/ContratarPage';
+
 
 // ----------------------------------------------------------------------
 
@@ -34,6 +36,7 @@ export default function Router() {
         { path: 'mispublicaciones', element: <MisPublicacionesPage /> },
         { path: 'comentarios', element: <ComentariosPage /> },
         { path: 'individualblog/:idBlog', element: <IndividualBlog />,},
+        { path: 'contratar', element: <ContratarPage />,},
 
       ],
     },
