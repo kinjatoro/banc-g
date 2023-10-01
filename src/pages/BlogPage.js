@@ -48,7 +48,7 @@ export default function BlogPage() {
         <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between">
           <BlogPostsSearch posts={POSTS} />
          
-            <Box>
+            <Box sx={{textAlign: "right"}}>
             <ProductFilterSidebar
               openFilter={openFilter}
               onOpenFilter={handleOpenFilter}

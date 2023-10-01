@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
@@ -28,12 +28,36 @@ import { useAuth } from '../Auth';
 
 
 
+
+
 // ----------------------------------------------------------------------
 
 export default function DashboardAppPage() {
   const theme = useTheme();
   const navigate = useNavigate();
   const { auth, setAuth } = useAuth();
+  const palabras = ["Guitarra", "Piano", "Natación", "Inglés", "Geografía", "Programación"];
+  const colores = ["#F20D0D", "#0D31F2", "#F26D0D", "#0DBBF2","#F20DE9" ,"#F2C00D"];
+  const iconos = ["eva:clock-fill", "eva:color-palette-fill", "eva:cloud-download-fill"];
+  const [palabraActualIndex, setPalabraActualIndex] = useState(0);
+  const [iconoActualIndex, setIconoActualIndex] = useState(0);
+  const [mostrar, setMostrar] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMostrar(false); // Comienza a ocultar la palabra actual
+      setTimeout(() => {
+        setPalabraActualIndex((prevIndex) => (prevIndex + 1) % palabras.length);
+        setMostrar(true); // Muestra la nueva palabra después de un breve retraso
+      }, 500); // Retraso para permitir que se complete la animación de desvanecimiento (500 milisegundos)
+    }, 3000); // Cambia la palabra cada 3 segundos (3000 milisegundos)
+
+    return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente
+  }, []);
+
+  const palabraActual = palabras[palabraActualIndex];
+  const colorPalabra = colores[palabraActualIndex];
+  const iconoActual = iconos[iconoActualIndex];
 
 
   const handleClick = () => {
@@ -88,7 +112,7 @@ export default function DashboardAppPage() {
           <Grid className='Ocultar' xs={6} sx={{display: "flex", alignItems: 'center', justifyContent: "center", position: "relative"}}>
             
            <img className='StaticLogo' src={gorro} alt="Static Logo" />
-           <img className='RotatingLogo' src={milogo} alt="Static Logo"/>
+           <img className='RotatingLogo' src={milogo} alt="Rotating Logo"/>
           </Grid>
           
 
@@ -99,23 +123,15 @@ export default function DashboardAppPage() {
 
         <Box sx={{m: 50}} />
 
-        <Grid sx={{display: "flex",flexDirection: 'column', alignItems: 'center', justifyContent: "center", my:4, px:2}}>
-        <Typography variant="h2"  align = 'center'>
-          ¿Qué podés aprender en Neilo?
-        </Typography>
-        <Grid sx={{display: "flex",flexDirection: 'row', alignItems: 'center', justifyContent: "center", my:4, px:2}}>
-        <Stack direction="row" spacing={1}>
-        
-          <Chip label="Matemática" color="primary"  sx={{ fontSize: '18px', height: '40px' }} />
-          <Chip label="Piano" color="primary"  sx={{ fontSize: '18px', height: '40px' }} />
-          <Chip label="Guitarra" color="primary"  sx={{ fontSize: '18px', height: '40px' }} />
-          <Chip label="Natación" color="primary"  sx={{ fontSize: '18px', height: '40px' }} />
-          <Chip label="Geografía" color="primary"  sx={{ fontSize: '18px', height: '40px' }} />
-          <Chip label="Inglés" color="primary"  sx={{ fontSize: '18px', height: '40px' }} />
-          <Chip label="Programación" color="primary"  sx={{ fontSize: '18px', height: '40px' }} />
+        <Stack spacing={2} sx={{display: "flex",flexDirection: 'column', alignItems: 'center', justifyContent: "center", my:6, px:2}}>
+          <Typography variant="h2"  align = 'center'> 
+            ¿Qué podés aprender en Neilo?
+          </Typography>
+          <Iconify style={{ opacity: mostrar ? 1 : 0, transition: 'opacity 0.5s'}} icon={iconoActual} />
+
+            <Typography variant="h2" style={{ opacity: mostrar ? 1 : 0, transition: 'opacity 0.5s', color: colorPalabra }}>{palabraActual}</Typography>
+
         </Stack>
-        </Grid>
-        </Grid>
         
         <Box sx={{m: 50}} />
 

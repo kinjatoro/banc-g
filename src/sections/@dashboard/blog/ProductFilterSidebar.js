@@ -19,7 +19,7 @@ import Iconify from '../../../components/iconify';
 import Scrollbar from '../../../components/scrollbar';
 // ----------------------------------------------------------------------
 
-export const FILTER_CATEGORIA_OPTIONS = ['Matematica', 'Musica', 'Quimica', 'Historia', 'Geografia', 'Ingles', 'Programacion' ];
+export const FILTER_CATEGORIA_OPTIONS = ['Matemática', 'Música', 'Química', 'Historia', 'Geografía', 'Inglés', 'Programación' ];
 export const FILTER_TIPOCLASE_OPTIONS = ['Individual', 'Grupal'];
 export const FILTER_RATING_OPTIONS = ['up5Star', 'up4Star', 'up3Star', 'up2Star', 'up1Star'];
 export const FILTER_FRECUENCIA_OPTIONS = ['Única', 'Semanal', 'Mensual'];
@@ -65,7 +65,7 @@ export default function ShopFilterSidebar({ openFilter, onOpenFilter, onCloseFil
              
                 
               <Typography variant="subtitle1" gutterBottom >
-                Categoria
+                Categoría
               </Typography>
              
               <FormGroup>
@@ -114,8 +114,8 @@ export default function ShopFilterSidebar({ openFilter, onOpenFilter, onCloseFil
             fullWidth
             size="large"
             type="submit"
-            color="inherit"
-            variant="outlined"
+
+            variant="contained"
             startIcon={<Iconify icon="ic:round-clear-all" />}
           >
             Buscar
