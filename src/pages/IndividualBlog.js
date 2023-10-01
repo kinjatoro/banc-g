@@ -1,5 +1,6 @@
+import { faker } from '@faker-js/faker';
 import { useState } from 'react';
-
+import { sample } from 'lodash';
 import { useParams } from 'react-router-dom';
 
 import { Helmet } from 'react-helmet-async';
@@ -14,6 +15,10 @@ import Iconify from '../components/iconify';
 import {BlogPostCardInd} from '../sections/@dashboard/blog';
 // mock
 import POSTS from '../_mock/blog';
+
+import {AppNewsUpdate} from '../sections/@dashboard/app';
+
+
 
 // ----------------------------------------------------------------------
 
@@ -57,7 +62,27 @@ export default function BlogPage() {
             <BlogPostCardInd key={post.id} post={post} index={index} />
             
         </Grid>
+        <Grid item xs={12} md={6} lg={8}>
+            <AppNewsUpdate
+              title="Agregar comentario"
+              list={[...Array(5)].map((_, index) => ({
+                id: index,
+                title: sample([ 'Ezequiel', 'Neistadt', 'Agustín', 'Carlos', 'Manuel']),
+                description: sample([
+                  'No puedo expresar lo agradecido que estoy por el apoyo que he recibido de este servicio de clases particulares. Mi profesor ha demostrado una paciencia infinita al explicar conceptos difíciles y me ha dado la confianza necesaria para enfrentar mis exámenes con éxito. Las lecciones son personalizadas y adaptadas a mis necesidades específicas, lo cual ha marcado la diferencia en mi aprendizaje.',
+                  'Recomiendo este servicio a cualquiera que quiera aprender rápido.',
+                  'tipazo',
+                  'Primer comentario',
+                  'Like si lo ves en 2023',
+                ]),
+                image:  `/assets/images/avatars/avatar_${index + 1}.jpg`,
+                postedAt: faker.date.recent(),
+              }))}
+            />
+          </Grid>
       </Container>
+
+
     </>
   );
 }

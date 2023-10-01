@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // @mui
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Link, Card, Grid, Avatar, Typography, CardContent } from '@mui/material';
+import { Box, Link, Card, Grid, Avatar, Typography, CardContent,Stack } from '@mui/material';
 // utils
 import { fDate } from '../../../utils/formatTime';
 import { fShortenNumber } from '../../../utils/formatNumber';
@@ -14,7 +15,7 @@ import Iconify from '../../../components/iconify';
 
 const StyledCardMedia = styled('div')({
   position: 'relative',
-  paddingTop: 'calc(100% * 3 / 4)',
+  paddingTop: 'calc(30% * 3 / 4)',
 });
 
 const StyledTitle = styled(Link)({
@@ -23,15 +24,16 @@ const StyledTitle = styled(Link)({
   WebkitLineClamp: 2,
   display: '-webkit-box',
   WebkitBoxOrient: 'vertical',
+  textDecoration: 'none',
 });
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
   zIndex: 9,
-  width: 32,
-  height: 32,
+  width: 64,
+  height: 64,
   position: 'absolute',
-  left: theme.spacing(3),
-  bottom: theme.spacing(-2),
+  right: theme.spacing(7.3),
+  bottom: theme.spacing(-3.5),
 }));
 
 const StyledInfo = styled('div')(({ theme }) => ({
@@ -63,9 +65,8 @@ export default function BlogPostCardInd({ post, index }) {
   const latestPost = index === 501 || index === 502;
 
   const POST_INFO = [
-    { number: comment, icon: 'eva:message-circle-fill' },
-    { number: view, icon: 'eva:eye-fill' },
-    { number: share, icon: 'eva:share-fill' },
+    { string: share, icon: 'mdi:clock' },
+    { string: view, icon: 'solar:calendar-bold-duotone' },
   ];
 
   const navigate = useNavigate();
@@ -80,7 +81,7 @@ export default function BlogPostCardInd({ post, index }) {
         <StyledCardMedia
           sx={{
             ...((latestPostLarge || latestPost) && {
-              pt: 'calc(100% * 4 / 3)',
+              pt: 'calc(10% * 4 / 3)',
               '&:after': {
                 top: 0,
                 content: "''",
@@ -92,25 +93,26 @@ export default function BlogPostCardInd({ post, index }) {
             }),
             ...(latestPostLarge && {
               pt: {
-                xs: 'calc(100% * 4 / 3)',
-                sm: 'calc(100% * 3 / 4.66)',
+                xs: 'calc(10% * 4 / 3)',
+                sm: 'calc(10% * 3 / 4.66)',
               },
             }),
           }}
         >
+          <div style={{display: "flex", justifyContent: "flex-end"}}>
           <SvgColor
             color="paper"
             src="/assets/icons/shape-avatar.svg"
             sx={{
-              width: 80,
-              height: 36,
+              width: 180,
+              height: 72,
               zIndex: 9,
-              bottom: -15,
+              bottom: -30,
               position: 'absolute',
               color: 'background.paper',
               ...((latestPostLarge || latestPost) && { display: 'none' }),
             }}
-          />
+          /> </div>
           <StyledAvatar
             alt={author.name}
             src={author.avatarUrl}
@@ -139,13 +141,12 @@ export default function BlogPostCardInd({ post, index }) {
           }}
         >
           <Typography gutterBottom variant="caption" sx={{ color: 'text.disabled', display: 'block' }}>
-            {fDate(createdAt)}
+            Publicación creada el {fDate(createdAt)}.
           </Typography>
 
           <StyledTitle
             color="inherit"
             variant="subtitle2"
-            underline="hover"
             sx={{
               ...(latestPostLarge && { typography: 'h5', height: 60 }),
               ...((latestPostLarge || latestPost) && {
@@ -153,7 +154,7 @@ export default function BlogPostCardInd({ post, index }) {
               }),
             }}
           >
-            <Box onClick={handleClick}>{title}</Box>
+            <Box>{title}</Box>
           </StyledTitle>
 
           <StyledInfo>
