@@ -1,7 +1,7 @@
 import {useState} from 'react';
 // @mui
 import PropTypes from 'prop-types';
-import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader, TextField } from '@mui/material';
+import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader, TextField, MenuItem,Select,FormControl,InputLabel  } from '@mui/material';
 // utils
 import { fToNow } from '../../../utils/formatTime';
 // components
@@ -31,6 +31,22 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
       <Stack spacing={2} sx={{ p: 3, px: 3 }}>
       <TextField name="nombre" label="Nombre"/>
       <TextField name="comentario" label="Agregar un comentario" multiline rows={3}/>
+
+      <FormControl fullWidth>
+        <InputLabel id="calificacion">Calificación</InputLabel>
+        <Select
+          labelId="calificacion"
+          id="calificacion"
+          label="calificacion"
+        >
+         <MenuItem value="1 estrella"><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/></MenuItem>
+         <MenuItem value="2 estrellas"><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/></MenuItem>
+         <MenuItem value="3 estrellas"><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/></MenuItem>
+         <MenuItem value="4 estrellas"><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/></MenuItem>
+         <MenuItem value="5 estrellas"><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/></MenuItem>
+        </Select>
+      </FormControl>
+
       <div style={{textAlign: "right"}}>
       <Button variant="outlined" onClick={handleClick}>Agregar comentario</Button></div>
       </Stack></>

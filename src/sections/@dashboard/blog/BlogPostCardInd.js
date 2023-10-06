@@ -15,8 +15,8 @@ import Iconify from '../../../components/iconify';
 
 const StyledCardMedia = styled('div')({
   position: 'relative',
-  paddingTop: 'calc(30% * 3 / 4)',
-
+  paddingTop: 'calc(64% * 3 / 4)',
+  
 });
 
 const StyledTitle = styled(Link)({
@@ -69,6 +69,8 @@ export default function BlogPostCardInd({ post, index }) {
   const POST_INFO = [
     { string: share, icon: 'mdi:clock' },
     { string: view, icon: 'solar:calendar-bold-duotone' },
+    { string: stars, icon: 'solar:star-bold' },
+    
     
   ];
 
@@ -135,8 +137,8 @@ export default function BlogPostCardInd({ post, index }) {
               }),
             }}
           />
-
-          <StyledCover alt={title} src={cover} />
+         <StyledCover  alt={title} src={cover} />
+          
         </StyledCardMedia>
 
         <CardContent

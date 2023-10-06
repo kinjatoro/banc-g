@@ -152,7 +152,7 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title> Contrataciones de Servicios </title>
+        <title> Contrataciones de Servicios | Neilo </title>
       </Helmet>
       
       <Container>
@@ -236,13 +236,13 @@ export default function UserPage() {
                           }}
                         >
                           <Typography variant="h6" paragraph>
-                            Not found
+                          No encontrado
                           </Typography>
 
                           <Typography variant="body2">
-                            No results found for &nbsp;
+                          No se encontraron resultados para &nbsp;
                             <strong>&quot;{filterName}&quot;</strong>.
-                            <br /> Try checking for typos or using complete words.
+                            <br /> Prueba escribiendo otra palabra.
                           </Typography>
                         </Paper>
                       </TableCell>

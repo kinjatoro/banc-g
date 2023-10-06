@@ -162,7 +162,7 @@ export default function UserPage() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Mis Publicaciones
+            Mis Publicaciones | Neilo
           </Typography>
           <Button variant="contained" onClick={handleClick2} startIcon={<Iconify icon="eva:plus-fill" />}>
             Nueva publicación 
@@ -231,13 +231,13 @@ export default function UserPage() {
                           }}
                         >
                           <Typography variant="h6" paragraph>
-                            Not found
+                          No encontrado
                           </Typography>
 
                           <Typography variant="body2">
-                            No results found for &nbsp;
+                          No se encontraron resultados para &nbsp;
                             <strong>&quot;{filterName}&quot;</strong>.
-                            <br /> Try checking for typos or using complete words.
+                            <br /> Prueba escribiendo otra palabra.
                           </Typography>
                         </Paper>
                       </TableCell>

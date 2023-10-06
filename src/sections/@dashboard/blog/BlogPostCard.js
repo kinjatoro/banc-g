@@ -66,6 +66,7 @@ export default function BlogPostCard({ post, index }) {
   const POST_INFO = [
     { string: share, icon: 'mdi:clock' },
     { string: view, icon: 'solar:calendar-bold-duotone' },
+    { string: stars, icon: 'solar:star-bold' },
     
     
   ];

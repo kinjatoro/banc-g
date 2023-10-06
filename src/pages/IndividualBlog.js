@@ -50,7 +50,7 @@ export default function BlogPage() {
       </Helmet>
 
       <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2}>
+        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2} mt={-4}>
           <Typography variant="h3" gutterBottom>
           {post.title}
           </Typography>

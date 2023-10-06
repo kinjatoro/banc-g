@@ -49,7 +49,7 @@ const NOTIFICATIONS = [
   },
   {
     id: faker.datatype.uuid(),
-    title: 'Tenes mensajes sin leer',
+    title: 'Tenes mensajes sin leer.',
     description: '5 mensajes',
     avatar: null,
     type: 'chat_message',
