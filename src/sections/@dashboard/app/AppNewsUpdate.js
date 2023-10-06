@@ -32,7 +32,7 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
       <TextField name="nombre" label="Nombre"/>
       <TextField name="comentario" label="Agregar un comentario" multiline rows={3}/>
       <div style={{textAlign: "right"}}>
-      <Button variant="contained" onClick={handleClick}>Agregar comentario</Button></div>
+      <Button variant="outlined" onClick={handleClick}>Agregar comentario</Button></div>
       </Stack></>
       ):(
       <>

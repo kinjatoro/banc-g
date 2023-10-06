@@ -62,8 +62,9 @@ export default function BlogPage() {
             <BlogPostCardInd key={post.id} post={post} index={index} />
             
         </Grid>
-        <Grid item xs={12} md={6} lg={8}>
+        <Grid item xs={12} md={6} lg={8} >
             <AppNewsUpdate
+              sx={{borderRadius: "0px"}}
               title="Agregar comentario"
               list={[...Array(5)].map((_, index) => ({
                 id: index,
