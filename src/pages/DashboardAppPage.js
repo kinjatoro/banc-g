@@ -42,18 +42,21 @@ export default function DashboardAppPage() {
   const [palabraActualIndex, setPalabraActualIndex] = useState(0);
   const [iconoActualIndex, setIconoActualIndex] = useState(0);
   const [mostrar, setMostrar] = useState(true);
+  const [iconoKey, setIconoKey] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setMostrar(false); // Comienza a ocultar la palabra actual
       setTimeout(() => {
         setPalabraActualIndex((prevIndex) => (prevIndex + 1) % palabras.length);
+        setIconoActualIndex((prevIndex) => (prevIndex + 1) % iconos.length);
+        setIconoKey((prevKey) => prevKey + 1);
         setMostrar(true); // Muestra la nueva palabra después de un breve retraso
       }, 500); // Retraso para permitir que se complete la animación de desvanecimiento (500 milisegundos)
     }, 3000); // Cambia la palabra cada 3 segundos (3000 milisegundos)
 
     return () => clearInterval(interval); // Limpia el intervalo al desmontar el componente
-  }, []);
+  }, [iconos.length, palabras.length]);
 
   const palabraActual = palabras[palabraActualIndex];
   const colorPalabra = colores[palabraActualIndex];
