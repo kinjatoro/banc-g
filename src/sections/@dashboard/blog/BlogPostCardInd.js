@@ -16,6 +16,7 @@ import Iconify from '../../../components/iconify';
 const StyledCardMedia = styled('div')({
   position: 'relative',
   paddingTop: 'calc(30% * 3 / 4)',
+
 });
 
 const StyledTitle = styled(Link)({
@@ -40,6 +41,7 @@ const StyledInfo = styled('div')(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'space-between',
+  alignItems: "center",
   marginTop: theme.spacing(3),
   color: theme.palette.text.disabled,
 }));
@@ -60,13 +62,14 @@ BlogPostCardInd.propTypes = {
 };
 
 export default function BlogPostCardInd({ post, index }) {
-  const { cover, title, view, price, share, author, createdAt } = post;
+  const { cover, title, view, price, share,stars, author, createdAt } = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
 
   const POST_INFO = [
     { string: share, icon: 'mdi:clock' },
     { string: view, icon: 'solar:calendar-bold-duotone' },
+    
   ];
 
   const navigate = useNavigate();
@@ -92,6 +95,7 @@ export default function BlogPostCardInd({ post, index }) {
                 width: '100%',
                 height: '100%',
                 position: 'absolute',
+                
                 bgcolor: (theme) => alpha(theme.palette.grey[900], 0.72),
               },
             }),
@@ -108,6 +112,7 @@ export default function BlogPostCardInd({ post, index }) {
             color="paper"
             src="/assets/icons/shape-avatar.svg"
             sx={{
+              
               width: 180,
               height: 72,
               zIndex: 9,
@@ -163,7 +168,7 @@ export default function BlogPostCardInd({ post, index }) {
               {author.name} </Box>
           </StyledTitle>
           
-          <Typography sx={{textAlign: "justify", mt:-1}}>Soy un apasionado educador con una sólida formación académica. Graduado con honores en Educación de la Universidad de Ciudad Ficticia, continué mi desarrollo profesional obteniendo una maestría en Pedagogía en la Universidad de Bogotá, donde me enfoqué en integrar la tecnología en el aula para mejorar la experiencia de aprendizaje. Título: Licenciado en historia.</Typography>
+          <Typography sx={{textAlign: "justify", mt:-1}}>Soy un apasionado educador con una sólida formación académica. Graduado con honores en Educación de la Universidad de Fraile Muerto, continué mi desarrollo profesional obteniendo una maestría en Pedagogía en la Universidad del Cerro Champaquí, donde me enfoqué en integrar la tecnología en el aula para mejorar la experiencia de aprendizaje. Título: Licenciado en educación.</Typography>
           <Box sx={{borderTop: '1px solid #f0f0f0', mt:2}}> </Box>
           
           <Typography sx={{textAlign: "justify", mt:2}}>Nuestra clase ofrece una emocionante y educativa experiencia en el agua para personas de todas las edades y niveles de habilidad. Diseñada para fomentar la confianza en el agua y mejorar las habilidades de natación, nuestra clase se lleva a cabo en un ambiente seguro y supervisado por instructores altamente calificados.</Typography>
@@ -178,16 +183,18 @@ export default function BlogPostCardInd({ post, index }) {
                   display: 'flex',
                   alignItems: 'center',
                   ml: 1.5,
+                  pt: 0.5,
                 }}
               >
-                 <Iconify icon={info.icon} sx={{ width: 24, height: 24, mr: 0.5, mt:-1 }} />
+                <Iconify icon={info.icon} sx={{ width: 24, height: 24, mr: 0.5, mt:-1 }} />
                 <Typography variant="body2" sx={{mt:-0.7}}>
                   {(info.string)}
                   </Typography>
                 
                 
               </Box>
-            ))}</div>
+            ))}
+            </div>
             <Button onClick={handleClick2} variant="contained" >Contratar</Button>
           </StyledInfo>
         </CardContent>

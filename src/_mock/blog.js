@@ -88,6 +88,7 @@ const posts = [...Array(23)].map((_, index) => ({
   'Clases de Matemáticas',]),
   createdAt: faker.date.past(),
   view: sample(["Única", "Semanal", "Mensual"]),
+  stars: sample(["4.1","4.2","4.3","4.4","4.5","4.6","4.7","4.8","4.9","4.0","3.9"]),
   price: sample([
     '$20',
     '$50',

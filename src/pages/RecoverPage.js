@@ -41,6 +41,18 @@ const StyledContent = styled('div')(({ theme }) => ({
   justifyContent: 'center',
   flexDirection: 'column',
   padding: theme.spacing(12, 0),
+  
+}));
+
+const StyledContent2 = styled('div')(({ theme }) => ({
+  maxWidth: 480,
+  margin: 'auto',
+  minHeight: '100vh',
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  padding: theme.spacing(12, 0),
+  alignItems:"center"
 }));
 
 // ----------------------------------------------------------------------
@@ -54,6 +66,12 @@ export default function LoginPage() {
   const handleClick = () => {
         setState(false);
   }
+  const handleClick2 = () => {
+    navigate('/dashboard/app');
+}
+const handleClick3 = () => {
+  navigate('/login');
+}
 
   return (
     <>
@@ -78,25 +96,28 @@ export default function LoginPage() {
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 2 }}>
-              Por favor, ingresa tu correo electrónico {''}
+              Por favor, ingresa tu correo electrónico. 
+              <Link sx={{ml:1, cursor: 'pointer'}} onClick={handleClick3}>Volver a inicio de sesión</Link>
             </Typography>
 
             <Stack spacing={3}>
             <TextField name="correo" label="Correo electrónico" sx={{my:2}}/>
              </Stack>
 
-            <Button fullWidth size="large" type="submit" variant="contained" onClick={handleClick}sx={{mt:2}} >
+            <Button fullWidth size="large" type="submit" variant="contained" onClick={handleClick}sx={{mt:2}} disableElevation >
              Enviar Correo
               </Button>
-
+              
           </StyledContent>
         </Container></>) : (
         
-        <StyledContent><Typography variant="h3" gutterBottom>
-        El correo fue enviado. 
-    </Typography>
+        <StyledContent2>
+        <Typography variant="h3" sx={{mb:3}} align="center">
+        Te enviamos un correo con los pasos a seguir. 
+        </Typography>
+        <Button size="large" variant="outlined" sx={{width:"50%"}} onClick={handleClick2}>Volver a Inicio</Button>
 
-        </StyledContent>
+        </StyledContent2>
         ))}
         
       </StyledRoot>

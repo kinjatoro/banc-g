@@ -79,7 +79,7 @@ function NewsItem({ news }) {
           {title}
         </Link>
 
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: "justify", pr:2 }}>
           {description}
         </Typography>
       </Box>

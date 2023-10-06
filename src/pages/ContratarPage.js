@@ -1,15 +1,16 @@
+import {useState} from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Navigate, useNavigate } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
+import { Link, Container, Typography, Divider, Stack, Button, TextField } from '@mui/material';
 // hooks
 import useResponsive from '../hooks/useResponsive';
 // components
 import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
-import { ContratarForm } from '../sections/auth/login';
+
 
 // ----------------------------------------------------------------------
 
@@ -43,7 +44,14 @@ const StyledContent = styled('div')(({ theme }) => ({
 export default function RegisterPage() {
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
+  const [state, setState ] = useState(true);
 
+  const handleClick = () => {
+    setState(false);
+  }
+  const handleClick2 = () => {
+    navigate('/dashboard/blog');
+  }
 
   return (
     <>
@@ -55,6 +63,7 @@ export default function RegisterPage() {
 
         <Container maxWidth="sm">
           <StyledContent>
+          {(state ? (<>
             <Typography variant="h3" gutterBottom>
             Contratar servicio
             </Typography>
@@ -62,7 +71,28 @@ export default function RegisterPage() {
             <Typography variant="body2" sx={{ mb: 2 }}>
                 Por favor, llená el formulario con tus datos personales.
             </Typography>
-            <ContratarForm />
+
+            <Stack spacing={2}>
+        <TextField name="telefono" label="Telefono" />
+        <TextField name="mail" label="Mail" />
+        <TextField name="horario" label="Horario de referencia"/>
+        <TextField name="mensaje" label="Mensaje al proveedor" multiline rows={5}/>
+        
+      </Stack>
+
+      <Button fullWidth size="large" type="submit" variant="contained" onClick={handleClick} sx={{mt:3}}>
+        Contratar
+      </Button></>
+      ):(
+      <>
+      <Stack spacing={2} sx={{ p: 25, px: 3 , alignItems: "center"}}>
+        <Typography align="center" variant="h5">
+          El profesor próximamente se pondrá en contacto con vos. ¡Gracias por usar Neilo! 
+        </Typography>
+        <Button  variant="outlined" sx={{width:"50%"}} onClick={handleClick2} >Ver más servicios</Button>
+      </Stack>
+      </>))}
+
           </StyledContent>
         </Container>
       </StyledRoot>

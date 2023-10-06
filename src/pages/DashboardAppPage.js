@@ -37,8 +37,8 @@ export default function DashboardAppPage() {
   const navigate = useNavigate();
   const { auth, setAuth } = useAuth();
   const palabras = ["Guitarra", "Piano", "Natación", "Inglés", "Geografía", "Programación"];
-  const colores = ["#F20D0D", "#0D31F2", "#F26D0D", "#0DBBF2","#F20DE9" ,"#F2C00D"];
-  const iconos = ["eva:clock-fill", "eva:color-palette-fill", "eva:cloud-download-fill"];
+  const colores = ["#2065D1", "#2065D1", "#2065D1", "#2065D1","#2065D1" ,"#2065D1"];
+  const iconos = [];
   const [palabraActualIndex, setPalabraActualIndex] = useState(0);
   const [iconoActualIndex, setIconoActualIndex] = useState(0);
   const [mostrar, setMostrar] = useState(true);
@@ -127,10 +127,15 @@ export default function DashboardAppPage() {
         <Box sx={{m: 50}} />
 
         <Stack spacing={2} sx={{display: "flex",flexDirection: 'column', alignItems: 'center', justifyContent: "center", my:6, px:2}}>
-          <Typography variant="h2"  align = 'center'> 
+
+          <div style={{display:"flex",flexDirection: 'row',alignItems: 'center', justifyContent: "center"}}>
+          <Typography variant="h2"  align = 'center' sx={{mr:2}}> 
             ¿Qué podés aprender en Neilo?
           </Typography>
-          <Iconify style={{ opacity: mostrar ? 1 : 0, transition: 'opacity 0.5s'}} icon={iconoActual} />
+          
+          {/* <Iconify style={{ opacity: mostrar ? 1 : 0, transition: 'opacity 0.5s', width: 40, height: 40}} icon={iconoActual} /> */}
+          
+          </div>
 
             <Typography variant="h2" style={{ opacity: mostrar ? 1 : 0, transition: 'opacity 0.5s', color: colorPalabra }}>{palabraActual}</Typography>
 

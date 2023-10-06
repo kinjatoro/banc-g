@@ -59,13 +59,14 @@ BlogPostCard.propTypes = {
 };
 
 export default function BlogPostCard({ post, index }) {
-  const { cover, title, view, price, share, author, createdAt } = post;
+  const { cover, title, view, price, share,stars, author, createdAt } = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
 
   const POST_INFO = [
     { string: share, icon: 'mdi:clock' },
     { string: view, icon: 'solar:calendar-bold-duotone' },
+    
     
   ];
 
