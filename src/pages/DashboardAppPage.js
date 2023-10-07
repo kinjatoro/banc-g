@@ -92,12 +92,9 @@ export default function DashboardAppPage() {
         <Typography variant="h4" sx={{ mb: 15 }}/>
           
         
-
-
-
         <Grid container spacing={2}>
           <Grid xs={12} lg={6}>  
-            <Grid className="Altura" sx={{display: "flex", flexDirection: 'column', alignItems: 'center', justifyContent: "center"}}>
+            <Grid className="Altura" sx={{display: "flex", flexDirection: 'column', alignItems: 'center', justifyContent: "center", ml:3}}>
               <Grid>
                 <Typography variant='h1' align = 'center'>Bienvenido a <span className="color-change">Neilo</span></Typography>
                 <Typography variant='h4' align='center' sx={{mt:1}}>El aprendizaje se adapta a vos.</Typography>
@@ -128,17 +125,17 @@ export default function DashboardAppPage() {
 
         <Stack spacing={2} sx={{display: "flex",flexDirection: 'column', alignItems: 'center', justifyContent: "center", my:6, px:2}}>
 
-          <div style={{display:"flex",flexDirection: 'row',alignItems: 'center', justifyContent: "center"}}>
-          <Typography variant="h2"  align = 'center' sx={{mr:2}}> 
+          
+          <Typography variant="h2"  align = 'center'> 
             ¿Qué podés aprender en Neilo?
           </Typography>
           
-          {/* <Iconify style={{ opacity: mostrar ? 1 : 0, transition: 'opacity 0.5s', width: 40, height: 40}} icon={iconoActual} /> */}
           
-          </div>
-
-            <Typography variant="h2" style={{ opacity: mostrar ? 1 : 0, transition: 'opacity 0.5s', color: colorPalabra }}>{palabraActual}</Typography>
-
+          
+          
+          
+            <Typography variant="h2" style={{ opacity: mostrar ? 1 : 0, transition: 'opacity 0.5s', color: colorPalabra}}>{palabraActual}</Typography>
+            
         </Stack>
         
         <Box sx={{m: 50}} />

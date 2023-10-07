@@ -16,7 +16,7 @@ import Iconify from '../../../components/iconify';
 const StyledCardMedia = styled('div')({
   position: 'relative',
   paddingTop: 'calc(64% * 3 / 4)',
-  
+
 });
 
 const StyledTitle = styled(Link)({
@@ -177,7 +177,7 @@ export default function BlogPostCardInd({ post, index }) {
             
           <StyledInfo>
             <div style={{display: 'flex', flexContent:"row"}}>
-          <Typography variant="h5" sx={{mr:2, color: "black"}}>{price}</Typography>
+          <Typography variant="h5" sx={{mr:1, color: "black"}}>{price}</Typography>
             {POST_INFO.map((info, index) => (
               <Box
                 key={index}
