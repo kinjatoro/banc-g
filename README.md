@@ -1,7 +1,7 @@
 # PARA CORRER EL PROGRAMA
 
 0. Instalar NodeJS (https://nodejs.org/en) y VS Code (https://code.visualstudio.com/download)
-1. En el CMD, poner los comandos `$ npm init react-app` `$ npm init react-app` `$ npm init react-app` (si no lo lee sacarle el $)
+1. Instalar React: en el CMD, poner los comandos `$ npm init react-app` `$ npm init react-app` `$ npm init react-app` (si no lo lee sacarle el $)
 2. Abir VS Code
 3. Darle a "clone github repository" y pegar `https://github.com/kinjatoro/SEMINARIO`
 4. Seleccionar la carpeta donde querés que se instale (no es necesario crear una nueva, al clonar el proyecto se crea una carpeta contenedora automáticamente).
