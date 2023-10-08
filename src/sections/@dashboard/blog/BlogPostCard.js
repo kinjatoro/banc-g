@@ -64,8 +64,8 @@ export default function BlogPostCard({ post, index }) {
   const latestPost = index === 501 || index === 502;
 
   const POST_INFO = [
-    { string: share, icon: 'mdi:clock' },
     { string: view, icon: 'solar:calendar-bold-duotone' },
+    { string: share, icon: 'mdi:clock' },
     { string: stars, icon: 'solar:star-bold' },
     
     

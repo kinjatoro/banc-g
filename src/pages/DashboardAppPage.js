@@ -37,8 +37,8 @@ export default function DashboardAppPage() {
   const theme = useTheme();
   const navigate = useNavigate();
   const { auth, setAuth } = useAuth();
-  const palabras = ["Guitarra", "Piano", "Natación", "Inglés", "Geografía", "Programación"];
-  const colores = ["#EA4429", "#EA4429", "#EA4429", "#EA4429","#EA4429" ,"#EA4429"];
+  const palabras = ["Jazz", "Rock", "Salsa", "Pop","Blues" ,"Reggae"];
+  const colores = ["white", "white", "white", "white","white" ,"white"];
   const iconos = [];
   const [palabraActualIndex, setPalabraActualIndex] = useState(0);
   const [iconoActualIndex, setIconoActualIndex] = useState(0);
@@ -125,21 +125,19 @@ export default function DashboardAppPage() {
 
         <Box sx={{m: 50}} />
 
+
+        <Box sx={{backgroundColor: "#EA4429", py:15}}>
         <Stack spacing={2} sx={{display: "flex",flexDirection: 'column', alignItems: 'center', justifyContent: "center", my:6, px:2}}>
 
           
-          <Typography variant="h2"  align = 'center'> 
-            ¿Qué podés aprender en For The Music Lovers?
+          <Typography variant="h2"  align = 'center' sx={{color: "white"}}> 
+            ¿Cuál es tu género favorito?
           </Typography>
-          
-          
-          
-          
           
             <Typography variant="h2" style={{ opacity: mostrar ? 1 : 0, transition: 'opacity 0.5s', color: colorPalabra}}>{palabraActual}</Typography>
             
         </Stack>
-        
+        </Box>
         <Box sx={{m: 50}} />
 
         <Grid sx={{display: "flex",flexDirection: 'column', alignItems: 'center', justifyContent: "center", my:30}}>
@@ -147,14 +145,14 @@ export default function DashboardAppPage() {
         ¿Estás listo para empezar?
         </Typography>
 
-        <Button  variant = "contained" sx={{my:2, py:1}} onClick={handleClick} ><Typography variant="h6">Explorá nuestros servicios </Typography></Button>
+        <Button  variant = "contained" sx={{my:2, py:1}} onClick={handleClick} ><Typography variant="h6">Explorá eventos </Typography></Button>
         </Grid>
 
               
                 <AppBar position="relative" sx={{top: 'auto',bottom: 0, width: '100%' }}  >
                   <Toolbar>
                     <Typography variant="body1">
-                      © {new Date().getFullYear()} For The Music Lovers
+                      © {new Date().getFullYear()} For The Music Lovers.
                     </Typography>
                   </Toolbar>
                 </AppBar>

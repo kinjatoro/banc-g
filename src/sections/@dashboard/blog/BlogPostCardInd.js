@@ -67,8 +67,8 @@ export default function BlogPostCardInd({ post, index }) {
   const latestPost = index === 501 || index === 502;
 
   const POST_INFO = [
-    { string: share, icon: 'mdi:clock' },
     { string: view, icon: 'solar:calendar-bold-duotone' },
+    { string: share, icon: 'mdi:clock' },
     { string: stars, icon: 'solar:star-bold' },
     
     
@@ -170,10 +170,10 @@ export default function BlogPostCardInd({ post, index }) {
               {author.name} </Box>
           </StyledTitle>
           
-          <Typography sx={{textAlign: "justify", mt:-1}}>Soy un apasionado educador con una sólida formación académica. Graduado con honores en Educación de la Universidad de Fraile Muerto, continué mi desarrollo profesional obteniendo una maestría en Pedagogía en la Universidad del Cerro Champaquí, donde me enfoqué en integrar la tecnología en el aula para mejorar la experiencia de aprendizaje. Título: Licenciado en educación.</Typography>
+          <Typography sx={{textAlign: "justify", mt:-1}}>Únete a nosotros en una noche llena de música y emoción en nuestro acogedor bar. Disfruta de un ambiente íntimo y vibrante mientras músicos talentosos suben al escenario para ofrecer un concierto en vivo que te transportará a un mundo de sonidos cautivadores. </Typography>
           <Box sx={{borderTop: '1px solid #f0f0f0', mt:2}}> </Box>
           
-          <Typography sx={{textAlign: "justify", mt:2}}>Nuestra clase ofrece una emocionante y educativa experiencia en el agua para personas de todas las edades y niveles de habilidad. Diseñada para fomentar la confianza en el agua y mejorar las habilidades de natación, nuestra clase se lleva a cabo en un ambiente seguro y supervisado por instructores altamente calificados.</Typography>
+          <Typography sx={{textAlign: "justify", mt:2}}>Nicky Grill, el encantador cantante de jazz danés, es una verdadera joya en la escena musical internacional. Con una voz suave y seductora que evoca la nostalgia y la pasión, Nicky lleva a su audiencia a un viaje musical lleno de emociones profundas. Nacido en Copenhague, Nicky Grill ha perfeccionado su arte a lo largo de los años, fusionando el jazz tradicional con influencias contemporáneas para crear un sonido único y cautivador.</Typography>
             
           <StyledInfo>
             <div style={{display: 'flex', flexContent:"row"}}>
@@ -197,7 +197,7 @@ export default function BlogPostCardInd({ post, index }) {
               </Box>
             ))}
             </div>
-            <Button onClick={handleClick2} variant="contained" >Contratar</Button>
+            <Button onClick={handleClick2} variant="contained" >Reservar</Button>
           </StyledInfo>
         </CardContent>
       </Card>

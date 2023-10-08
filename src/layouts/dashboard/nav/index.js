@@ -117,7 +117,7 @@ export default function Nav({ openNav, onCloseNav }) {
             ) : (
             <><Box sx={{ textAlign: 'center' }}>
                 <Typography gutterBottom variant="h6">
-                  ¿Sos proveedor?
+                  ¿Sos dueño de un bar?
                 </Typography>
               </Box><Button onClick={handleClick} variant="contained" disableElevation="true">
                   Iniciar sesión

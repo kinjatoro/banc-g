@@ -56,7 +56,7 @@ export default function RegisterPage() {
   return (
     <>
       <Helmet>
-        <title> Contratar | For The Music Lovers </title>
+        <title> Reservar | For The Music Lovers </title>
       </Helmet>
 
       <StyledRoot>
@@ -65,7 +65,7 @@ export default function RegisterPage() {
           <StyledContent>
           {(state ? (<>
             <Typography variant="h3" gutterBottom>
-            Contratar servicio
+            Reservar función
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 2 }}>
@@ -76,18 +76,18 @@ export default function RegisterPage() {
         <TextField name="telefono" label="Telefono" />
         <TextField name="mail" label="Mail" />
         <TextField name="horario" label="Horario de referencia"/>
-        <TextField name="mensaje" label="Mensaje al proveedor" multiline rows={5}/>
+        <TextField name="mensaje" label="¿Algo más que quieras aclarar?" multiline rows={5}/>
         
       </Stack>
 
       <Button fullWidth size="large" type="submit" variant="contained" onClick={handleClick} sx={{mt:3}}>
-        Contratar
+        Reservar
       </Button></>
       ):(
       <>
       <Stack spacing={2} sx={{ p: 25, px: 3 , alignItems: "center"}}>
         <Typography align="center" variant="h5">
-          El profesor próximamente se pondrá en contacto con vos. ¡Gracias por usar For The Music Lovers! 
+          El bar próximamente se pondrá en contacto con vos. ¡Gracias por usar For The Music Lovers! 
         </Typography>
         <Button  variant="outlined" sx={{width:"50%"}} onClick={handleClick2} >Ver más servicios</Button>
       </Stack>
