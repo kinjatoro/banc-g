@@ -23,6 +23,7 @@ import {
 
 import gorro from '../gorro.png';
 import milogo from '../logo.svg';
+import musica from '../musica.png';
 import { useAuth } from '../Auth';
 
 
@@ -37,7 +38,7 @@ export default function DashboardAppPage() {
   const navigate = useNavigate();
   const { auth, setAuth } = useAuth();
   const palabras = ["Guitarra", "Piano", "Natación", "Inglés", "Geografía", "Programación"];
-  const colores = ["#2065D1", "#2065D1", "#2065D1", "#2065D1","#2065D1" ,"#2065D1"];
+  const colores = ["#EA4429", "#EA4429", "#EA4429", "#EA4429","#EA4429" ,"#EA4429"];
   const iconos = [];
   const [palabraActualIndex, setPalabraActualIndex] = useState(0);
   const [iconoActualIndex, setIconoActualIndex] = useState(0);
@@ -85,7 +86,7 @@ export default function DashboardAppPage() {
   return (
     <>
       <Helmet>
-        <title> Inicio | Neilo </title>
+        <title> Inicio | FTML </title>
       </Helmet>
 
       <Container sx={{mb: -10, ms: -3, me:-3 }} disableGutters maxWidth={false} >
@@ -96,13 +97,13 @@ export default function DashboardAppPage() {
           <Grid xs={12} lg={6}>  
             <Grid className="Altura" sx={{display: "flex", flexDirection: 'column', alignItems: 'center', justifyContent: "center", ml:3}}>
               <Grid>
-                <Typography variant='h1' align = 'center'>Bienvenido a <span className="color-change">Neilo</span></Typography>
-                <Typography variant='h4' align='center' sx={{mt:1}}>Aprendé a tu ritmo, en tu espacio.</Typography>
+                <Typography variant='h1' align = 'center'>Bienvenido a <br /><span className="color-change">For The Music Lovers</span></Typography>
+                <Typography variant='h4' align='center' sx={{mt:1}}>¿Ya sabés a dónde vas a salir hoy?</Typography>
               </Grid>
               
               <Grid sx={{display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "center", mt:3}}>
-                <Button variant = "contained" size ='large' sx={{mx:2}} onClick={handleClick} >Soy alumno </Button> 
-                <Button variant = "outlined" size ='large' onClick={ auth ? handleClick3 : handleClick2} >Soy profesor</Button>
+                <Button variant = "contained" size ='large' sx={{mx:2}} onClick={handleClick} >Descubrir Música </Button> 
+                
               </Grid>
             </Grid>
           </Grid>
@@ -111,8 +112,9 @@ export default function DashboardAppPage() {
           
           <Grid className='Ocultar' xs={6} sx={{display: "flex", alignItems: 'center', justifyContent: "center", position: "relative"}}>
             
-           <img className='StaticLogo' src={gorro} alt="Static Logo" />
-           <img className='RotatingLogo' src={milogo} alt="Rotating Logo"/>
+          
+
+          <img className='RotatingLogo' src={milogo} alt="Rotating Logo"/>
           </Grid>
           
 
@@ -127,7 +129,7 @@ export default function DashboardAppPage() {
 
           
           <Typography variant="h2"  align = 'center'> 
-            ¿Qué podés aprender en Neilo?
+            ¿Qué podés aprender en For The Music Lovers?
           </Typography>
           
           
@@ -152,7 +154,7 @@ export default function DashboardAppPage() {
                 <AppBar position="relative" sx={{top: 'auto',bottom: 0, width: '100%' }}  >
                   <Toolbar>
                     <Typography variant="body1">
-                      © {new Date().getFullYear()} Neilo
+                      © {new Date().getFullYear()} For The Music Lovers
                     </Typography>
                   </Toolbar>
                 </AppBar>

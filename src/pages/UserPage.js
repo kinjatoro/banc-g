@@ -152,7 +152,7 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title> Contrataciones de Servicios | Neilo </title>
+        <title> Contrataciones de Servicios | For The Music Lovers </title>
       </Helmet>
       
       <Container>

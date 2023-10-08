@@ -33,7 +33,7 @@
   height: 450px;
   top: -54px;  
   right: 178px; 
-  animation: rotate 10s linear infinite, fadeIn 1s ease-in-out;
+  animation: rotate 10s linear infinite;
   position: absolute;  
   z-index: 2;
 }
@@ -49,6 +49,38 @@
   right:134px;
   animation: fadeIn 1s ease-in-out;
   
+}
+
+.Musica {
+  position: absolute;
+  width: 50px; 
+  height: 50px;
+  top: 348px;  
+  right: 563px;
+}
+
+.Musica2 {
+  position: absolute;
+  width: 65px; 
+  height: 65px;
+  top: 318px;  
+  right: 178px;
+}
+
+.Musica3 {
+  position: absolute;
+  width: 50px; 
+  height: 50px;
+  top: -62px;  
+  right: 551px;
+}
+
+.Musica4 {
+  position: absolute;
+  width: 50px; 
+  height: 50px;
+  top: -41px;  
+  right: 164px;
 }
 
 
@@ -74,15 +106,15 @@
   }
 
   25% {
-    color:#4E20D1 ; 
+    color:#EA4429 ; 
   }
 
   50% {
-    color:#2065D1 ;
+    color:#EA4429 ;
   }
 
   75% {
-    color:#4E20D1 ; 
+    color:#EA4429 ; 
   }
 
   100% {
@@ -117,4 +149,9 @@
     opacity: 1;
   }
 }
+
+
+
+
+
 

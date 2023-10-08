@@ -80,7 +80,7 @@ export default function Nav({ openNav, onCloseNav }) {
           <Logo />
        </Box>
        <Typography variant="h6" sx={{ marginLeft: 2, color: 'text.primary'}}>
-           Bienvenido a Neilo.
+           Bienvenido.
        </Typography>
       </Box>
 

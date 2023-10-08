@@ -54,7 +54,7 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title> Login | Neilo </title>
+        <title> Login | For The Music Lovers </title>
       </Helmet>
 
       <StyledRoot>

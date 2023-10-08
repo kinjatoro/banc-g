@@ -52,7 +52,7 @@ export default function RegisterPage() {
   return (
     <>
       <Helmet>
-        <title> Registro | Neilo </title>
+        <title> Registro | For The Music Lovers </title>
       </Helmet>
 
       <StyledRoot>

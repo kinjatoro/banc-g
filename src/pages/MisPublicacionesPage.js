@@ -156,7 +156,7 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title> Mis Publicaciones | Neilo </title>
+        <title> Mis Publicaciones | For The Music Lovers </title>
       </Helmet>
 
       <Container>

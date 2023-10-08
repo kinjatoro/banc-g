@@ -56,7 +56,7 @@ export default function RegisterPage() {
   return (
     <>
       <Helmet>
-        <title> Contratar | Neilo </title>
+        <title> Contratar | For The Music Lovers </title>
       </Helmet>
 
       <StyledRoot>
@@ -87,7 +87,7 @@ export default function RegisterPage() {
       <>
       <Stack spacing={2} sx={{ p: 25, px: 3 , alignItems: "center"}}>
         <Typography align="center" variant="h5">
-          El profesor próximamente se pondrá en contacto con vos. ¡Gracias por usar Neilo! 
+          El profesor próximamente se pondrá en contacto con vos. ¡Gracias por usar For The Music Lovers! 
         </Typography>
         <Button  variant="outlined" sx={{width:"50%"}} onClick={handleClick2} >Ver más servicios</Button>
       </Stack>

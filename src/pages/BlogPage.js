@@ -34,7 +34,7 @@ export default function BlogPage() {
   
     <>
       <Helmet>
-        <title> Servicios | Neilo </title>
+        <title> Servicios | For The Music Lovers </title>
       </Helmet>
 
       <Container>

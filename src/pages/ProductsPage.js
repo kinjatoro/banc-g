@@ -25,7 +25,7 @@ export default function ProductsPage() {
   return (
     <>
       <Helmet>
-        <title> Dashboard: Products | Neilo </title>
+        <title> Dashboard: Products | For The Music Lovers </title>
       </Helmet>
 
       <Container>

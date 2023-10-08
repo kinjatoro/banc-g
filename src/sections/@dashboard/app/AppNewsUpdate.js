@@ -39,11 +39,11 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
           id="calificacion"
           label="calificacion"
         >
-         <MenuItem value="1 estrella"><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/></MenuItem>
-         <MenuItem value="2 estrellas"><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/></MenuItem>
-         <MenuItem value="3 estrellas"><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/></MenuItem>
-         <MenuItem value="4 estrellas"><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/></MenuItem>
-         <MenuItem value="5 estrellas"><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#2065D1'}} icon={'solar:star-bold'}/></MenuItem>
+         <MenuItem value="1 estrella"><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/></MenuItem>
+         <MenuItem value="2 estrellas"><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/></MenuItem>
+         <MenuItem value="3 estrellas"><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/></MenuItem>
+         <MenuItem value="4 estrellas"><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/></MenuItem>
+         <MenuItem value="5 estrellas"><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/></MenuItem>
         </Select>
       </FormControl>
 
