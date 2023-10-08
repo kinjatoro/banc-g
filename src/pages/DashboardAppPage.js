@@ -97,7 +97,7 @@ export default function DashboardAppPage() {
             <Grid className="Altura" sx={{display: "flex", flexDirection: 'column', alignItems: 'center', justifyContent: "center", ml:3}}>
               <Grid>
                 <Typography variant='h1' align = 'center'>Bienvenido a <span className="color-change">Neilo</span></Typography>
-                <Typography variant='h4' align='center' sx={{mt:1}}>El aprendizaje se adapta a vos.</Typography>
+                <Typography variant='h4' align='center' sx={{mt:1}}>Aprendé a tu ritmo, en tu espacio.</Typography>
               </Grid>
               
               <Grid sx={{display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "center", mt:3}}>

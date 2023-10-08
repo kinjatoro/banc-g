@@ -162,7 +162,7 @@ export default function UserPage() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Mis Publicaciones | Neilo
+            Mis Publicaciones
           </Typography>
           <Button variant="contained" onClick={handleClick2} startIcon={<Iconify icon="eva:plus-fill" />}>
             Nueva publicación 
