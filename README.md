@@ -1,4 +1,4 @@
-PARA CORRER EL PROGRAMA
+# PARA CORRER EL PROGRAMA
 
 0. Instalar NodeJS (https://nodejs.org/en) y VS Code (https://code.visualstudio.com/download)
 1. En el CMD, poner los comandos `$ npm init react-app` `$ npm init react-app` `$ npm init react-app` (si no lo lee sacarle el $)
