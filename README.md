@@ -1,5 +1,3 @@
-HOLA 2222 2111
-
 https://mui.com/material-ui/getting-started/
 
 Para correr el programa hay q bajarlo de github, pero tiene q estar la carpeta de node_modules
