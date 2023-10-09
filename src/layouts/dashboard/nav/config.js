@@ -11,9 +11,9 @@ const navConfig = [
     icon: <Iconify icon={"eva:heart-fill"} />,   
   },
   {
-    title: 'servicios',
+    title: 'eventos',
     path: '/dashboard/blog',
-    icon: <Iconify icon={"eva:briefcase-fill"} />,  
+    icon: <Iconify icon={"eva:music-fill"} />,  
   },
 ];
 

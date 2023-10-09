@@ -11,7 +11,10 @@
 8. Borrar la carpeta temporal
 9. Ejecutar en la terminal `npm install @mui/material @emotion/react @emotion/styled`
 10. Ejecutar `npm start`
-11. OPCIONAL: Instalar Axios: `npm install axios` (es para conectarse a las API)
+
+PARA CONECTARSE A LA API
+11. Instalar Axios: `npm install axios` (Axios es una biblioteca para hacer solicitudes HTTP desde el FrontEnd)
+12. Instalar JWT Decode `npm install jwt-decode` (JWT-Decode es una biblioteca para desencriptar tokens JWT)
 
 https://mui.com/material-ui/getting-started/
 

@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
+
 // @mui
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Typography, Container } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
@@ -27,6 +31,41 @@ export default function LoginForm() {
   const handleClick2 = () => {
     navigate('/recupero');
   }
+
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('https://ejemplo.com/api/login', {
+        username: 'nombre_de_usuario',
+        password: 'contraseña',
+      });
+
+      // Crea el token
+      const token = response.data.token;
+
+      // Lo almacena en una cookie
+      document.cookie = `jwtToken=${token}; path=/; secure; HttpOnly; SameSite=Strict;`;
+      
+    } catch (error) {
+      console.error('Error de inicio de sesión', error);
+    }
+  };
+
+    // extrae el token de la cookie
+    function getJwtToken() {
+      const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+      return jwtCookie ? jwtCookie.split('=')[1] : null;
+    }
+
+    const jwtToken = getJwtToken();
+
+    // decodifica el token (si lo encuentra)
+    if (jwtToken) {
+      const decodedToken = jwtDecode(jwtToken);
+      console.log(decodedToken);
+    } else {
+      console.error('No se encontró un token JWT en la cookie');
+    }
 
   return (
     <>
@@ -62,6 +101,9 @@ export default function LoginForm() {
       <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick}>
         Iniciar Sesión
       </LoadingButton>
+
+
+      
     </>
   );
 }

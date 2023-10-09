@@ -38,7 +38,7 @@ export default function AccountPopover() {
     navigate('/dashboard/app');
   };
 
-  const handleServicios = () => {
+  const handleEventos = () => {
     setOpen(null);
     navigate('/dashboard/blog');
   };
@@ -103,8 +103,8 @@ export default function AccountPopover() {
               Inicio
             </MenuItem>
 
-            <MenuItem onClick={handleServicios}>
-              Servicios
+            <MenuItem onClick={handleEventos}>
+              Eventos
             </MenuItem>
           
         </Stack>
