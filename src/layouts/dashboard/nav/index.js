@@ -46,6 +46,7 @@ export default function Nav({ openNav, onCloseNav }) {
   const isDesktop = false;
 
   const { auth, setAuth } = useAuth();
+  
   const handleAuth = () => {
     onCloseNav();
     setAuth(false);

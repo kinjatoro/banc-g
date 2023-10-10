@@ -5,7 +5,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Typography, Container } from '@mui/material';
+import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Typography, Container, Button } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
 // components
@@ -23,6 +23,9 @@ export default function LoginForm() {
 
   const { auth, setAuth } = useAuth();
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const handleClick = () => {
     navigate('/dashboard');
     setAuth(true);
@@ -35,20 +38,28 @@ export default function LoginForm() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('https://ejemplo.com/api/login', {
-        username: 'nombre_de_usuario',
-        password: 'contraseña',
+      const response = await axios.post('https://music-lovers-production.up.railway.app/business/login/', {
+        email: 'test@mail.com',
+        password: 'test',
       });
 
       // Crea el token
-      const token = response.data.token;
+      const token = response.data.access;
+
+      console.log(token);
 
       // Lo almacena en una cookie
-      document.cookie = `jwtToken=${token}; path=/; secure; HttpOnly; SameSite=Strict;`;
+      document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
+
+      // Reinicia los valores de mail y contraseña
+      setEmail('');
+      setPassword('');
       
     } catch (error) {
       console.error('Error de inicio de sesión', error);
     }
+
+
   };
 
     // extrae el token de la cookie
@@ -57,6 +68,10 @@ export default function LoginForm() {
       return jwtCookie ? jwtCookie.split('=')[1] : null;
     }
 
+    
+    
+
+    const handleDecode = async () => {
     const jwtToken = getJwtToken();
 
     // decodifica el token (si lo encuentra)
@@ -67,14 +82,24 @@ export default function LoginForm() {
       console.error('No se encontró un token JWT en la cookie');
     }
 
+    }
+
+    
+
   return (
     <>
       <Stack spacing={3}>
-        <TextField name="correo" label="Correo electrónico" />
+        <TextField name="correo"
+           label="Correo electrónico"
+           value={email}
+           onChange={(e) => setEmail(e.target.value)}
+           />
 
         <TextField
           name="Contraseña"
           label="Contraseña"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           type={showPassword ? 'text' : 'password'}
           InputProps={{
             endAdornment: (
@@ -98,9 +123,11 @@ export default function LoginForm() {
         </Link>
       </Stack>
 
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick}>
+      <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleLogin}>
         Iniciar Sesión
       </LoadingButton>
+
+      <Button onClick={handleDecode}>PRUEBA</Button>
 
 
       
