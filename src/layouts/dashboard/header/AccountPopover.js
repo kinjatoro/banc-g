@@ -30,18 +30,24 @@ export default function AccountPopover() {
   const handleAuth = () => {
     setOpen(null);
     setAuth(false);
-    navigate('/dashboard/app');
+    navigate('/dashboard/inicio');
   };
 
   const handleInicio = () => {
     setOpen(null);
-    navigate('/dashboard/app');
+    navigate('/dashboard/inicio');
   };
 
   const handleEventos = () => {
     setOpen(null);
     navigate('/dashboard/blog');
   };
+
+  const handleMisEventos = () => {
+    setOpen(null);
+    navigate('/dashboard/mispublicaciones');
+  };
+
 
 
   return (
@@ -102,16 +108,20 @@ export default function AccountPopover() {
             <MenuItem onClick={handleInicio}>
               Inicio
             </MenuItem>
-
+            {!auth ? (<>
             <MenuItem onClick={handleEventos}>
               Eventos
-            </MenuItem>
+            </MenuItem></>) : (<></>)}
           
         </Stack>
 
         {auth ? (<>
         <Divider sx={{ borderStyle: 'dashed' }} />
         
+        <MenuItem onClick={handleMisEventos} sx={{ m: 1 }}>
+          Mis Eventos
+        </MenuItem>
+
         <MenuItem onClick={handleAuth} sx={{ m: 1 }}>
           Cerrar sesión
         </MenuItem></>) : (<></>)}

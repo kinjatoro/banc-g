@@ -7,23 +7,18 @@ const navConfig = [
   
   {
     title: 'Inicio',
-    path: '/dashboard/app',
+    path: '/dashboard/inicio',
     icon: <Iconify icon={"eva:heart-fill"} />,   
+  },
+  {
+    title: 'perfil',
+    path: '/dashboard/perfilbar',
+    icon: <Iconify icon={"eva:person-fill"} />,  
   },
   {
     title: 'eventos',
     path: '/dashboard/blog',
     icon: <Iconify icon={"eva:music-fill"} />,  
-  },
-  {
-    title: 'Contrataciones',
-    path: '/dashboard/user',
-    icon: <Iconify icon={"eva:people-fill"} />,
-  },
-  {
-    title: 'mensajes',
-    path: '/dashboard/mensajes',
-    icon: <Iconify icon={'eva:message-square-fill'} />  
   },
   {
     title: 'mis publicaciones',

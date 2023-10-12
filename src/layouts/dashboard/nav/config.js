@@ -7,7 +7,7 @@ const navConfig = [
   
   {
     title: 'Inicio',
-    path: '/dashboard/app',
+    path: '/dashboard/inicio',
     icon: <Iconify icon={"eva:heart-fill"} />,   
   },
   {

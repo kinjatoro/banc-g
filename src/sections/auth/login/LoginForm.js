@@ -58,8 +58,6 @@ export default function LoginForm() {
     } catch (error) {
       console.error('Error de inicio de sesión', error);
     }
-
-
   };
 
     // extrae el token de la cookie
@@ -67,9 +65,6 @@ export default function LoginForm() {
       const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
       return jwtCookie ? jwtCookie.split('=')[1] : null;
     }
-
-    
-    
 
     const handleDecode = async () => {
     const jwtToken = getJwtToken();

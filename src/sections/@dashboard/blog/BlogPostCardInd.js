@@ -80,10 +80,6 @@ export default function BlogPostCardInd({ post, index }) {
     navigate(`/dashboard/individualblog/${post.id}`);
   };
 
-  const handleClick2 = () => {
-    navigate('/dashboard/contratar');
-  };
-
   return (
     <Grid item xs={12} sm={12} md={12}>
       <Card sx={{ position: 'relative', borderRadius: "0px"}}>
@@ -197,7 +193,7 @@ export default function BlogPostCardInd({ post, index }) {
               </Box>
             ))}
             </div>
-            <Button onClick={handleClick2} variant="contained" >Reservar</Button>
+            
           </StyledInfo>
         </CardContent>
       </Card>

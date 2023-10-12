@@ -26,14 +26,9 @@ import milogo from '../logo.svg';
 import musica from '../musica.png';
 import { useAuth } from '../Auth';
 
-
-
-
-
-
 // ----------------------------------------------------------------------
 
-export default function DashboardAppPage() {
+export default function LandingPage() {
   const theme = useTheme();
   const navigate = useNavigate();
   const { auth, setAuth } = useAuth();

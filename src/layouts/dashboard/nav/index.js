@@ -66,6 +66,10 @@ export default function Nav({ openNav, onCloseNav }) {
   const handleClick2 = () => {
     navigate('/register');
   }
+  const handleClick3 = () => {
+    navigate('/dashboard/perfilbar');
+  }
+  
 
 
   const renderContent = (
@@ -93,7 +97,7 @@ export default function Nav({ openNav, onCloseNav }) {
             <Avatar src={account.photoURL} alt="photoURL" />
 
             <Box sx={{ ml: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
+              <Typography variant="subtitle2" onClick={handleClick3} sx={{ color: 'text.primary',cursor: 'pointer'  }}>
                 {account.displayName}
               </Typography>
 
@@ -112,7 +116,7 @@ export default function Nav({ openNav, onCloseNav }) {
       <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
         
       {auth ? (
-           <><Button onClick={handleAuth} variant='outlined' color="error" href="http://localhost:3000/dashboard/app">
+           <><Button onClick={handleAuth} variant='outlined' color="error" href="http://localhost:3000/dashboard/inicio">
             Cerrar sesión
             </Button></>
             ) : (
