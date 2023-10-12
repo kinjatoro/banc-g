@@ -19,17 +19,7 @@ const navConfig = [
     title: 'eventos',
     path: '/dashboard/blog',
     icon: <Iconify icon={"eva:music-fill"} />,  
-  },
-  {
-    title: 'mis publicaciones',
-    path: '/dashboard/mispublicaciones',
-    icon: <Iconify icon={'eva:layers-fill'} />
-  },
-  {
-    title: 'comentarios',
-    path: '/dashboard/comentarios',
-    icon: <Iconify icon={'eva:archive-fill'} />
-  },  
+  }, 
 ];
 
 export default navConfig;

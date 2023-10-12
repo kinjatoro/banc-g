@@ -12,7 +12,7 @@ import { LoadingButton } from '@mui/lab';
 import Iconify from '../../../components/iconify';
 
 import { useAuth } from '../../../Auth'
-
+import { useMyBar } from '../../../TengoBarAuth'
 
 // ----------------------------------------------------------------------
 
@@ -22,6 +22,8 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   const { auth, setAuth } = useAuth();
+
+  const { myBar, setMyBar } = useMyBar();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,6 +37,11 @@ export default function LoginForm() {
     navigate('/recupero');
   }
 
+  const handleLoginBar = () => {
+    navigate('/dashboard');
+    setAuth(true);
+    setMyBar(true);
+  }
 
   const handleLogin = async () => {
     try {
@@ -58,6 +65,10 @@ export default function LoginForm() {
     } catch (error) {
       console.error('Error de inicio de sesión', error);
     }
+
+    setAuth(true);
+    navigate('/dashboard');
+
   };
 
     // extrae el token de la cookie
@@ -122,9 +133,11 @@ export default function LoginForm() {
         Iniciar Sesión
       </LoadingButton>
 
+      <LoadingButton fullWidth size="large" sx={{ mt: 2 }} type="submit" variant="contained" onClick={handleLoginBar}>
+        Iniciar Sesión Bar
+      </LoadingButton>
+
       <Button onClick={handleDecode}>PRUEBA</Button>
-
-
       
     </>
   );

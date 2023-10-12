@@ -1,6 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from './Auth';
+import { BarProvider } from './TengoBarAuth';
 // routes
 import Router from './routes';
 // theme
@@ -14,6 +15,7 @@ import ScrollToTop from './components/scroll-to-top';
 export default function App() {
   return (   
     <AuthProvider>
+    <BarProvider>
     <HelmetProvider>
       <BrowserRouter>
         <ThemeProvider>
@@ -23,6 +25,7 @@ export default function App() {
         </ThemeProvider>
       </BrowserRouter>
     </HelmetProvider>
+    </BarProvider>
     </AuthProvider>
   );
 }

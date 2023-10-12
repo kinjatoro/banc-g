@@ -9,7 +9,7 @@ import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
 import RegisterPage from './pages/RegisterPage';
 import LandingPage from './pages/LandingPage';
-
+import BaresPage from './pages/BaresPage';
 import MisPublicacionesPage from './pages/MisPublicacionesPage';
 import ComentariosPage from './pages/ComentariosPage';
 import IndividualBlog from './pages/IndividualBlog';
@@ -17,6 +17,8 @@ import ExpPage from './pages/ExpPage';
 import RecoverPage from './pages/RecoverPage';
 import CrearServicioPage from './pages/CrearServicioPage';
 import PerfilBar from './pages/PerfilBar';
+import IndividualBar from './pages/IndividualBar';
+
 
 
 
@@ -33,8 +35,10 @@ export default function Router() {
         { path: 'inicio', element: <LandingPage /> },
         { path: 'blog', element: <BlogPage /> },
         { path: 'mispublicaciones', element: <MisPublicacionesPage /> },
+        { path: 'bares', element: <BaresPage /> },
         { path: 'comentarios', element: <ComentariosPage /> },
         { path: 'individualblog/:idBlog', element: <IndividualBlog />,},
+        { path: 'individualbar/:idBar', element: <IndividualBar />,},
         { path: 'crearservicio', element: <CrearServicioPage />,},
         { path: 'perfilbar', element: <PerfilBar />,},
       ],

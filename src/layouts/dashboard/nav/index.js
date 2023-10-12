@@ -15,9 +15,10 @@ import NavSection from '../../../components/nav-section';
 //
 import navConfig from './config';
 import navConfigLogged from './configLogged';
+import navConfigLoggedBar from './configLoggedBar'; 
 
 import { useAuth } from '../../../Auth'
-
+import { useMyBar } from '../../../TengoBarAuth';
 
 // ----------------------------------------------------------------------
 
@@ -46,10 +47,12 @@ export default function Nav({ openNav, onCloseNav }) {
   const isDesktop = false;
 
   const { auth, setAuth } = useAuth();
-  
+  const { myBar, setMyBar } = useMyBar();  
+
   const handleAuth = () => {
     onCloseNav();
     setAuth(false);
+    setMyBar(false);
   };
 
   useEffect(() => {
@@ -108,9 +111,24 @@ export default function Nav({ openNav, onCloseNav }) {
           </StyledAccount>
         </Link>
       </Box>) : (<></>)}
-      {auth ? (<NavSection data={navConfigLogged} />) : (<><NavSection data={navConfig}/></>)}
 
-  
+      
+      {auth ? ( myBar ? (<><NavSection data={navConfigLoggedBar} /></>) : (<><NavSection data={navConfigLogged} /></>)) : (<><NavSection data={navConfig} /></>)}  
+        
+      {auth ? (
+          <p>Auth es verdadera.</p>
+        ) : (
+          <p>Auth es falsa.</p>
+        )}
+
+    {myBar ? (
+          <p>myBar es verdadera.</p>
+        ) : (
+          <p>myBar es falsa.</p>
+        )}
+
+        
+
       
       <Box sx={{ px: 2.5, pb: 0, mt: 2 }}>
       <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
