@@ -46,8 +46,8 @@ export default function LoginForm() {
   const handleLogin = async () => {
     try {
       const response = await axios.post('https://music-lovers-production.up.railway.app/business/login/', {
-        email: 'test@mail.com',
-        password: 'test',
+        email,
+        password
       });
 
       // Crea el token
@@ -89,6 +89,12 @@ export default function LoginForm() {
     }
 
     }
+
+    const handleLogout = () => {
+      document.cookie = 'jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+      navigate('/login');
+      setAuth(false);
+    };
 
     
 

@@ -1,12 +1,10 @@
-import { useRef, useState, useEffect } from "react";
+import axios from 'axios';
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Typography, Container } from '@mui/material';
+import { Stack, IconButton, InputAdornment, TextField, Button } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-
 import { useAuth } from '../../../Auth'
-
-// components
 import Iconify from '../../../components/iconify';
 
 
@@ -28,21 +26,60 @@ export default function RegisterForm() {
     setAuth(true);
   };
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
+  };
+
+  const handleSubmit = async () => {
+    console.log("Datos ingresados: Email:", email, "Contraseña:", password);
+    try {
+      const response = await axios.post(
+        "https://music-lovers-production.up.railway.app/business/register/",
+        {
+          email,
+          password
+        }
+      );
+
+      console.log("Registro exitoso:", response.data);
+    } catch (error) {
+      console.error("Error de registro", error);
+    }
+  };
+
   return (
     <>
-      <Stack spacing={3}>
-        <TextField name="nombre" label="Nombre y Apellido" />
-        <TextField name="mail" label="Correo Electrónico" />
-        <TextField name="telefono" label="Teléfono" />
+<Stack spacing={3}>
         <TextField
-          name="Contraseña"
+          name="email"
+          label="Correo Electrónico"
+          value={email}
+          onChange={handleChange}
+        />
+        <TextField
+          name="password"
           label="Contraseña"
-          type={showPassword ? 'text' : 'password'}
+          type={showPassword ? "text" : "password"}
+          value={password}
+          onChange={handleChange}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                  <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
+                <IconButton
+                  onClick={() => setShowPassword(!showPassword)}
+                  edge="end"
+                >
+                  <Iconify
+                    icon={showPassword ? "eva:eye-fill" : "eva:eye-off-fill"}
+                  />
                 </IconButton>
               </InputAdornment>
             ),
@@ -50,9 +87,17 @@ export default function RegisterForm() {
         />
       </Stack>
 
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick2} sx={{mt:3}}>
+      <LoadingButton
+        fullWidth
+        size="large"
+        type="submit"
+        variant="contained"
+        onClick={handleClick2}
+        sx={{ mt: 3 }}
+      >
         Continuar
       </LoadingButton>
+      <Button onClick={handleSubmit}>Registrar</Button>
     </>
   );
 }
