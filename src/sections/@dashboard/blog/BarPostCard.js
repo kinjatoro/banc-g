@@ -192,7 +192,7 @@ export default function BarPostCard({ post, index }) {
             
           </StyledInfo>
           <Stack sx={{alignItems: "center",  display: 'flex', flexDirection: "row", justifyContent:"space-between", mt: 2 }}> 
-          <Typography variant="h5">{price}</Typography>
+
           <Button onClick={handleClick} variant="outlined">Ver más</Button>
           </Stack>
         </CardContent>

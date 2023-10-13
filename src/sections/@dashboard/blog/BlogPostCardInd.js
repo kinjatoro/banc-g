@@ -69,7 +69,7 @@ export default function BlogPostCardInd({ post, index }) {
   const POST_INFO = [
     { string: view, icon: 'solar:calendar-bold-duotone' },
     { string: share, icon: 'mdi:clock' },
-    { string: stars, icon: 'solar:star-bold' },
+    // { string: stars, icon: 'solar:star-bold' },
     
     
   ];

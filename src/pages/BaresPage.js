@@ -11,7 +11,7 @@ import Iconify from '../components/iconify';
 
 import { BarPostCard, BlogPostsSort, BlogPostsSearch,ProductFilterSidebar } from '../sections/@dashboard/blog';
 // mock
-import POSTS from '../_mock/blog';
+import POSTS from '../_mock/bar';
 
 // ----------------------------------------------------------------------
 

@@ -19,13 +19,10 @@ import CrearServicioPage from './pages/CrearServicioPage';
 import PerfilBar from './pages/PerfilBar';
 import IndividualBar from './pages/IndividualBar';
 
-
-
-
-
 // ----------------------------------------------------------------------
 
 export default function Router() {
+
   const routes = useRoutes([
     {
       path: '/dashboard',

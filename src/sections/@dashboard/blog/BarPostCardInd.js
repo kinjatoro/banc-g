@@ -57,27 +57,27 @@ const StyledCover = styled('img')({
 // ----------------------------------------------------------------------
 
 BarPostCardInd.propTypes = {
-  bar: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired,
   index: PropTypes.number,
 };
 
-export default function BarPostCardInd({ bar, index }) {
-  const { cover, title, view, price, share,stars, author, createdAt } = bar;
+export default function BarPostCardInd({ post, index }) {
+  const { cover, title, view, price, share,stars, author, createdAt } = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
 
-  const BAR_INFO = [
+  const POST_INFO = [
     { string: view, icon: 'solar:calendar-bold-duotone' },
     { string: share, icon: 'mdi:clock' },
     { string: stars, icon: 'solar:star-bold' },
-    
-    
   ];
+
+  
 
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/dashboard/individualbar/${bar.id}`);
+    navigate(`/dashboard/individualbar/${post.id}`);
   };
 
   return (
@@ -174,7 +174,7 @@ export default function BarPostCardInd({ bar, index }) {
           <StyledInfo>
             <div style={{display: 'flex', flexContent:"row"}}>
           <Typography variant="h5" sx={{mr:1, color: "black"}}>{price}</Typography>
-            {BAR_INFO.map((info, index) => (
+            {POST_INFO.map((info, index) => (
               <Box
                 key={index}
                 sx={{

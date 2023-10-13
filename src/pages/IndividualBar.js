@@ -12,9 +12,10 @@ import { ProductSort} from '../sections/@dashboard/products';
 // components
 import Iconify from '../components/iconify';
 
-import {BlogPostCardInd} from '../sections/@dashboard/blog';
+import {BarPostCardInd} from '../sections/@dashboard/blog';
 // mock
-import BARES from '../_mock/bar';
+import POSTS from '../_mock/bar';
+import COMENTARIOS from '../_mock/comentarios';
 
 import {AppNewsUpdate} from '../sections/@dashboard/app';
 
@@ -39,50 +40,34 @@ export default function BarPage() {
 
   const { idBar } = useParams();
   const index = parseInt(idBar, 10); 
-  const bar = BARES[index-1];
+  const post = POSTS[index-1];
   
   return (
 
   
     <>
       <Helmet>
-        <title> {bar.title} </title>
+        <title> {post.title} </title>
       </Helmet>
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2} mt={-4}>
           <Typography variant="h3" gutterBottom>
-          {bar.title}
+          {post.title}
           </Typography>
           
         </Stack>
 
         <Grid container spacing={3}>
         
-            <BlogPostCardInd key={bar.id} post={bar} index={index} />
+            <BarPostCardInd key={post.id} post={post} index={index} />
             
         </Grid>
         <Grid item xs={12} md={6} lg={8} >
             <AppNewsUpdate
               sx={{borderRadius: "0px"}}
               title="Agregar comentario"
-              list={[...Array(5)].map((_, index) => ({
-                id: index,
-                title: sample([ 'Ezequiel', 'Neistadt', 'Agustín', 'Carlos', 'Manuel', 'Juan','Esteban','Lucas','Fernando','Nicolás']),
-                description: sample([
-                  'No puedo expresar lo agradecido que estoy por el apoyo que he recibido de este servicio de clases particulares. Mi profesor ha demostrado una paciencia infinita al explicar conceptos difíciles y me ha dado la confianza necesaria para enfrentar mis exámenes con éxito. Las lecciones son personalizadas y adaptadas a mis necesidades específicas, lo cual ha marcado la diferencia en mi aprendizaje.',
-                  'Recomiendo este servicio a cualquiera que quiera aprender rápido.',
-                  'tipazo',
-                  'Primer comentario',
-                  'Segundo comentario!',
-                  'recomienzo 100%',
-                  'fue una experiencia fantástica. Explicó los conceptos de manera clara y siempre estuvo dispuesto a responder mis preguntas. Mi comprensión de las matemáticas mejoró significativamente gracias a él.',
-                  'Like si lo ves en 2023',
-                  'Si bien el profe tiene un profundo conocimiento de la historia, a veces las clases pueden volverse un poco demasiado densas. Sería útil si se proporcionaran resúmenes de las lecciones después de cada clase para ayudar en la retención de información.',
-                ]),
-                image:  `/assets/images/avatars/avatar_${index + 1}.jpg`,
-                postedAt: faker.date.recent(),
-              }))}
+              list={COMENTARIOS}
             />
           </Grid>
       </Container>
