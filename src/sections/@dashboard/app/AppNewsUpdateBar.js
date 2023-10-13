@@ -10,13 +10,13 @@ import Scrollbar from '../../../components/scrollbar';
 
 // ----------------------------------------------------------------------
 
-AppNewsUpdate.propTypes = {
+AppNewsUpdateBar.propTypes = {
   title: PropTypes.string,
   subheader: PropTypes.string,
   list: PropTypes.array.isRequired,
 };
 
-export default function AppNewsUpdate({ title, subheader, list, ...other }) {
+export default function AppNewsUpdateBar({ title, subheader, list, ...other }) {
   
   const [state, setState ] = useState(true);
 
@@ -31,6 +31,21 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
       <Stack spacing={2} sx={{ p: 3, px: 3 }}>
       <TextField name="nombre" label="Nombre"/>
       <TextField name="comentario" label="Agregar un comentario" multiline rows={3}/>
+
+      <FormControl fullWidth>
+        <InputLabel id="calificacion">Calificación</InputLabel>
+        <Select
+          labelId="calificacion"
+          id="calificacion"
+          label="calificacion"
+        >
+         <MenuItem value="1 estrella"><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/></MenuItem>
+         <MenuItem value="2 estrellas"><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/></MenuItem>
+         <MenuItem value="3 estrellas"><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/></MenuItem>
+         <MenuItem value="4 estrellas"><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/></MenuItem>
+         <MenuItem value="5 estrellas"><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/><Iconify sx={{color: '#EA4429'}} icon={'solar:star-bold'}/></MenuItem>
+        </Select>
+      </FormControl>
 
       <div style={{textAlign: "right"}}>
       <Button variant="outlined" onClick={handleClick}>Agregar comentario</Button></div>

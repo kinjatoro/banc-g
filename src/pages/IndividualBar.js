@@ -5,19 +5,20 @@ import { useParams } from 'react-router-dom';
 
 import { Helmet } from 'react-helmet-async';
 // @mui
-import { Grid, Button, Container, Stack, Typography, Box } from '@mui/material';
+import { Grid, Button, Container, Stack, Typography, Box,Divider } from '@mui/material';
 
 import { ProductSort} from '../sections/@dashboard/products';
 
 // components
 import Iconify from '../components/iconify';
 
-import {BarPostCardInd} from '../sections/@dashboard/blog';
+import {BarPostCardInd,BlogPostCard} from '../sections/@dashboard/blog';
 // mock
 import POSTS from '../_mock/bar';
+import BLOGS from '../_mock/blog';
 import COMENTARIOS from '../_mock/comentarios';
 
-import {AppNewsUpdate} from '../sections/@dashboard/app';
+import {AppNewsUpdateBar} from '../sections/@dashboard/app';
 
 
 
@@ -64,12 +65,19 @@ export default function BarPage() {
             
         </Grid>
         <Grid item xs={12} md={6} lg={8} >
-            <AppNewsUpdate
+            <AppNewsUpdateBar
               sx={{borderRadius: "0px"}}
-              title="Agregar comentario"
+              title="Agregar un comentario sobre el bar"
               list={COMENTARIOS}
             />
           </Grid>
+          <Divider/>
+          <Grid container spacing={3} sx={{mt:3}}>
+          {BLOGS.slice(0,6).map((post, index) => (
+            <BlogPostCard post={post} index={index} />
+          ))}
+        </Grid>
+
       </Container>
 
 

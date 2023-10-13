@@ -64,9 +64,8 @@ export default function BarPostCard({ post, index }) {
   const latestPost = index === 501 || index === 502;
 
   const POST_INFO = [
-    { string: view, icon: 'solar:calendar-bold-duotone' },
-    { string: share, icon: 'mdi:clock' },
-    { string: stars, icon: 'solar:star-bold' },
+    { string: view, icon: 'line-md:map-marker-filled' },
+
     
     
   ];
@@ -192,10 +191,14 @@ export default function BarPostCard({ post, index }) {
             
           </StyledInfo>
           <Stack sx={{alignItems: "center",  display: 'flex', flexDirection: "row", justifyContent:"space-between", mt: 2 }}> 
-
+          
+          <Stack sx={{color: 'grey.500'}} alignItems="center">
+          <Typography sx={{alignItems: "center",display: 'flex'}}><Iconify sx={{mt:-0.35, mr:0.5}}  icon="solar:star-bold" />{stars}</Typography>
+          </Stack>
+          
           <Button onClick={handleClick} variant="outlined">Ver más</Button>
           </Stack>
-        </CardContent>
+        </CardContent>  
       </Card>
     </Grid>
   );

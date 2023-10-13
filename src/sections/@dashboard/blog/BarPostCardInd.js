@@ -68,7 +68,6 @@ export default function BarPostCardInd({ post, index }) {
 
   const POST_INFO = [
     { string: view, icon: 'solar:calendar-bold-duotone' },
-    { string: share, icon: 'mdi:clock' },
     { string: stars, icon: 'solar:star-bold' },
   ];
 
@@ -173,7 +172,7 @@ export default function BarPostCardInd({ post, index }) {
             
           <StyledInfo>
             <div style={{display: 'flex', flexContent:"row"}}>
-          <Typography variant="h5" sx={{mr:1, color: "black"}}>{price}</Typography>
+          
             {POST_INFO.map((info, index) => (
               <Box
                 key={index}
