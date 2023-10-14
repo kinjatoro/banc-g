@@ -27,7 +27,7 @@ import {AppNewsUpdateBar} from '../sections/@dashboard/app';
 export default function BarPage() {
   const [openFilter, setOpenFilter] = useState(false);
 
-  
+
 
   const handleOpenFilter = () => {
     setOpenFilter(true);
@@ -42,9 +42,14 @@ export default function BarPage() {
   const { idBar } = useParams();
   const index = parseInt(idBar, 10); 
   const post = POSTS[index-1];
-  
-  return (
 
+  const filteredBlogs = BLOGS.filter((card) => 
+  card.author.name === post.title);
+
+
+  console.log('filteredBlogs:', filteredBlogs);
+  return (
+    
   
     <>
       <Helmet>
@@ -73,7 +78,7 @@ export default function BarPage() {
           </Grid>
           <Divider/>
           <Grid container spacing={3} sx={{mt:3}}>
-          {BLOGS.slice(0,6).map((post, index) => (
+          {filteredBlogs.map((post, index) => (
             <BlogPostCard post={post} index={index} />
           ))}
         </Grid>

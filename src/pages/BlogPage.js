@@ -35,6 +35,8 @@ export default function BlogPage() {
   card.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  
+
 
   
   return (

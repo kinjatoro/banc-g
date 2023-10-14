@@ -129,6 +129,27 @@ export default function Nav({ openNav, onCloseNav }) {
       
       {auth ? ( myBar ? (<><NavSection data={navConfigLoggedBar} /></>) : (<><NavSection data={navConfigLogged} /></>)) : (<><NavSection data={navConfig} /></>)}  
         
+
+      {auth ? (
+           <></>
+            ) : (
+            <>
+             <Box sx={{ px: 2.5, pb: 0, mt: 2 }}>
+      <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
+        
+                <Box sx={{ textAlign: 'center' }}>
+                <Typography gutterBottom variant="h6">
+                  ¿Sos usuario?
+                </Typography>
+              </Box><Button onClick={handleClick} variant="contained" disableElevation="true">
+                  Iniciar sesión
+                </Button><Button onClick={handleClick2} variant='outlined'>
+                  Registarme
+                </Button></Stack></Box></>)}
+      
+
+
+
       {auth ? (
           <p>Auth es verdadera.</p>
         ) : (
@@ -152,7 +173,8 @@ export default function Nav({ openNav, onCloseNav }) {
             Cerrar sesión
             </Button></>
             ) : (
-            <><Box sx={{ textAlign: 'center' }}>
+            <>
+            <Box sx={{ textAlign: 'center' }}>
                 <Typography gutterBottom variant="h6">
                   ¿Sos dueño de un bar?
                 </Typography>
@@ -160,7 +182,9 @@ export default function Nav({ openNav, onCloseNav }) {
                   Iniciar sesión
                 </Button><Button onClick={handleClick2} variant='outlined'>
                   Registarme
-                </Button></>
+                </Button>
+
+                </>
          )}
 
 

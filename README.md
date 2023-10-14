@@ -1,7 +1,6 @@
 # PARA CORRER EL PROGRAMA
 
-0. Instalar NodeJS (https://nodejs.org/en) y VS Code (https://code.visualstudio.com/download)
-1. Instalar React: en el CMD, poner los comandos `$ npm init react-app` `$ npm init react-app` `$ npm init react-app` (si no lo lee sacarle el $)
+1. Instalar NodeJS (https://nodejs.org/en) y VS Code (https://code.visualstudio.com/download)
 2. Abir VS Code
 3. Darle a "clone github repository" y pegar `https://github.com/kinjatoro/SEMINARIO`
 4. Seleccionar la carpeta donde querés que se instale (no es necesario crear una nueva, al clonar el proyecto se crea una carpeta contenedora automáticamente).
@@ -9,12 +8,8 @@
 6. Ejecutar el comando `npm init react-app temporal`
 7. En esa nueva carpeta creada, arrastrar el "node_modules" afuera de esa carpeta, al mismo nivel que scr y public.
 8. Borrar la carpeta temporal
-9. Ejecutar en la terminal `npm install @mui/material @emotion/react @emotion/styled`
+9. Ejecutar en la terminal `npm install`
 10. Ejecutar `npm start`
-
-# PARA CONECTARSE A LA API
-11. Instalar Axios: `npm install axios` (Axios es una biblioteca para hacer solicitudes HTTP desde el FrontEnd)
-12. Instalar JWT Decode `npm install jwt-decode` (JWT-Decode es una biblioteca para desencriptar tokens JWT)
 
 https://mui.com/material-ui/getting-started/
 
