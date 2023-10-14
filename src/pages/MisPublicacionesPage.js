@@ -35,10 +35,10 @@ import USERLIST from '../_mock/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'servicio', label: 'Servicio', alignRight: false },
-  { id: 'duracion', label: 'Duracion', alignRight: false },
-  { id: 'frecuencia', label: 'Frecuencia', alignRight: false },
-  { id: 'costo', label: 'Costo', alignRight: false },
+  { id: 'servicio', label: 'Evento', alignRight: false },
+  { id: 'duracion', label: 'Fecha', alignRight: false },
+  { id: 'frecuencia', label: 'Hora', alignRight: false },
+  { id: 'costo', label: 'Precio', alignRight: false },
   { id: 'estado', label: 'Estado', alignRight: false },
   { id: '' },
 ];
@@ -152,6 +152,7 @@ export default function UserPage() {
   const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
 
   const isNotFound = !filteredUsers.length && !!filterName;
+  
 
   return (
     <>

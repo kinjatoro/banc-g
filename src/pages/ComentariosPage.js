@@ -34,8 +34,8 @@ import USERLIST from '../_mock/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Alumno', alignRight: false },
-  { id: 'servicio', label: 'Servicio', alignRight: false },
+  { id: 'name', label: 'Usuario', alignRight: false },
+  { id: 'servicio', label: 'Publicación', alignRight: false },
 
   { id: 'comentario', label: 'Comentario', alignRight: false },
 
