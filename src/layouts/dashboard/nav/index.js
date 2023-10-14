@@ -6,6 +6,8 @@ import { styled, alpha } from '@mui/material/styles';
 import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
 // mock
 import account from '../../../_mock/account';
+import accountBar from '../../../_mock/accountBar';
+
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
 // components
@@ -97,11 +99,23 @@ export default function Nav({ openNav, onCloseNav }) {
       <Box sx={{ mb: 2, mx: 2.5 }}>
         <Link underline="none">
           <StyledAccount>
-            <Avatar src={account.photoURL} alt="photoURL" />
+
+          {!myBar ? (
+          <><Avatar src={account.photoURL} alt="photoURL" /></>
+        ) : (
+          <><Avatar src={accountBar.photoURL} alt="photoURL" /></>
+        )}
+
+            
 
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" onClick={handleClick3} sx={{ color: 'text.primary',cursor: 'pointer'  }}>
-                {account.displayName}
+              {!myBar ? (
+                <>{account.displayName}</>
+                ) : (
+              <>{accountBar.displayName}</>
+             )}
+                
               </Typography>
 
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>

@@ -20,6 +20,11 @@ const navConfig = [
     path: '/dashboard/blog',
     icon: <Iconify icon={"eva:music-fill"} />,  
   }, 
+  {
+    title: 'bares',
+    path: '/dashboard/bares',
+    icon: <Iconify icon={"eva:home-fill"} />,  
+  },
 ];
 
 export default navConfig;

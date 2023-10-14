@@ -1,8 +1,8 @@
 // ----------------------------------------------------------------------
 
 const accountNo = {
-  displayName: 'Alumno',
-  email: 'Alumno',
+  displayName: 'Usuario anónimo',
+  email: 'Usuario anónimo',
   photoURL: '/assets/images/avatars/fb.jpg',
 };
 

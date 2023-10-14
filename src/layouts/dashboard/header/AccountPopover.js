@@ -6,9 +6,11 @@ import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover 
 
 // mocks_
 import account from '../../../_mock/account';
+import accountBar from '../../../_mock/accountBar';
 import accountNo from '../../../_mock/accountNo';
 
-import { useAuth } from '../../../Auth'
+import { useAuth } from '../../../Auth';
+import { useMyBar } from '../../../TengoBarAuth';
 
 // ----------------------------------------------------------------------
 
@@ -16,6 +18,7 @@ import { useAuth } from '../../../Auth'
 export default function AccountPopover() {
 
   const { auth, setAuth } = useAuth();
+  const { myBar, setMyBar } = useMyBar();  
   const [open, setOpen] = useState(null);
   const navigate = useNavigate();
 
@@ -30,6 +33,7 @@ export default function AccountPopover() {
   const handleAuth = () => {
     setOpen(null);
     setAuth(false);
+    setMyBar(false);
     navigate('/dashboard/inicio');
   };
 
@@ -43,9 +47,22 @@ export default function AccountPopover() {
     navigate('/dashboard/blog');
   };
 
+  const handleBares = () => {
+    setOpen(null);
+    navigate('/dashboard/bares');
+  };
+
   const handleMisEventos = () => {
     setOpen(null);
     navigate('/dashboard/mispublicaciones');
+  };
+  const handleComentarios = () => {
+    setOpen(null);
+    navigate('/dashboard/comentarios');
+  };
+  const handlePerfil = () => {
+    setOpen(null);
+    navigate('/dashboard/perfilbar');
   };
 
 
@@ -69,8 +86,8 @@ export default function AccountPopover() {
           }),
         }}
       >
-        {auth ? (<Avatar src={account.photoURL} alt="photoURL" />) : (<><Avatar src={accountNo.photoURL} alt="photoURL" /></>)}
-        
+    
+        {auth ? ( myBar ? (<><Avatar src={accountBar.photoURL} alt="photoURL" /></>) : (<><Avatar src={account.photoURL} alt="photoURL" /></>)) : (<><Avatar src={accountNo.photoURL} alt="photoURL" /></>)}  
       </IconButton>
 
       <Popover
@@ -94,10 +111,11 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-          {auth ? (<>{account.displayName}</>) : (<>{accountNo.displayName}</>)}
+          {auth ? ( myBar ? (<>{accountBar.displayName} </>) : (<>{account.displayName}</>)) : (<>{accountNo.displayName} </>)}  
+   
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {auth ? (<>{account.email}</>) : (<></>)}
+            {auth ? ( myBar ? (<>{accountBar.email} </>) : (<>{account.email}</>)) : (<></>)}
           </Typography>
         </Box>
 
@@ -108,20 +126,39 @@ export default function AccountPopover() {
             <MenuItem onClick={handleInicio}>
               Inicio
             </MenuItem>
-            {!auth ? (<>
+            {auth ? (<>
+
+            <MenuItem onClick={handlePerfil}>
+            Perfil
+            </MenuItem></>) : (<></>)}
             <MenuItem onClick={handleEventos}>
               Eventos
-            </MenuItem></>) : (<></>)}
+            </MenuItem>
+            <MenuItem onClick={handleBares}>
+              Bares
+            </MenuItem>
+            
+            
+           
           
         </Stack>
 
-        {auth ? (<>
         <Divider sx={{ borderStyle: 'dashed' }} />
+
         
+        
+        {myBar ? (<>
         <MenuItem onClick={handleMisEventos} sx={{ m: 1 }}>
           Mis Eventos
         </MenuItem>
+        <MenuItem onClick={handleComentarios} sx={{ m: 1 }}>
+          Comentarios
+        </MenuItem>
+        
+        </>) : (<></>)}
 
+        <Divider sx={{ borderStyle: 'dashed' }} />
+        {auth ? (<>
         <MenuItem onClick={handleAuth} sx={{ m: 1 }}>
           Cerrar sesión
         </MenuItem></>) : (<></>)}

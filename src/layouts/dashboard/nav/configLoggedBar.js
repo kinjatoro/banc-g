@@ -20,6 +20,11 @@ const navConfig = [
     icon: <Iconify icon={"eva:music-fill"} />,  
   },
   {
+    title: 'bares',
+    path: '/dashboard/bares',
+    icon: <Iconify icon={"eva:home-fill"} />,  
+  },
+  {
     title: 'mis publicaciones',
     path: '/dashboard/mispublicaciones',
     icon: <Iconify icon={'eva:layers-fill'} />
