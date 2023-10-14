@@ -64,12 +64,12 @@ export default function AccountProfileDetails ()  {
       noValidate
       onSubmit={handleSubmit}
     >
-      <Card>
+      <Card sx={{ml:3}}> 
         <CardHeader
           title="Profile"
           sx={{py:2}}
         />
-        <CardContent sx={{ pt: 0 }}>
+        <CardContent sx={{ pt: 0, mx:2 }}>
           <Box sx={{ m: -1.5 }}>
             <Grid
               container
@@ -167,10 +167,9 @@ export default function AccountProfileDetails ()  {
             </Grid>
           </Box>
         </CardContent>
-        <Divider />
         <CardActions sx={{ justifyContent: 'flex-end' }}>
-          <Button variant="contained">
-            Save details
+          <Button  color='info' sx={{mx:3,mb:1,mt:-2}} variant="contained">
+            Guardar cambios
           </Button>
         </CardActions>
       </Card>

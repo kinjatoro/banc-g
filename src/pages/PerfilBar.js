@@ -33,8 +33,8 @@ export default function PerfilBar() {
       <Container>
         <Stack spacing={3}>
           <div>
-            <Typography variant="h4">
-              Account
+            <Typography variant="h3" sx={{mb:2, ml:3}}>
+              Cuenta
             </Typography>
           </div>
           <div>

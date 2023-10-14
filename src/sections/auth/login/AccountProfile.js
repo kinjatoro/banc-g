@@ -21,7 +21,7 @@ import {
   export default function AccountProfile ()  {
     return (
       <>
-    <Card sx={{mb:4,mx:4}}>
+    <Card sx={{mb:4,mr:3, ml:6}}>
       <CardContent>
         <Box
           sx={{
@@ -63,8 +63,9 @@ import {
         <Button
           fullWidth
           variant="text"
+          color='secondary'
         >
-          Upload picture
+          subir foto
         </Button>
       </CardActions>
     </Card></>
