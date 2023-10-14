@@ -8,6 +8,8 @@ import {
     Divider,
     Typography
   } from '@mui/material';
+
+  import { useMyBar } from '../../../TengoBarAuth';
   
   const user = {
     avatar: '/assets/images/avatars/ID_20827.jpg',
@@ -19,6 +21,7 @@ import {
   };
   
   export default function AccountProfile ()  {
+    const { myBar, setMyBar } = useMyBar();  
     return (
       <>
     <Card sx={{mb:4,mr:3, ml:6}}>
@@ -30,19 +33,35 @@ import {
             flexDirection: 'column'
           }}
         >
-          <Avatar
-            src={user.avatar}
-            sx={{
-              height: 80,
-              mb: 2,
-              width: 80
-            }}
-          />
+          {!myBar ? (
+                <><Avatar
+                src={user.avatar}
+                sx={{
+                  height: 80,
+                  mb: 2,
+                  width: 80
+                }}
+              /></>
+                ) : (
+              <><Avatar
+              src={'/assets/images/avatars/polvorines.jpg'}
+              sx={{
+                height: 80,
+                mb: 2,
+                width: 80
+              }}
+            /></>
+             )}
+          
           <Typography
             gutterBottom
             variant="h5"
           >
-            {user.name}
+          {!myBar ? (
+                <>Christopher Waltz</>
+                ) : (
+              <>Los Polvorines</>
+             )}
           </Typography>
           <Typography
             color="text.secondary"
