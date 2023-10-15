@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet-async';
 // @mui
 import { Grid, Button, Container, Stack, Typography, Box, Menu, MenuItem } from '@mui/material';
 
+import jwtDecode from 'jwt-decode';
+
 import { ProductSort} from '../sections/@dashboard/products';
 
 // components
@@ -13,7 +15,32 @@ import { BlogPostCard, BlogPostsSort, BlogPostsSearch,ProductFilterSidebar } fro
 // mock
 import POSTS from '../_mock/blog';
 
+
+
+import { useAuth } from '../Auth'
+import { useMyBar } from '../TengoBarAuth'
+
 // ----------------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('1');
+  const { auth, setAuth } = useAuth();
+  console.log('2');
+  const { myBar, setMyBar } = useMyBar();
+  console.log('3');
+  const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+  console.log('4');
+
+  if (jwtCookie) { // Verifica si jwtCookie no es null
+    const decodedToken = jwtDecode(jwtCookie.split('=')[1]); // Decodifica el token
+    setAuth(true);
+    setMyBar(true);
+    console.log('NHOLAAAAAAAAAAAAAAAAAAAAAAAAA');
+  } else {
+    console.log('No se encontró un token JWT en la cookie');
+  }
+});
+
 
 export default function BlogPage() {
   const [openFilter, setOpenFilter] = useState(false);
