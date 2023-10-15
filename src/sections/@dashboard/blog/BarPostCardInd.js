@@ -146,9 +146,6 @@ export default function BarPostCardInd({ post, index }) {
             }),
           }}
         >
-          <Typography gutterBottom variant="subtitle1" sx={{ color: 'text.disabled', display: 'block' }}>
-            Publicación creada el {fDate(createdAt)}.
-          </Typography>
 
           <StyledTitle
             color="inherit"
