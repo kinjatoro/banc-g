@@ -53,6 +53,7 @@ export default function Nav({ openNav, onCloseNav }) {
 
   const handleAuth = () => {
     onCloseNav();
+    document.cookie = `jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     setAuth(false);
     setMyBar(false);
   };
