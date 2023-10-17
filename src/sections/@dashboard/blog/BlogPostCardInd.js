@@ -62,7 +62,7 @@ BlogPostCardInd.propTypes = {
 };
 
 export default function BlogPostCardInd({ post, index }) {
-  const { cover, title, view, price, share,stars, author, createdAt } = post;
+  const { cover, title, view, price, share,stars, author, createdAt, genero } = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
 

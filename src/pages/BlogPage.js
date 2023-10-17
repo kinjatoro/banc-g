@@ -108,6 +108,23 @@ export default function BlogPage() {
     setOpen(null);
     setOrden('Destacado');
   };
+
+  const handleGenero = () => {
+    const sortedBlog = [...filteredBlog];
+    sortedBlog.sort((a, b) => {
+      const generoA = a.genero; // Asegúrate de usar la propiedad correcta que almacena el género de las publicaciones
+      const generoB = b.genero; // Asegúrate de usar la propiedad correcta que almacena el género de las publicaciones
+  
+      // Realiza la comparación de género. Puedes usar una lógica personalizada o comparar cadenas de texto.
+      // Por ejemplo, ordenar alfabéticamente las cadenas de texto de género.
+      return generoA.localeCompare(generoB);
+    });
+  
+    setFilteredBlog(sortedBlog); // Actualiza el estado con el nuevo orden
+    setOpen(null);
+    setOrden('Género'); // Establece la etiqueta del orden
+  };
+  
   
   
   
@@ -219,6 +236,16 @@ export default function BlogPage() {
                       sx={{ typography: 'body2' }}
                     >
                       {"Menor precio"}
+                    </MenuItem>
+
+
+                    <MenuItem
+                      key={"genero"}
+                      selected={"genero" === 'newest'}
+                      onClick={handleGenero}
+                      sx={{ typography: 'body2' }}
+                    >
+                      {"Género"}
                     </MenuItem>
 
 

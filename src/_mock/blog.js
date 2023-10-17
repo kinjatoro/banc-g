@@ -54,6 +54,7 @@ const posts = [...Array(23)].map((_, index) => ({
     '$800',
     '$850',
   ]),
+  genero: sample(['Jazz','Rock','Reggae']),
   share: sample(["20:00", "20:30","21:00", "21:30", "22:00","22:30", "23:00"]),
   favorite: faker.datatype.number(),
   author: {

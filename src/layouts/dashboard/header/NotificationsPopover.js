@@ -45,7 +45,9 @@ export default function NotificationsPopover() {
   };
 
   const handleClose = () => {
+    
     setOpen(null);
+
   };
 
   const handleMarkAllAsRead = () => {
