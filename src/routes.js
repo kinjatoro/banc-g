@@ -18,11 +18,13 @@ import RecoverPage from './pages/RecoverPage';
 import CrearServicioPage from './pages/CrearServicioPage';
 import PerfilBar from './pages/PerfilBar';
 import IndividualBar from './pages/IndividualBar';
+import { useAuth } from './Auth'
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
-
+  const { auth } = useAuth();
+  
   const routes = useRoutes([
     {
       path: '/dashboard',
@@ -37,7 +39,10 @@ export default function Router() {
         { path: 'individualblog/:idBlog', element: <IndividualBlog />,},
         { path: 'individualbar/:idBar', element: <IndividualBar />,},
         { path: 'crearservicio', element: <CrearServicioPage />,},
-        { path: 'perfilbar', element: <PerfilBar />,},
+        { 
+          path: 'perfilbar', 
+          element: auth ? <PerfilBar /> : <Navigate to="/dashboard/inicio" />,
+        },
       ],
     },
     

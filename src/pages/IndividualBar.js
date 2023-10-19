@@ -27,8 +27,6 @@ import {AppNewsUpdateBar} from '../sections/@dashboard/app';
 export default function BarPage() {
   const [openFilter, setOpenFilter] = useState(false);
 
-
-
   const handleOpenFilter = () => {
     setOpenFilter(true);
   };
@@ -36,8 +34,6 @@ export default function BarPage() {
   const handleCloseFilter = () => {
     setOpenFilter(false);
   };
-
-
 
   const { idBar } = useParams();
   const index = parseInt(idBar, 10); 
