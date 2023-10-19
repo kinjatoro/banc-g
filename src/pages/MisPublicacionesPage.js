@@ -1,8 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
+import { useState, useEffect  } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 // @mui
 import {
   Card,
@@ -39,7 +42,7 @@ const TABLE_HEAD = [
   { id: 'duracion', label: 'Fecha', alignRight: false },
   { id: 'frecuencia', label: 'Hora', alignRight: false },
   { id: 'costo', label: 'Precio', alignRight: false },
-  { id: 'estado', label: 'Estado', alignRight: false },
+  { id: 'genero', label: 'Genero', alignRight: false },
   { id: '' },
 ];
 
@@ -75,6 +78,77 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function UserPage() {
+
+      console.log(1);
+    /* -------------------------COOKIES ---------------------------------*/
+
+        const [EVENTOS, setEVENTOS] = useState([]);
+    
+        useEffect(() => {
+           handleLogin();
+        }, []);
+
+
+        console.log(2);
+
+        function getJwtToken() {
+          const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+          console.log(3);
+          return jwtCookie ? jwtCookie.split('=')[1] : null;
+        }
+
+        console.log(4);
+        const cookieValue = getJwtToken();
+        console.log(5);
+
+        const handleLogin = async () => {
+
+          console.log(6);
+          const config = {
+            headers: {
+              'Authorization': `Bearer ${cookieValue}`,
+
+            },
+          }
+          console.log(7);
+          ;
+
+
+          try {
+            const response = await axios.get('https://music-lovers-production.up.railway.app/business/events/', config);
+      
+            console.log("FUNCIONÓ (CREO)")
+            // Crea el token
+            const USERLISTS = response.data;
+            setEVENTOS(USERLISTS);
+
+      
+            
+          } catch (error) {
+            console.error('Error de inicio de sesión', error);
+          }
+      
+    };
+
+
+    
+     /* -------------------------COOKIES ---------------------------------*/
+
+
+
+
+
+     
+
+     EVENTOS.map((item) => {
+       console.log(item.title);
+       return null; // El valor de retorno no es importante en este caso
+     });
+
+
+
+
+
   const [open, setOpen] = useState(null);
 
   const [page, setPage] = useState(0);
@@ -89,8 +163,10 @@ export default function UserPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const handleOpenMenu = (event) => {
+
+  const handleOpenMenu = (event, id) => {
     setOpen(event.currentTarget);
+    // Puedes usar el 'id' u otros datos específicos de la fila aquí.
   };
 
   const handleCloseMenu = () => {
@@ -105,7 +181,7 @@ export default function UserPage() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = USERLIST.map((n) => n.name);
+      const newSelecteds = EVENTOS.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -147,11 +223,15 @@ export default function UserPage() {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - EVENTOS.length) : 0;
 
-  const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(EVENTOS, getComparator(order, orderBy), filterName);
 
   const isNotFound = !filteredUsers.length && !!filterName;
+
+
+
+
   
 
   return (
@@ -178,39 +258,42 @@ export default function UserPage() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={USERLIST.length}
+                  rowCount={EVENTOS.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, servicio, duracion, frecuencia, costo, estado } = row;
-                    const selectedUser = selected.indexOf(servicio) !== -1;
+                  {EVENTOS.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                    const { id, title, datetime, frecuencia, price, genre } = row;
+                    const selectedUser = selected.indexOf(title) !== -1;
 
                     return (
-                      <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>
+                      <TableRow hover key={id} tabIndex={-1} selected={selectedUser}>
                         <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, servicio)} />
+                        <bullet/>
+                        </TableCell>
+                        
+                        
+
+                        <TableCell align="left">{title}</TableCell>
+                        <TableCell align="left">{datetime.slice(0,10)}</TableCell>
+                        <TableCell align="left">{datetime.slice(11,16)}</TableCell>
+                        <TableCell align="left">{price}</TableCell>
+
+                        <TableCell align="left">{genre}</TableCell>
+
+                        <TableCell align="right">
+                          <IconButton size="large" color="inherit" onClick={(event) => handleOpenMenu(event, id)}>
+                            <Iconify icon={'eva:more-vertical-fill'} />
+                          </IconButton>
                         </TableCell>
 
                         
 
-                        <TableCell align="left">{servicio}</TableCell>
-                        <TableCell align="left">{duracion}</TableCell>
-                        <TableCell align="left">{frecuencia}</TableCell>
-                        <TableCell align="left">{costo}</TableCell>
-
-                        <TableCell align="left">
-                          <Label color={ (estado === 'Publicado' && 'success') || 'primary'}>{sentenceCase(estado)}</Label>
-                        </TableCell>
-
-                        <TableCell align="right">
-                          <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
-                            <Iconify icon={'eva:more-vertical-fill'} />
-                          </IconButton>
-                        </TableCell>
                       </TableRow>
+
+
                     );
                   })}
                   {emptyRows > 0 && (
@@ -250,7 +333,7 @@ export default function UserPage() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={USERLIST.length}
+            count={EVENTOS.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
@@ -281,16 +364,6 @@ export default function UserPage() {
         <MenuItem>
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
           Editar
-        </MenuItem>
-
-        <MenuItem>
-          <Iconify icon={'eva:pause-circle-outline'} sx={{ mr: 2 }} />
-          Pausar
-        </MenuItem>
-
-        <MenuItem>
-          <Iconify icon={'eva:play-circle-outline'} sx={{ mr: 2 }} />
-          Despausar
         </MenuItem>
 
         <MenuItem sx={{ color: 'error.main' }}>
