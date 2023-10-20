@@ -24,7 +24,7 @@ import {
   Typography,
   IconButton,
   TableContainer,
-  TablePagination,
+  TablePagination,Modal,Box,Grid,TextField,Divider,FormControl,InputLabel, Select, 
 } from '@mui/material';
 // components
 import Label from '../components/label';
@@ -107,7 +107,6 @@ export default function UserPage() {
           const config = {
             headers: {
               'Authorization': `Bearer ${cookieValue}`,
-
             },
           }
           console.log(7);
@@ -119,8 +118,8 @@ export default function UserPage() {
       
             console.log("FUNCIONÓ (CREO)")
             // Crea el token
-            const USERLISTS = response.data;
-            setEVENTOS(USERLISTS);
+            const aux = response.data;
+            setEVENTOS(aux);
 
       
             
@@ -229,8 +228,14 @@ export default function UserPage() {
 
   const isNotFound = !filteredUsers.length && !!filterName;
 
+  const [openModal, setOpenModal] = useState(false);
 
-
+  const handlePublicarServicio = () => {
+    setOpenModal(true);
+  };
+const handleCloseModal= () => {
+    setOpenModal(false);
+  };
 
   
 
@@ -245,7 +250,7 @@ export default function UserPage() {
           <Typography variant="h4" gutterBottom>
             Mis Publicaciones
           </Typography>
-          <Button variant="contained" onClick={handleClick2} startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button variant="contained" onClick={handlePublicarServicio} startIcon={<Iconify icon="eva:plus-fill" />}>
             Nueva publicación 
           </Button>
         </Stack>
@@ -372,6 +377,236 @@ export default function UserPage() {
         </MenuItem>
         
       </Popover>
-    </>
+          
+
+     
+      <Modal
+        open={openModal}
+        onClose={handleCloseModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Container maxWidth="sm" sx={{mt: 4, padding: '20px', maxHeight: '675px', backgroundColor: 'white', borderRadius: 5}}>
+        
+        <Box mt={1} mb={2} backgroundColor='white' align='center'>
+            <Typography variant="h4" gutterBottom>
+
+                <strong>Publicar Evento</strong> 
+              </Typography>
+        </Box>
+        
+        <Box sx={{mt:2}} backgroundColor='white'>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+              size="small"
+                variant="outlined"
+                label="Título del evento"
+                fullWidth
+                multiline
+                rows={1}
+              />
+            </Grid>
+          </Grid>
+        </Box>
+        
+        <Box mt={2} backgroundColor='white'>
+        
+        <Grid item xs={12}>
+              <TextField
+                size="small"
+                variant="outlined"
+                label="Descripción"
+                fullWidth
+                multiline
+                rows={2}
+              />
+            </Grid>
+        </Box>
+        
+
+        <Box mt={2} backgroundColor='white' > 
+        <Grid container spacing={2}>
+        <Grid item xs={4}>
+           <FormControl fullWidth>
+        <InputLabel id="Día">Dia</InputLabel>
+        <Select
+          labelId="Día"
+          id="Dia"
+          label="Día"
+          MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+
+        >
+        <MenuItem value="1">1</MenuItem>
+        <MenuItem value="2">2</MenuItem>
+        <MenuItem value="3">3</MenuItem>
+        <MenuItem value="4">4</MenuItem>
+        <MenuItem value="5">5</MenuItem>
+        <MenuItem value="6">6</MenuItem>
+        <MenuItem value="7">7</MenuItem>
+        <MenuItem value="8">8</MenuItem>
+        <MenuItem value="9">9</MenuItem>
+        <MenuItem value="10">10</MenuItem>
+        <MenuItem value="11">11</MenuItem>
+        <MenuItem value="12">12</MenuItem>
+        <MenuItem value="13">13</MenuItem>
+        <MenuItem value="14">14</MenuItem>
+        <MenuItem value="15">15</MenuItem>
+        <MenuItem value="16">16</MenuItem>
+        <MenuItem value="17">17</MenuItem>
+        <MenuItem value="18">18</MenuItem>
+        <MenuItem value="19">19</MenuItem>
+        <MenuItem value="20">20</MenuItem>
+        <MenuItem value="21">21</MenuItem>
+        <MenuItem value="22">22</MenuItem>
+        <MenuItem value="23">23</MenuItem>
+        <MenuItem value="24">24</MenuItem>
+        <MenuItem value="25">25</MenuItem>
+        <MenuItem value="26">26</MenuItem>
+        <MenuItem value="27">27</MenuItem>
+        <MenuItem value="28">28</MenuItem>
+        <MenuItem value="29">29</MenuItem>
+        <MenuItem value="30">30</MenuItem>
+        <MenuItem value="31">31</MenuItem>
+        </Select>
+      </FormControl>
+      </Grid>
+      
+      <Grid item xs={4}>
+        <FormControl fullWidth>
+        <InputLabel id="Mes">Mes</InputLabel>
+        <Select
+          labelId="Mes"
+          id="Mes"
+          label="Mes"
+          MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+
+        >
+        <MenuItem value="1">1</MenuItem>
+        <MenuItem value="2">2</MenuItem>
+        <MenuItem value="3">3</MenuItem>
+        <MenuItem value="4">4</MenuItem>
+        <MenuItem value="5">5</MenuItem>
+        <MenuItem value="6">6</MenuItem>
+        <MenuItem value="7">7</MenuItem>
+        <MenuItem value="8">8</MenuItem>
+        <MenuItem value="9">9</MenuItem>
+        <MenuItem value="10">10</MenuItem>
+        <MenuItem value="11">11</MenuItem>
+        <MenuItem value="12">12</MenuItem>
+        </Select>
+      </FormControl>
+      </Grid>
+
+      <Grid item xs={4}>
+        <FormControl fullWidth>
+        <InputLabel id="Año">Año</InputLabel>
+        <Select
+          labelId="Año"
+          id="Año"
+          label="Año"
+          MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+
+        >
+        <MenuItem value="2023">2023</MenuItem>
+        <MenuItem value="2024">2024</MenuItem>
+        <MenuItem value="2025">2025</MenuItem>
+        <MenuItem value="2026">2026</MenuItem>
+        <MenuItem value="2027">2027</MenuItem>
+        <MenuItem value="2028">2028</MenuItem>
+        </Select>
+      </FormControl>
+      </Grid>
+      </Grid>
+      </Box> 
+      
+      
+      
+      
+
+        <Box mt={2} backgroundColor='white'>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                size="small"
+                variant="outlined"
+                label="Hora"
+                fullWidth
+                multiline
+                rows={1}
+              />
+            </Grid>
+          </Grid>
+        </Box>
+
+
+        <Box mt={2} backgroundColor='white'>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+              size="small"
+                variant="outlined"
+                label="Costo"
+                fullWidth
+                multiline
+                rows={1}
+              />
+            </Grid>
+          </Grid>
+        </Box>
+
+
+        <Box mt={2} backgroundColor='white'>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+              size="small"
+                variant="outlined"
+                label="Género"
+                fullWidth
+                multiline
+                rows={1}
+              />
+            </Grid>
+          </Grid>
+        </Box>
+
+
+
+        <Box my={2} align="center" backgroundColor='white'>
+
+            <Button
+                variant="outlined"
+                color="primary"
+                startIcon={<Iconify icon="eva:cloud-upload-outline" />}
+              >
+                Subir foto
+              </Button>
+        </Box>
+        <Box my={2}>
+        <Divider />
+        </Box>
+        <Box backgroundColor='white'>
+            <Grid align="center">
+             <Button variant="contained" size="large"
+                // variant="contained"
+                color="primary"
+                startIcon={<Iconify icon="ic:baseline-plus" />}
+              >
+                Publicar Servicio
+              </Button>
+            </Grid>
+        </Box>
+    </Container>
+      </Modal>
+
+
+
+
+
+
+
+      </>
+   
   );
 }

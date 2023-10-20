@@ -10,12 +10,12 @@ import { Grid, Button, Container, Stack, Typography, Box } from '@mui/material';
 
 
 
-import {AccountProfileDetailsBar, AccountProfileBar} from '../sections/auth/login';
+import {AccountProfileDetails,AccountProfile} from '../sections/auth/login';
 
 // ----------------------------------------------------------------------
 
 
-export default function PerfilBar() {
+export default function PerfilUsuario() {
 
 
 
@@ -48,14 +48,14 @@ export default function PerfilBar() {
                 lg={4}
                 
               >
-                <AccountProfileBar />
+                <AccountProfile />
               </Grid>
               <Grid
                 xs={12}
                  md={6}
                 lg={8}
               >
-                <AccountProfileDetailsBar />
+                <AccountProfileDetails />
               </Grid>
             </Grid>
           </div>

@@ -10,7 +10,7 @@ import Iconify from '../../../components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function RegisterForm() {
+export default function RegisterFormBar() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -32,12 +32,12 @@ export default function RegisterForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "username") {
-      setUsername(value);
-    } else if (name === "email") {
+    if (name === "email") {
       setEmail(value);
     } else if (name === "password") {
       setPassword(value);
+    } else if (name === "username") {
+      setUsername(value);
     }
   };
 
@@ -61,11 +61,11 @@ export default function RegisterForm() {
 
   return (
     <>
-        <Stack spacing={3}>
+<Stack spacing={3}>
 
         <TextField
           name="username"
-          label="Tu Nombre"
+          label="Nombre del bar"
           value={username}
           onChange={handleChange}
         />

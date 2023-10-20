@@ -14,7 +14,7 @@ import Iconify from '../../../components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function CrearServicioForm() {
+export default function OnBoardingBarForm() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);

@@ -47,7 +47,8 @@ export default function LoginForm() {
     try {
       const response = await axios.post('https://music-lovers-production.up.railway.app/business/login/', {
         email,
-        password
+        password,
+    
       });
 
       // Crea el token

@@ -76,6 +76,13 @@ export default function Nav({ openNav, onCloseNav }) {
     navigate('/dashboard/perfilbar');
   }
   
+  const handleClick4 = () => {
+    navigate('/loginbar');
+  }
+
+  const handleClick5 = () => {
+    navigate('/registerbar');
+  }
 
 
   const renderContent = (
@@ -179,9 +186,9 @@ export default function Nav({ openNav, onCloseNav }) {
                 <Typography gutterBottom variant="h6">
                   ¿Sos dueño de un bar?
                 </Typography>
-              </Box><Button onClick={handleClick} variant="contained" disableElevation="true">
+              </Box><Button onClick={handleClick4} variant="contained" disableElevation="true">
                   Iniciar sesión
-                </Button><Button onClick={handleClick2} variant='outlined'>
+                </Button><Button onClick={handleClick5} variant='outlined'>
                   Registarme
                 </Button>
 

@@ -9,7 +9,7 @@ import useResponsive from '../hooks/useResponsive';
 import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
-import { OnBoardingBarForm } from '../sections/auth/login';
+import { RegisterFormBar } from '../sections/auth/login';
 
 // ----------------------------------------------------------------------
 
@@ -32,37 +32,52 @@ const StyledSection = styled('div')(({ theme }) => ({
 const StyledContent = styled('div')(({ theme }) => ({
   maxWidth: 480,
   margin: 'auto',
-  minHeight: 'auto',
+  minHeight: '100vh',
   display: 'flex',
   justifyContent: 'center',
   flexDirection: 'column',
+  padding: theme.spacing(12, 0),
 }));
 
 // ----------------------------------------------------------------------
 
-export default function CrearServicioPage() {
+export default function RegisterPageBar() {
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
 
+  const handleClick = () => {
+    navigate('/loginbar'); 
+  }
 
   return (
     <>
       <Helmet>
-        <title> Crear Servicio | For The Music Lovers </title>
+        <title> Registro | For The Music Lovers </title>
       </Helmet>
 
       <StyledRoot>
+        <Logo
+          sx={{
+            position: 'fixed',
+            top: { xs: 16, sm: 24, md: 40 },
+            left: { xs: 16, sm: 24, md: 40 },
+          }}
+        />
+
+        
 
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h3" gutterBottom>
-            Crear servicio
+              Registrarse como un Bar
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 2 }}>
-                Por favor, completá los datos del nuevo servicio.
+              ¿Ya tenés cuenta? {''}
+              <Link variant="subtitle2" onClick={handleClick} sx={{ cursor: 'pointer' }}>Iniciar Sesión</Link>
             </Typography>
-            <OnBoardingBarForm />
+
+            <RegisterFormBar />
           </StyledContent>
         </Container>
       </StyledRoot>
