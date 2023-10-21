@@ -166,7 +166,7 @@ export default function UserPage() {
 
   const handleOpenMenu = (event, id) => {
     setOpen(event.currentTarget);
-    // Puedes usar el 'id' u otros datos específicos de la fila aquí.
+    setIdeliminar(id);
   };
 
   const handleCloseMenu = () => {
@@ -250,10 +250,42 @@ export default function UserPage() {
     setOpen(null);
   };
 
-  const handleEliminarBack = () => { 
-    setOpenModal3(false);
+  /* ------------------------------------------------BACKEND--------------------------------------*/
 
-  };
+  const handleEliminarBack = async () => { 
+
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${cookieValue}`,
+        },
+      };
+
+      const formData = new FormData();
+      formData.append('id', ideliminar);
+      console.log(config)
+      
+
+      try {
+        
+        await axios.delete('https://music-lovers-production.up.railway.app/business/event/delete-event/', {
+          headers: {
+            Authorization: `Bearer ${cookieValue}`
+          },
+          data: {
+            id: ideliminar
+          }
+        });
+
+        window.location.reload();
+
+      } catch (error) {
+        alert('Ocurrió un error inesperado. No se puedo eliminar el evento.');
+      }
+      setOpenModal3(false);
+
+    };
+
+    
 
   const handleEliminarNoBack = () => { 
     setOpenModal3(false);
@@ -278,7 +310,15 @@ export default function UserPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [datetime, setDatetime] = useState("");
+
+
+  const [dia, setDia] = useState("");
+  const [mes, setMes] = useState("");
+  const [anio, setAnio] = useState("");
+  const [hora, setHora] = useState("");
+  const [minutos, setMinutos] = useState("");
+
+
   const [artist, setArtist] = useState("");
   const [genre, setGenre] = useState("");
   const [address, setAdress] = useState("");
@@ -287,15 +327,18 @@ export default function UserPage() {
   const [banner, setBanner] = useState("");
 
 
+
+  const [ideliminar, setIdeliminar] = useState("");
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     const fieldFunctions = {
       title: setTitle,
       description: setDescription,
       price: setPrice,
-      datetime: setDatetime,
       artist: setArtist,
-      genre: setGenre,
+
       address: setAdress,
       neighbourhood: setNeighbourhood,
       city: setCity,
@@ -307,41 +350,85 @@ export default function UserPage() {
       updateFunction(value);
     }
   };
+
+  const handleGenreChange = (e) => {
+    setGenre(e.target.value); // Maneja el estado 'genre' por separado
+  };
+
+  const handleDiaChange = (e) => {
+    setDia(e.target.value); 
+  };
+
+  const handleMesChange = (e) => {
+    setMes(e.target.value); 
+  };
+
+  const handleAnioChange = (e) => {
+    setAnio(e.target.value); 
+  };
+
+  const handleHoraChange = (e) => {
+    setHora(e.target.value); 
+  };
+
+  const handleMinutosChange = (e) => {
+    setMinutos(e.target.value); 
+  };
   
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile);
+  };
 
   const handleBackendPublicar = async () => {
+
+    if (!validateFields()) {
+      // Si la validación no se cumple, muestra un mensaje de error o toma la acción adecuada
+      alert('Por favor, complete los campos obligatorios.');
+      return;
+    }
+
     setOpenModal(false);
 
     const config = {
       headers: {
         'Authorization': `Bearer ${cookieValue}`,
+        'Content-Type': 'multipart/form-data', // Importante para indicar que estás enviando un formulario con datos binarios (archivos)
       },
-    }
-    console.log(44447);
-    ;
+    };
+
+    const genreInUppercase = genre.toUpperCase();
+    const datetime = `${anio}-${mes}-${dia} ${hora}:${minutos}:00`;
+    
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('price', price);
+    formData.append('datetime', datetime);
+    formData.append('artist', artist);
+    formData.append('genre', genreInUppercase);
+    formData.append('address', 'a');
+    formData.append('neighbourhood', 'a');
+    formData.append('city', 'a');
+    formData.append('banner', file); 
 
 
     try {
       await axios.post(
         "https://music-lovers-production.up.railway.app/business/event/create/",
-        {
-          title: 'hola',
-          description: 'hola',
-          price: 20,
-          datetime: '2024-12-01 15:24:00',
-          artist: 'gola',
-          genre: 'HIPHOP',
-          address: 'a',
-          neighbourhood: 'a',
-          city: 'a',
-          banner: "/media/events-banners/unnamed_2.png",
-        }, config
+        formData,
+        config
       );
 
       console.log(88888);
+      window.location.reload();
+
     } catch (error) {
       console.error("Error de registro", error);
       console.log('ERROr');
+      alert('Ocurrió un error inesperado. No se pudo completar la creación del evento.');
     }
 
   };
@@ -354,6 +441,40 @@ export default function UserPage() {
 
 
   };
+
+  const maxFileNameLength = 40;
+  const getFileDisplayName = () => {
+    if (file) {
+      const fileName = file.name;
+      if (fileName.length > maxFileNameLength) {
+        return `...${fileName.slice(-maxFileNameLength)}`;
+      }
+      return fileName;
+    }
+    return '';
+  };
+
+  const validateFields = () => {
+    if (
+      title.trim() === '' ||
+      description.trim() === '' ||
+      price.trim() === '' ||
+      dia.trim() === '' ||
+      mes.trim() === '' ||
+      anio.trim() === '' ||
+      hora.trim() === '' ||
+      minutos.trim() === '' ||
+      artist.trim() === '' ||
+      genre.trim() === '' ||
+      file === null
+    ) {
+      return false; // Al menos uno de los campos obligatorios está en blanco
+    }
+    return true; // Todos los campos obligatorios están completos
+  };
+
+  
+  
 
 
 
@@ -537,7 +658,7 @@ export default function UserPage() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Container maxWidth="sm" sx={{ mt: 4, padding: '20px', maxHeight: '675px', backgroundColor: 'white', borderRadius: 5 }}>
+        <Container maxWidth="sm" sx={{ mt: 2, padding: '20px', maxHeight: '690px', backgroundColor: 'white', borderRadius: 5 }}>
 
           <Box mt={1} mb={2} backgroundColor='white' align='center'>
             <Typography variant="h4" gutterBottom>
@@ -581,7 +702,7 @@ export default function UserPage() {
                 label="Descripción"
                 fullWidth
                 multiline
-                rows={2}
+                rows={3}
                 value={description} name="description" onChange={handleChange}
               />
             </Grid>
@@ -592,11 +713,13 @@ export default function UserPage() {
             <Grid container spacing={2}>
               <Grid item xs={4}>
                 <FormControl fullWidth>
-                  <InputLabel id="Día">Dia</InputLabel>
+                  <InputLabel id="dia">Dia</InputLabel>
                   <Select
-                    labelId="Día"
-                    id="Dia"
+                    labelId="dia"
+                    id="dia"
                     label="Día"
+                    onChange={handleDiaChange}
+                    value={dia}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
 
                   >
@@ -637,11 +760,13 @@ export default function UserPage() {
 
               <Grid item xs={4}>
                 <FormControl fullWidth>
-                  <InputLabel id="Mes">Mes</InputLabel>
+                  <InputLabel id="mes">Mes</InputLabel>
                   <Select
-                    labelId="Mes"
-                    id="Mes"
+                    labelId="mes"
+                    id="mes"
                     label="Mes"
+                    onChange={handleMesChange}
+                    value={mes}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
 
                   >
@@ -663,11 +788,13 @@ export default function UserPage() {
 
               <Grid item xs={4}>
                 <FormControl fullWidth>
-                  <InputLabel id="Año">Año</InputLabel>
+                  <InputLabel id="anio">Año</InputLabel>
                   <Select
-                    labelId="Año"
-                    id="Año"
+                    labelId="anio"
+                    id="anio"
                     label="Año"
+                    onChange={handleAnioChange}
+                    value={anio}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
 
                   >
@@ -693,11 +820,13 @@ export default function UserPage() {
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <FormControl fullWidth>
-                  <InputLabel id="Hora">Hora</InputLabel>
+                  <InputLabel id="hora">Hora</InputLabel>
                   <Select
-                    labelId="Hora"
-                    id="Hora"
+                    labelId="hora"
+                    id="hora"
                     label="Hora"
+                    onChange={handleHoraChange}
+                    value={hora}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
                   >
 
@@ -733,13 +862,14 @@ export default function UserPage() {
 
               <Grid item xs={6}>
                 <FormControl fullWidth>
-                  <InputLabel id="Minutos">Minutos</InputLabel>
+                  <InputLabel id="minutos">Minutos</InputLabel>
                   <Select
-                    labelId="Minutos"
-                    id="Minutos"
+                    labelId="minutos"
+                    id="minutos"
                     label="Minutos"
                     MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
-
+                    onChange={handleMinutosChange}
+                    value={minutos}
                   >
                     <MenuItem value="00">00</MenuItem>
                     <MenuItem value="15">15</MenuItem>
@@ -762,11 +892,10 @@ export default function UserPage() {
           <Box mt={2} backgroundColor='white'>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <TextField name="costo" label="Costo (USD)" type="number" size="small" fullWidth />
+                <TextField label="Costo (USD)" type="number" size="small" fullWidth value={price} name="price" onChange={handleChange} />
               </Grid>
             </Grid>
           </Box>
-
 
 
 
@@ -776,18 +905,20 @@ export default function UserPage() {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <FormControl fullWidth>
-                  <InputLabel id="Género">Género  </InputLabel>
+                  <InputLabel id="genre">Género  </InputLabel>
                   <Select
-                    labelId="Género"
-                    id="Género"
+                    labelId="genre"
+                    id="genre"
                     label="Género"
+                    value={genre}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
+                    onChange={handleGenreChange}
 
                   >
                     <MenuItem value="Rock">Rock</MenuItem>
                     <MenuItem value="Pop">Pop</MenuItem>
-                    <MenuItem value="Electrónica">Electrónica</MenuItem>
-                    <MenuItem value="Hip-Hop">Hip-Hop</MenuItem>
+                    <MenuItem value="Electronica">Electronica</MenuItem>
+                    <MenuItem value="HipHop">HipHop</MenuItem>
                     <MenuItem value="Reggae">Reggae</MenuItem>
                     <MenuItem value="Reggaeton">Reggaeton</MenuItem>
                     <MenuItem value="Cumbia">Cumbia</MenuItem>
@@ -806,23 +937,42 @@ export default function UserPage() {
 
 
 
-          <Box my={2} align="center" backgroundColor='white'>
+          <Box my={2} align="center" backgroundColor='white'sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
+          <label htmlFor="fileInput" >
+              <input
+              type="file"
+              accept="image/*" // Puedes especificar el tipo de archivo que esperas aquí
+              style={{ display: 'none' }}
+              onChange={handleFileChange}
+              id="fileInput"
+            />
+            
+              <Button
+                variant="outlined"
+                color="primary"
+                startIcon={<Iconify icon="eva:cloud-upload-outline" />}
+                component="span"
+                
+              >
+                Subir foto
+              </Button>
+            </label>
+            {file && (
+              <>
+          <p style={{ padding: 0, margin: 0 }}> {getFileDisplayName()}</p>
+          </>
+       
+      )}
 
-            <Button
-              variant="outlined"
-              color="primary"
-              startIcon={<Iconify icon="eva:cloud-upload-outline" />}
-            >
-              Subir foto
-            </Button>
+
           </Box>
           <Box my={2}>
             <Divider />
           </Box>
           <Box backgroundColor='white'>
             <Grid align="center">
-              <Button variant="contained" size="large"
-                // variant="contained"
+              <Button variant="contained" 
+              
                 color="primary"
                 startIcon={<Iconify icon="ic:baseline-plus" />}
                 onClick={handleBackendPublicar}
