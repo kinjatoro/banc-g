@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState, useEffect  } from 'react';
+import { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
@@ -24,7 +24,7 @@ import {
   Typography,
   IconButton,
   TableContainer,
-  TablePagination,Modal,Box,Grid,TextField,Divider,FormControl,InputLabel, Select, 
+  TablePagination, Modal, Box, Grid, TextField, Divider, FormControl, InputLabel, Select,
 } from '@mui/material';
 // components
 import Label from '../components/label';
@@ -79,76 +79,77 @@ function applySortFilter(array, comparator, query) {
 
 export default function UserPage() {
 
-      console.log(1);
-    /* -------------------------COOKIES ---------------------------------*/
+  console.log(1);
+  /* -------------------------COOKIES ---------------------------------*/
 
-        const [EVENTOS, setEVENTOS] = useState([]);
-    
-        useEffect(() => {
-           handleLogin();
-        }, []);
+  const [EVENTOS, setEVENTOS] = useState([]);
 
-
-        console.log(2);
-
-        function getJwtToken() {
-          const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
-          console.log(3);
-          return jwtCookie ? jwtCookie.split('=')[1] : null;
-        }
-
-        console.log(4);
-        const cookieValue = getJwtToken();
-        console.log(5);
-
-        const handleLogin = async () => {
-
-          console.log(6);
-          const config = {
-            headers: {
-              'Authorization': `Bearer ${cookieValue}`,
-            },
-          }
-          console.log(7);
-          ;
+  useEffect(() => {
+    handleLogin();
+  }, []);
 
 
-          try {
-            const response = await axios.get('https://music-lovers-production.up.railway.app/business/events/', config);
-      
-            console.log("FUNCIONÓ (CREO)")
-            // Crea el token
-            const aux = response.data;
-            setEVENTOS(aux);
+  console.log(2);
 
-      
-            
-          } catch (error) {
-            console.error('Error de inicio de sesión', error);
-          }
-      
-    };
+  function getJwtToken() {
+    const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+    console.log(3);
+    return jwtCookie ? jwtCookie.split('=')[1] : null;
+  }
+
+  console.log(4);
+  const cookieValue = getJwtToken();
+  console.log(5);
+
+  const handleLogin = async () => {
+
+    console.log(6);
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${cookieValue}`,
+      },
+    }
+    console.log(7);
+    ;
 
 
-    
-     /* -------------------------COOKIES ---------------------------------*/
+    try {
+      const response = await axios.get('https://music-lovers-production.up.railway.app/business/events/', config);
+
+      console.log("FUNCIONÓ (CREO)")
+      // Crea el token
+      const aux = response.data;
+      setEVENTOS(aux);
 
 
 
+    } catch (error) {
+      console.error('Error de inicio de sesión', error);
+    }
+
+  };
 
 
-     
 
-     EVENTOS.map((item) => {
-       console.log(item.title);
-       return null; // El valor de retorno no es importante en este caso
-     });
+  /* -------------------------COOKIES ---------------------------------*/
+
+
+
+
+
+
+
+  EVENTOS.map((item) => {
+    console.log(item.title);
+    return null; // El valor de retorno no es importante en este caso
+  });
 
 
 
 
 
   const [open, setOpen] = useState(null);
+
 
   const [page, setPage] = useState(0);
 
@@ -230,14 +231,131 @@ export default function UserPage() {
 
   const [openModal, setOpenModal] = useState(false);
 
+  const [openModal2, setOpenModal2] = useState(false);
+
+  const [openModal3, setOpenModal3] = useState(false);
+
   const handlePublicarServicio = () => {
     setOpenModal(true);
   };
-const handleCloseModal= () => {
+
+  const handleModificarServicio = () => { 
+    setOpenModal2(true);
+    setOpen(null);
+
+  };
+
+  const handleEliminar = () => { 
+    setOpenModal3(true);
+    setOpen(null);
+  };
+
+  const handleEliminarBack = () => { 
+    setOpenModal3(false);
+
+  };
+
+  const handleEliminarNoBack = () => { 
+    setOpenModal3(false);
+
+  };
+
+  const handleCloseModal = () => {
     setOpenModal(false);
   };
 
+  const handleCloseModal2 = () => {
+    setOpenModal2(false);
+  };
+
+  const handleCloseModal3 = () => {
+    setOpenModal3(false);
+  };
+
+
+  /* ------------------------------------------------BACKEND-------------------------------------*/
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [datetime, setDatetime] = useState("");
+  const [artist, setArtist] = useState("");
+  const [genre, setGenre] = useState("");
+  const [address, setAdress] = useState("");
+  const [neighbourhood, setNeighbourhood] = useState("");
+  const [city, setCity] = useState("");
+  const [banner, setBanner] = useState("");
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const fieldFunctions = {
+      title: setTitle,
+      description: setDescription,
+      price: setPrice,
+      datetime: setDatetime,
+      artist: setArtist,
+      genre: setGenre,
+      address: setAdress,
+      neighbourhood: setNeighbourhood,
+      city: setCity,
+      banner: setBanner,
+    };
   
+    const updateFunction = fieldFunctions[name];
+    if (updateFunction) {
+      updateFunction(value);
+    }
+  };
+  
+
+  const handleBackendPublicar = async () => {
+    setOpenModal(false);
+
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${cookieValue}`,
+      },
+    }
+    console.log(44447);
+    ;
+
+
+    try {
+      await axios.post(
+        "https://music-lovers-production.up.railway.app/business/event/create/",
+        {
+          title: 'hola',
+          description: 'hola',
+          price: 20,
+          datetime: '2024-12-01 15:24:00',
+          artist: 'gola',
+          genre: 'HIPHOP',
+          address: 'a',
+          neighbourhood: 'a',
+          city: 'a',
+          banner: "/media/events-banners/unnamed_2.png",
+        }, config
+      );
+
+      console.log(88888);
+    } catch (error) {
+      console.error("Error de registro", error);
+      console.log('ERROr');
+    }
+
+  };
+
+   /* ------------------------------------------------BACKEND-------------------------------------*/
+
+
+  const handleBackendModificar = () => {
+    setOpenModal2(false);
+
+
+  };
+
+
 
   return (
     <>
@@ -251,7 +369,7 @@ const handleCloseModal= () => {
             Mis Publicaciones
           </Typography>
           <Button variant="contained" onClick={handlePublicarServicio} startIcon={<Iconify icon="eva:plus-fill" />}>
-            Nueva publicación 
+            Nueva publicación
           </Button>
         </Stack>
 
@@ -276,14 +394,14 @@ const handleCloseModal= () => {
                     return (
                       <TableRow hover key={id} tabIndex={-1} selected={selectedUser}>
                         <TableCell padding="checkbox">
-                        <bullet/>
+                          <bullet />
                         </TableCell>
-                        
-                        
+
+
 
                         <TableCell align="left">{title}</TableCell>
-                        <TableCell align="left">{datetime.slice(0,10)}</TableCell>
-                        <TableCell align="left">{datetime.slice(11,16)}</TableCell>
+                        <TableCell align="left">{datetime.slice(0, 10)}</TableCell>
+                        <TableCell align="left">{datetime.slice(11, 16)}</TableCell>
                         <TableCell align="left">{price}</TableCell>
 
                         <TableCell align="left">{genre}</TableCell>
@@ -294,7 +412,7 @@ const handleCloseModal= () => {
                           </IconButton>
                         </TableCell>
 
-                        
+
 
                       </TableRow>
 
@@ -318,11 +436,11 @@ const handleCloseModal= () => {
                           }}
                         >
                           <Typography variant="h6" paragraph>
-                          No encontrado
+                            No encontrado
                           </Typography>
 
                           <Typography variant="body2">
-                          No se encontraron resultados para &nbsp;
+                            No se encontraron resultados para &nbsp;
                             <strong>&quot;{filterName}&quot;</strong>.
                             <br /> Prueba escribiendo otra palabra.
                           </Typography>
@@ -366,53 +484,460 @@ const handleCloseModal= () => {
         }}
       >
 
-        <MenuItem>
-          <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
+        <MenuItem onClick={handleModificarServicio}> 
+          <Iconify  icon={'eva:edit-fill'} sx={{ mr: 2 }} />
           Editar
         </MenuItem>
 
-        <MenuItem sx={{ color: 'error.main' }}>
+        <MenuItem  onClick={handleEliminar}  sx={{ color: 'error.main' }}>
           <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
           Eliminar
         </MenuItem>
-        
-      </Popover>
-          
 
-     
+      </Popover>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <Modal
         open={openModal}
         onClose={handleCloseModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Container maxWidth="sm" sx={{mt: 4, padding: '20px', maxHeight: '675px', backgroundColor: 'white', borderRadius: 5}}>
-        
-        <Box mt={1} mb={2} backgroundColor='white' align='center'>
+        <Container maxWidth="sm" sx={{ mt: 4, padding: '20px', maxHeight: '675px', backgroundColor: 'white', borderRadius: 5 }}>
+
+          <Box mt={1} mb={2} backgroundColor='white' align='center'>
             <Typography variant="h4" gutterBottom>
 
-                <strong>Publicar Evento</strong> 
-              </Typography>
-        </Box>
-        
-        <Box sx={{mt:2}} backgroundColor='white'>
-          <Grid container spacing={2}>
+              <strong>Publicar Evento</strong>
+            </Typography>
+          </Box>
+
+          <Box sx={{ mt: 2 }} backgroundColor='white'>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  size="small"
+                  variant="outlined"
+                  label="Título del evento"
+                  fullWidth
+                  multiline
+                  rows={1}
+                  value={title}
+                  name="title"
+                  onChange={handleChange}
+                />
+              </Grid>
+            </Grid>
+          </Box>
+
+          <Box mt={2} backgroundColor='white'>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField label="Artista"  size="small" fullWidth value={artist} name="artist" onChange={handleChange}/>
+              </Grid>
+            </Grid>
+          </Box>
+
+          <Box mt={2} backgroundColor='white'>
+
             <Grid item xs={12}>
               <TextField
-              size="small"
+                size="small"
                 variant="outlined"
-                label="Título del evento"
+                label="Descripción"
                 fullWidth
                 multiline
-                rows={1}
+                rows={2}
+                value={description} name="description" onChange={handleChange}
               />
             </Grid>
-          </Grid>
-        </Box>
-        
-        <Box mt={2} backgroundColor='white'>
-        
-        <Grid item xs={12}>
+          </Box>
+
+
+          <Box mt={2} backgroundColor='white' >
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                <FormControl fullWidth>
+                  <InputLabel id="Día">Dia</InputLabel>
+                  <Select
+                    labelId="Día"
+                    id="Dia"
+                    label="Día"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+
+                  >
+                    <MenuItem value="1">1</MenuItem>
+                    <MenuItem value="2">2</MenuItem>
+                    <MenuItem value="3">3</MenuItem>
+                    <MenuItem value="4">4</MenuItem>
+                    <MenuItem value="5">5</MenuItem>
+                    <MenuItem value="6">6</MenuItem>
+                    <MenuItem value="7">7</MenuItem>
+                    <MenuItem value="8">8</MenuItem>
+                    <MenuItem value="9">9</MenuItem>
+                    <MenuItem value="10">10</MenuItem>
+                    <MenuItem value="11">11</MenuItem>
+                    <MenuItem value="12">12</MenuItem>
+                    <MenuItem value="13">13</MenuItem>
+                    <MenuItem value="14">14</MenuItem>
+                    <MenuItem value="15">15</MenuItem>
+                    <MenuItem value="16">16</MenuItem>
+                    <MenuItem value="17">17</MenuItem>
+                    <MenuItem value="18">18</MenuItem>
+                    <MenuItem value="19">19</MenuItem>
+                    <MenuItem value="20">20</MenuItem>
+                    <MenuItem value="21">21</MenuItem>
+                    <MenuItem value="22">22</MenuItem>
+                    <MenuItem value="23">23</MenuItem>
+                    <MenuItem value="24">24</MenuItem>
+                    <MenuItem value="25">25</MenuItem>
+                    <MenuItem value="26">26</MenuItem>
+                    <MenuItem value="27">27</MenuItem>
+                    <MenuItem value="28">28</MenuItem>
+                    <MenuItem value="29">29</MenuItem>
+                    <MenuItem value="30">30</MenuItem>
+                    <MenuItem value="31">31</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={4}>
+                <FormControl fullWidth>
+                  <InputLabel id="Mes">Mes</InputLabel>
+                  <Select
+                    labelId="Mes"
+                    id="Mes"
+                    label="Mes"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+
+                  >
+                    <MenuItem value="1">1</MenuItem>
+                    <MenuItem value="2">2</MenuItem>
+                    <MenuItem value="3">3</MenuItem>
+                    <MenuItem value="4">4</MenuItem>
+                    <MenuItem value="5">5</MenuItem>
+                    <MenuItem value="6">6</MenuItem>
+                    <MenuItem value="7">7</MenuItem>
+                    <MenuItem value="8">8</MenuItem>
+                    <MenuItem value="9">9</MenuItem>
+                    <MenuItem value="10">10</MenuItem>
+                    <MenuItem value="11">11</MenuItem>
+                    <MenuItem value="12">12</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={4}>
+                <FormControl fullWidth>
+                  <InputLabel id="Año">Año</InputLabel>
+                  <Select
+                    labelId="Año"
+                    id="Año"
+                    label="Año"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+
+                  >
+                    <MenuItem value="2023">2023</MenuItem>
+                    <MenuItem value="2024">2024</MenuItem>
+                    <MenuItem value="2025">2025</MenuItem>
+                    <MenuItem value="2026">2026</MenuItem>
+                    <MenuItem value="2027">2027</MenuItem>
+                    <MenuItem value="2028">2028</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+            </Grid>
+          </Box>
+
+
+
+
+
+
+
+          <Box mt={2} backgroundColor='white' >
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <FormControl fullWidth>
+                  <InputLabel id="Hora">Hora</InputLabel>
+                  <Select
+                    labelId="Hora"
+                    id="Hora"
+                    label="Hora"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+                  >
+
+                    <MenuItem value="18">18</MenuItem>
+                    <MenuItem value="19">19</MenuItem>
+                    <MenuItem value="20">20</MenuItem>
+                    <MenuItem value="21">21</MenuItem>
+                    <MenuItem value="22">22</MenuItem>
+                    <MenuItem value="23">23</MenuItem>
+                    <MenuItem value="00">00</MenuItem>
+                    <MenuItem value="01">01</MenuItem>
+                    <MenuItem value="02">02</MenuItem>
+                    <MenuItem value="03">03</MenuItem>
+                    <MenuItem value="04">04</MenuItem>
+                    <MenuItem value="05">05</MenuItem>
+                    <MenuItem value="06">06</MenuItem>
+                    <MenuItem value="07">07</MenuItem>
+                    <MenuItem value="08">08</MenuItem>
+                    <MenuItem value="09">09</MenuItem>
+                    <MenuItem value="10">10</MenuItem>
+                    <MenuItem value="11">11</MenuItem>
+                    <MenuItem value="12">12</MenuItem>
+                    <MenuItem value="13">13</MenuItem>
+                    <MenuItem value="14">14</MenuItem>
+                    <MenuItem value="15">15</MenuItem>
+                    <MenuItem value="16">16</MenuItem>
+                    <MenuItem value="17">17</MenuItem>
+
+
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={6}>
+                <FormControl fullWidth>
+                  <InputLabel id="Minutos">Minutos</InputLabel>
+                  <Select
+                    labelId="Minutos"
+                    id="Minutos"
+                    label="Minutos"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+
+                  >
+                    <MenuItem value="00">00</MenuItem>
+                    <MenuItem value="15">15</MenuItem>
+                    <MenuItem value="30">30</MenuItem>
+                    <MenuItem value="45">45</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+
+
+            </Grid>
+          </Box>
+
+
+
+
+
+
+
+          <Box mt={2} backgroundColor='white'>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField name="costo" label="Costo (USD)" type="number" size="small" fullWidth />
+              </Grid>
+            </Grid>
+          </Box>
+
+
+
+
+
+
+          <Box mt={2} backgroundColor='white'>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <InputLabel id="Género">Género  </InputLabel>
+                  <Select
+                    labelId="Género"
+                    id="Género"
+                    label="Género"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
+
+                  >
+                    <MenuItem value="Rock">Rock</MenuItem>
+                    <MenuItem value="Pop">Pop</MenuItem>
+                    <MenuItem value="Electrónica">Electrónica</MenuItem>
+                    <MenuItem value="Hip-Hop">Hip-Hop</MenuItem>
+                    <MenuItem value="Reggae">Reggae</MenuItem>
+                    <MenuItem value="Reggaeton">Reggaeton</MenuItem>
+                    <MenuItem value="Cumbia">Cumbia</MenuItem>
+                    <MenuItem value="Salsa">Salsa</MenuItem>
+                    <MenuItem value="Tango">Tango</MenuItem>
+                    <MenuItem value="Folklore">Folklore</MenuItem>
+                    <MenuItem value="Jazz">Jazz</MenuItem>
+                    <MenuItem value="Blues">Blues</MenuItem>
+                    <MenuItem value="Otro">Otro</MenuItem>
+                    
+                  </Select>
+                </FormControl>
+              </Grid>
+            </Grid>
+          </Box>
+
+
+
+          <Box my={2} align="center" backgroundColor='white'>
+
+            <Button
+              variant="outlined"
+              color="primary"
+              startIcon={<Iconify icon="eva:cloud-upload-outline" />}
+            >
+              Subir foto
+            </Button>
+          </Box>
+          <Box my={2}>
+            <Divider />
+          </Box>
+          <Box backgroundColor='white'>
+            <Grid align="center">
+              <Button variant="contained" size="large"
+                // variant="contained"
+                color="primary"
+                startIcon={<Iconify icon="ic:baseline-plus" />}
+                onClick={handleBackendPublicar}
+              
+              >
+                Publicar
+              </Button>
+            </Grid>
+          </Box>
+        </Container>
+      </Modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <Modal
+        open={openModal2}
+        onClose={handleCloseModal2}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+
+      
+        <Container maxWidth="sm" sx={{ mt: 4, padding: '20px', maxHeight: '675px', backgroundColor: 'white', borderRadius: 5 }}>
+
+          <Box mt={1} mb={2} backgroundColor='white' align='center'>
+            <Typography variant="h4" gutterBottom>
+
+              <strong>Modificar Evento</strong>
+            </Typography>
+          </Box>
+
+          <Box sx={{ mt: 2 }} backgroundColor='white'>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  size="small"
+                  variant="outlined"
+                  label="Título del evento"
+                  fullWidth
+                  multiline
+                  rows={1}
+                />
+              </Grid>
+            </Grid>
+          </Box>
+
+          <Box mt={2} backgroundColor='white'>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField name="artista" label="Artista"  size="small" fullWidth />
+              </Grid>
+            </Grid>
+          </Box>
+
+          <Box mt={2} backgroundColor='white'>
+
+            <Grid item xs={12}>
               <TextField
                 size="small"
                 variant="outlined"
@@ -422,182 +947,252 @@ const handleCloseModal= () => {
                 rows={2}
               />
             </Grid>
-        </Box>
-        
+          </Box>
 
-        <Box mt={2} backgroundColor='white' > 
-        <Grid container spacing={2}>
-        <Grid item xs={4}>
-           <FormControl fullWidth>
-        <InputLabel id="Día">Dia</InputLabel>
-        <Select
-          labelId="Día"
-          id="Dia"
-          label="Día"
-          MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
 
-        >
-        <MenuItem value="1">1</MenuItem>
-        <MenuItem value="2">2</MenuItem>
-        <MenuItem value="3">3</MenuItem>
-        <MenuItem value="4">4</MenuItem>
-        <MenuItem value="5">5</MenuItem>
-        <MenuItem value="6">6</MenuItem>
-        <MenuItem value="7">7</MenuItem>
-        <MenuItem value="8">8</MenuItem>
-        <MenuItem value="9">9</MenuItem>
-        <MenuItem value="10">10</MenuItem>
-        <MenuItem value="11">11</MenuItem>
-        <MenuItem value="12">12</MenuItem>
-        <MenuItem value="13">13</MenuItem>
-        <MenuItem value="14">14</MenuItem>
-        <MenuItem value="15">15</MenuItem>
-        <MenuItem value="16">16</MenuItem>
-        <MenuItem value="17">17</MenuItem>
-        <MenuItem value="18">18</MenuItem>
-        <MenuItem value="19">19</MenuItem>
-        <MenuItem value="20">20</MenuItem>
-        <MenuItem value="21">21</MenuItem>
-        <MenuItem value="22">22</MenuItem>
-        <MenuItem value="23">23</MenuItem>
-        <MenuItem value="24">24</MenuItem>
-        <MenuItem value="25">25</MenuItem>
-        <MenuItem value="26">26</MenuItem>
-        <MenuItem value="27">27</MenuItem>
-        <MenuItem value="28">28</MenuItem>
-        <MenuItem value="29">29</MenuItem>
-        <MenuItem value="30">30</MenuItem>
-        <MenuItem value="31">31</MenuItem>
-        </Select>
-      </FormControl>
-      </Grid>
-      
-      <Grid item xs={4}>
-        <FormControl fullWidth>
-        <InputLabel id="Mes">Mes</InputLabel>
-        <Select
-          labelId="Mes"
-          id="Mes"
-          label="Mes"
-          MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+          <Box mt={2} backgroundColor='white' >
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                <FormControl fullWidth>
+                  <InputLabel id="Día">Dia</InputLabel>
+                  <Select
+                    labelId="Día"
+                    id="Dia"
+                    label="Día"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
 
-        >
-        <MenuItem value="1">1</MenuItem>
-        <MenuItem value="2">2</MenuItem>
-        <MenuItem value="3">3</MenuItem>
-        <MenuItem value="4">4</MenuItem>
-        <MenuItem value="5">5</MenuItem>
-        <MenuItem value="6">6</MenuItem>
-        <MenuItem value="7">7</MenuItem>
-        <MenuItem value="8">8</MenuItem>
-        <MenuItem value="9">9</MenuItem>
-        <MenuItem value="10">10</MenuItem>
-        <MenuItem value="11">11</MenuItem>
-        <MenuItem value="12">12</MenuItem>
-        </Select>
-      </FormControl>
-      </Grid>
+                  >
+                    <MenuItem value="1">1</MenuItem>
+                    <MenuItem value="2">2</MenuItem>
+                    <MenuItem value="3">3</MenuItem>
+                    <MenuItem value="4">4</MenuItem>
+                    <MenuItem value="5">5</MenuItem>
+                    <MenuItem value="6">6</MenuItem>
+                    <MenuItem value="7">7</MenuItem>
+                    <MenuItem value="8">8</MenuItem>
+                    <MenuItem value="9">9</MenuItem>
+                    <MenuItem value="10">10</MenuItem>
+                    <MenuItem value="11">11</MenuItem>
+                    <MenuItem value="12">12</MenuItem>
+                    <MenuItem value="13">13</MenuItem>
+                    <MenuItem value="14">14</MenuItem>
+                    <MenuItem value="15">15</MenuItem>
+                    <MenuItem value="16">16</MenuItem>
+                    <MenuItem value="17">17</MenuItem>
+                    <MenuItem value="18">18</MenuItem>
+                    <MenuItem value="19">19</MenuItem>
+                    <MenuItem value="20">20</MenuItem>
+                    <MenuItem value="21">21</MenuItem>
+                    <MenuItem value="22">22</MenuItem>
+                    <MenuItem value="23">23</MenuItem>
+                    <MenuItem value="24">24</MenuItem>
+                    <MenuItem value="25">25</MenuItem>
+                    <MenuItem value="26">26</MenuItem>
+                    <MenuItem value="27">27</MenuItem>
+                    <MenuItem value="28">28</MenuItem>
+                    <MenuItem value="29">29</MenuItem>
+                    <MenuItem value="30">30</MenuItem>
+                    <MenuItem value="31">31</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
 
-      <Grid item xs={4}>
-        <FormControl fullWidth>
-        <InputLabel id="Año">Año</InputLabel>
-        <Select
-          labelId="Año"
-          id="Año"
-          label="Año"
-          MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+              <Grid item xs={4}>
+                <FormControl fullWidth>
+                  <InputLabel id="Mes">Mes</InputLabel>
+                  <Select
+                    labelId="Mes"
+                    id="Mes"
+                    label="Mes"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
 
-        >
-        <MenuItem value="2023">2023</MenuItem>
-        <MenuItem value="2024">2024</MenuItem>
-        <MenuItem value="2025">2025</MenuItem>
-        <MenuItem value="2026">2026</MenuItem>
-        <MenuItem value="2027">2027</MenuItem>
-        <MenuItem value="2028">2028</MenuItem>
-        </Select>
-      </FormControl>
-      </Grid>
-      </Grid>
-      </Box> 
-      
-      
-      
-      
+                  >
+                    <MenuItem value="1">1</MenuItem>
+                    <MenuItem value="2">2</MenuItem>
+                    <MenuItem value="3">3</MenuItem>
+                    <MenuItem value="4">4</MenuItem>
+                    <MenuItem value="5">5</MenuItem>
+                    <MenuItem value="6">6</MenuItem>
+                    <MenuItem value="7">7</MenuItem>
+                    <MenuItem value="8">8</MenuItem>
+                    <MenuItem value="9">9</MenuItem>
+                    <MenuItem value="10">10</MenuItem>
+                    <MenuItem value="11">11</MenuItem>
+                    <MenuItem value="12">12</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
 
-        <Box mt={2} backgroundColor='white'>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                size="small"
-                variant="outlined"
-                label="Hora"
-                fullWidth
-                multiline
-                rows={1}
-              />
+              <Grid item xs={4}>
+                <FormControl fullWidth>
+                  <InputLabel id="Año">Año</InputLabel>
+                  <Select
+                    labelId="Año"
+                    id="Año"
+                    label="Año"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+
+                  >
+                    <MenuItem value="2023">2023</MenuItem>
+                    <MenuItem value="2024">2024</MenuItem>
+                    <MenuItem value="2025">2025</MenuItem>
+                    <MenuItem value="2026">2026</MenuItem>
+                    <MenuItem value="2027">2027</MenuItem>
+                    <MenuItem value="2028">2028</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
             </Grid>
-          </Grid>
-        </Box>
+          </Box>
 
 
-        <Box mt={2} backgroundColor='white'>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-              size="small"
-                variant="outlined"
-                label="Costo"
-                fullWidth
-                multiline
-                rows={1}
-              />
+
+
+
+
+
+          <Box mt={2} backgroundColor='white' >
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <FormControl fullWidth>
+                  <InputLabel id="Hora">Hora</InputLabel>
+                  <Select
+                    labelId="Hora"
+                    id="Hora"
+                    label="Hora"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+                  >
+
+                    <MenuItem value="18">18</MenuItem>
+                    <MenuItem value="19">19</MenuItem>
+                    <MenuItem value="20">20</MenuItem>
+                    <MenuItem value="21">21</MenuItem>
+                    <MenuItem value="22">22</MenuItem>
+                    <MenuItem value="23">23</MenuItem>
+                    <MenuItem value="00">00</MenuItem>
+                    <MenuItem value="01">01</MenuItem>
+                    <MenuItem value="02">02</MenuItem>
+                    <MenuItem value="03">03</MenuItem>
+                    <MenuItem value="04">04</MenuItem>
+                    <MenuItem value="05">05</MenuItem>
+                    <MenuItem value="06">06</MenuItem>
+                    <MenuItem value="07">07</MenuItem>
+                    <MenuItem value="08">08</MenuItem>
+                    <MenuItem value="09">09</MenuItem>
+                    <MenuItem value="10">10</MenuItem>
+                    <MenuItem value="11">11</MenuItem>
+                    <MenuItem value="12">12</MenuItem>
+                    <MenuItem value="13">13</MenuItem>
+                    <MenuItem value="14">14</MenuItem>
+                    <MenuItem value="15">15</MenuItem>
+                    <MenuItem value="16">16</MenuItem>
+                    <MenuItem value="17">17</MenuItem>
+
+
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={6}>
+                <FormControl fullWidth>
+                  <InputLabel id="Minutos">Minutos</InputLabel>
+                  <Select
+                    labelId="Minutos"
+                    id="Minutos"
+                    label="Minutos"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+
+                  >
+                    <MenuItem value="00">00</MenuItem>
+                    <MenuItem value="15">15</MenuItem>
+                    <MenuItem value="30">30</MenuItem>
+                    <MenuItem value="45">45</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+
+
             </Grid>
-          </Grid>
-        </Box>
+          </Box>
 
 
-        <Box mt={2} backgroundColor='white'>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-              size="small"
-                variant="outlined"
-                label="Género"
-                fullWidth
-                multiline
-                rows={1}
-              />
+
+
+
+
+
+          <Box mt={2} backgroundColor='white'>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField name="costo" label="Costo (USD)" type="number" size="small" fullWidth />
+              </Grid>
             </Grid>
-          </Grid>
-        </Box>
+          </Box>
 
 
 
-        <Box my={2} align="center" backgroundColor='white'>
+
+
+
+          <Box mt={2} backgroundColor='white'>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <InputLabel id="Género">Género  </InputLabel>
+                  <Select
+                    labelId="Género"
+                    id="Género"
+                    label="Género"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
+
+                  >
+                    <MenuItem value="Rock">Rock</MenuItem>
+                    <MenuItem value="Pop">Pop</MenuItem>
+                    <MenuItem value="Electrónica">Electrónica</MenuItem>
+                    <MenuItem value="Hip-Hop">Hip-Hop</MenuItem>
+                    <MenuItem value="Reggae">Reggae</MenuItem>
+                    <MenuItem value="Reggaeton">Reggaeton</MenuItem>
+                    <MenuItem value="Cumbia">Cumbia</MenuItem>
+                    <MenuItem value="Salsa">Salsa</MenuItem>
+                    <MenuItem value="Tango">Tango</MenuItem>
+                    <MenuItem value="Folklore">Folklore</MenuItem>
+                    <MenuItem value="Jazz">Jazz</MenuItem>
+                    <MenuItem value="Blues">Blues</MenuItem>
+                    <MenuItem value="Otro">Otro</MenuItem>
+                    
+                  </Select>
+                </FormControl>
+              </Grid>
+            </Grid>
+          </Box>
+
+
+
+          <Box my={2} align="center" backgroundColor='white'>
 
             <Button
-                variant="outlined"
-                color="primary"
-                startIcon={<Iconify icon="eva:cloud-upload-outline" />}
-              >
-                Subir foto
-              </Button>
-        </Box>
-        <Box my={2}>
-        <Divider />
-        </Box>
-        <Box backgroundColor='white'>
+              variant="outlined"
+              color="primary"
+              startIcon={<Iconify icon="eva:cloud-upload-outline" />}
+            >
+              Subir foto
+            </Button>
+          </Box>
+          <Box my={2}>
+            <Divider />
+          </Box>
+          <Box backgroundColor='white'>
             <Grid align="center">
-             <Button variant="contained" size="large"
-                // variant="contained"
+              <Button variant="contained" size="large"
+                onClick={handleBackendModificar}
                 color="primary"
                 startIcon={<Iconify icon="ic:baseline-plus" />}
               >
-                Publicar Servicio
+                Modificar
               </Button>
             </Grid>
-        </Box>
-    </Container>
+          </Box>
+        </Container>
       </Modal>
 
 
@@ -606,7 +1201,119 @@ const handleCloseModal= () => {
 
 
 
-      </>
-   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <Modal
+        open={openModal3}
+        onClose={handleCloseModal3}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Container maxWidth="sm" sx={{ mt:25, padding: '20px', maxHeight: '675px', backgroundColor: 'white', borderRadius: 5 }}>
+
+          <Box mt={1} mb={2} backgroundColor='white' align='center'>
+            <Typography variant="h4" gutterBottom>
+
+            <strong>¿Estás seguro que deseas eliminar el evento?</strong>
+            </Typography>
+          </Box>
+
+          <Box backgroundColor='white'>
+            <Grid align="center">
+              <Button variant="contained" size="large" color="primary" onClick={handleEliminarBack}>Eliminar</Button>
+              <Button sx= {{ml: 3}} variant="outlined" size="large" color="primary" onClick={handleEliminarNoBack}>Volver atrás</Button>
+            </Grid>
+          </Box>
+        </Container>
+      </Modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </>
+
   );
 }
