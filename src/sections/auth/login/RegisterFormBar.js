@@ -53,7 +53,17 @@ export default function RegisterFormBar() {
         }
       );
 
-      console.log("Registro exitoso:", response.data);
+      if (response.access) {
+        const token = response.data.access;
+    
+        document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
+    
+        console.log("Registro exitoso");}
+        else {
+          console.log("Error de registro:", response.data);
+        }
+
+      
     } catch (error) {
       console.error("Error de registro", error);
     }

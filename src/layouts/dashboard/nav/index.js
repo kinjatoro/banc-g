@@ -21,6 +21,8 @@ import navConfigLoggedBar from './configLoggedBar';
 
 import { useAuth } from '../../../Auth'
 import { useMyBar } from '../../../TengoBarAuth';
+import { useOnBoarding } from '../../../OnBoarding';
+
 
 // ----------------------------------------------------------------------
 
@@ -50,12 +52,14 @@ export default function Nav({ openNav, onCloseNav }) {
 
   const { auth, setAuth } = useAuth();
   const { myBar, setMyBar } = useMyBar();  
+  const {onBoar, setOnBoar} = useOnBoarding();
 
   const handleAuth = () => {
     onCloseNav();
     document.cookie = `jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     setAuth(false);
     setMyBar(false);
+    setOnBoar(true);
   };
 
   useEffect(() => {
@@ -162,6 +166,12 @@ export default function Nav({ openNav, onCloseNav }) {
           <p>Auth es verdadera.</p>
         ) : (
           <p>Auth es falsa.</p>
+        )}
+
+    {onBoar ? (
+          <p>onBoar es verdadera.</p>
+        ) : (
+          <p>onBoar es falsa.</p>
         )}
 
     {myBar ? (
