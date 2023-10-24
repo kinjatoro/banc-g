@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { filter } from 'lodash';
+import { filter, set } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
@@ -84,6 +84,8 @@ export default function UserPage() {
 
   const [EVENTOS, setEVENTOS] = useState([]);
 
+
+
   useEffect(() => {
     handleLogin();
   }, []);
@@ -146,7 +148,7 @@ export default function UserPage() {
 
 
 
-
+  
 
   const [open, setOpen] = useState(null);
 
@@ -166,7 +168,8 @@ export default function UserPage() {
 
   const handleOpenMenu = (event, id) => {
     setOpen(event.currentTarget);
-    setIdeliminar(id);
+    setidEvento(id);
+
   };
 
   const handleCloseMenu = () => {
@@ -239,9 +242,42 @@ export default function UserPage() {
     setOpenModal(true);
   };
 
+  const [eventoMod, setEventoMod] = useState('');
+
   const handleModificarServicio = () => { 
     setOpenModal2(true);
     setOpen(null);
+    
+    const aux = EVENTOS.find(item => item.id === idEvento);
+
+    const fecha = new Date(aux.datetime);
+
+    const aniox = fecha.getFullYear();   // Obtener el año (ej. 2028)
+    const mesx = fecha.getMonth() + 1; // Obtener el mes (0-11, por lo que sumamos 1 para obtener 1-12)
+    const diax = fecha.getDate();      // Obtener el día del mes (1-31)
+    const horax = fecha.getHours();    // Obtener la hora (0-23)
+    const minutosx = fecha.getMinutes(); // Obtener los minutos (0-59)
+
+    setEventoMod(aux);
+
+
+    setTitle(aux.title);
+    setDescription(aux.description);
+    setPrice(aux.price);
+
+    
+    setDia(diax)
+    setMes(mesx)
+    setAnio(aniox)
+    setHora(horax)
+    setMinutos(minutosx)
+    
+    setArtist(aux.artist);
+    setGenre(aux.genre);
+    setAdress(aux.address);
+    setNeighbourhood(aux.neighbourhood);
+    setCity(aux.city);
+
 
   };
 
@@ -261,7 +297,7 @@ export default function UserPage() {
       };
 
       const formData = new FormData();
-      formData.append('id', ideliminar);
+      formData.append('id', idEvento);
       console.log(config)
       
 
@@ -272,7 +308,7 @@ export default function UserPage() {
             Authorization: `Bearer ${cookieValue}`
           },
           data: {
-            id: ideliminar
+            id: idEvento
           }
         });
 
@@ -298,6 +334,19 @@ export default function UserPage() {
 
   const handleCloseModal2 = () => {
     setOpenModal2(false);
+    setTitle('');
+    setDescription('');
+    setPrice('');
+    setDia('')
+    setMes('')
+    setAnio('')
+    setHora('')
+    setMinutos('')
+    setArtist('');
+    setGenre('');
+    setAdress('');
+    setNeighbourhood('');
+    setCity('');
   };
 
   const handleCloseModal3 = () => {
@@ -328,7 +377,7 @@ export default function UserPage() {
 
 
 
-  const [ideliminar, setIdeliminar] = useState("");
+  const [idEvento, setidEvento] = useState("");
 
 
   const handleChange = (e) => {
@@ -338,7 +387,6 @@ export default function UserPage() {
       description: setDescription,
       price: setPrice,
       artist: setArtist,
-
       address: setAdress,
       neighbourhood: setNeighbourhood,
       city: setCity,
@@ -1072,6 +1120,9 @@ export default function UserPage() {
                   fullWidth
                   multiline
                   rows={1}
+                  value={title}
+                  name="title"
+                  onChange={handleChange}
                 />
               </Grid>
             </Grid>
@@ -1080,7 +1131,7 @@ export default function UserPage() {
           <Box mt={2} backgroundColor='white'>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <TextField name="artista" label="Artista"  size="small" fullWidth />
+                <TextField label="Artista"  size="small" fullWidth value={artist} name="artist" onChange={handleChange}/>
               </Grid>
             </Grid>
           </Box>
@@ -1094,7 +1145,8 @@ export default function UserPage() {
                 label="Descripción"
                 fullWidth
                 multiline
-                rows={2}
+                rows={3}
+                value={description} name="description" onChange={handleChange}
               />
             </Grid>
           </Box>
@@ -1104,11 +1156,13 @@ export default function UserPage() {
             <Grid container spacing={2}>
               <Grid item xs={4}>
                 <FormControl fullWidth>
-                  <InputLabel id="Día">Dia</InputLabel>
+                  <InputLabel id="dia">Dia</InputLabel>
                   <Select
-                    labelId="Día"
-                    id="Dia"
+                    labelId="dia"
+                    id="dia"
                     label="Día"
+                    onChange={handleDiaChange}
+                    value={dia}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
 
                   >
@@ -1149,11 +1203,13 @@ export default function UserPage() {
 
               <Grid item xs={4}>
                 <FormControl fullWidth>
-                  <InputLabel id="Mes">Mes</InputLabel>
+                  <InputLabel id="mes">Mes</InputLabel>
                   <Select
-                    labelId="Mes"
-                    id="Mes"
+                    labelId="mes"
+                    id="mes"
                     label="Mes"
+                    onChange={handleMesChange}
+                    value={mes}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
 
                   >
@@ -1175,11 +1231,13 @@ export default function UserPage() {
 
               <Grid item xs={4}>
                 <FormControl fullWidth>
-                  <InputLabel id="Año">Año</InputLabel>
+                  <InputLabel id="anio">Año</InputLabel>
                   <Select
-                    labelId="Año"
-                    id="Año"
+                    labelId="anio"
+                    id="anio"
                     label="Año"
+                    onChange={handleAnioChange}
+                    value={anio}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
 
                   >
@@ -1205,11 +1263,13 @@ export default function UserPage() {
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <FormControl fullWidth>
-                  <InputLabel id="Hora">Hora</InputLabel>
+                  <InputLabel id="hora">Hora</InputLabel>
                   <Select
-                    labelId="Hora"
-                    id="Hora"
+                    labelId="hora"
+                    id="hora"
                     label="Hora"
+                    onChange={handleHoraChange}
+                    value={hora}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
                   >
 
@@ -1245,13 +1305,14 @@ export default function UserPage() {
 
               <Grid item xs={6}>
                 <FormControl fullWidth>
-                  <InputLabel id="Minutos">Minutos</InputLabel>
+                  <InputLabel id="minutos">Minutos</InputLabel>
                   <Select
-                    labelId="Minutos"
-                    id="Minutos"
+                    labelId="minutos"
+                    id="minutos"
                     label="Minutos"
                     MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
-
+                    onChange={handleMinutosChange}
+                    value={minutos}
                   >
                     <MenuItem value="00">00</MenuItem>
                     <MenuItem value="15">15</MenuItem>
@@ -1274,11 +1335,10 @@ export default function UserPage() {
           <Box mt={2} backgroundColor='white'>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <TextField name="costo" label="Costo (USD)" type="number" size="small" fullWidth />
+                <TextField label="Costo (USD)" type="number" size="small" fullWidth value={price} name="price" onChange={handleChange} />
               </Grid>
             </Grid>
           </Box>
-
 
 
 
@@ -1288,18 +1348,20 @@ export default function UserPage() {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <FormControl fullWidth>
-                  <InputLabel id="Género">Género  </InputLabel>
+                  <InputLabel id="genre">Género  </InputLabel>
                   <Select
-                    labelId="Género"
-                    id="Género"
+                    labelId="genre"
+                    id="genre"
                     label="Género"
+                    value={genre}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
+                    onChange={handleGenreChange}
 
                   >
                     <MenuItem value="Rock">Rock</MenuItem>
                     <MenuItem value="Pop">Pop</MenuItem>
-                    <MenuItem value="Electrónica">Electrónica</MenuItem>
-                    <MenuItem value="Hip-Hop">Hip-Hop</MenuItem>
+                    <MenuItem value="Electronica">Electronica</MenuItem>
+                    <MenuItem value="HipHop">HipHop</MenuItem>
                     <MenuItem value="Reggae">Reggae</MenuItem>
                     <MenuItem value="Reggaeton">Reggaeton</MenuItem>
                     <MenuItem value="Cumbia">Cumbia</MenuItem>
@@ -1318,27 +1380,48 @@ export default function UserPage() {
 
 
 
-          <Box my={2} align="center" backgroundColor='white'>
+          <Box my={2} align="center" backgroundColor='white'sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
+          <label htmlFor="fileInput" >
+              <input
+              type="file"
+              accept="image/*" // Puedes especificar el tipo de archivo que esperas aquí
+              style={{ display: 'none' }}
+              onChange={handleFileChange}
+              id="fileInput"
+            />
+            
+              <Button
+                variant="outlined"
+                color="primary"
+                startIcon={<Iconify icon="eva:cloud-upload-outline" />}
+                component="span"
+                
+              >
+                Subir foto
+              </Button>
+            </label>
+            {file && (
+              <>
+          <p style={{ padding: 0, margin: 0 }}> {getFileDisplayName()}</p>
+          </>
+       
+      )}
 
-            <Button
-              variant="outlined"
-              color="primary"
-              startIcon={<Iconify icon="eva:cloud-upload-outline" />}
-            >
-              Subir foto
-            </Button>
+
           </Box>
           <Box my={2}>
             <Divider />
           </Box>
           <Box backgroundColor='white'>
             <Grid align="center">
-              <Button variant="contained" size="large"
-                onClick={handleBackendModificar}
+              <Button variant="contained" 
+              
                 color="primary"
                 startIcon={<Iconify icon="ic:baseline-plus" />}
+                onClick={handleBackendModificar}
+              
               >
-                Modificar
+                Guardar cambios
               </Button>
             </Grid>
           </Box>
