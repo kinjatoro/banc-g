@@ -157,6 +157,7 @@ const handleSubmit = useCallback(
       </CardActions>
     </Card></>
     <>
+
     <Card sx={{mb:4,mr:3, ml:6}}>
       <CardContent>
         <Box
@@ -220,8 +221,11 @@ const handleSubmit = useCallback(
           Cambiar foto del usuario
         </Button>
       </CardActions>
-    </Card></>
+    </Card>
+    
+    </>
               </Grid>
+              
               
               <Grid
                 xs={12}
