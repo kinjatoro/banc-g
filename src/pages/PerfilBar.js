@@ -30,119 +30,6 @@ const barrio = [
       "value": "Adrogué",
       "label": "ADROGUÉ"
     },
-    {
-      "value": "Almagro",
-      "label": "ALMAGRO"
-    },
-    {
-      "value": "Avellaneda",
-      "label": "AVELLANEDA"
-    },
-    {
-      "value": "Belgrano",
-      "label": "BELGRANO"
-    },
-    {
-      "value": "Berazategui",
-      "label": "BERAZATEGUI"
-    },
-    {
-      "value": "Boedo",
-      "label": "BOEDO"
-    },
-    {
-      "value": "Caballito",
-      "label": "CABALLITO"
-    },
-    {
-      "value": "Florencio Varela",
-      "label": "FLORENCIO VARELA"
-    },
-    {
-      "value": "Flores",
-      "label": "FLORES"
-    },
-    {
-      "value": "Haedo",
-      "label": "HAEDO"
-    },
-    {
-      "value": "Ituzaingó",
-      "label": "ITUZAINGÓ"
-    },
-    {
-      "value": "La Boca",
-      "label": "LA BOCA"
-    },
-    {
-      "value": "Lanús",
-      "label": "LANÚS"
-    },
-    {
-      "value": "Lomas de Zamora",
-      "label": "LOMAS DE ZAMORA"
-    },
-    {
-      "value": "Mataderos",
-      "label": "MATADEROS"
-    },
-    {
-      "value": "Monte Grande",
-      "label": "MONTE GRANDE"
-    },
-    {
-      "value": "Morón",
-      "label": "MORÓN"
-    },
-    {
-      "value": "Olivos",
-      "label": "OLIVOS"
-    },
-    {
-      "value": "Palermo",
-      "label": "PALERMO"
-    },
-    {
-      "value": "Quilmes",
-      "label": "QUILMES"
-    },
-    {
-      "value": "Recoleta",
-      "label": "RECOLETA"
-    },
-    {
-      "value": "San Cristóbal",
-      "label": "SAN CRISTÓBAL"
-    },
-    {
-      "value": "San Fernando",
-      "label": "SAN FERNANDO"
-    },
-    {
-      "value": "San Isidro",
-      "label": "SAN ISIDRO"
-    },
-    {
-      "value": "San Justo",
-      "label": "SAN JUSTO"
-    },
-    {
-      "value": "San Telmo",
-      "label": "SAN TELMO"
-    },
-    {
-      "value": "Tigre",
-      "label": "TIGRE"
-    },
-    {
-      "value": "Vicente López",
-      "label": "VICENTE LÓPEZ"
-    },
-    {
-      "value": "Villa Devoto",
-      "label": "VILLA DEVOTO"
-    }
-  
   
 ];
 
@@ -373,30 +260,20 @@ const handleSubmit = useCallback(
               </Grid>
               <Grid
                 xs={12}
-                md={6}
+                
               >
                 <TextField
                   fullWidth
-                  label="Tu nombre"
-                  name="tu nombre"
+                  label="Descripcion"
+                  name="Descripcion"
                   onChange={handleChange}
                   required
                   value={values.firstName}
+                  multiline
+                  rows={3}
                 />
               </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  label="Tu apellido"
-                  name="tu apellido"
-                  onChange={handleChange}
-                  required
-                  value={values.lastName}
-                />
-              </Grid>
+
               <Grid
                 xs={12}
                 md={6}
@@ -406,8 +283,9 @@ const handleSubmit = useCallback(
                   label="Email"
                   name="email"
                   onChange={handleChange}
-                  required
+                  
                   value={values.email}
+                  disabled
                 />
               </Grid>
               <Grid
@@ -446,19 +324,10 @@ const handleSubmit = useCallback(
                   name="barrio"
                   onChange={handleChange}
                   required
-                  select
-                  SelectProps={{ native: true }}
+
                   value={values.barrio}
-                >
-                  {barrio.map((option) => (
-                    <option
-                      key={option.value}
-                      value={option.value}
-                    >
-                      {option.label}
-                    </option>
-                  ))}
-                </TextField>
+                />
+                  
               </Grid>
               <Grid
                 xs={12}

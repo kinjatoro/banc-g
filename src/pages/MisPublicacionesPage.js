@@ -258,26 +258,36 @@ export default function UserPage() {
     const horax = fecha.getHours();    // Obtener la hora (0-23)
     const minutosx = fecha.getMinutes(); // Obtener los minutos (0-59)
 
+    if (minutosx === 0){
+      setMinutos("00")
+    } else {
+      setMinutos(String(minutosx))
+    }
+
     setEventoMod(aux);
 
 
     setTitle(aux.title);
     setDescription(aux.description);
-    setPrice(aux.price);
+    setPrice(String(aux.price));
 
     
-    setDia(diax)
-    setMes(mesx)
-    setAnio(aniox)
-    setHora(horax)
-    setMinutos(minutosx)
+    setDia(String(diax))
+    setMes(String(mesx))
+    setAnio(String(aniox))
+    setHora(String(horax))
+    
     
     setArtist(aux.artist);
-    setGenre(aux.genre);
+
+    const lowerCaseText = aux.genre.toLowerCase();
+    const capitalizedText = lowerCaseText.charAt(0).toUpperCase() + lowerCaseText.slice(1);
+    setGenre(capitalizedText);
+
     setAdress(aux.address);
     setNeighbourhood(aux.neighbourhood);
     setCity(aux.city);
-
+    
 
   };
 
@@ -484,8 +494,79 @@ export default function UserPage() {
    /* ------------------------------------------------BACKEND-------------------------------------*/
 
 
-  const handleBackendModificar = () => {
+  const handleBackendModificar = async () => {
     setOpenModal2(false);
+    console.log("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
+    
+    if (!validateFields2()) {
+      alert('Por favor, complete los campos obligatorios.');
+      return;
+    }
+    
+
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${cookieValue}`,
+        'Content-Type': 'multipart/form-data', // Importante para indicar que estás enviando un formulario con datos binarios (archivos)
+      },
+    };
+
+    const genreInUppercase = genre.toUpperCase();
+    const datetime = `${anio}-${mes}-${dia} ${hora}:${minutos}:00`;
+    
+    const formData = new FormData();
+    formData.append('id', idEvento);
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('price', price);
+    formData.append('datetime', datetime);
+    formData.append('artist', artist);
+    formData.append('genre', genreInUppercase);
+    formData.append('address', 'a');
+    formData.append('neighbourhood', 'a');
+    formData.append('city', 'a');
+
+    if (file!=null){
+       formData.append('banner', file); }
+
+
+    try {
+      await axios.put(
+        "https://music-lovers-production.up.railway.app/business/event/modify/",
+        formData,
+        config
+      );
+
+      console.log(88888);
+      window.location.reload();
+
+    } catch (error) {
+      console.error("Error de registro", error);
+      console.log('ERROr');
+      alert('Ocurrió un error inesperado. No se pudo completar la creación del evento.');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   };
@@ -516,9 +597,27 @@ export default function UserPage() {
       genre.trim() === '' ||
       file === null
     ) {
-      return false; // Al menos uno de los campos obligatorios está en blanco
+      return false; 
     }
-    return true; // Todos los campos obligatorios están completos
+    return true; 
+  };
+
+  const validateFields2 = () => {
+    if (
+      title.trim() === '' ||
+      description.trim() === '' ||
+      price.trim() === '' ||
+      dia.trim() === '' ||
+      mes.trim() === '' ||
+      anio.trim() === '' ||
+      hora.trim() === '' ||
+      minutos.trim() === '' ||
+      artist.trim() === '' ||
+      genre.trim() === ''
+    ) {
+      return false; 
+    }
+    return true; 
   };
 
   
@@ -966,7 +1065,7 @@ export default function UserPage() {
                     <MenuItem value="Rock">Rock</MenuItem>
                     <MenuItem value="Pop">Pop</MenuItem>
                     <MenuItem value="Electronica">Electronica</MenuItem>
-                    <MenuItem value="HipHop">HipHop</MenuItem>
+                    <MenuItem value="Hiphop">Hiphop</MenuItem>
                     <MenuItem value="Reggae">Reggae</MenuItem>
                     <MenuItem value="Reggaeton">Reggaeton</MenuItem>
                     <MenuItem value="Cumbia">Cumbia</MenuItem>
@@ -1361,7 +1460,7 @@ export default function UserPage() {
                     <MenuItem value="Rock">Rock</MenuItem>
                     <MenuItem value="Pop">Pop</MenuItem>
                     <MenuItem value="Electronica">Electronica</MenuItem>
-                    <MenuItem value="HipHop">HipHop</MenuItem>
+                    <MenuItem value="Hiphop">Hiphop</MenuItem>
                     <MenuItem value="Reggae">Reggae</MenuItem>
                     <MenuItem value="Reggaeton">Reggaeton</MenuItem>
                     <MenuItem value="Cumbia">Cumbia</MenuItem>

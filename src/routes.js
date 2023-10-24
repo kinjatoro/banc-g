@@ -45,11 +45,11 @@ export default function Router() {
         { path: 'crearservicio', element: <CrearServicioPage />,},
         { 
           path: 'perfilbar', 
-          element: auth ? <PerfilBar /> : <Navigate to="/dashboard/inicio" />,
+          element: <PerfilBar /> ,
         },
         { 
           path: 'perfilusuario', 
-          element: auth ? <PerfilUsuario /> : <Navigate to="/dashboard/inicio" />,
+          element:  <PerfilUsuario />  ,
         },
       ],
     },
