@@ -69,11 +69,11 @@ export default function RegisterPage() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h3" gutterBottom>
-            Experiencia
+            Registro
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 2 }}>
-                Por favor, completá los datos con tu información profesional.
+                Subí una foto y seleccioná tus gustos musicales.
             </Typography>
             <ExpForm />
           </StyledContent>

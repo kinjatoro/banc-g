@@ -5,61 +5,82 @@ import { useCallback, useState } from 'react';
 
 import { Helmet } from 'react-helmet-async';
 // @mui
-
+import jwtDecode from 'jwt-decode';
 import { useMyBar } from '../TengoBarAuth';
 
-
+import foto from '../logo.svg'
 import {AccountProfileDetailsBar, AccountProfileBar} from '../sections/auth/login';
+
+
 
 // ----------------------------------------------------------------------
 
-const user = {
-  avatar: '/assets/images/avatars/ID_20827.jpg',
-  city: 'Los Angeles',
-  country: 'USA',
-  jobTitle: 'Senior Developer',
-  name: 'Anika Visser',
-  timezone: 'GTM-7'
+
+
+const DATOS = {
+  name: 'El rincón del vago',
+  address: 'Santa Clara del Corazón 243',
+  neighbourhood: 'Palermo',
+  city: 'CABA',
+  phone: '4296-2007',
+  logo: '../logo.svg',
+  banner: '/assets/images/avatars/ID_20827.jpg',
+  description: 'esta es una descripcion'
 };
-const barrio = [
-    {
-      "value": "Capital Federal",
-      "label": "CAPITAL FEDERAL"
-    },
-    {
-      "value": "Adrogué",
-      "label": "ADROGUÉ"
-    },
-  
-];
+
+
 
 export default function PerfilBar() {
+
+function getJwtToken() {
+  const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+  return jwtCookie ? jwtCookie.split('=')[1] : null;
+}
+
+const jwtToken = getJwtToken();
+const decodedToken = jwtDecode(jwtToken);
+
 const { myBar, setMyBar } = useMyBar();
-const [values, setValues] = useState({
-  firstName: 'Anika',
-  lastName: 'Visser',
-  email: 'demo@devias.io',
-  phone: '',
-  state: 'los-angeles',
-  country: 'USA'
-});
 
-const handleChange = useCallback(
-  (event) => {
-    setValues((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value
-    }));
-  },
-  []
-);
+const [name, setName] = useState();
+const [username, setUsername] = useState(decodedToken.username);
+const [email, setEmail] = useState(decodedToken.email);
+const [address, setAddress] = useState();
+const [neighbourhood, setNeighbourhood] = useState();
+const [city, setCity] = useState();
+const [phone, setPhone] = useState();
+const [logo, setLogo] = useState(decodedToken.logo);
+const [banner, setBanner] = useState();
+const [description, setDescription] = useState();
 
-const handleSubmit = useCallback(
-  (event) => {
-    event.preventDefault();
-  },
-  []
-);
+
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  const fieldFunctions = {
+    name: setName,
+    description: setDescription,
+    phone: setPhone,
+    address: setAddress,
+    neighbourhood: setNeighbourhood,
+    city: setCity,
+  };
+
+  const updateFunction = fieldFunctions[name];
+  if (updateFunction) {
+    updateFunction(value);
+  }
+};
+
+const handleLogoChange = (e) => {
+  const selectedFile = e.target.files[0];
+  setLogo(selectedFile);
+};
+
+const handleBannerChange = (e) => {
+  const selectedFile = e.target.files[0];
+  setBanner(selectedFile);
+};
 
 
   
@@ -101,47 +122,36 @@ const handleSubmit = useCallback(
             flexDirection: 'column'
           }}
         >
-          {!myBar ? (
-                <><Avatar
-                src={user.avatar}
+        
+                <Avatar
+                src={`https://music-lovers-production.up.railway.app${decodedToken.logo}`}
                 sx={{
-                  height: 40,
+                  height: 57,
                   mb: 2,
-                  width: 40
+                  width: 57
                 }}
-              /></>
-                ) : (
-              <><Avatar
-              src={'/assets/images/avatars/polvorines.jpg'}
-              sx={{
-                height: 40,
-                mb: 2,
-                width: 40
-              }}
-            /></>
-             )}
+              />
+              
           
           <Typography
             gutterBottom
             variant="h5"
           >
-          {!myBar ? (
-                <>Los Polvorines</>
-                ) : (
-              <>Los Polvorines</>
-             )}
+          
+                Los Polvorines
+                
           </Typography>
           <Typography
             color="text.secondary"
             variant="body2"
           >
-            {user.city} {user.country}
+            {address}
           </Typography>
           <Typography
             color="text.secondary"
             variant="body2"
           >
-            {user.timezone}
+            {neighbourhood}
           </Typography>
         </Box>
       </CardContent>
@@ -152,7 +162,7 @@ const handleSubmit = useCallback(
           variant="text"
           color='secondary'
         >
-          Cambiar foto del Bar
+          Cambiar foto de perfil
         </Button>
       </CardActions>
     </Card></>
@@ -167,48 +177,7 @@ const handleSubmit = useCallback(
             flexDirection: 'column'
           }}
         >
-          {!myBar ? (
-                <><Avatar
-                src={user.avatar}
-                sx={{
-                  height: 40,
-                  mb: 1,
-                  width: 40
-                }}
-              /></>
-                ) : (
-              <><Avatar
-              src={'/assets/images/avatars/polvorines.jpg'}
-              sx={{
-                height: 40,
-                mb: 1,
-                width: 40
-              }}
-            /></>
-             )}
-          
-          <Typography
-            gutterBottom
-            variant="h5"
-          >
-          {!myBar ? (
-                <>Los Polvorines</>
-                ) : (
-              <>Los Polvorines</>
-             )}
-          </Typography>
-          <Typography
-            color="text.secondary"
-            variant="body2"
-          >
-            {user.city} {user.country}
-          </Typography>
-          <Typography
-            color="text.secondary"
-            variant="body2"
-          >
-            {user.timezone}
-          </Typography>
+          <img src={banner} alt="banner"/>
         </Box>
       </CardContent>
       <Divider />
@@ -218,7 +187,7 @@ const handleSubmit = useCallback(
           variant="text"
           color='secondary'
         >
-          Cambiar foto del usuario
+          Cambiar banner
         </Button>
       </CardActions>
     </Card>
@@ -233,14 +202,10 @@ const handleSubmit = useCallback(
                 lg={8}
               >
                 <>
-    <form
-      autoComplete="off"
-      noValidate
-      onSubmit={handleSubmit}
-    >
+ 
       <Card sx={{ml:3}}> 
         <CardHeader
-          title="Perfil"
+          title="Tus datos"
           sx={{py:2,ml:1}}
         />
         <CardContent sx={{ pt: 0, mx:2 }}>
@@ -256,10 +221,9 @@ const handleSubmit = useCallback(
                 <TextField
                   fullWidth
                   label="Nombre del Bar"
-                  name="nombre del Bar"
+                  name="name"
                   onChange={handleChange}
-                  required
-                  value={values.lastName}
+                  value={name}
                 />
               </Grid>
               <Grid
@@ -269,10 +233,10 @@ const handleSubmit = useCallback(
                 <TextField
                   fullWidth
                   label="Descripcion"
-                  name="Descripcion"
+                  name="description"
                   onChange={handleChange}
                   required
-                  value={values.firstName}
+                  value={description}
                   multiline
                   rows={3}
                 />
@@ -284,11 +248,27 @@ const handleSubmit = useCallback(
               >
                 <TextField
                   fullWidth
+                  label="username"
+                  name="username"
+                  onChange={handleChange}
+                  
+                  value={username}
+                  disabled
+                />
+              </Grid>
+
+
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
                   label="Email"
                   name="email"
                   onChange={handleChange}
                   
-                  value={values.email}
+                  value={email}
                   disabled
                 />
               </Grid>
@@ -299,10 +279,10 @@ const handleSubmit = useCallback(
                 <TextField
                   fullWidth
                   label="Número de teléfono"
-                  name="número de teléfono"
+                  name="phone"
                   onChange={handleChange}
                   type="number"
-                  value={values.phone}
+                  value={phone}
                 />
               </Grid>
               <Grid
@@ -312,10 +292,10 @@ const handleSubmit = useCallback(
                 <TextField
                   fullWidth
                   label="Ciudad"
-                  name="ciudad"
+                  name="city"
                   onChange={handleChange}
                   required
-                  value={values.country}
+                  value={city}
                 />
               </Grid>
               <Grid
@@ -325,11 +305,11 @@ const handleSubmit = useCallback(
                 <TextField
                   fullWidth
                   label="Barrio"
-                  name="barrio"
+                  name="neighbourhood"
                   onChange={handleChange}
                   required
 
-                  value={values.barrio}
+                  value={neighbourhood}
                 />
                   
               </Grid>
@@ -340,10 +320,10 @@ const handleSubmit = useCallback(
                 <TextField
                   fullWidth
                   label="Dirección"
-                  name="dirección"
+                  name="address"
                   onChange={handleChange}
                   required
-                  value={values.country}
+                  value={address}
                 />
               
               </Grid>
@@ -357,7 +337,7 @@ const handleSubmit = useCallback(
           </Button>
         </CardActions>
       </Card>
-    </form>
+  
     </>
                 {/* <AccountProfileDetailsBar /> */}
               </Grid>

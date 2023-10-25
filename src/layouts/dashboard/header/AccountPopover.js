@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
-
+import jwtDecode from 'jwt-decode';
 // mocks_
 import account from '../../../_mock/account';
 import accountBar from '../../../_mock/accountBar';
@@ -65,6 +65,17 @@ export default function AccountPopover() {
     navigate('/dashboard/perfilbar');
   };
 
+  function getJwtToken() {
+    const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+    return jwtCookie ? jwtCookie.split('=')[1] : null;
+  }
+  
+  const jwtToken = getJwtToken();
+  const decodedToken = jwtDecode(jwtToken);
+
+  const [logo, setLogo] = useState(decodedToken.logo);
+  const [username, setUsername] = useState(decodedToken.username);
+  const [email, setEmail] = useState(decodedToken.email);
 
 
   return (
@@ -87,7 +98,7 @@ export default function AccountPopover() {
         }}
       >
     
-        {auth ? ( myBar ? (<><Avatar src={accountBar.photoURL} alt="photoURL" /></>) : (<><Avatar src={account.photoURL} alt="photoURL" /></>)) : (<><Avatar src={accountNo.photoURL} alt="photoURL" /></>)}  
+        {auth ? ( myBar ? (<><Avatar src={`https://music-lovers-production.up.railway.app${decodedToken.logo}`} alt="photoURL" /></>) : (<><Avatar src={account.photoURL} alt="photoURL" /></>)) : (<><Avatar src={accountNo.photoURL} alt="photoURL" /></>)}  
       </IconButton>
 
       <Popover
@@ -111,11 +122,11 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-          {auth ? ( myBar ? (<>{accountBar.displayName} </>) : (<>{account.displayName}</>)) : (<>{accountNo.displayName} </>)}  
+          {auth ? ( myBar ? (<>{username} </>) : (<>{account.displayName}</>)) : (<>{accountNo.displayName} </>)}  
    
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {auth ? ( myBar ? (<>{accountBar.email} </>) : (<>{account.email}</>)) : (<></>)}
+            {auth ? ( myBar ? (<>{email} </>) : (<>{account.email}</>)) : (<></>)}
           </Typography>
         </Box>
 

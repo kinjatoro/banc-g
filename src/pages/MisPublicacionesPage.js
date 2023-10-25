@@ -357,6 +357,8 @@ export default function UserPage() {
     setAdress('');
     setNeighbourhood('');
     setCity('');
+    setBanner('');
+    setFile('');
   };
 
   const handleCloseModal3 = () => {
@@ -673,6 +675,7 @@ export default function UserPage() {
                         <TableCell align="left">{price}</TableCell>
 
                         <TableCell align="left">{genre}</TableCell>
+                        
 
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={(event) => handleOpenMenu(event, id)}>
@@ -1441,7 +1444,7 @@ export default function UserPage() {
 
 
 
-
+              
 
           <Box mt={2} backgroundColor='white'>
             <Grid container spacing={2}>
