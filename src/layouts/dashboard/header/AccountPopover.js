@@ -71,12 +71,16 @@ export default function AccountPopover() {
   }
   
   const jwtToken = getJwtToken();
-  const decodedToken = jwtDecode(jwtToken);
+  const decodedToken = jwtToken ? jwtDecode(jwtToken) : null;
+  
+  const [logo, setLogo] = useState(decodedToken ? decodedToken.logo : accountNo.photoURL);
+  const [username, setUsername] = useState(decodedToken ? decodedToken.username : accountNo.displayName);
+  const [email, setEmail] = useState(decodedToken ? decodedToken.email : accountNo.email);
+  
 
-  const [logo, setLogo] = useState(decodedToken.logo);
-  const [username, setUsername] = useState(decodedToken.username);
-  const [email, setEmail] = useState(decodedToken.email);
+  
 
+  
 
   return (
     <>
@@ -98,7 +102,7 @@ export default function AccountPopover() {
         }}
       >
     
-        {auth ? ( myBar ? (<><Avatar src={`https://music-lovers-production.up.railway.app${decodedToken.logo}`} alt="photoURL" /></>) : (<><Avatar src={account.photoURL} alt="photoURL" /></>)) : (<><Avatar src={accountNo.photoURL} alt="photoURL" /></>)}  
+        {auth ? ( myBar ? (<><Avatar src={logo} alt="photoURL" /></>) : (<><Avatar src={account.photoURL} alt="photoURL" /></>)) : (<><Avatar src={accountNo.photoURL} alt="photoURL" /></>)}  
       </IconButton>
 
       <Popover
