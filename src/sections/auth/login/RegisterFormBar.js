@@ -75,7 +75,7 @@ export default function RegisterFormBar() {
 
         <TextField
           name="username"
-          label="Nombre del bar"
+          label="Nombre de usuario"
           value={username}
           onChange={handleChange}
         />

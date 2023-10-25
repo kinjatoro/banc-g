@@ -17,7 +17,7 @@ import ComentariosPage from './pages/ComentariosPage';
 import IndividualBlog from './pages/IndividualBlog';
 import ExpPage from './pages/ExpPage';
 import RecoverPage from './pages/RecoverPage';
-import CrearServicioPage from './pages/CrearServicioPage';
+import OnBoardingBar from './pages/OnBoardingBar';
 import PerfilBar from './pages/PerfilBar';
 import PerfilUsuario from './pages/PerfilUsuario';
 import IndividualBar from './pages/IndividualBar';
@@ -42,7 +42,7 @@ export default function Router() {
         { path: 'individualblog/:idBlog', element: <IndividualBlog />,},
         { path: 'individualbar/:idBar', element: <IndividualBar />,},
         
-        { path: 'crearservicio', element: <CrearServicioPage />,},
+        
         { 
           path: 'perfilbar', 
           element: <PerfilBar /> ,
@@ -60,6 +60,7 @@ export default function Router() {
     {path: 'registerbar', element: <RegisterPageBar />,},
     {path: 'experiencia', element: <ExpPage />,},
     {path: 'recupero', element: <RecoverPage />,},
+    { path: 'onboardingbar', element: <OnBoardingBar />,},
  
     
     {

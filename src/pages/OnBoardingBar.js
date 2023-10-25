@@ -30,37 +30,50 @@ const StyledSection = styled('div')(({ theme }) => ({
 }));
 
 const StyledContent = styled('div')(({ theme }) => ({
-  maxWidth: 480,
+  maxWidth: 600,
   margin: 'auto',
-  minHeight: 'auto',
+  minHeight: '100vh',
   display: 'flex',
   justifyContent: 'center',
   flexDirection: 'column',
+  padding: theme.spacing(12, 0),
 }));
 
 // ----------------------------------------------------------------------
 
-export default function CrearServicioPage() {
+export default function OnBoardingPage() {
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
 
+  const handleClick = () => {
+    navigate('/login');
+  }
 
   return (
     <>
       <Helmet>
-        <title> Crear Servicio | For The Music Lovers </title>
+        <title> Experiencia | For The Music Lovers </title>
       </Helmet>
 
       <StyledRoot>
+        <Logo
+          sx={{
+            position: 'fixed',
+            top: { xs: 16, sm: 24, md: 40 },
+            left: { xs: 16, sm: 24, md: 40 },
+          }}
+        />
+
+        
 
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h3" gutterBottom>
-            Crear servicio
+            Registra tu bar. 
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 2 }}>
-                Por favor, completá los datos del nuevo servicio.
+                Hacenos saber más sobre tu local para poder llegar a más personas.
             </Typography>
             <OnBoardingBarForm />
           </StyledContent>

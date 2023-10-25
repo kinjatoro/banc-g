@@ -73,7 +73,6 @@ export default function AccountPopover() {
   const jwtToken = getJwtToken();
   const decodedToken = jwtToken ? jwtDecode(jwtToken) : null;
   
-  const [logo, setLogo] = useState(decodedToken ? decodedToken.logo : accountNo.photoURL);
   const [username, setUsername] = useState(decodedToken ? decodedToken.username : accountNo.displayName);
   const [email, setEmail] = useState(decodedToken ? decodedToken.email : accountNo.email);
   
@@ -102,7 +101,7 @@ export default function AccountPopover() {
         }}
       >
     
-        {auth ? ( myBar ? (<><Avatar src={logo} alt="photoURL" /></>) : (<><Avatar src={account.photoURL} alt="photoURL" /></>)) : (<><Avatar src={accountNo.photoURL} alt="photoURL" /></>)}  
+        {auth ? ( myBar ? (<><Avatar src={accountBar.photoURL} alt="photoURL" /></>) : (<><Avatar src={account.photoURL} alt="photoURL" /></>)) : (<><Avatar src={accountNo.photoURL} alt="photoURL" /></>)}  
       </IconButton>
 
       <Popover
