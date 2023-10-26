@@ -193,7 +193,14 @@ const handleBannerChange = (e) => {
             flexDirection: 'column'
           }}
         >
-          <img src={banner ? URL.createObjectURL(banner) : foto} alt="banner"/>
+          <img src={banner ? URL.createObjectURL(banner) : foto} alt="banner" style={{ 
+  width: "200px",
+  height: "200px", /* Alto deseado */
+  objectFit: "cover", /* Recorta la imagen para que llene el contenedor */
+  objectPosition: "center", /* Mantiene el centro de la imagen visible */
+  borderRadius: "10%",
+}
+ }/>
         </Box>
       </CardContent>
       <Divider />
