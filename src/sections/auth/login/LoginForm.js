@@ -43,7 +43,25 @@ export default function LoginForm() {
     setMyBar(true);
   }
 
+  const validateFields = () => {
+    if (
+      email.trim() === '' ||
+      password.trim() === ''
+
+    ) {
+      return false; 
+    }
+    return true; 
+  };
+
   const handleLogin = async () => {
+
+    
+    if (!validateFields()) {
+      alert('Por favor, complete los campos obligatorios.');
+      return;
+    }
+
     try {
       const response = await axios.post('https://music-lovers-production.up.railway.app/business/login/', {
         email,
@@ -54,21 +72,20 @@ export default function LoginForm() {
       // Crea el token
       const token = response.data.access;
 
-      console.log(token);
+      if (token){
+        document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
+        setAuth(true);
+        navigate('/dashboard');
+      } else {
+        alert("Por favor, verifica los datos ingresados")
+      }
 
-      // Lo almacena en una cookie
-      document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
-
-      // Reinicia los valores de mail y contraseña
-      setEmail('');
-      setPassword('');
-      
     } catch (error) {
-      console.error('Error de inicio de sesión', error);
+      
+      alert("Por favor, verifica los datos ingresados")
     }
 
-    setAuth(true);
-    navigate('/dashboard');
+    
 
   };
 
