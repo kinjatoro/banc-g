@@ -52,7 +52,7 @@ export default function RegisterPageBar() {
   return (
     <>
       <Helmet>
-        <title> Registro | For The Music Lovers </title>
+        <title> Registro Bar | For The Music Lovers </title>
       </Helmet>
 
       <StyledRoot>

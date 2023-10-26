@@ -52,7 +52,7 @@ export default function OnBoardingPage() {
   return (
     <>
       <Helmet>
-        <title> Experiencia | For The Music Lovers </title>
+        <title> Registro Bar | For The Music Lovers </title>
       </Helmet>
 
       <StyledRoot>

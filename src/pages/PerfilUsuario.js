@@ -58,7 +58,7 @@ const handleLogoChange = (e) => {
     <>
 
       <Helmet>
-        <title> Eventos | For The Music Lovers </title>
+        <title> Perfil Usuario | For The Music Lovers </title>
       </Helmet>
 
       <Container>

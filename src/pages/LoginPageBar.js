@@ -9,7 +9,7 @@ import useResponsive from '../hooks/useResponsive';
 import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
-import { LoginForm } from '../sections/auth/login';
+import { LoginFormBar } from '../sections/auth/login';
 
 
 
@@ -54,7 +54,7 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title> Login | For The Music Lovers </title>
+        <title> Login Bar | For The Music Lovers </title>
       </Helmet>
 
       <StyledRoot>
@@ -78,7 +78,7 @@ export default function LoginPage() {
               <Link variant="subtitle2" onClick={handleClick} sx={{ cursor: 'pointer' }}>Registrate</Link>
             </Typography>
 
-            <LoginForm />
+            <LoginFormBar />
 
 
 

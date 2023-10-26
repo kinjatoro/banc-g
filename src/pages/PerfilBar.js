@@ -90,7 +90,7 @@ const handleBannerChange = (e) => {
     <>
 
       <Helmet>
-        <title> Eventos | For The Music Lovers </title>
+        <title> Perfil Bar | For The Music Lovers </title>
       </Helmet>
 
       <Container>

@@ -25,7 +25,7 @@ export default function Page404() {
   return (
     <>
       <Helmet>
-        <title> 404 Page Not Found | For The Music Lovers </title>
+        <title> 404 Error | For The Music Lovers </title>
       </Helmet>
 
       <Container>
