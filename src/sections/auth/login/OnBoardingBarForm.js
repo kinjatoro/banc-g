@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 // @mui
@@ -31,15 +32,12 @@ export default function OnBoardingBarForm() {
   const [showPassword, setShowPassword] = useState(false);
   const { auth, setAuth } = useAuth();
 
-  const handleClick = () => {
-    navigate('/dashboard/mispublicaciones', { replace: true });
-    setAuth(true);
-  };
+
+
+ 
 
 
   const [name, setName] = useState();
-  const [username, setUsername] = useState();
-  const [email, setEmail] = useState();
   const [address, setAddress] = useState();
   const [neighbourhood, setNeighbourhood] = useState();
   const [city, setCity] = useState();
@@ -48,7 +46,89 @@ export default function OnBoardingBarForm() {
   const [banner, setBanner] = useState();
   const [description, setDescription] = useState();
   
+  const validateFields = () => {
+    if (
+      name.trim() === '' ||
+      description.trim() === '' ||
+      neighbourhood.trim() === '' ||
+      address.trim() === '' ||
+      city.trim() === '' ||
+      phone.trim() === '' ||
+      logo === null || 
+      banner === null
+    ) {
+      return false; 
+    }
+    return true; 
+  };
   
+  function getJwtToken() {
+    const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+    console.log(3);
+    return jwtCookie ? jwtCookie.split('=')[1] : null;
+  }
+
+  const cookieValue = getJwtToken();
+
+  const handleRegisterBack = async () => {
+
+
+    if (!validateFields()) {
+      alert('Por favor, completá los campos obligatorios.');
+      return;
+    }
+
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${cookieValue}`,
+        'Content-Type': 'multipart/form-data', // Importante para indicar que estás enviando un formulario con datos binarios (archivos)
+      },
+    };
+
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('address', address);
+    formData.append('neighbourhood', neighbourhood);
+    formData.append('city', city);
+    formData.append('phone', phone);
+    formData.append('logo', logo);
+    formData.append('banner', banner); 
+    formData.append('description', description);
+
+    try {
+      const response = await axios.post(
+        "https://music-lovers-production.up.railway.app/business/create/",
+        formData,
+        config
+      );
+      const token = response.data.access;
+
+      if (token){
+        document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
+    
+        console.log("Registro exitoso");
+
+        navigate('/dashboard/mispublicaciones', { replace: true });
+        setAuth(true);
+
+      } else {
+        alert('Por favor, verifica los campos ingresados.');
+      }
+
+      
+
+    } catch (error) {
+      console.error("Error de registro", error);
+      console.log('ERROr');
+      alert('Ocurrió un error inesperado. No se pudo completar la creación del evento.');
+    }
+
+
+
+
+
+
+  };
   
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -67,8 +147,8 @@ export default function OnBoardingBarForm() {
     }
   };
   
-  const handleLogoChange = (e) => {
-    const selectedFile = e.target.files[0];
+  const handleLogoChange = (event) => {
+    const selectedFile = event.target.files[0];
     setLogo(selectedFile);
   };
   
@@ -173,7 +253,7 @@ export default function OnBoardingBarForm() {
           }}
         >
           <Avatar
-              src={'/assets/images/avatars/polvorines.jpg'}
+              src={logo ? URL.createObjectURL(logo) : '/assets/images/avatars/polvorines.jpg'}
               sx={{
                 height: 40,
                 mb: 1,
@@ -183,28 +263,35 @@ export default function OnBoardingBarForm() {
             />
            
           
-          <Typography
-            gutterBottom
-            variant="h5"
-          >
-          
-                Los Polvorines
-          
-     
+          <Typography gutterBottom variant="h5">
+              {name}
+          </Typography>
+
+          <Typography gutterBottom variant="body2">
+                {address}
           </Typography>
 
         </Box>
       </CardContent>
       <Divider />
-      <CardActions>
+      
+      <label htmlFor="fileInput" >
+              <input
+              type="file"
+              accept="image/*" // Puedes especificar el tipo de archivo que esperas aquí
+              style={{ display: 'none' }}
+              onChange={handleLogoChange}
+              id="fileInput"
+            />
         <Button
           fullWidth
           variant="text"
           color='secondary'
+          component="span"
         >
           Subir foto del bar
-        </Button>
-      </CardActions>
+        </Button></label>
+      
     </Card>
 
 
@@ -239,7 +326,7 @@ export default function OnBoardingBarForm() {
           }}
         >
    
-              <img src={'/assets/images/avatars/polvorines.jpg'} alt='sad' style={{ 
+              <img src={banner ? URL.createObjectURL(banner) : '/assets/images/avatars/polvorines.jpg'} alt='sad' style={{ 
   width: "200px",
   height: "200px", /* Alto deseado */
   objectFit: "cover", /* Recorta la imagen para que llene el contenedor */
@@ -256,15 +343,22 @@ export default function OnBoardingBarForm() {
         </Box>
       </CardContent>
       <Divider />
-      <CardActions>
+      <label htmlFor="fileInput2" >
+              <input
+              type="file"
+              accept="image/*" // Puedes especificar el tipo de archivo que esperas aquí
+              style={{ display: 'none' }}
+              onChange={handleBannerChange}
+              id="fileInput2"
+            />
         <Button
           fullWidth
           variant="text"
           color='secondary'
+          component="span"
         >
-          Subir Banner
-        </Button>
-      </CardActions>
+          Subir banner
+        </Button></label>
     </Card>
 
     
@@ -276,7 +370,7 @@ export default function OnBoardingBarForm() {
 
 
 
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick} sx={{mt:3}}>
+      <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleRegisterBack} sx={{mt:3}}>
         Completar registro
       </LoadingButton>
     </>

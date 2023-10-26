@@ -22,13 +22,24 @@ export default function RegisterFormBar() {
   };
 
   const handleClick2 = () => {
-    navigate('/experiencia', { replace: true });
+    
     setAuth(true);
   };
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+
+  const validateFields = () => {
+    if (
+      email.trim() === '' ||
+      password.trim() === '' ||
+      username.trim() === '' 
+    ) {
+      return false; 
+    }
+    return true; 
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,7 +53,15 @@ export default function RegisterFormBar() {
   };
 
   const handleSubmit = async () => {
-    console.log("Datos ingresados: Email:", email, "Contraseña:", password);
+
+    if (!validateFields()) {
+      alert('Por favor, completá los campos obligatorios.');
+      return;
+    }
+
+    console.log("1")
+
+   
     try {
       const response = await axios.post(
         "https://music-lovers-production.up.railway.app/business/register/",
@@ -53,19 +72,27 @@ export default function RegisterFormBar() {
         }
       );
 
-      if (response.access) {
-        const token = response.data.access;
-    
+
+      
+      const token = response.data.access;
+
+      if (token){
         document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
     
-        console.log("Registro exitoso");}
-        else {
-          console.log("Error de registro:", response.data);
-        }
+        console.log("Registro exitoso");
+
+        navigate('/onboardingbar', { replace: true });
+
+      } else {
+        alert('Por favor, verifica los campos ingresados.');
+      }
+    
+      
 
       
     } catch (error) {
-      console.error("Error de registro", error);
+      alert('Ocurrió un error inesperado. No se pudo completar el registro.');
+
     }
   };
 
@@ -115,12 +142,12 @@ export default function RegisterFormBar() {
         size="large"
         type="submit"
         variant="contained"
-        onClick={handleClick2}
+        onClick={handleSubmit}
         sx={{ mt: 3 }}
       >
         Continuar
       </LoadingButton>
-      <Button onClick={handleSubmit}>Registrar</Button>
+      
     </>
   );
 }
