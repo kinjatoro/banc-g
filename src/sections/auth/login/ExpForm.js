@@ -23,7 +23,7 @@ export default function RegisterForm() {
   const { auth, setAuth } = useAuth();
 
   const handleClick = () => {
-    navigate('/dashboard/mispublicaciones', { replace: true });
+    navigate('/dashboard/blog', { replace: true });
     setAuth(true);
   };
 
@@ -66,12 +66,7 @@ export default function RegisterForm() {
           >
             HOLA
           </Typography>
-          <Typography
-            color="text.secondary"
-            variant="body2"
-          >
-            HOLA2
-          </Typography>
+
         </Box>
       </CardContent>
       <Divider />

@@ -101,7 +101,6 @@ export default function LoginForm() {
     // decodifica el token (si lo encuentra)
     if (jwtToken) {
       const decodedToken = jwtDecode(jwtToken);
-      console.log(decodedToken);
     } else {
       console.error('No se encontró un token JWT en la cookie');
     }

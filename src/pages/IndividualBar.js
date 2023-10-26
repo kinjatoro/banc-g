@@ -42,8 +42,6 @@ export default function BarPage() {
   const filteredBlogs = BLOGS.filter((card) => 
   card.author.name === post.title);
 
-
-  console.log('filteredBlogs:', filteredBlogs);
   return (
     
   

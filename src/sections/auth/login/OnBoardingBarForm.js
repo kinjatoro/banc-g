@@ -37,14 +37,14 @@ export default function OnBoardingBarForm() {
  
 
 
-  const [name, setName] = useState();
-  const [address, setAddress] = useState();
-  const [neighbourhood, setNeighbourhood] = useState();
-  const [city, setCity] = useState();
-  const [phone, setPhone] = useState();
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [neighbourhood, setNeighbourhood] = useState('');
+  const [city, setCity] = useState('');
+  const [phone, setPhone] = useState('');
   const [logo, setLogo] = useState();
   const [banner, setBanner] = useState();
-  const [description, setDescription] = useState();
+  const [description, setDescription] = useState('');
   
   const validateFields = () => {
     if (
@@ -64,7 +64,6 @@ export default function OnBoardingBarForm() {
   
   function getJwtToken() {
     const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
-    console.log(3);
     return jwtCookie ? jwtCookie.split('=')[1] : null;
   }
 
@@ -105,8 +104,6 @@ export default function OnBoardingBarForm() {
 
       if (token){
         document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
-    
-        console.log("Registro exitoso");
 
         navigate('/dashboard/mispublicaciones', { replace: true });
         setAuth(true);
@@ -119,7 +116,6 @@ export default function OnBoardingBarForm() {
 
     } catch (error) {
       console.error("Error de registro", error);
-      console.log('ERROr');
       alert('Ocurrió un error inesperado. No se pudo completar la creación del evento.');
     }
 

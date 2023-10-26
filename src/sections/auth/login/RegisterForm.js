@@ -42,7 +42,6 @@ export default function RegisterForm() {
   };
 
   const handleSubmit = async () => {
-    console.log("Datos ingresados: Email:", email, "Contraseña:", password);
     try {
       const response = await axios.post(
         "https://music-lovers-production.up.railway.app/business/register/",
@@ -53,7 +52,7 @@ export default function RegisterForm() {
         }
       );
 
-      console.log("Registro exitoso:", response.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Error de registro", error);
     }

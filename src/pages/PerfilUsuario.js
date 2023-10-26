@@ -1,56 +1,55 @@
-import {Avatar,Box, Button, Card, CardActions, CardHeader, CardContent, Container, Divider, Stack, TextField, Typography, Unstable_Grid2 as Grid} from '@mui/material';
+import {Avatar,Box, Button, Card, MenuItem,FormControl,InputLabel,Select, CardActions, CardHeader, CardContent, Container, Divider, Stack, TextField, Typography, Unstable_Grid2 as Grid} from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import { useCallback, useState } from 'react';
 
 import { Helmet } from 'react-helmet-async';
 // @mui
-
+import jwtDecode from 'jwt-decode';
 import { useMyBar } from '../TengoBarAuth';
 
-
+import foto from '../logo.svg'
 import {AccountProfileDetailsBar, AccountProfileBar} from '../sections/auth/login';
+
+
 
 // ----------------------------------------------------------------------
 
-const user = {
-  avatar: '/assets/images/avatars/ID_20827.jpg',
-  city: 'Los Angeles',
-  country: 'USA',
-  jobTitle: 'Senior Developer',
-  name: 'Anika Visser',
-  timezone: 'GTM-7'
+
+
+const DATOS = {
+  name: 'El rincón del vago',
+  address: 'Santa Clara del Corazón 243',
+  neighbourhood: 'Palermo',
+  city: 'CABA',
+  phone: '4296-2007',
+  logo: '../logo.svg',
+  banner: '/assets/images/avatars/ID_20827.jpg',
+  description: 'esta es una descripcion'
 };
 
 
-export default function PerfilBar() {
+
+export default function PerfilUsuario() {
+
+function getJwtToken() {
+  const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+  return jwtCookie ? jwtCookie.split('=')[1] : null;
+}
+
+const jwtToken = getJwtToken();
+const decodedToken = jwtDecode(jwtToken);
+
 const { myBar, setMyBar } = useMyBar();
-const [values, setValues] = useState({
-  firstName: 'Anika',
-  lastName: 'Visser',
-  email: 'demo@devias.io',
-  phone: '',
-  state: 'los-angeles',
-  country: 'USA'
-});
 
-const handleChange = useCallback(
-  (event) => {
-    setValues((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value
-    }));
-  },
-  []
-);
+const [username, setUsername] = useState(decodedToken.username);
+const [email, setEmail] = useState(decodedToken.email);
+const [logo, setLogo] = useState();
 
-const handleSubmit = useCallback(
-  (event) => {
-    event.preventDefault();
-  },
-  []
-);
-
+const handleLogoChange = (e) => {
+  const selectedFile = e.target.files[0];
+  setLogo(selectedFile);
+};
 
   
   return (
@@ -65,7 +64,7 @@ const handleSubmit = useCallback(
       <Container>
         <Stack spacing={3}>
           <div>
-            <Typography variant="h3" sx={{mb:2, ml:3}}>
+            <Typography variant="h3" sx={{mb:2, ml:6}}>
               Cuenta
             </Typography>
           </div>
@@ -82,8 +81,8 @@ const handleSubmit = useCallback(
                 
               >
                 <>
-    <Card sx={{mb:4,mr:3, ml:6}}>
-      <CardContent>
+    <Card sx={{mb:1,mr:3, ml:6}}>
+      <CardContent sx={{mb:-2}}>
         <Box
           sx={{
             alignItems: 'center',
@@ -91,69 +90,73 @@ const handleSubmit = useCallback(
             flexDirection: 'column'
           }}
         >
-          {!myBar ? (
-                <><Avatar
-                src={user.avatar}
+        
+                <Avatar
+                src={logo ? URL.createObjectURL(logo) : foto}
                 sx={{
-                  height: 40,
+                  height: 57,
                   mb: 2,
-                  width: 40
+                  width: 57
                 }}
-              /></>
-                ) : (
-              <><Avatar
-              src={'/assets/images/avatars/polvorines.jpg'}
-              sx={{
-                height: 40,
-                mb: 2,
-                width: 40
-              }}
-            /></>
-             )}
+              />
+              
           
           <Typography
             gutterBottom
             variant="h5"
           >
-          {!myBar ? (
-                <>Los Polvorines</>
-                ) : (
-              <>Los Polvorines</>
-             )}
+          
+                {username}
+                
           </Typography>
-          <Typography
-            color="text.secondary"
-            variant="body2"
-          >
-            {user.city} {user.country}
-          </Typography>
-          <Typography
-            color="text.secondary"
-            variant="body2"
-          >
-            {user.timezone}
-          </Typography>
+
         </Box>
       </CardContent>
       <Divider />
-      <CardActions>
+      <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
+
+                
+
+      <label htmlFor="fileInput" >
+              <input
+              type="file"
+              accept="image/*" // Puedes especificar el tipo de archivo que esperas aquí
+              style={{ display: 'none' }}
+              onChange={handleLogoChange}
+              id="fileInput"
+            />
         <Button
           fullWidth
           variant="text"
           color='secondary'
+          component="span"
         >
           Cambiar foto de perfil
-        </Button>
+        </Button></label>
+
+
+
+
       </CardActions>
     </Card></>
-    <form
-      autoComplete="off"
-      noValidate
-      onSubmit={handleSubmit}
-    >
+    <>
+
+    
+    
+    </>
+              </Grid>
+              
+              
+              <Grid
+                xs={12}
+                 md={6}
+                lg={8}
+              >
+                <>
+ 
       <Card sx={{ml:3}}> 
         <CardHeader
-          title="Perfil"
+          title="Tus datos"
           sx={{py:2,ml:1}}
         />
         <CardContent sx={{ pt: 0, mx:2 }}>
@@ -162,32 +165,24 @@ const handleSubmit = useCallback(
               container
               spacing={3}
             >
+            
+
               <Grid
                 xs={12}
                 md={6}
               >
                 <TextField
                   fullWidth
-                  label="Tu nombre"
-                  name="tu nombre"
-                  onChange={handleChange}
-                  required
-                  value={values.firstName}
+                  label="Nombre de usuario"
+                  name="username"
+                  
+                  
+                  value={username}
+                  disabled
                 />
               </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  label="Tu apellido"
-                  name="tu apellido"
-                  onChange={handleChange}
-                  required
-                  value={values.lastName}
-                />
-              </Grid>
+
+
               <Grid
                 xs={12}
                 md={6}
@@ -196,52 +191,111 @@ const handleSubmit = useCallback(
                   fullWidth
                   label="Email"
                   name="email"
-                  onChange={handleChange}
-                  required
-                  value={values.email}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  label="Contraseña actual"
-                  name="contraseña actual"
-                  onChange={handleChange}
-                  required
-                  value={values.country}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  label="Nueva contraseña"
-                  name="nueva contraseña"
-                  onChange={handleChange}
-                  required
                   
+                  
+                  value={email}
+                  disabled
                 />
+              </Grid>
+
+
+              <Grid
+                xs={12}
+                md={6}
+              >
+              <FormControl fullWidth>
+                  <InputLabel id="genre">Género 1</InputLabel>
+                  <Select
+                    labelId="genre"
+                    id="genre"
+                    label="Género 1"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
+
+                  >
+                    <MenuItem value="Rock">Rock</MenuItem>
+                    <MenuItem value="Pop">Pop</MenuItem>
+                    <MenuItem value="Electronica">Electronica</MenuItem>
+                    <MenuItem value="Hiphop">Hiphop</MenuItem>
+                    <MenuItem value="Reggae">Reggae</MenuItem>
+                    <MenuItem value="Reggaeton">Reggaeton</MenuItem>
+                    <MenuItem value="Cumbia">Cumbia</MenuItem>
+                    <MenuItem value="Salsa">Salsa</MenuItem>
+                    <MenuItem value="Tango">Tango</MenuItem>
+                    <MenuItem value="Folklore">Folklore</MenuItem>
+                    <MenuItem value="Jazz">Jazz</MenuItem>
+                    <MenuItem value="Blues">Blues</MenuItem>
+                    <MenuItem value="Otro">Otro</MenuItem>
+                    
+                  </Select>
+                </FormControl>
               
               </Grid>
+
               <Grid
                 xs={12}
                 md={6}
               >
-                <TextField
-                  fullWidth
-                  label="Repetí la nueva contraseña"
-                  name="repetí la nueva contraseña"
-                  onChange={handleChange}
-                  required
-                  
-                />
+              <FormControl fullWidth>
+                  <InputLabel id="genre">Género 2</InputLabel>
+                  <Select
+                    labelId="genre"
+                    id="genre"
+                    label="Género 2"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
+
+                  >
+                    <MenuItem value="Rock">Rock</MenuItem>
+                    <MenuItem value="Pop">Pop</MenuItem>
+                    <MenuItem value="Electronica">Electronica</MenuItem>
+                    <MenuItem value="Hiphop">Hiphop</MenuItem>
+                    <MenuItem value="Reggae">Reggae</MenuItem>
+                    <MenuItem value="Reggaeton">Reggaeton</MenuItem>
+                    <MenuItem value="Cumbia">Cumbia</MenuItem>
+                    <MenuItem value="Salsa">Salsa</MenuItem>
+                    <MenuItem value="Tango">Tango</MenuItem>
+                    <MenuItem value="Folklore">Folklore</MenuItem>
+                    <MenuItem value="Jazz">Jazz</MenuItem>
+                    <MenuItem value="Blues">Blues</MenuItem>
+                    <MenuItem value="Otro">Otro</MenuItem>
+                    
+                  </Select>
+                </FormControl>
               
               </Grid>
+
+              <Grid
+                xs={12}
+                md={6}
+              >
+              <FormControl fullWidth>
+                  <InputLabel id="genre">Género 3</InputLabel>
+                  <Select
+                    labelId="genre"
+                    id="genre"
+                    label="Género 3"
+                    MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
+
+                  >
+                    <MenuItem value="Rock">Rock</MenuItem>
+                    <MenuItem value="Pop">Pop</MenuItem>
+                    <MenuItem value="Electronica">Electronica</MenuItem>
+                    <MenuItem value="Hiphop">Hiphop</MenuItem>
+                    <MenuItem value="Reggae">Reggae</MenuItem>
+                    <MenuItem value="Reggaeton">Reggaeton</MenuItem>
+                    <MenuItem value="Cumbia">Cumbia</MenuItem>
+                    <MenuItem value="Salsa">Salsa</MenuItem>
+                    <MenuItem value="Tango">Tango</MenuItem>
+                    <MenuItem value="Folklore">Folklore</MenuItem>
+                    <MenuItem value="Jazz">Jazz</MenuItem>
+                    <MenuItem value="Blues">Blues</MenuItem>
+                    <MenuItem value="Otro">Otro</MenuItem>
+                    
+                  </Select>
+                </FormControl>
+              
+              </Grid>
+          
+              
             </Grid>
           </Box>
         </CardContent>
@@ -251,7 +305,8 @@ const handleSubmit = useCallback(
           </Button>
         </CardActions>
       </Card>
-    </form>
+  
+    </>
                 {/* <AccountProfileDetailsBar /> */}
               </Grid>
             </Grid>

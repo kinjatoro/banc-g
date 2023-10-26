@@ -13,11 +13,8 @@ export function BarProvider({ children }) {
     // decodifica el token (si lo encuentra)
     if (jwtToken) {
       const decodedToken = jwtDecode(jwtToken);
-      console.log("hola");
-      console.log(decodedToken);
       if (decodedToken.business_id != null){
         setMyBar(true);
-        console.log("hola4");
       }
 
     }

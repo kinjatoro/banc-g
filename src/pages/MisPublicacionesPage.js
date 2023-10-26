@@ -79,7 +79,6 @@ function applySortFilter(array, comparator, query) {
 
 export default function UserPage() {
 
-  console.log(1);
   /* -------------------------COOKIES ---------------------------------*/
 
   const [EVENTOS, setEVENTOS] = useState([]);
@@ -91,34 +90,26 @@ export default function UserPage() {
   }, []);
 
 
-  console.log(2);
 
   function getJwtToken() {
     const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
-    console.log(3);
     return jwtCookie ? jwtCookie.split('=')[1] : null;
   }
 
-  console.log(4);
   const cookieValue = getJwtToken();
-  console.log(5);
 
   const handleLogin = async () => {
 
-    console.log(6);
     const config = {
       headers: {
         'Authorization': `Bearer ${cookieValue}`,
       },
-    }
-    console.log(7);
-    ;
+    };
 
 
     try {
       const response = await axios.get('https://music-lovers-production.up.railway.app/business/events/', config);
-
-      console.log("FUNCIONÓ (CREO)")
+      
       // Crea el token
       const aux = response.data;
       setEVENTOS(aux);
@@ -142,7 +133,6 @@ export default function UserPage() {
 
 
   EVENTOS.map((item) => {
-    console.log(item.title);
     return null; // El valor de retorno no es importante en este caso
   });
 
@@ -308,7 +298,6 @@ export default function UserPage() {
 
       const formData = new FormData();
       formData.append('id', idEvento);
-      console.log(config)
       
 
       try {
@@ -482,12 +471,10 @@ export default function UserPage() {
         config
       );
 
-      console.log(88888);
       window.location.reload();
 
     } catch (error) {
       console.error("Error de registro", error);
-      console.log('ERROr');
       alert('Ocurrió un error inesperado. No se pudo completar la creación del evento.');
     }
 
@@ -498,8 +485,6 @@ export default function UserPage() {
 
   const handleBackendModificar = async () => {
     setOpenModal2(false);
-    console.log("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-
     
     if (!validateFields2()) {
       alert('Por favor, complete los campos obligatorios.');
@@ -540,12 +525,10 @@ export default function UserPage() {
         config
       );
 
-      console.log(88888);
       window.location.reload();
 
     } catch (error) {
       console.error("Error de registro", error);
-      console.log('ERROr');
       alert('Ocurrió un error inesperado. No se pudo completar la creación del evento.');
     }
 

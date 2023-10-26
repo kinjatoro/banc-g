@@ -59,7 +59,6 @@ export default function RegisterFormBar() {
       return;
     }
 
-    console.log("1")
 
    
     try {
@@ -78,8 +77,6 @@ export default function RegisterFormBar() {
 
       if (token){
         document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
-    
-        console.log("Registro exitoso");
 
         navigate('/onboardingbar', { replace: true });
 
