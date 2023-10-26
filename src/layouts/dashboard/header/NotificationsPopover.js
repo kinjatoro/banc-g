@@ -99,11 +99,7 @@ export default function NotificationsPopover() {
           )}
         </Box>
 
-        <Divider sx={{ borderStyle: 'dashed' }} />
 
-       
-
-        <Divider sx={{ borderStyle: 'dashed' }} />
 
       </Popover>
     </>

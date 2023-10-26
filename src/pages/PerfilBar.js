@@ -49,7 +49,7 @@ const [address, setAddress] = useState();
 const [neighbourhood, setNeighbourhood] = useState();
 const [city, setCity] = useState();
 const [phone, setPhone] = useState();
-const [logo, setLogo] = useState(decodedToken.logo);
+const [logo, setLogo] = useState();
 const [banner, setBanner] = useState();
 const [description, setDescription] = useState();
 
@@ -96,7 +96,7 @@ const handleBannerChange = (e) => {
       <Container>
         <Stack spacing={3}>
           <div>
-            <Typography variant="h3" sx={{mb:2, ml:3}}>
+            <Typography variant="h3" sx={{mb:2, ml:6, mt:-4}}>
               Cuenta
             </Typography>
           </div>
@@ -124,7 +124,7 @@ const handleBannerChange = (e) => {
         >
         
                 <Avatar
-                src={`https://music-lovers-production.up.railway.app${decodedToken.logo}`}
+                src={logo ? URL.createObjectURL(logo) : foto}
                 sx={{
                   height: 57,
                   mb: 2,
@@ -138,7 +138,7 @@ const handleBannerChange = (e) => {
             variant="h5"
           >
           
-                Los Polvorines
+                {name}
                 
           </Typography>
           <Typography
@@ -156,15 +156,31 @@ const handleBannerChange = (e) => {
         </Box>
       </CardContent>
       <Divider />
-      <CardActions>
-        <Button
-          fullWidth
-          variant="text"
-          color='secondary'
-        >
-          Cambiar foto de perfil
-        </Button>
-      </CardActions>
+      <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
+
+                
+
+        <label htmlFor="fileInput" >
+                <input
+                type="file"
+                accept="image/*" 
+                style={{ display: 'none' }}
+                onChange={handleLogoChange}
+                id="fileInput"
+              />
+          <Button
+            fullWidth
+            variant="text"
+            color='secondary'
+            component="span"
+          >
+            Cambiar foto de perfil
+          </Button></label>
+
+
+
+
+        </CardActions>
     </Card></>
     <>
 
@@ -177,19 +193,35 @@ const handleBannerChange = (e) => {
             flexDirection: 'column'
           }}
         >
-          <img src={banner} alt="banner"/>
+          <img src={banner ? URL.createObjectURL(banner) : foto} alt="banner"/>
         </Box>
       </CardContent>
       <Divider />
-      <CardActions>
-        <Button
-          fullWidth
-          variant="text"
-          color='secondary'
-        >
-          Cambiar banner
-        </Button>
-      </CardActions>
+      <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
+
+                
+
+        <label htmlFor="fileInput2" >
+                <input
+                type="file"
+                accept="image/*" 
+                style={{ display: 'none' }}
+                onChange={handleBannerChange}
+                id="fileInput2"
+              />
+          <Button
+            fullWidth
+            variant="text"
+            color='secondary'
+            component="span"
+          >
+            Cambiar banner
+          </Button></label>
+
+
+
+
+</CardActions>
     </Card>
     
     </>

@@ -401,7 +401,7 @@ export default function UserPage() {
   };
 
   const handleGenreChange = (e) => {
-    setGenre(e.target.value); // Maneja el estado 'genre' por separado
+    setGenre(e.target.value); 
   };
 
   const handleDiaChange = (e) => {

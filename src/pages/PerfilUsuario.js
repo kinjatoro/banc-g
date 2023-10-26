@@ -45,10 +45,25 @@ const { myBar, setMyBar } = useMyBar();
 const [username, setUsername] = useState(decodedToken.username);
 const [email, setEmail] = useState(decodedToken.email);
 const [logo, setLogo] = useState();
+const [genre1, setGenre1] = useState("");
+const [genre2, setGenre2] = useState("");
+const [genre3, setGenre3] = useState("");
 
 const handleLogoChange = (e) => {
   const selectedFile = e.target.files[0];
   setLogo(selectedFile);
+};
+
+const handleGenre1Change = (e) => {
+  setGenre1(e.target.value); 
+};
+
+const handleGenre2Change = (e) => {
+  setGenre2(e.target.value); 
+};
+
+const handleGenre3Change = (e) => {
+  setGenre3(e.target.value); 
 };
 
   
@@ -204,11 +219,13 @@ const handleLogoChange = (e) => {
                 md={6}
               >
               <FormControl fullWidth>
-                  <InputLabel id="genre">Género 1</InputLabel>
+                  <InputLabel id="genre1">Género 1</InputLabel>
                   <Select
-                    labelId="genre"
-                    id="genre"
+                    labelId="genre1"
+                    id="genre1"
                     label="Género 1"
+                    onChange={handleGenre1Change}
+                    value={genre1}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
 
                   >
@@ -236,11 +253,13 @@ const handleLogoChange = (e) => {
                 md={6}
               >
               <FormControl fullWidth>
-                  <InputLabel id="genre">Género 2</InputLabel>
+                  <InputLabel id="genre2">Género 2</InputLabel>
                   <Select
-                    labelId="genre"
-                    id="genre"
+                    labelId="genre2"
+                    id="genre2"
                     label="Género 2"
+                    onChange={handleGenre2Change}
+                    value={genre2}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
 
                   >
@@ -268,11 +287,13 @@ const handleLogoChange = (e) => {
                 md={6}
               >
               <FormControl fullWidth>
-                  <InputLabel id="genre">Género 3</InputLabel>
+                  <InputLabel id="genre3">Género 3</InputLabel>
                   <Select
-                    labelId="genre"
-                    id="genre"
+                    labelId="genre3"
+                    id="genre3"
                     label="Género 3"
+                    onChange={handleGenre3Change}
+                    value={genre3}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
 
                   >
