@@ -34,9 +34,6 @@ export default function OnBoardingBarForm() {
 
 
 
- 
-
-
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [neighbourhood, setNeighbourhood] = useState('');
@@ -323,18 +320,15 @@ export default function OnBoardingBarForm() {
         >
    
               <img src={banner ? URL.createObjectURL(banner) : '/assets/images/avatars/polvorines.jpg'} alt='banner' style={{ 
-  width: "200px",
-  height: "200px", /* Alto deseado */
-  objectFit: "cover", /* Recorta la imagen para que llene el contenedor */
-  objectPosition: "center", /* Mantiene el centro de la imagen visible */
-  borderRadius: "10%",
-}
- }/>
+              width: "200px",
+              height: "200px", 
+              objectFit: "cover", 
+              objectPosition: "center",
+              borderRadius: "10%",
+              }
+              }/>
 
               
-            
-           
-          
         
         </Box>
       </CardContent>

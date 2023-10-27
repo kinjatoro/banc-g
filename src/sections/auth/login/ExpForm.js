@@ -22,10 +22,50 @@ export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const { auth, setAuth } = useAuth();
 
+  const [username, setUsername] = useState('Los polvorines');
+  const [email, setEmail] = useState('polvis@gmail.com');
+
+
+  const [logo, setLogo] = useState();
+  const [genre1, setGenre1] = useState("");
+  const [genre2, setGenre2] = useState("");
+  const [genre3, setGenre3] = useState("");
+
+  const handleLogoChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setLogo(selectedFile);
+  };
+
+  const handleGenre1Change = (e) => {
+    setGenre1(e.target.value); 
+  };
+
+  const handleGenre2Change = (e) => {
+    setGenre2(e.target.value); 
+  };
+
+  const handleGenre3Change = (e) => {
+    setGenre3(e.target.value); 
+  };
+
+  const validateFields = () => {
+    if (
+      genre1.trim() === '' ||
+      genre2.trim() === '' ||
+      genre3.trim() === '' ||
+      logo === null
+    ) {
+      return false; 
+    }
+    return true; 
+  };
+
   const handleClick = () => {
     navigate('/dashboard/blog', { replace: true });
     setAuth(true);
   };
+
+  
 
   return (
     <>
@@ -41,7 +81,7 @@ export default function RegisterForm() {
           }}
         >
           <Avatar
-              src={'/assets/images/avatars/polvorines.jpg'}
+              src={logo ? URL.createObjectURL(logo) : foto}
               sx={{
                 height: 40,
                 mb: 1,
@@ -56,7 +96,7 @@ export default function RegisterForm() {
             variant="h5"
           >
           
-                Los Polvorines
+                {username}
           
      
           </Typography>
@@ -64,20 +104,34 @@ export default function RegisterForm() {
             color="text.secondary"
             variant="body2"
           >
-            HOLA
+            {email}
           </Typography>
 
         </Box>
       </CardContent>
       <Divider />
-      <CardActions>
+      <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
+
+      <label htmlFor="fileInput" >
+              <input
+              type="file"
+              accept="image/*" // Puedes especificar el tipo de archivo que esperas aquí
+              style={{ display: 'none' }}
+              onChange={handleLogoChange}
+              id="fileInput"
+            />
         <Button
           fullWidth
           variant="text"
           color='secondary'
+          component="span"
         >
-          Cambiar foto del usuario
-        </Button>
+          Subir foto de usuario
+        </Button></label>
+
+
+
+
       </CardActions>
     </Card>
     
@@ -93,11 +147,13 @@ export default function RegisterForm() {
 
            
            <FormControl fullWidth sx={{ mb:2 }}>
-                  <InputLabel id="genre">Género 1</InputLabel>
+                  <InputLabel id="genre1">Género 1</InputLabel>
                   <Select
-                    labelId="genre"
-                    id="genre"
+                    labelId="genre1"
+                    id="genre1"
                     label="Género 1"
+                    onChange={handleGenre1Change}
+                    value={genre1}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 200} } }}
 
                   >
@@ -122,9 +178,11 @@ export default function RegisterForm() {
                 <FormControl fullWidth sx={{ mb:2 }}>
                   <InputLabel id="genre">Género 2</InputLabel>
                   <Select
-                    labelId="genre"
-                    id="genre"
+                    labelId="genre2"
+                    id="genre2"
                     label="Género 2"
+                    onChange={handleGenre2Change}
+                    value={genre2}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
 
                   >
@@ -149,9 +207,11 @@ export default function RegisterForm() {
                 <FormControl fullWidth>
                   <InputLabel id="genre">Género 3</InputLabel>
                   <Select
-                    labelId="genre"
-                    id="genre"
+                    labelId="genre3"
+                    id="genre3"
                     label="Género 3"
+                    onChange={handleGenre3Change}
+                    value={genre3}
                     MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
 
                   >

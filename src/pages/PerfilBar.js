@@ -53,7 +53,21 @@ const [logo, setLogo] = useState();
 const [banner, setBanner] = useState();
 const [description, setDescription] = useState();
 
-
+const validateFields = () => {
+  if (
+    name.trim() === '' ||
+    description.trim() === '' ||
+    neighbourhood.trim() === '' ||
+    address.trim() === '' ||
+    city.trim() === '' ||
+    phone.trim() === '' ||
+    logo === null || 
+    banner === null
+  ) {
+    return false; 
+  }
+  return true; 
+};
 
 const handleChange = (e) => {
   const { name, value } = e.target;
@@ -194,11 +208,11 @@ const handleBannerChange = (e) => {
           }}
         >
           <img src={banner ? URL.createObjectURL(banner) : foto} alt="banner" style={{ 
-  width: "200px",
-  height: "200px", /* Alto deseado */
-  objectFit: "cover", /* Recorta la imagen para que llene el contenedor */
-  objectPosition: "center", /* Mantiene el centro de la imagen visible */
-  borderRadius: "10%",
+          width: "200px",
+          height: "200px", /* Alto deseado */
+          objectFit: "cover", /* Recorta la imagen para que llene el contenedor */
+          objectPosition: "center", /* Mantiene el centro de la imagen visible */
+          borderRadius: "10%",
 }
  }/>
         </Box>

@@ -66,6 +66,20 @@ const handleGenre3Change = (e) => {
   setGenre3(e.target.value); 
 };
 
+
+
+const validateFields = () => {
+  if (
+    genre1.trim() === '' ||
+    genre2.trim() === '' ||
+    genre3.trim() === '' ||
+    logo === null
+  ) {
+    return false; 
+  }
+  return true; 
+};
+
   
   return (
 
