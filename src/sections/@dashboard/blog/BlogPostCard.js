@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 // @mui
 import { alpha, styled } from '@mui/material/styles';
@@ -9,7 +10,7 @@ import { fShortenNumber } from '../../../utils/formatNumber';
 //
 import SvgColor from '../../../components/svg-color';
 import Iconify from '../../../components/iconify';
-
+import foto from '../../../logo.svg'
 
 // ----------------------------------------------------------------------
 
@@ -59,14 +60,44 @@ BlogPostCard.propTypes = {
 };
 
 export default function BlogPostCard({ post, index }) {
-  const { cover, title, view, price, share,stars, author, createdAt, genero } = post;
+  const { business, address, city, neighbourhood, title,description, price, datetime, artist,genre,banner } = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
+  const baseUrl = "https://music-lovers-production.up.railway.app";
+  const fullImageUrl = baseUrl + banner;
+
+  const lowerCaseText = genre.toLowerCase();
+
+  const [capitalizedText, setCapitalizedText] = useState(lowerCaseText.charAt(0).toUpperCase() + lowerCaseText.slice(1));
+
+
+  function formatoConCero(numero) {
+    // Agrega un cero inicial si el número es menor que 10
+    return numero < 10 ? `0${numero}` : numero;
+  }
+  if (capitalizedText === 'Electronica') {
+    setCapitalizedText('Techno');
+  }
+  
+
+// Crear un objeto Date a partir de la fecha ISO
+const fecha = new Date(datetime);
+
+const dia = formatoConCero(fecha.getDate());
+const mes = formatoConCero(fecha.getMonth() + 1); // Suma 1 porque en JavaScript los meses van de 0 a 11
+const anio = fecha.getFullYear();
+const hora = formatoConCero(fecha.getHours());
+const minutos = formatoConCero(fecha.getMinutes());
+
+// Formatear la fecha en el formato deseado
+const fechaFormateada = `${dia}/${mes}-${anio}-${hora}:${minutos}`;
+
+
 
   const POST_INFO = [
-    { string: view.substring(0, 5), icon: 'solar:calendar-bold-duotone' },
-    { string: share, icon: 'mdi:clock' },
-    { string: genero, icon: "eva:music-fill" },
+    { string: fechaFormateada.slice(0, 5), icon: 'solar:calendar-bold-duotone' },
+    { string: fechaFormateada.slice(11, 16), icon: 'mdi:clock' },
+    { string: capitalizedText, icon: "eva:music-fill" },
   ];
 
   const navigate = useNavigate();
@@ -113,8 +144,8 @@ export default function BlogPostCard({ post, index }) {
             }}
           />
           <StyledAvatar
-            alt={author.name}
-            src={author.avatarUrl}
+            alt={business}
+            src={fullImageUrl }
             sx={{
               ...((latestPostLarge || latestPost) && {
                 zIndex: 9,
@@ -126,7 +157,7 @@ export default function BlogPostCard({ post, index }) {
             }}
           />
 
-          <StyledCover alt={title} src={cover} />
+          <StyledCover alt={title} src={fullImageUrl} />
         </StyledCardMedia>
 
         <CardContent
@@ -159,7 +190,7 @@ export default function BlogPostCard({ post, index }) {
 
             
               <Typography>
-               {author.name} 
+               {business} 
                </Typography>
             
           </StyledTitle>
@@ -190,7 +221,7 @@ export default function BlogPostCard({ post, index }) {
             
           </StyledInfo>
           <Stack sx={{alignItems: "center",  display: 'flex', flexDirection: "row", justifyContent:"space-between", mt: 2 }}> 
-          <Typography variant="h5">{price}</Typography>
+          <Typography variant="h5">{`$${price}`}</Typography>
           <Button onClick={handleClick} variant="outlined">Ver más</Button>
           </Stack>
         </CardContent>

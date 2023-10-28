@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 import { Helmet } from 'react-helmet-async';
 // @mui
@@ -16,7 +16,7 @@ import { Grid, Button, Container,  Menu, MenuItem,  Box,
   FormControlLabel} from '@mui/material';
 
 
-
+  import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import Scrollbar from '../components/scrollbar';
 
@@ -42,10 +42,47 @@ export const FILTER_RATING_OPTIONS = ['up5Star', 'up4Star', 'up3Star', 'up2Star'
 export const FILTER_FRECUENCIA_OPTIONS = ['Única', 'Semanal', 'Mensual'];
 
 
+
+
 export default function BlogPage() {
+
+
+  const [EVENTOS, setEVENTOS] = useState([]);
+
+  useEffect(() => {
+    handleLogin();
+  }, []);
+
+  const handleLogin = async () => {
+    console.log(1)
+    try {
+      const response = await axios.get('https://music-lovers-production.up.railway.app/business/events/get/');
+      console.log(2)
+      const aux = response.data;
+      setEVENTOS(aux);
+      setFilteredBlog(aux);
+      console.log(aux)
+
+
+    } catch (error) {
+      console.error('Ocurrió un error al intentar cargar los eventos', error);
+    }
+
+  };
+
+
+
+
+
+
+
+
+
+
+
   const [openFilter, setOpenFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredBlog, setFilteredBlog] = useState(POSTS);
+  const [filteredBlog, setFilteredBlog] = useState(EVENTOS);
 
   
   const [open, setOpen] = useState(null);
@@ -71,7 +108,7 @@ export default function BlogPage() {
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     // Filtra las cartas en función de la búsqueda y orden actual
-    const filtered = POSTS.filter((card) =>
+    const filtered = EVENTOS.filter((card) =>
       card.title.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setFilteredBlog(filtered); // Actualiza el estado con el resultado de la búsqueda
@@ -80,8 +117,8 @@ export default function BlogPage() {
   const handleMayorPrecio = () => {
     const sortedBlog = [...filteredBlog];
     sortedBlog.sort((a, b) => {
-      const priceA = parseFloat(a.price.replace('$', ''));
-      const priceB = parseFloat(b.price.replace('$', ''));
+      const priceA = parseFloat(a.price);
+      const priceB = parseFloat(b.price);
       return priceB - priceA;
     });
     setFilteredBlog(sortedBlog); // Actualiza el estado con el nuevo orden
@@ -92,8 +129,8 @@ export default function BlogPage() {
   const handleMenorPrecio = () => {
     const sortedBlog = [...filteredBlog];
     sortedBlog.sort((a, b) => {
-      const priceA = parseFloat(a.price.replace('$', ''));
-      const priceB = parseFloat(b.price.replace('$', ''));
+      const priceA = parseFloat(a.price);
+      const priceB = parseFloat(b.price);
       return  priceA - priceB;
     });
     setFilteredBlog(sortedBlog); // Actualiza el estado con el nuevo orden
@@ -104,25 +141,19 @@ export default function BlogPage() {
   const handleProximamente = () => {
     const sortedBlog = [...filteredBlog];
     sortedBlog.sort((a, b) => {
-      const [dayA, monthA, yearA] = a.view.split('/').map(Number);
-      const [dayB, monthB, yearB] = b.view.split('/').map(Number);
-  
-      if (yearA === yearB) {
-        if (monthA === monthB) {
-          return dayA - dayB; // Si los años y los meses son iguales, ordena por día
-        }
-        return monthA - monthB; // Si los años son iguales, ordena por mes
-      }
-  
-      return yearA - yearB; // Si los años son diferentes, ordena por año
+      const dateA = new Date(a.datetime).getTime();
+      const dateB = new Date(b.datetime).getTime();
+      return dateA - dateB;
     });
+  
     setFilteredBlog(sortedBlog);
     setOpen(null);
     setOrden('Proximamente');
   };
+  
 
   const handleDestacado = () => {
-    setFilteredBlog(POSTS);
+    setFilteredBlog(EVENTOS);
     setOpen(null);
     setOrden('Destacado');
   };
@@ -130,8 +161,8 @@ export default function BlogPage() {
   const handleGenero = () => {
     const sortedBlog = [...filteredBlog];
     sortedBlog.sort((a, b) => {
-      const generoA = a.genero; // Asegúrate de usar la propiedad correcta que almacena el género de las publicaciones
-      const generoB = b.genero; // Asegúrate de usar la propiedad correcta que almacena el género de las publicaciones
+      const generoA = a.genre; // Asegúrate de usar la propiedad correcta que almacena el género de las publicaciones
+      const generoB = b.genre; // Asegúrate de usar la propiedad correcta que almacena el género de las publicaciones
   
       // Realiza la comparación de género. Puedes usar una lógica personalizada o comparar cadenas de texto.
       // Por ejemplo, ordenar alfabéticamente las cadenas de texto de género.
@@ -276,8 +307,8 @@ export default function BlogPage() {
         </Stack>
 
         <Grid container spacing={3}>
-          {filteredBlog.map((post, index) => (
-            <BlogPostCard post={post} index={index} />
+          {filteredBlog.map((evento, index) => (
+            <BlogPostCard post={evento} index={index} />
           ))}
         </Grid>
       </Container>
