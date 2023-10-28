@@ -63,6 +63,7 @@ export default function BlogPostCard({ post, index }) {
   const { business, address, city, neighbourhood, title,description, price, datetime, artist,genre,banner } = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
+  
   const baseUrl = "https://music-lovers-production.up.railway.app";
   const fullImageUrl = baseUrl + banner;
 

@@ -62,23 +62,52 @@ BlogPostCardInd.propTypes = {
 };
 
 export default function BlogPostCardInd({ post, index }) {
-  const { cover, title, view, price, share,stars, author, createdAt, genero } = post;
+  const { business, address, city, neighbourhood, title,description, price, datetime, artist,genre,banner } = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
+  
+  const baseUrl = "https://music-lovers-production.up.railway.app";
+  const fullImageUrl = baseUrl + banner;
 
-  const POST_INFO = [
-    { string: view, icon: 'solar:calendar-bold-duotone' },
-    { string: share, icon: 'mdi:clock' },
-    // { string: stars, icon: 'solar:star-bold' },
-    
-    
-  ];
+  const lowerCaseText = genre.toLowerCase();
 
-  const navigate = useNavigate();
+  const [capitalizedText, setCapitalizedText] = useState(lowerCaseText.charAt(0).toUpperCase() + lowerCaseText.slice(1));
 
-  const handleClick = () => {
-    navigate(`/dashboard/individualblog/${post.id}`);
-  };
+
+  function formatoConCero(numero) {
+    // Agrega un cero inicial si el número es menor que 10
+    return numero < 10 ? `0${numero}` : numero;
+  }
+  if (capitalizedText === 'Electronica') {
+    setCapitalizedText('Techno');
+  }
+  
+
+    // Crear un objeto Date a partir de la fecha ISO
+    const fecha = new Date(datetime);
+
+    const dia = formatoConCero(fecha.getDate());
+    const mes = formatoConCero(fecha.getMonth() + 1); // Suma 1 porque en JavaScript los meses van de 0 a 11
+    const anio = fecha.getFullYear();
+    const hora = formatoConCero(fecha.getHours());
+    const minutos = formatoConCero(fecha.getMinutes());
+
+    // Formatear la fecha en el formato deseado
+    const fechaFormateada = `${dia}/${mes}-${anio}-${hora}:${minutos}`;
+
+
+
+    const POST_INFO = [
+      { string: fechaFormateada.slice(0, 5), icon: 'solar:calendar-bold-duotone' },
+      { string: fechaFormateada.slice(11, 16), icon: 'mdi:clock' },
+      { string: capitalizedText, icon: "eva:music-fill" },
+    ];
+
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+      navigate(`/dashboard/individualblog/${post.id}`);
+    };
 
   return (
     <Grid item xs={12} sm={12} md={12}>
@@ -121,8 +150,8 @@ export default function BlogPostCardInd({ post, index }) {
             }}
           /> </div>
           <StyledAvatar
-            alt={author.name}
-            src={author.avatarUrl}
+            alt={business}
+            src={fullImageUrl}
             sx={{
               ...((latestPostLarge || latestPost) && {
                 zIndex: 9,
@@ -133,7 +162,7 @@ export default function BlogPostCardInd({ post, index }) {
               }),
             }}
           />
-         <StyledCover  alt={title} src={cover} />
+         <StyledCover  alt={title} src={fullImageUrl} />
           
         </StyledCardMedia>
 
@@ -148,7 +177,7 @@ export default function BlogPostCardInd({ post, index }) {
           }}
         >
           <Typography gutterBottom variant="subtitle1" sx={{ color: 'text.disabled', display: 'block' }}>
-            Publicación creada el {fDate(createdAt)}.
+            Publicación creada el ...
           </Typography>
 
           <StyledTitle
@@ -163,7 +192,7 @@ export default function BlogPostCardInd({ post, index }) {
           > 
          
           <Box sx={{display: "flex", flexDirection: "row", alignItems: 'center'}}>
-              {author.name} </Box>
+              {business} </Box>
           </StyledTitle>
           
           <Typography sx={{textAlign: "justify", mt:-1}}>Únete a nosotros en una noche llena de música y emoción en nuestro acogedor bar. Disfruta de un ambiente íntimo y vibrante mientras músicos talentosos suben al escenario para ofrecer un concierto en vivo que te transportará a un mundo de sonidos cautivadores. </Typography>
@@ -173,7 +202,7 @@ export default function BlogPostCardInd({ post, index }) {
             
           <StyledInfo>
             <div style={{display: 'flex', flexContent:"row"}}>
-          <Typography variant="h5" sx={{mr:1, color: "black"}}>{price}</Typography>
+          <Typography variant="h5" sx={{mr:1, color: "black"}}>{`$${price}`}</Typography>
             {POST_INFO.map((info, index) => (
               <Box
                 key={index}

@@ -1,11 +1,13 @@
 import { faker } from '@faker-js/faker';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { sample } from 'lodash';
 import { useParams } from 'react-router-dom';
 
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { Grid, Button, Container, Stack, Typography, Box } from '@mui/material';
+
+import axios from 'axios';
 
 import { ProductSort} from '../sections/@dashboard/products';
 
@@ -26,7 +28,8 @@ import {AppNewsUpdate} from '../sections/@dashboard/app';
 export default function BlogPage() {
   const [openFilter, setOpenFilter] = useState(false);
 
-  
+  const { idBlog } = useParams();
+  const index = parseInt(idBlog, 10); 
 
   const handleOpenFilter = () => {
     setOpenFilter(true);
@@ -36,31 +39,58 @@ export default function BlogPage() {
     setOpenFilter(false);
   };
 
+  const [EVENTO, setEVENTOS] = useState([]);
+  const [GG, setGG] = useState(null);
 
+  useEffect(() => {
+    console.log(444)
+    handleLogin();
+  }, []);
 
-  const { idBlog } = useParams();
-  const index = parseInt(idBlog, 10); 
-  const post = POSTS[index-1];
+  const handleLogin = async () => {
+    console.log(555)
+    try {
+      const response = await axios.get('https://music-lovers-production.up.railway.app/business/events/get/');
+      console.log(666)
+      const aux = response.data;
+      setEVENTOS(aux);
+
+      const filteredBlogs = aux.filter((card) => card.id === index);
+      const blogData = filteredBlogs[0];
+      setGG(blogData);
+
+    } catch (error) {
+      console.error('Ocurrió un error al intentar cargar los eventos', error);
+    }
+
+  };
+  if (!GG) {
+    return <div>Cargando...</div>;
+  }
+
+  console.log("1");
+  console.log(GG);
+  console.log("2");
   
   return (
 
   
     <>
       <Helmet>
-        <title> {post.title} </title>
+        <title> {GG.title} </title>
       </Helmet>
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2} mt={-4}>
           <Typography variant="h3" gutterBottom>
-          {post.title}
+          {GG.title}
           </Typography>
           
         </Stack>
 
         <Grid container spacing={3}>
         
-            <BlogPostCardInd key={post.id} post={post} index={index} />
+            <BlogPostCardInd key={GG.id} post={GG} index={index} />
             
         </Grid>
         <Grid item xs={12} md={6} lg={8} >

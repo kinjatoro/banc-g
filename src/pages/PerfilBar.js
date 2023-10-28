@@ -1,12 +1,15 @@
 import {Avatar,Box, Button, Card, CardActions, CardHeader, CardContent, Container, Divider, Stack, TextField, Typography, Unstable_Grid2 as Grid} from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useState,useEffect } from 'react';
 
 import { Helmet } from 'react-helmet-async';
 // @mui
 import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 import { useMyBar } from '../TengoBarAuth';
+
+
 
 import foto from '../logo.svg'
 import {AccountProfileDetailsBar, AccountProfileBar} from '../sections/auth/login';
@@ -40,8 +43,42 @@ function getJwtToken() {
 const jwtToken = getJwtToken();
 const decodedToken = jwtDecode(jwtToken);
 
-const { myBar, setMyBar } = useMyBar();
+  useEffect(() => {
+    handleLogin();
+  }, []);
 
+const handleLogin = async () => {
+
+  const config = {
+    headers: {
+      'Authorization': `Bearer ${jwtToken}`,
+    },
+  };
+
+
+  try {
+    const response = await axios.get('https://music-lovers-production.up.railway.app/business/view/', config);
+    
+    // Crea el token
+    const aux = response.data;
+    setId(aux.id)
+    setName(aux.name);
+    setAddress(aux.address);
+    setNeighbourhood(aux.neighbourhood);
+    setCity(aux.city);
+    setPhone(aux.phone);
+    setLogo(baseUrl+aux.logo);
+    setBanner(baseUrl+aux.banner);
+    setDescription(aux.description);
+
+  } catch (error) {
+    console.error('Error de inicio de sesión', error);
+  }
+
+};
+
+const { myBar, setMyBar } = useMyBar();
+const [id, setId] = useState();
 const [name, setName] = useState();
 const [username, setUsername] = useState(decodedToken.username);
 const [email, setEmail] = useState(decodedToken.email);
@@ -52,6 +89,8 @@ const [phone, setPhone] = useState();
 const [logo, setLogo] = useState();
 const [banner, setBanner] = useState();
 const [description, setDescription] = useState();
+
+const baseUrl = "https://music-lovers-production.up.railway.app";
 
 const validateFields = () => {
   if (
@@ -86,15 +125,76 @@ const handleChange = (e) => {
   }
 };
 
+const [cambioLogo, setCambioLogo] = useState(false);
+const [cambioBanner, setCambioBanner] = useState(false);
+
+
 const handleLogoChange = (e) => {
   const selectedFile = e.target.files[0];
-  setLogo(selectedFile);
+  
+  if (selectedFile){
+    setLogo(selectedFile);
+    setCambioLogo(true);
+  }
+  
 };
 
 const handleBannerChange = (e) => {
   const selectedFile = e.target.files[0];
-  setBanner(selectedFile);
+
+  if (selectedFile){
+    setBanner(selectedFile);
+    setCambioBanner(true);
+  }
 };
+
+const handleBackGuardarCambios = async () => {
+  if (!validateFields()) {
+    alert('Por favor, complete los campos obligatorios.');
+    return;
+  }
+
+  const config = {
+    headers: {
+      'Authorization': `Bearer ${jwtToken}`,
+      'Content-Type': 'multipart/form-data', // Importante para indicar que estás enviando un formulario con datos binarios (archivos)
+    },
+  };
+
+    const formData = new FormData();
+    formData.append('id', id);
+    formData.append('name', name);
+    formData.append('address', address);
+    formData.append('city', city);
+    formData.append('neighbourhood', neighbourhood);
+    formData.append('phone', phone);
+    
+    if (cambioLogo){
+      formData.append('logo', logo);
+    }
+    
+
+    if (cambioBanner){
+    formData.append('banner', banner);
+    }
+
+    formData.append('description', description);
+
+    try {
+      await axios.put(
+        "https://music-lovers-production.up.railway.app/business/modify/",
+        formData,
+        config
+      );
+
+      window.location.reload();
+
+    } catch (error) {
+      console.error("Error de registro", error);
+      alert('Ocurrió un error inesperado. No se pudo completar la modificación del perfil.');
+    }
+
+}
 
 
   
@@ -138,7 +238,7 @@ const handleBannerChange = (e) => {
         >
         
                 <Avatar
-                src={logo ? URL.createObjectURL(logo) : foto}
+                src={cambioLogo ? URL.createObjectURL(logo): logo}
                 sx={{
                   height: 57,
                   mb: 2,
@@ -207,7 +307,7 @@ const handleBannerChange = (e) => {
             flexDirection: 'column'
           }}
         >
-          <img src={banner ? URL.createObjectURL(banner) : foto} alt="banner" style={{ 
+          <img src={cambioBanner ? URL.createObjectURL(banner): banner} alt="banner" style={{ 
           width: "200px",
           height: "200px", /* Alto deseado */
           objectFit: "cover", /* Recorta la imagen para que llene el contenedor */
@@ -277,6 +377,9 @@ const handleBannerChange = (e) => {
                   name="name"
                   onChange={handleChange}
                   value={name}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                 />
               </Grid>
               <Grid
@@ -292,6 +395,9 @@ const handleBannerChange = (e) => {
                   value={description}
                   multiline
                   rows={3}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                 />
               </Grid>
 
@@ -336,6 +442,9 @@ const handleBannerChange = (e) => {
                   onChange={handleChange}
                   type="number"
                   value={phone}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                 />
               </Grid>
               <Grid
@@ -349,6 +458,9 @@ const handleBannerChange = (e) => {
                   onChange={handleChange}
                   required
                   value={city}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                 />
               </Grid>
               <Grid
@@ -361,7 +473,9 @@ const handleBannerChange = (e) => {
                   name="neighbourhood"
                   onChange={handleChange}
                   required
-
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                   value={neighbourhood}
                 />
                   
@@ -377,6 +491,9 @@ const handleBannerChange = (e) => {
                   onChange={handleChange}
                   required
                   value={address}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                 />
               
               </Grid>
@@ -385,7 +502,7 @@ const handleBannerChange = (e) => {
           </Box>
         </CardContent>
         <CardActions sx={{ justifyContent: 'flex-end' }}>
-          <Button  color='primary' sx={{mx:3,mb:1,mt:-2}} variant="contained">
+          <Button  color='primary' sx={{mx:3,mb:1,mt:-2}} variant="contained" onClick={handleBackGuardarCambios}>
             Guardar cambios
           </Button>
         </CardActions>
