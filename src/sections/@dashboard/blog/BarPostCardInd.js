@@ -62,13 +62,17 @@ BarPostCardInd.propTypes = {
 };
 
 export default function BarPostCardInd({ post, index }) {
-  const { cover, title, view, price, share,stars, author, createdAt } = post;
+  const { id, name, address, city, neighbourhood,phone, logo, banner,  description} = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
 
+  const baseUrl = "https://music-lovers-production.up.railway.app";
+  const fullImageUrlLogo = baseUrl + logo;
+  const fullImageUrlBanner = baseUrl + banner;
+
   const POST_INFO = [
-    { string: view, icon: 'solar:calendar-bold-duotone' },
-    { string: stars, icon: 'solar:star-bold' },
+    { string: address, icon: 'solar:calendar-bold-duotone' },
+    { string: '3.5', icon: 'solar:star-bold' },
   ];
 
   
@@ -120,8 +124,8 @@ export default function BarPostCardInd({ post, index }) {
             }}
           /> </div>
           <StyledAvatar
-            alt={author.name}
-            src={author.avatarUrl}
+            alt={name}
+            src={fullImageUrlLogo}
             sx={{
               ...((latestPostLarge || latestPost) && {
                 zIndex: 9,
@@ -132,7 +136,7 @@ export default function BarPostCardInd({ post, index }) {
               }),
             }}
           />
-         <StyledCover  alt={title} src={cover} />
+         <StyledCover  alt={name} src={fullImageUrlBanner} />
           
         </StyledCardMedia>
 
@@ -159,7 +163,7 @@ export default function BarPostCardInd({ post, index }) {
           > 
          
           <Box sx={{display: "flex", flexDirection: "row", alignItems: 'center'}}>
-              {author.name} </Box>
+              {neighbourhood} </Box>
           </StyledTitle>
           
           <Typography sx={{textAlign: "justify", mt:-1}}>Únete a nosotros en una noche llena de música y emoción en nuestro acogedor bar. Disfruta de un ambiente íntimo y vibrante mientras músicos talentosos suben al escenario para ofrecer un concierto en vivo que te transportará a un mundo de sonidos cautivadores. </Typography>

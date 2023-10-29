@@ -1,12 +1,12 @@
 import { faker } from '@faker-js/faker';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { sample } from 'lodash';
 import { useParams } from 'react-router-dom';
 
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { Grid, Button, Container, Stack, Typography, Box,Divider } from '@mui/material';
-
+import axios from 'axios';
 import { ProductSort} from '../sections/@dashboard/products';
 
 // components
@@ -27,6 +27,9 @@ import {AppNewsUpdateBar} from '../sections/@dashboard/app';
 export default function BarPage() {
   const [openFilter, setOpenFilter] = useState(false);
 
+  const { idBar } = useParams();
+  const index = parseInt(idBar, 10); 
+
   const handleOpenFilter = () => {
     setOpenFilter(true);
   };
@@ -35,32 +38,54 @@ export default function BarPage() {
     setOpenFilter(false);
   };
 
-  const { idBar } = useParams();
-  const index = parseInt(idBar, 10); 
-  const post = POSTS[index-1];
+  const [EVENTO, setEVENTOS] = useState([]);
+  const [GG, setGG] = useState(null);
 
-  const filteredBlogs = BLOGS.filter((card) => 
-  card.author.name === post.title);
+  useEffect(() => {
+
+    handleLogin();
+  }, []);
+
+  const handleLogin = async () => {
+
+    try {
+      const response = await axios.get('https://music-lovers-production.up.railway.app/business/get/');
+      const aux = response.data;
+      setEVENTOS(aux);
+
+      const filteredBlogs = aux.filter((card) => card.id === index);
+      const blogData = filteredBlogs[0];
+      setGG(blogData);
+
+    } catch (error) {
+      console.error('Ocurrió un error al intentar cargar los eventos', error);
+    }
+
+  };
+  
+  if (!GG) {
+    return <div/>;
+  }
 
   return (
     
   
     <>
       <Helmet>
-        <title> {post.title} </title>
+        <title> {GG.name} </title>
       </Helmet>
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2} mt={-4}>
           <Typography variant="h3" gutterBottom>
-          {post.title}
+          {GG.name}
           </Typography>
           
         </Stack>
 
         <Grid container spacing={3}>
         
-            <BarPostCardInd key={post.id} post={post} index={index} />
+            <BarPostCardInd key={GG.id} post={GG} index={index} />
             
         </Grid>
         <Grid item xs={12} md={6} lg={8} >
@@ -71,11 +96,7 @@ export default function BarPage() {
             />
           </Grid>
           <Divider/>
-          <Grid container spacing={3} sx={{mt:3}}>
-          {filteredBlogs.map((post, index) => (
-            <BlogPostCard post={post} index={index} />
-          ))}
-        </Grid>
+
 
       </Container>
 

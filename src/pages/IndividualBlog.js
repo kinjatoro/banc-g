@@ -39,24 +39,25 @@ export default function BlogPage() {
     setOpenFilter(false);
   };
 
-  const [EVENTO, setEVENTOS] = useState([]);
+
   const [GG, setGG] = useState(null);
 
   useEffect(() => {
-    console.log(444)
+
     handleLogin();
   }, []);
 
   const handleLogin = async () => {
-    console.log(555)
+
     try {
       const response = await axios.get('https://music-lovers-production.up.railway.app/business/events/get/');
-      console.log(666)
+
       const aux = response.data;
-      setEVENTOS(aux);
+
 
       const filteredBlogs = aux.filter((card) => card.id === index);
       const blogData = filteredBlogs[0];
+
       setGG(blogData);
 
     } catch (error) {
@@ -65,12 +66,10 @@ export default function BlogPage() {
 
   };
   if (!GG) {
-    return <div>Cargando...</div>;
+    return <div/>;
   }
 
-  console.log("1");
-  console.log(GG);
-  console.log("2");
+
   
   return (
 

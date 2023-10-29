@@ -59,12 +59,17 @@ BarPostCard.propTypes = {
 };
 
 export default function BarPostCard({ post, index }) {
-  const { cover, title, view, price, share,stars, author, createdAt } = post;
+  const { id, name, address, city, neighbourhood,phone, logo, banner,  description} = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
 
+  const baseUrl = "https://music-lovers-production.up.railway.app";
+  const fullImageUrlLogo = baseUrl + logo;
+  const fullImageUrlBanner = baseUrl + banner;
+
+
   const POST_INFO = [
-    { string: view, icon: 'line-md:map-marker-filled' },
+    { string: address, icon: 'line-md:map-marker-filled' },
 
     
     
@@ -114,8 +119,8 @@ export default function BarPostCard({ post, index }) {
             }}
           />
           <StyledAvatar
-            alt={author.name}
-            src={author.avatarUrl}
+            alt={name}
+            src={fullImageUrlLogo}
             sx={{
               ...((latestPostLarge || latestPost) && {
                 zIndex: 9,
@@ -127,7 +132,7 @@ export default function BarPostCard({ post, index }) {
             }}
           />
 
-          <StyledCover alt={title} src={cover} />
+          <StyledCover alt={name} src={fullImageUrlBanner} />
         </StyledCardMedia>
 
         <CardContent
@@ -142,7 +147,7 @@ export default function BarPostCard({ post, index }) {
         >
           
           <Typography  gutterBottom variant="h6" sx={{ color: 'black', mt: -1 }}>
-            {title}            
+            {name}            
            </Typography>
           
 
@@ -160,7 +165,7 @@ export default function BarPostCard({ post, index }) {
 
             
               <Typography>
-               {author.name} 
+               {neighbourhood} 
                </Typography>
             
           </StyledTitle>
@@ -193,7 +198,7 @@ export default function BarPostCard({ post, index }) {
           <Stack sx={{alignItems: "center",  display: 'flex', flexDirection: "row", justifyContent:"space-between", mt: 2 }}> 
           
           <Stack sx={{color: 'grey.500'}} alignItems="center">
-          <Typography sx={{alignItems: "center",display: 'flex'}}><Iconify sx={{mt:-0.35, mr:0.5}}  icon="solar:star-bold" />{stars}</Typography>
+          <Typography sx={{alignItems: "center",display: 'flex'}}><Iconify sx={{mt:-0.35, mr:0.5}}  icon="solar:star-bold" />{'2.4'}</Typography>
           </Stack>
           
           <Button onClick={handleClick} variant="outlined">Ver más</Button>
