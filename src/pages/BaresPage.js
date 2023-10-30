@@ -60,16 +60,6 @@ export default function BaresPage() {
   };
 
 
-
-
-
-
-
-
-
-
-
-  const [openFilter, setOpenFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredBlog, setFilteredBlog] = useState(EVENTOS);
 
@@ -86,13 +76,6 @@ export default function BaresPage() {
     setOpen(null);
   };
 
-  const handleOpenFilter = () => {
-    setOpenFilter(true);
-  };
-
-  const handleCloseFilter = () => {
-    setOpenFilter(false);
-  };
  
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -164,11 +147,6 @@ export default function BaresPage() {
             />
               
             <Box sx={{textAlign: "right"}}>
-            <Button disableRipple color="inherit" endIcon={<Iconify icon="ic:round-filter-list" />} onClick={handleOpenFilter}>
-                Filtrar&nbsp;
-             </Button>
-
-
 
                 <Button
                   color="inherit"
@@ -225,132 +203,6 @@ export default function BaresPage() {
       </Container>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <Drawer
-        anchor="right"
-        open={openFilter}
-        onClose={handleCloseFilter}
-        PaperProps={{
-          sx: { width: 280, border: 'none', overflow: 'hidden' },
-        }}
-      >
-        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ px: 1, py: 2 }}>
-        
-          <Typography variant="subtitle1" sx={{ ml: 1 }}>
-            Filtrar
-          </Typography>
-          <IconButton onClick={handleCloseFilter}>
-            <Iconify icon="eva:close-fill" />
-          </IconButton>
-        </Stack>
-
-        <Divider />
-
-        <Scrollbar>
-          <Stack spacing={3} sx={{ p: 3 }}>
-            <div> 
-             
-                
-              <Typography variant="subtitle1" gutterBottom >
-                Categoría
-              </Typography>
-             
-              <FormGroup>
-                {FILTER_CATEGORIA_OPTIONS.map((item) => (
-                  <FormControlLabel key={item} control={<Checkbox />} label={item} />
-                ))}
-              </FormGroup>
-            </div>
-
-            <div>
-              <Typography variant="subtitle1" gutterBottom>
-                Tipo de Clase
-              </Typography>
-              <RadioGroup>
-                {FILTER_TIPOCLASE_OPTIONS.map((item) => (
-                  <FormControlLabel key={item} value={item} control={<Checkbox />} label={item} />
-                ))}
-              </RadioGroup>
-            </div>
-
-            <div>
-              <Typography variant="subtitle1" gutterBottom>
-                Frecuencia
-              </Typography>
-              <RadioGroup>                {FILTER_FRECUENCIA_OPTIONS.map((item) => (
-                  <FormControlLabel key={item} value={item} control={<Checkbox />} label={item} />
-                ))}
-              </RadioGroup>
-            </div>
-
-            <div>
-              <Typography variant="subtitle1" gutterBottom>
-                Calificación
-              </Typography>
-              <RadioGroup>
-                
-                <Rating/>
-                
-              </RadioGroup>
-            </div>
-          </Stack>
-        </Scrollbar>
-
-        <Box sx={{ p: 3 }}>
-          <Button
-            fullWidth
-            size="large"
-            type="submit"
-
-            variant="contained"
-            startIcon={<Iconify icon="ic:round-clear-all" />}
-          >
-            Buscar
-          </Button>
-        </Box>
-      </Drawer>
     </>
   );
 }

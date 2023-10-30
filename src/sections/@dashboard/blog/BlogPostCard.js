@@ -98,7 +98,7 @@ const fechaFormateada = `${dia}/${mes}-${anio}-${hora}:${minutos}`;
   const POST_INFO = [
     { string: fechaFormateada.slice(0, 5), icon: 'solar:calendar-bold-duotone' },
     { string: fechaFormateada.slice(11, 16), icon: 'mdi:clock' },
-    { string: capitalizedText, icon: "eva:music-fill" },
+    { string: genre, icon: "eva:music-fill" },
   ];
 
   const navigate = useNavigate();
