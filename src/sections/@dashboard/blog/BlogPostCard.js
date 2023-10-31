@@ -60,25 +60,22 @@ BlogPostCard.propTypes = {
 };
 
 export default function BlogPostCard({ post, index }) {
-  const { business, address, city, neighbourhood, title,description, price, datetime, artist,genre,banner } = post;
+  /* eslint-disable camelcase */
+  const { business, address, city, neighbourhood, title,description, price, datetime, artist,genre_display,banner } = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
   
   const baseUrl = "https://music-lovers-production.up.railway.app";
   const fullImageUrl = baseUrl + banner;
 
-  const lowerCaseText = genre.toLowerCase();
 
-  const [capitalizedText, setCapitalizedText] = useState(lowerCaseText.charAt(0).toUpperCase() + lowerCaseText.slice(1));
 
 
   function formatoConCero(numero) {
     // Agrega un cero inicial si el número es menor que 10
     return numero < 10 ? `0${numero}` : numero;
   }
-  if (capitalizedText === 'Electronica') {
-    setCapitalizedText('Techno');
-  }
+
   
 
 // Crear un objeto Date a partir de la fecha ISO
@@ -98,13 +95,13 @@ const fechaFormateada = `${dia}/${mes}-${anio}-${hora}:${minutos}`;
   const POST_INFO = [
     { string: fechaFormateada.slice(0, 5), icon: 'solar:calendar-bold-duotone' },
     { string: fechaFormateada.slice(11, 16), icon: 'mdi:clock' },
-    { string: genre, icon: "eva:music-fill" },
+    { string: genre_display, icon: "eva:music-fill" },
   ];
 
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/dashboard/individualblog/${post.id}`);
+    navigate(`/eventos/${post.id}`);
   };
 
   return (

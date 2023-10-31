@@ -46,7 +46,7 @@ export default function RegisterPage() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/login');
+    navigate('/login/cliente');
   }
 
   return (

@@ -46,7 +46,7 @@ export default function RegisterPageBar() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/loginbar'); 
+    navigate('/login/bar'); 
   }
 
   return (

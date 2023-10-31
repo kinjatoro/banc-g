@@ -17,12 +17,12 @@ export default function RegisterForm() {
   const { auth, setAuth } = useAuth();
 
   const handleClick = () => {
-    navigate('/dashboard', { replace: true });
+    navigate('/inicio', { replace: true });
     setAuth(true);
   };
 
   const handleClick2 = () => {
-    navigate('/experiencia', { replace: true });
+    navigate('/cliente/onboarding', { replace: true });
     setAuth(true);
   };
 

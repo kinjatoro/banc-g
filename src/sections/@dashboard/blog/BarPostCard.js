@@ -78,7 +78,7 @@ export default function BarPostCard({ post, index }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/dashboard/individualbar/${post.id}`);
+    navigate(`/bares/${post.id}`);
   };
 
   return (

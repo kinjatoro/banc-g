@@ -29,7 +29,7 @@ export default function LoginForm() {
   const [password, setPassword] = useState('');
 
   const handleClick = () => {
-    navigate('/dashboard');
+    navigate('/inicio');
     setAuth(true);
   };
 
@@ -38,7 +38,7 @@ export default function LoginForm() {
   }
 
   const handleLoginBar = () => {
-    navigate('/dashboard');
+    navigate('/inicio');
     setAuth(true);
     setMyBar(true);
   }
@@ -75,7 +75,7 @@ export default function LoginForm() {
       if (token){
         document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
         setAuth(true);
-        navigate('/dashboard');
+        navigate('/inicio');
       } else {
         alert("Por favor, verifica los datos ingresados")
       }
@@ -109,7 +109,7 @@ export default function LoginForm() {
 
     const handleLogout = () => {
       document.cookie = 'jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
-      navigate('/login');
+      navigate('/login/cliente');
       setAuth(false);
     };
 

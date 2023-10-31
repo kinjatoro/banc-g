@@ -34,35 +34,40 @@ export default function AccountPopover() {
     setOpen(null);
     setAuth(false);
     setMyBar(false);
-    navigate('/dashboard/inicio');
+    navigate('/inicio');
   };
 
   const handleInicio = () => {
     setOpen(null);
-    navigate('/dashboard/inicio');
+    navigate('/inicio');
   };
 
   const handleEventos = () => {
     setOpen(null);
-    navigate('/dashboard/blog');
+    navigate('/eventos');
   };
 
   const handleBares = () => {
     setOpen(null);
-    navigate('/dashboard/bares');
+    navigate('/bares');
   };
 
   const handleMisEventos = () => {
     setOpen(null);
-    navigate('/dashboard/mispublicaciones');
+    navigate('/bar/mispublicaciones');
   };
   const handleComentarios = () => {
     setOpen(null);
-    navigate('/dashboard/comentarios');
+    navigate('/bar/comentarios');
   };
   const handlePerfil = () => {
     setOpen(null);
-    navigate('/dashboard/perfilbar');
+    if (myBar){
+      navigate('/bar/perfil');
+    } else {
+      navigate('/cliente/perfil');
+    }
+    
   };
 
   function getJwtToken() {

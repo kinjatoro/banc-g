@@ -17,7 +17,7 @@ export default function RegisterFormBar() {
   const { auth, setAuth } = useAuth();
 
   const handleClick = () => {
-    navigate('/dashboard', { replace: true });
+    navigate('/inicio', { replace: true });
     setAuth(true);
   };
 
@@ -78,7 +78,7 @@ export default function RegisterFormBar() {
       if (token){
         document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
 
-        navigate('/onboardingbar', { replace: true });
+        navigate('bar/onboarding', { replace: true });
 
       } else {
         alert('Por favor, verifica los campos ingresados.');

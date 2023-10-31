@@ -48,7 +48,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/registerbar');
+    navigate('/registro/bar');
   }
 
   return (

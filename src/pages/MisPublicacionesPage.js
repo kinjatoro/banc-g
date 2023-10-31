@@ -198,10 +198,6 @@ export default function UserPage() {
 
   const navigate = useNavigate();
 
-  const handleClick2 = () => {
-    navigate('/dashboard/crearservicio');
-  }
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -1050,7 +1046,7 @@ export default function UserPage() {
                   >
                     <MenuItem value="Rock">Rock</MenuItem>
                     <MenuItem value="Pop">Pop</MenuItem>
-                    <MenuItem value="Electronica">Electronica</MenuItem>
+                    <MenuItem value="Electro">Electronica</MenuItem>
                     <MenuItem value="Hiphop">Hiphop</MenuItem>
                     <MenuItem value="Reggae">Reggae</MenuItem>
                     <MenuItem value="Reggaeton">Reggaeton</MenuItem>
@@ -1445,7 +1441,7 @@ export default function UserPage() {
                   >
                     <MenuItem value="Rock">Rock</MenuItem>
                     <MenuItem value="Pop">Pop</MenuItem>
-                    <MenuItem value="Electronica">Electronica</MenuItem>
+                    <MenuItem value="Electro">Electronica</MenuItem>
                     <MenuItem value="Hiphop">Hiphop</MenuItem>
                     <MenuItem value="Reggae">Reggae</MenuItem>
                     <MenuItem value="Reggaeton">Reggaeton</MenuItem>

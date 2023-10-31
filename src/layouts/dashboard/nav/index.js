@@ -70,22 +70,26 @@ export default function Nav({ openNav, onCloseNav }) {
   }, [pathname]);
 
   const handleClick = () => {
-    navigate('/login');
+    navigate('/login/cliente');
   }
 
   const handleClick2 = () => {
-    navigate('/register');
+    navigate('/registro/cliente');
   }
   const handleClick3 = () => {
-    navigate('/dashboard/perfilbar');
+    if (myBar){
+      navigate('/bar/perfil');
+    } else {
+      navigate('/cliente/perfil');
+    }
   }
   
   const handleClick4 = () => {
-    navigate('/loginbar');
+    navigate('/login/bar');
   }
 
   const handleClick5 = () => {
-    navigate('/registerbar');
+    navigate('/registro/bar');
   }
 
 
@@ -187,7 +191,7 @@ export default function Nav({ openNav, onCloseNav }) {
       <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
         
       {auth ? (
-           <><Button onClick={handleAuth} variant='outlined' color="error" href="http://localhost:3000/dashboard/inicio">
+           <><Button onClick={handleAuth} variant='outlined' color="error" href="http://localhost:3000/inicio">
             Cerrar sesión
             </Button></>
             ) : (

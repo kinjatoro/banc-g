@@ -61,7 +61,7 @@ export default function RegisterForm() {
   };
 
   const handleClick = () => {
-    navigate('/dashboard/blog', { replace: true });
+    navigate('/eventos', { replace: true });
     setAuth(true);
   };
 

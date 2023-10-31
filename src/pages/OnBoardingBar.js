@@ -45,10 +45,6 @@ export default function OnBoardingPage() {
   const mdUp = useResponsive('up', 'md');
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate('/login');
-  }
-
   return (
     <>
       <Helmet>

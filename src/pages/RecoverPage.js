@@ -67,10 +67,10 @@ export default function LoginPage() {
         setState(false);
   }
   const handleClick2 = () => {
-    navigate('/dashboard/inicio');
+    navigate('/inicio');
 }
 const handleClick3 = () => {
-  navigate('/login');
+  navigate('/login/cliente');
 }
 
   return (

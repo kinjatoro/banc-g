@@ -60,15 +60,15 @@ export default function LandingPage() {
 
 
   const handleClick = () => {
-    navigate('/dashboard/blog');  // para ver publicaciones (alumno)
+    navigate('/eventos');  // para ver publicaciones (alumno)
   }
   
   const handleClick2 = () => {
-    navigate('/login');  // para iniciar sesion (profesor)
+    navigate('/login/cliente');  // para iniciar sesion (profesor)
   }
   
   const handleClick3 = () => {
-    navigate('/dashboard/mispublicaciones');  // para ir a mis publicaciones (profesor)
+    navigate('/bar/mispublicaciones');  // para ir a mis publicaciones (profesor)
   }
 
   const handleAuth = () => {

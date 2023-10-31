@@ -22,51 +22,96 @@ import PerfilBar from './pages/PerfilBar';
 import PerfilUsuario from './pages/PerfilUsuario';
 import IndividualBar from './pages/IndividualBar';
 import { useAuth } from './Auth'
+import { useOnBoarding } from './OnBoarding'
+import { useMyBar } from './TengoBarAuth'
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
   const { auth } = useAuth();
+  const { onBoar } = useOnBoarding();
+  const { myBar } = useMyBar();
   
   const routes = useRoutes([
+
     {
-      path: '/dashboard',
       element: <DashboardLayout />,
       children: [
-        { element: <Navigate to="/dashboard/inicio" />, index: true },
+        { element: <Navigate to="/inicio" />, index: true },
         { path: 'inicio', element: <LandingPage /> },
-        { path: 'blog', element: <BlogPage /> },
-        { path: 'mispublicaciones', element: <MisPublicacionesPage /> },
+        { path: 'eventos', element: <BlogPage /> },
         { path: 'bares', element: <BaresPage /> },
+        { path: 'eventos/:idBlog', element: <IndividualBlog />,},
+        { path: 'bares/:idBar', element: <IndividualBar />,},
+      ],
+    },
+
+
+
+    {
+      path: '/bar',
+      element: <DashboardLayout />,
+      children: [
+        { element: <Navigate to="/inicio" />, index: true },
+        { path: 'mispublicaciones', element: <MisPublicacionesPage /> },
         { path: 'comentarios', element: <ComentariosPage /> },
-        { path: 'individualblog/:idBlog', element: <IndividualBlog />,},
-        { path: 'individualbar/:idBar', element: <IndividualBar />,},
-        
-        
-        { 
-          path: 'perfilbar', 
-          element: <PerfilBar /> ,
-        },
-        { 
-          path: 'perfilusuario', 
-          element:  <PerfilUsuario />  ,
-        },
+        { path: 'perfil', element: <PerfilBar /> ,},
       ],
     },
     
-    {path: 'login', element: <LoginPage />,},
-    {path: 'loginbar', element: <LoginPageBar />,},
-    {path: 'register', element: <RegisterPage />,},
-    {path: 'registerbar', element: <RegisterPageBar />,},
-    {path: 'experiencia', element: <ExpPage />,},
+
+    {
+      path: '/cliente',
+      element: <DashboardLayout />,
+      children: [
+        { element: <Navigate to="/inicio" />, index: true },
+        { path: 'perfil', element: <PerfilUsuario /> ,},
+      ],
+    },
+
+
+
+
+
+
+    {
+      path: '/login',
+      children: [
+        {element: <Navigate to="/inicio" />, index: true},
+        {path: 'bar', element: <LoginPageBar />,},
+        {path: 'cliente', element: <LoginPage />,},
+      ],
+    },
+
+
+    {
+      path: '/registro',
+      children: [
+        {element: <Navigate to="/inicio" />, index: true},
+        {path: 'bar', element: <RegisterPageBar />,},
+        {path: 'cliente', element: <RegisterPage />,},
+        {path: 'bar/onboarding', element: <OnBoardingBar />,},
+        {path: 'cliente/onboarding', element: <ExpPage />,},
+      ],
+    },
+
+
+
+
+
+
+
+    
     {path: 'recupero', element: <RecoverPage />,},
-    { path: 'onboardingbar', element: <OnBoardingBar />,},
+    
+
+   
  
     
     {
       element: <SimpleLayout />,
       children: [
-        { element: <Navigate to="/dashboard/inicio" />, index: true },
+        { element: <Navigate to="/inicio" />, index: true },
         { path: '404', element: <Page404 /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],

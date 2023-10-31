@@ -102,7 +102,7 @@ export default function OnBoardingBarForm() {
       if (token){
         document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
 
-        navigate('/dashboard/mispublicaciones', { replace: true });
+        navigate('/bar/mispublicaciones', { replace: true });
         setAuth(true);
 
       } else {
