@@ -22,7 +22,7 @@ export default function RegisterForm() {
   };
 
   const handleClick2 = () => {
-    navigate('/cliente/onboarding', { replace: true });
+    navigate('/registro/cliente/onboarding', { replace: true });
     setAuth(true);
   };
 
@@ -44,7 +44,7 @@ export default function RegisterForm() {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        "https://music-lovers-production.up.railway.app/business/register/",
+        "https://music-lovers-production.up.railway.app/client/register/",
         {
           email,
           password,
@@ -52,7 +52,20 @@ export default function RegisterForm() {
         }
       );
 
-      console.log(response.data);
+      const token = response.data.access;
+
+      if (token){
+        document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
+
+        console.log(response.data);
+        navigate('/registro/cliente/onboarding', { replace: true });
+        setAuth(true);
+
+      } else {
+        alert('Por favor, verificá los campos ingresados.');
+      }
+
+
     } catch (error) {
       console.error("Error de registro", error);
     }
@@ -104,12 +117,12 @@ export default function RegisterForm() {
         size="large"
         type="submit"
         variant="contained"
-        onClick={handleClick2}
+        onClick={handleSubmit}
         sx={{ mt: 3 }}
       >
         Continuar
       </LoadingButton>
-      <Button onClick={handleSubmit}>Registrar</Button>
+
     </>
   );
 }

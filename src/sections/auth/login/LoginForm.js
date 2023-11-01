@@ -63,7 +63,7 @@ export default function LoginForm() {
     }
 
     try {
-      const response = await axios.post('https://music-lovers-production.up.railway.app/business/login/', {
+      const response = await axios.post('https://music-lovers-production.up.railway.app/client/login/', {
         email,
         password,
     
@@ -156,11 +156,6 @@ export default function LoginForm() {
         Iniciar Sesión
       </LoadingButton>
 
-      <LoadingButton fullWidth size="large" sx={{ mt: 2 }} type="submit" variant="contained" onClick={handleLoginBar}>
-        Iniciar Sesión Bar
-      </LoadingButton>
-
-      <Button onClick={handleDecode}>PRUEBA</Button>
       
     </>
   );

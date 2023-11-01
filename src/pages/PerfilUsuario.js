@@ -1,11 +1,12 @@
 import {Avatar,Box, Button, Card, MenuItem,FormControl,InputLabel,Select, CardActions, CardHeader, CardContent, Container, Divider, Stack, TextField, Typography, Unstable_Grid2 as Grid} from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 
 import { Helmet } from 'react-helmet-async';
 // @mui
 import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 import { useMyBar } from '../TengoBarAuth';
 
 import foto from '../logo.svg'
@@ -40,6 +41,59 @@ function getJwtToken() {
 const jwtToken = getJwtToken();
 const decodedToken = jwtDecode(jwtToken);
 
+useEffect(() => {
+  handleLogin();
+}, []);
+
+const handleLogin = async () => {
+
+const config = {
+  headers: {
+    'Authorization': `Bearer ${jwtToken}`,
+  },
+};
+
+
+try {
+  const response = await axios.get('https://music-lovers-production.up.railway.app/client/get-preferences/', config);
+  
+  // Crea el token
+  const aux = response.data;
+  setId(aux.id);
+  if (aux.genre1){
+    const lowerCaseText = aux.genre1.toLowerCase();
+    const capitalizedText = lowerCaseText.charAt(0).toUpperCase() + lowerCaseText.slice(1);
+    setGenre1(capitalizedText);
+  }
+
+  if (aux.genre2){
+    const lowerCaseText2 = aux.genre2.toLowerCase();
+    const capitalizedText2 = lowerCaseText2.charAt(0).toUpperCase() + lowerCaseText2.slice(1);
+    setGenre2(capitalizedText2);
+  }
+
+
+  if (aux.genre3){
+    const lowerCaseText3 = aux.genre3.toLowerCase();
+    const capitalizedText3 = lowerCaseText3.charAt(0).toUpperCase() + lowerCaseText3.slice(1);
+    setGenre3(capitalizedText3);
+  }
+
+  if (aux.logo){
+    setLogo(baseUrl+aux.logo);
+  }
+
+
+
+  
+
+
+} catch (error) {
+  console.error('Error de inicio de sesión', error);
+}
+
+};
+
 const { myBar, setMyBar } = useMyBar();
 
 const [username, setUsername] = useState(decodedToken.username);
@@ -48,10 +102,16 @@ const [logo, setLogo] = useState();
 const [genre1, setGenre1] = useState("");
 const [genre2, setGenre2] = useState("");
 const [genre3, setGenre3] = useState("");
+const [cambioLogo, setCambioLogo] = useState(false);
+const baseUrl = "https://music-lovers-production.up.railway.app";
+const [id, setId] = useState();
 
 const handleLogoChange = (e) => {
   const selectedFile = e.target.files[0];
-  setLogo(selectedFile);
+  if (selectedFile){
+    setLogo(selectedFile);
+    setCambioLogo(true);
+  }
 };
 
 const handleGenre1Change = (e) => {
@@ -79,6 +139,62 @@ const validateFields = () => {
   }
   return true; 
 };
+
+
+const handleBackGuardarCambios = async () => {
+
+
+  const config = {
+    headers: {
+      'Authorization': `Bearer ${jwtToken}`,
+      'Content-Type': 'multipart/form-data', // Importante para indicar que estás enviando un formulario con datos binarios (archivos)
+    },
+  };
+
+    const genero1 = genre1.toUpperCase();
+    const genero2 = genre2.toUpperCase();
+    const genero3 = genre3.toUpperCase();
+    const formData = new FormData();
+    formData.append('id', id);
+    formData.append('genre1', genero1);
+    formData.append('genre2', genero2);
+    formData.append('genre3', genero3);
+
+
+    
+    if (cambioLogo){
+      formData.append('logo', logo);
+    }
+    
+
+    try {
+      const response = await axios.put(
+        "https://music-lovers-production.up.railway.app/client/modify/",
+        formData,
+        config
+      );
+
+     
+
+      const token = response.data.access;
+
+      if (token){
+        document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
+
+        window.location.reload();
+
+      } else {
+        alert('Por favor, verifica los campos ingresados.');
+      }
+
+      
+
+    } catch (error) {
+      console.error("Error de registro", error);
+      alert('Ocurrió un error inesperado. No se pudo completar la modificación del perfil.');
+    }
+
+}
 
   
   return (
@@ -121,7 +237,7 @@ const validateFields = () => {
         >
         
                 <Avatar
-                src={logo ? URL.createObjectURL(logo) : foto}
+                src={cambioLogo ? URL.createObjectURL(logo): logo}
                 sx={{
                   height: 57,
                   mb: 2,
@@ -138,6 +254,12 @@ const validateFields = () => {
                 {username}
                 
           </Typography>
+
+          <Typography
+            color="text.secondary"
+            variant="body2"
+          >
+            {email} </Typography>
 
         </Box>
       </CardContent>
@@ -245,7 +367,7 @@ const validateFields = () => {
                   >
                     <MenuItem value="Rock">Rock</MenuItem>
                     <MenuItem value="Pop">Pop</MenuItem>
-                    <MenuItem value="Electronica">Electronica</MenuItem>
+                    <MenuItem value="Electro">Electro</MenuItem>
                     <MenuItem value="Hiphop">Hiphop</MenuItem>
                     <MenuItem value="Reggae">Reggae</MenuItem>
                     <MenuItem value="Reggaeton">Reggaeton</MenuItem>
@@ -279,7 +401,7 @@ const validateFields = () => {
                   >
                     <MenuItem value="Rock">Rock</MenuItem>
                     <MenuItem value="Pop">Pop</MenuItem>
-                    <MenuItem value="Electronica">Electronica</MenuItem>
+                    <MenuItem value="Electro">Electro</MenuItem>
                     <MenuItem value="Hiphop">Hiphop</MenuItem>
                     <MenuItem value="Reggae">Reggae</MenuItem>
                     <MenuItem value="Reggaeton">Reggaeton</MenuItem>
@@ -313,7 +435,7 @@ const validateFields = () => {
                   >
                     <MenuItem value="Rock">Rock</MenuItem>
                     <MenuItem value="Pop">Pop</MenuItem>
-                    <MenuItem value="Electronica">Electronica</MenuItem>
+                    <MenuItem value="Electro">Electro</MenuItem>
                     <MenuItem value="Hiphop">Hiphop</MenuItem>
                     <MenuItem value="Reggae">Reggae</MenuItem>
                     <MenuItem value="Reggaeton">Reggaeton</MenuItem>
@@ -335,7 +457,7 @@ const validateFields = () => {
           </Box>
         </CardContent>
         <CardActions sx={{ justifyContent: 'flex-end' }}>
-          <Button  color='primary' sx={{mx:3,mb:1,mt:-2}} variant="contained">
+          <Button  color='primary' sx={{mx:3,mb:1,mt:-2}} variant="contained" onClick={handleBackGuardarCambios}>
             Guardar cambios
           </Button>
         </CardActions>

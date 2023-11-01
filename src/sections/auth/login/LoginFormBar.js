@@ -75,6 +75,7 @@ export default function LoginFormBar() {
       if (token){
         document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
         setAuth(true);
+        setMyBar(true);
         navigate('/inicio');
       } else {
         alert("Por favor, verifica los datos ingresados")

@@ -5,7 +5,8 @@ import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox,
          Typography, Container, Avatar, Card,CardActionArea,CardMedia, CardContent, CardActions,
          Box,Divider,Button, Grid,CardHeader, MenuItem,FormControl,InputLabel,Select } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 import { useAuth } from '../../../Auth'
 
 // components
@@ -22,9 +23,7 @@ export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const { auth, setAuth } = useAuth();
 
-  const [username, setUsername] = useState('Los polvorines');
-  const [email, setEmail] = useState('polvis@gmail.com');
-
+  const [cambioLogo, setCambioLogo] = useState(false);
 
   const [logo, setLogo] = useState();
   const [genre1, setGenre1] = useState("");
@@ -33,7 +32,10 @@ export default function RegisterForm() {
 
   const handleLogoChange = (e) => {
     const selectedFile = e.target.files[0];
-    setLogo(selectedFile);
+    if (selectedFile){
+      setLogo(selectedFile);
+      setCambioLogo(true);
+    }
   };
 
   const handleGenre1Change = (e) => {
@@ -65,7 +67,76 @@ export default function RegisterForm() {
     setAuth(true);
   };
 
+  function getJwtToken() {
+    const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+    return jwtCookie ? jwtCookie.split('=')[1] : null;
+  }
+
+  const cookieValue = getJwtToken();
+  const decodedToken = jwtDecode(cookieValue);
+
   
+  const [username, setUsername] = useState(decodedToken.username);
+  const [email, setEmail] = useState(decodedToken.email);
+
+  const handleRegisterBack = async () => {
+
+
+    if (!validateFields()) {
+      alert('Por favor, completá los campos obligatorios.');
+      return;
+    }
+
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${cookieValue}`,
+        'Content-Type': 'multipart/form-data', // Importante para indicar que estás enviando un formulario con datos binarios (archivos)
+      },
+    };
+
+    const genero1 = genre1.toUpperCase();
+    const genero2 = genre2.toUpperCase();
+    const genero3 = genre3.toUpperCase();
+
+    const formData = new FormData();
+
+    formData.append('genre1', genero1);
+    formData.append('genre2', genero2);
+    formData.append('genre3', genero3);
+
+    if (cambioLogo){
+      formData.append('logo', logo);
+    }
+    
+
+
+    try {
+      const response = await axios.put(
+        "https://music-lovers-production.up.railway.app/client/modify/",
+        formData,
+        config
+      );
+
+      const token = response.data.access;
+
+      if (token){
+        document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
+
+        navigate('/eventos', { replace: true });
+        setAuth(true);
+
+      } else {
+        alert('Por favor, verifica los campos ingresados.');
+      }
+
+    } catch (error) {
+      console.error("Error de registro", error);
+      alert('Ocurrió un error inesperado. No se pudo completar la creación del evento.');
+    }
+
+
+
+  };
 
   return (
     <>
@@ -159,7 +230,7 @@ export default function RegisterForm() {
                   >
                     <MenuItem value="Rock">Rock</MenuItem>
                     <MenuItem value="Pop">Pop</MenuItem>
-                    <MenuItem value="Electronica">Electronica</MenuItem>
+                    <MenuItem value="Electro">Electro</MenuItem>
                     <MenuItem value="Hiphop">Hiphop</MenuItem>
                     <MenuItem value="Reggae">Reggae</MenuItem>
                     <MenuItem value="Reggaeton">Reggaeton</MenuItem>
@@ -188,7 +259,7 @@ export default function RegisterForm() {
                   >
                     <MenuItem value="Rock">Rock</MenuItem>
                     <MenuItem value="Pop">Pop</MenuItem>
-                    <MenuItem value="Electronica">Electronica</MenuItem>
+                    <MenuItem value="Electro">Electro</MenuItem>
                     <MenuItem value="Hiphop">Hiphop</MenuItem>
                     <MenuItem value="Reggae">Reggae</MenuItem>
                     <MenuItem value="Reggaeton">Reggaeton</MenuItem>
@@ -217,7 +288,7 @@ export default function RegisterForm() {
                   >
                     <MenuItem value="Rock">Rock</MenuItem>
                     <MenuItem value="Pop">Pop</MenuItem>
-                    <MenuItem value="Electronica">Electronica</MenuItem>
+                    <MenuItem value="Electro">Electro</MenuItem>
                     <MenuItem value="Hiphop">Hiphop</MenuItem>
                     <MenuItem value="Reggae">Reggae</MenuItem>
                     <MenuItem value="Reggaeton">Reggaeton</MenuItem>
@@ -254,7 +325,7 @@ export default function RegisterForm() {
 
 
 
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick} sx={{mt:3}}>
+      <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleRegisterBack} sx={{mt:3}}>
         Registrarme
       </LoadingButton>
     </>

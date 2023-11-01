@@ -44,7 +44,7 @@ import { useMyBar } from '../TengoBarAuth'
 
 export default function BlogPage() {
 
-  const FILTER_GENERO_OPTIONS = ['Rock', 'Pop', 'Electronica', 'Hiphop', 'Reggae', 'Reggaeton', 'Cumbia','Salsa','Tango','Folklore','Jazz','Blues','Otro' ];
+  const FILTER_GENERO_OPTIONS = ['Rock', 'Pop', 'Electro', 'Hiphop', 'Reggae', 'Reggaeton', 'Cumbia','Salsa','Tango','Folklore','Jazz','Blues','Otro' ];
   const [EVENTOS, setEVENTOS] = useState([]);
   const [URL, setURL] = useState("https://music-lovers-production.up.railway.app/business/events/get/?");
 

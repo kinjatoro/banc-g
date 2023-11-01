@@ -70,18 +70,16 @@ export default function RegisterFormBar() {
           username,
         }
       );
-
-
       
       const token = response.data.access;
 
       if (token){
         document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
 
-        navigate('bar/onboarding', { replace: true });
+        navigate('/registro/bar/onboarding', { replace: true });
 
       } else {
-        alert('Por favor, verifica los campos ingresados.');
+        alert('Por favor, verificá los campos ingresados.');
       }
     
       

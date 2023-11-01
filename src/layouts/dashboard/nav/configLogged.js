@@ -12,7 +12,7 @@ const navConfig = [
   },
   {
     title: 'perfil',
-    path: '/bar/perfil',
+    path: '/cliente/perfil',
     icon: <Iconify icon={"eva:person-fill"} />,  
   },
   {

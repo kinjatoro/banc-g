@@ -1046,7 +1046,7 @@ export default function UserPage() {
                   >
                     <MenuItem value="Rock">Rock</MenuItem>
                     <MenuItem value="Pop">Pop</MenuItem>
-                    <MenuItem value="Electro">Electronica</MenuItem>
+                    <MenuItem value="Electro">Electro</MenuItem>
                     <MenuItem value="Hiphop">Hiphop</MenuItem>
                     <MenuItem value="Reggae">Reggae</MenuItem>
                     <MenuItem value="Reggaeton">Reggaeton</MenuItem>
@@ -1441,7 +1441,7 @@ export default function UserPage() {
                   >
                     <MenuItem value="Rock">Rock</MenuItem>
                     <MenuItem value="Pop">Pop</MenuItem>
-                    <MenuItem value="Electro">Electronica</MenuItem>
+                    <MenuItem value="Electro">Electro</MenuItem>
                     <MenuItem value="Hiphop">Hiphop</MenuItem>
                     <MenuItem value="Reggae">Reggae</MenuItem>
                     <MenuItem value="Reggaeton">Reggaeton</MenuItem>
