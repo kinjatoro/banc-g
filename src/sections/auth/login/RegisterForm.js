@@ -61,13 +61,15 @@ export default function RegisterForm() {
         navigate('/registro/cliente/onboarding', { replace: true });
         setAuth(true);
 
-      } else {
-        alert('Por favor, verificá los campos ingresados.');
-      }
+      } 
+      
+      if (response.data.email && response.data.email[0] === "user with this email already exists."){
+        alert('La dirección de correo electrónico ya está en uso');  
+      } 
 
 
     } catch (error) {
-      console.error("Error de registro", error);
+      alert('Ocurrió un error inesperado. No se pudo completar el registro.');
     }
   };
 

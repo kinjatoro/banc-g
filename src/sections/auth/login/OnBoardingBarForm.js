@@ -8,6 +8,8 @@ import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox,
 import { LoadingButton } from '@mui/lab';
 
 import { useAuth } from '../../../Auth'
+import { useMyBar } from '../../../TengoBarAuth'
+import { useOnBoarding } from '../../../OnBoarding'
 
 // components
 import Iconify from '../../../components/iconify';
@@ -32,7 +34,9 @@ export default function OnBoardingBarForm() {
   const [showPassword, setShowPassword] = useState(false);
   const { auth, setAuth } = useAuth();
 
+  const { myBar, setMyBar } = useMyBar();
 
+  const { onBoar, setOnBoar } = useOnBoarding();
 
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
@@ -104,6 +108,8 @@ export default function OnBoardingBarForm() {
 
         navigate('/bar/mispublicaciones', { replace: true });
         setAuth(true);
+        setMyBar(true);
+        setOnBoar(true);
 
       } else {
         alert('Por favor, verifica los campos ingresados.');

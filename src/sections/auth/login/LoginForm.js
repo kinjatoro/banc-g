@@ -76,8 +76,16 @@ export default function LoginForm() {
         document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
         setAuth(true);
         navigate('/inicio');
-      } else {
-        alert("Por favor, verifica los datos ingresados")
+      } 
+
+      if (response.data.detail && response.data.detail[0] === "No user with this email exists."){
+        alert('La dirección de correo electrónico no está registrada');  
+      } 
+      if (response.data.detail && response.data.detail[0] === "No active account found with the given credentials") {
+        alert('La contraseña no es válida');  
+      }
+      if (response.data.detail && response.data.detail[0] === "Access denied for this user type.") {
+        alert('El mail ingresado está registrado como bar');  
       }
 
     } catch (error) {

@@ -7,6 +7,8 @@ import { LoadingButton } from '@mui/lab';
 import { useAuth } from '../../../Auth'
 import Iconify from '../../../components/iconify';
 
+import { useMyBar } from '../../../TengoBarAuth'
+import { useOnBoarding } from '../../../OnBoarding'
 
 // ----------------------------------------------------------------------
 
@@ -15,6 +17,13 @@ export default function RegisterFormBar() {
 
   const [showPassword, setShowPassword] = useState(false);
   const { auth, setAuth } = useAuth();
+
+
+  
+
+  const { myBar, setMyBar } = useMyBar();
+
+  const { onBoar, setOnBoar } = useOnBoarding();
 
   const handleClick = () => {
     navigate('/inicio', { replace: true });
@@ -75,12 +84,16 @@ export default function RegisterFormBar() {
 
       if (token){
         document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
-
+        
+        setAuth(true);
+        setMyBar(true);
+        setOnBoar(false);
         navigate('/registro/bar/onboarding', { replace: true });
 
-      } else {
-        alert('Por favor, verificá los campos ingresados.');
-      }
+      } 
+      if (response.data.email && response.data.email[0] === "user with this email already exists."){
+        alert('La dirección de correo electrónico ya está en uso');  
+      } 
     
       
 

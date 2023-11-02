@@ -13,6 +13,7 @@ import Iconify from '../../../components/iconify';
 
 import { useAuth } from '../../../Auth'
 import { useMyBar } from '../../../TengoBarAuth'
+import { useOnBoarding } from '../../../OnBoarding'
 
 // ----------------------------------------------------------------------
 
@@ -24,6 +25,8 @@ export default function LoginFormBar() {
   const { auth, setAuth } = useAuth();
 
   const { myBar, setMyBar } = useMyBar();
+
+  const { onBoar, setOnBoar } = useOnBoarding();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -56,30 +59,48 @@ export default function LoginFormBar() {
 
   const handleLogin = async () => {
 
-    
+    /* --------------------------------- REVISAR ESTO -----------------------------------------------------*/
     if (!validateFields()) {
       alert('Por favor, complete los campos obligatorios.');
       return;
-    }
+    }console.log(0)
 
     try {
+      console.log(22)
       const response = await axios.post('https://music-lovers-production.up.railway.app/business/login/', {
         email,
         password,
     
       });
-
+      console.log(43434)
       // Crea el token
       const token = response.data.access;
-
+      console.log(1)
       if (token){
         document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
         setAuth(true);
         setMyBar(true);
+
+        const decodedToken = jwtDecode(token);
+      
+        if (decodedToken.user_type === 1 && decodedToken.business_id === null){
+          setOnBoar(false);
+        }
+
         navigate('/inicio');
-      } else {
-        alert("Por favor, verifica los datos ingresados")
+        console.log(2)
+      } 
+
+      if (response.data.detail && response.data.detail[0] === "No user with this email exists."){
+        alert('La dirección de correo electrónico no está registrada');  
+      } 
+      if (response.data.detail && response.data.detail[0] === "No active account found with the given credentials") {
+        alert('La contraseña no es válida'); 
       }
+      if (response.data.detail && response.data.detail[0] === "Access denied for this user type.") {
+        alert('El mail ingresado está registrado como cliente'); 
+      }
+      
 
     } catch (error) {
       
@@ -157,11 +178,6 @@ export default function LoginFormBar() {
         Iniciar Sesión
       </LoadingButton>
 
-      <LoadingButton fullWidth size="large" sx={{ mt: 2 }} type="submit" variant="contained" onClick={handleLoginBar}>
-        Iniciar Sesión Bar
-      </LoadingButton>
-
-      <Button onClick={handleDecode}>PRUEBA</Button>
       
     </>
   );
