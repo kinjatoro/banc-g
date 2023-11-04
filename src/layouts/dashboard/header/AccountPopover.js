@@ -34,7 +34,9 @@ export default function AccountPopover() {
     setOpen(null);
     setAuth(false);
     setMyBar(false);
+    document.cookie = `jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     navigate('/inicio');
+
   };
 
   const handleInicio = () => {
@@ -78,8 +80,13 @@ export default function AccountPopover() {
   const jwtToken = getJwtToken();
   const decodedToken = jwtToken ? jwtDecode(jwtToken) : null;
   
+
+  const baseUrl = "https://music-lovers-production.up.railway.app";
+
+
   const [username, setUsername] = useState(decodedToken ? decodedToken.username : accountNo.displayName);
   const [email, setEmail] = useState(decodedToken ? decodedToken.email : accountNo.email);
+  const [logo, setLogo] = useState(decodedToken ? (baseUrl + decodedToken.logo) : accountNo.photoURL);
   
 
   
@@ -106,7 +113,7 @@ export default function AccountPopover() {
         }}
       >
     
-        {auth ? ( myBar ? (<><Avatar src={accountBar.photoURL} alt="photoURL" /></>) : (<><Avatar src={account.photoURL} alt="photoURL" /></>)) : (<><Avatar src={accountNo.photoURL} alt="photoURL" /></>)}  
+        {auth ? ( myBar ? (<><Avatar src={logo} alt="photoURL" /></>) : (<><Avatar src={logo} alt="photoURL" /></>)) : (<><Avatar src={accountNo.photoURL} alt="photoURL" /></>)}  
       </IconButton>
 
       <Popover
@@ -130,11 +137,11 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-          {auth ? ( myBar ? (<>{username} </>) : (<>{account.displayName}</>)) : (<>{accountNo.displayName} </>)}  
+          {auth ? ( myBar ? (<>{username} </>) : (<>{username}</>)) : (<>{accountNo.displayName} </>)}  
    
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {auth ? ( myBar ? (<>{email} </>) : (<>{account.email}</>)) : (<></>)}
+            {auth ? ( myBar ? (<>{email} </>) : (<>{email}</>)) : (<></>)}
           </Typography>
         </Box>
 

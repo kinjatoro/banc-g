@@ -35,7 +35,7 @@ export default function Router() {
   const routes = useRoutes([
 
     {
-      element: <DashboardLayout />,
+      element: onBoar ? <DashboardLayout /> : <Navigate to="/registro/bar/onboarding" />,
       children: [
         { element: <Navigate to="/inicio" />, index: true },
         { path: 'inicio', element: <LandingPage /> },
@@ -50,7 +50,7 @@ export default function Router() {
 
     {
       path: '/bar',
-      element: <DashboardLayout />,
+      element: onBoar ? <DashboardLayout /> : <Navigate to="/registro/bar/onboarding" />,
       children: [
         { element: <Navigate to="/inicio" />, index: true },
         { path: 'mispublicaciones', element: <MisPublicacionesPage /> },
@@ -62,7 +62,7 @@ export default function Router() {
 
     {
       path: '/cliente',
-      element: <DashboardLayout />,
+      element: onBoar ? <DashboardLayout /> : <Navigate to="/registro/bar/onboarding" />,
       children: [
         { element: <Navigate to="/inicio" />, index: true },
         { path: 'perfil', element: <PerfilUsuario /> ,},
@@ -76,6 +76,7 @@ export default function Router() {
 
     {
       path: '/login',
+      element: onBoar ? <SimpleLayout /> : <Navigate to="/registro/bar/onboarding" />,
       children: [
         {element: <Navigate to="/inicio" />, index: true},
         {path: 'bar', element: <LoginPageBar />,},
@@ -86,12 +87,16 @@ export default function Router() {
 
     {
       path: '/registro',
+
       children: [
         {element: <Navigate to="/inicio" />, index: true},
-        {path: 'bar', element: <RegisterPageBar />,},
-        {path: 'cliente', element: <RegisterPage />,},
+        
+        {path: 'bar', element: onBoar ? <RegisterPageBar /> : <Navigate to="/registro/bar/onboarding" />,},
+        
+        {path: 'cliente', element: onBoar ? <RegisterPage /> : <Navigate to="/registro/bar/onboarding" />},
+
         {path: 'bar/onboarding', element: <OnBoardingBar />,},
-        {path: 'cliente/onboarding', element: <ExpPage />,},
+        {path: 'cliente/onboarding', element: onBoar ? <ExpPage /> : <Navigate to="/registro/bar/onboarding" />},
       ],
     },
 

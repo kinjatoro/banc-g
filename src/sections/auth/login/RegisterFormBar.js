@@ -62,15 +62,16 @@ export default function RegisterFormBar() {
   };
 
   const handleSubmit = async () => {
-
+    console.log(0);
     if (!validateFields()) {
       alert('Por favor, completá los campos obligatorios.');
       return;
     }
 
-
+    console.log(2);
    
     try {
+      console.log(3);
       const response = await axios.post(
         "https://music-lovers-production.up.railway.app/business/register/",
         {
@@ -90,15 +91,14 @@ export default function RegisterFormBar() {
         setOnBoar(false);
         navigate('/registro/bar/onboarding', { replace: true });
 
-      } 
-      if (response.data.email && response.data.email[0] === "user with this email already exists."){
-        alert('La dirección de correo electrónico ya está en uso');  
-      } 
-    
-      
+      } else {
+        alert('La dirección de correo electrónico no es válida'); 
+      }
+
 
       
     } catch (error) {
+      console.log(1);
       alert('Ocurrió un error inesperado. No se pudo completar el registro.');
 
     }

@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, Navigate, useNavigate } from 'react-router-dom';
 // @mui
 import { styled, alpha } from '@mui/material/styles';
 import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
+import jwtDecode from 'jwt-decode';
 // mock
 import account from '../../../_mock/account';
 import accountBar from '../../../_mock/accountBar';
+import accountNo from '../../../_mock/accountNo';
 
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
@@ -53,6 +55,22 @@ export default function Nav({ openNav, onCloseNav }) {
   const { auth, setAuth } = useAuth();
   const { myBar, setMyBar } = useMyBar();  
   const {onBoar, setOnBoar} = useOnBoarding();
+
+
+  function getJwtToken() {
+    const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+    return jwtCookie ? jwtCookie.split('=')[1] : null;
+  }
+  
+  const jwtToken = getJwtToken();
+  const decodedToken = jwtToken ? jwtDecode(jwtToken) : null;
+
+  const baseUrl = "https://music-lovers-production.up.railway.app";
+
+
+  const [username, setUsername] = useState(decodedToken ? decodedToken.username : accountNo.displayName);
+  const [logo, setLogo] = useState(decodedToken ? (baseUrl + decodedToken.logo) : accountNo.photoURL);
+  
 
   const handleAuth = () => {
     onCloseNav();
@@ -117,9 +135,9 @@ export default function Nav({ openNav, onCloseNav }) {
           <StyledAccount>
 
           {!myBar ? (
-          <><Avatar src={account.photoURL} alt="photoURL" /></>
+          <><Avatar src={logo} alt="photoURL" /></>
         ) : (
-          <><Avatar src={accountBar.photoURL} alt="photoURL" /></>
+          <><Avatar src={logo} alt="photoURL" /></>
         )}
 
             
@@ -127,9 +145,9 @@ export default function Nav({ openNav, onCloseNav }) {
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" onClick={handleClick3} sx={{ color: 'text.primary',cursor: 'pointer'  }}>
               {!myBar ? (
-                <>{account.displayName}</>
+                <>{username}</>
                 ) : (
-              <>{accountBar.displayName}</>
+              <>{username}</>
              )}
                 
               </Typography>

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox,
          Typography, Container, Avatar, Card,CardActionArea,CardMedia, CardContent, CardActions,
          Box,Divider,Button, Grid,CardHeader, MenuItem,FormControl,InputLabel,Select } from '@mui/material';
+
 import { LoadingButton } from '@mui/lab';
 
 import { useAuth } from '../../../Auth'
@@ -14,20 +15,13 @@ import { useOnBoarding } from '../../../OnBoarding'
 // components
 import Iconify from '../../../components/iconify';
 
-import foto from '../../../logo.svg'
+import foto from '../../../fb.jpg'
+import negocio from '../../../negocio.jpg'
+import bar from '../../../bar.jpg'
 
 
 // ----------------------------------------------------------------------
-const DATOS = {
-  name: 'El rincón del vago',
-  address: 'Santa Clara del Corazón 243',
-  neighbourhood: 'Palermo',
-  city: 'CABA',
-  phone: '4296-2007',
-  logo: '../logo.svg',
-  banner: '/assets/images/avatars/ID_20827.jpg',
-  description: 'esta es una descripcion'
-};
+
 export default function OnBoardingBarForm() {
   const navigate = useNavigate();
 
@@ -43,8 +37,8 @@ export default function OnBoardingBarForm() {
   const [neighbourhood, setNeighbourhood] = useState('');
   const [city, setCity] = useState('');
   const [phone, setPhone] = useState('');
-  const [logo, setLogo] = useState();
-  const [banner, setBanner] = useState();
+  const [logo, setLogo] = useState(null);
+  const [banner, setBanner] = useState(null);
   const [description, setDescription] = useState('');
   
   const validateFields = () => {
@@ -252,7 +246,7 @@ export default function OnBoardingBarForm() {
           }}
         >
           <Avatar
-              src={logo ? URL.createObjectURL(logo) : '/assets/images/avatars/polvorines.jpg'}
+              src={logo ? URL.createObjectURL(logo) : bar}
               sx={{
                 height: 40,
                 mb: 1,
@@ -288,7 +282,7 @@ export default function OnBoardingBarForm() {
           color='secondary'
           component="span"
         >
-          Subir foto del bar
+          Subir logo del bar
         </Button></label>
       
     </Card>
@@ -325,7 +319,7 @@ export default function OnBoardingBarForm() {
           }}
         >
    
-              <img src={banner ? URL.createObjectURL(banner) : '/assets/images/avatars/polvorines.jpg'} alt='banner' style={{ 
+              <img src={banner ? URL.createObjectURL(banner) : negocio} alt='banner' style={{ 
               width: "200px",
               height: "200px", 
               objectFit: "cover", 
@@ -353,7 +347,7 @@ export default function OnBoardingBarForm() {
           color='secondary'
           component="span"
         >
-          Subir banner
+          Subir foto del bar
         </Button></label>
     </Card>
 

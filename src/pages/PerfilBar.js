@@ -238,7 +238,7 @@ const handleBackGuardarCambios = async () => {
         >
         
                 <Avatar
-                src={cambioLogo ? URL.createObjectURL(logo): logo}
+                src={cambioLogo ? URL.createObjectURL(logo) : logo}
                 sx={{
                   height: 57,
                   mb: 2,

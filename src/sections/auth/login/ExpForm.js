@@ -12,7 +12,7 @@ import { useAuth } from '../../../Auth'
 // components
 import Iconify from '../../../components/iconify';
 
-import foto from '../../../logo.svg'
+import foto from '../../../fb.jpg'
 
 
 // ----------------------------------------------------------------------
@@ -106,6 +106,11 @@ export default function RegisterForm() {
 
     if (cambioLogo){
       formData.append('logo', logo);
+    } else {
+      const blob = await fetch(foto).then((r) => r.blob()); // Convierte la referencia a una imagen en un blob
+      const file = new File([blob], 'myImage.jpg'); // Crea un archivo a partir del blob
+      formData.append('logo', file);
+
     }
     
 
