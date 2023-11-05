@@ -46,7 +46,7 @@ export default function BlogPage() {
 
   const FILTER_GENERO_OPTIONS = ['Rock', 'Pop', 'Electro', 'Hiphop', 'Reggae', 'Reggaeton', 'Cumbia','Salsa','Tango','Folklore','Jazz','Blues','Otro' ];
   const [EVENTOS, setEVENTOS] = useState([]);
-  const [URL, setURL] = useState("https://music-lovers-production.up.railway.app/business/events/get/?");
+  const [URL, setURL] = useState("https://music-lovers-production.up.railway.app/business/events/filter/?");
 
   useEffect(() => {
     handleLogin();
@@ -55,7 +55,7 @@ export default function BlogPage() {
   const handleLogin = async () => {
     console.log(1);
     try {
-      let newURL = "https://music-lovers-production.up.railway.app/business/events/get/?";
+      let newURL = "https://music-lovers-production.up.railway.app/business/events/filter/?";
   
       if (dia && mes && anio) {
         console.log(1);

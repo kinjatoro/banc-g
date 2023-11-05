@@ -440,7 +440,7 @@ export default function UserPage() {
     const config = {
       headers: {
         'Authorization': `Bearer ${cookieValue}`,
-        'Content-Type': 'multipart/form-data', // Importante para indicar que estás enviando un formulario con datos binarios (archivos)
+        'Content-Type': 'multipart/form-data', 
       },
     };
 

@@ -41,6 +41,7 @@ export default function BlogPage() {
 
 
   const [GG, setGG] = useState(null);
+  const [comentarios, setComentarios] = useState(null);
 
   useEffect(() => {
 
@@ -50,19 +51,17 @@ export default function BlogPage() {
   const handleLogin = async () => {
 
     try {
-      const response = await axios.get('https://music-lovers-production.up.railway.app/business/events/get/');
+      const response = await axios.get(`https://music-lovers-production.up.railway.app/business/events/get/?id=${index}`);
 
       const aux = response.data;
 
-
-      const filteredBlogs = aux.filter((card) => card.id === index);
-      const blogData = filteredBlogs[0];
-
-      setGG(blogData);
+      setGG(aux.event);
+      setComentarios(aux.comments);
 
     } catch (error) {
       console.error('Ocurrió un error al intentar cargar los eventos', error);
     }
+
 
   };
   if (!GG) {
@@ -96,7 +95,7 @@ export default function BlogPage() {
             <AppNewsUpdate
               sx={{borderRadius: "0px"}}
               title="Agregar comentario"
-              list={COMENTARIOS}
+              list={comentarios}
             />
           </Grid>
       </Container>

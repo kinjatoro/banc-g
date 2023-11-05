@@ -1,7 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import axios from 'axios';
 // @mui
 import {
   Card,
@@ -26,6 +27,7 @@ import {
 import Label from '../components/label';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
+
 // sections
 import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
 // mock
@@ -35,11 +37,12 @@ import USERLIST from '../_mock/user';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Usuario', alignRight: false },
-  { id: 'servicio', label: 'Publicación', alignRight: false },
 
   { id: 'comentario', label: 'Comentario', alignRight: false },
 
-  { id: 'estadoComentario', label: 'Estado', alignRight: false },
+  { id: 'servicio', label: 'Publicación', alignRight: false },
+
+  { id: 'estadoComentario', label: 'Fecha creación', alignRight: false },
   { id: '' },
 ];
 
@@ -100,6 +103,54 @@ export default function UserPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+
+  /* ----------------------------------------------------COOKIES-----------------------------------------*/
+
+  const [EVENTOS, setEVENTOS] = useState([]);
+  const [NEGOCIO, setNEGOCIO] = useState([]);
+
+
+
+  useEffect(() => {
+    handleLogin();
+  }, []);
+
+
+
+  function getJwtToken() {
+    const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+    return jwtCookie ? jwtCookie.split('=')[1] : null;
+  }
+
+  const cookieValue = getJwtToken();
+
+  const handleLogin = async () => {
+
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${cookieValue}`,
+      },
+    };
+
+
+    try {
+      const response = await axios.get('https://music-lovers-production.up.railway.app/business/comments/', config);
+      
+      // Crea el token
+      const aux = response.data;
+      setNEGOCIO(aux.business_comments);
+      setEVENTOS(aux.event_comments);
+
+
+    } catch (error) {
+      console.error('Error de carga de comentarios', error);
+    }
+
+  };
+
+
+  /*--------------------------------------------------------------------------------------------*/
+
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
   };
@@ -116,7 +167,7 @@ export default function UserPage() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = USERLIST.map((n) => n.name);
+      const newSelecteds = EVENTOS.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -152,17 +203,17 @@ export default function UserPage() {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - EVENTOS.length) : 0;
 
-  const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(EVENTOS, getComparator(order, orderBy), filterName);
 
   const isNotFound = !filteredUsers.length && !!filterName;
 
+  const baseURL = "https://music-lovers-production.up.railway.app";
 
 
 
-
-  /* ---------------------------------- COPIA ----------------------------------*/
+  /* ---------------------------------------------------------------- COPIA --------------------------------------------------------------------------*/
 
 
   const [open2, setOpen2] = useState(null);
@@ -195,7 +246,7 @@ export default function UserPage() {
 
   const handleSelectAllClick2 = (event) => {
     if (event.target.checked) {
-      const newSelecteds = USERLIST.map((n) => n.name);
+      const newSelecteds = NEGOCIO.map((n) => n.name);
       setSelected2(newSelecteds);
       return;
     }
@@ -231,9 +282,9 @@ export default function UserPage() {
     setFilterName2(event.target.value);
   };
 
-  const emptyRows2 = page2 > 0 ? Math.max(0, (1 + page2) * rowsPerPage2 - USERLIST.length) : 0;
+  const emptyRows2 = page2 > 0 ? Math.max(0, (1 + page2) * rowsPerPage2 - NEGOCIO.length) : 0;
 
-  const filteredUsers2 = applySortFilter(USERLIST, getComparator(order2, orderBy2), filterName2);
+  const filteredUsers2 = applySortFilter(NEGOCIO, getComparator(order2, orderBy2), filterName2);
 
   const isNotFound2 = !filteredUsers2.length && !!filterName2;
 
@@ -267,37 +318,40 @@ export default function UserPage() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={USERLIST.length}
+                  rowCount={EVENTOS.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, servicio, comentario,estadoComentario, avatarUrl } = row;
-                    const selectedUser = selected.indexOf(name) !== -1;
+                    /* eslint-disable camelcase */
+                    const { id, event, user_name, user,user_logo, text,rating,event_name,created_at } = row;
+                    const selectedUser = selected.indexOf(user) !== -1;
 
                     return (
                       <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>
                         <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
+                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, user)} />
                         </TableCell>
 
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={avatarUrl} />
+                            <Avatar alt={'avatar'} src={baseURL+user_logo} />
                             <Typography variant="subtitle2" noWrap>
-                              {name}
+                              {user_name}
                             </Typography>
                           </Stack>
                         </TableCell>
 
-                        <TableCell align="left">{servicio}</TableCell>
-                        <TableCell align="left">{comentario}</TableCell>
+                        <TableCell align="left">{text}</TableCell>
+                        <TableCell align="left">{event_name}</TableCell>
+                        
+                        
 
 
                         <TableCell align="left">
-                          <Label color={(estadoComentario === 'Rechazado' && 'error') || (estadoComentario === 'Aceptado' && 'success') || 'primary'}>{sentenceCase(estadoComentario)}</Label>
+                          <Label>{created_at.slice(0, 10)}</Label>
                         </TableCell>
 
                         <TableCell align="right">
@@ -345,7 +399,7 @@ export default function UserPage() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={USERLIST.length}
+            count={EVENTOS.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
@@ -378,37 +432,38 @@ export default function UserPage() {
                   order={order2}
                   orderBy={orderBy2}
                   headLabel={TABLE_HEAD2}
-                  rowCount={USERLIST.length}
+                  rowCount={NEGOCIO.length}
                   numSelected={selected2.length}
                   onRequestSort={handleRequestSort2}
                   onSelectAllClick={handleSelectAllClick2}
                 />
                 <TableBody>
                   {filteredUsers2.slice(page2 * rowsPerPage2, page2 * rowsPerPage2 + rowsPerPage2).map((row) => {
-                    const { id, name, servicio, comentario,estadoComentario, avatarUrl } = row;
-                    const selectedUser2 = selected2.indexOf(name) !== -1;
+                    /* eslint-disable camelcase */
+                    const { id, business, user, user_name,user_logo, text,rating,created_at } = row;
+                    const selectedUser2 = selected2.indexOf(user) !== -1;
 
                     return (
                       <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser2}>
                         <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser2} onChange={(event) => handleClick(event, name)} />
+                          <Checkbox checked={selectedUser2} onChange={(event) => handleClick(event, user)} />
                         </TableCell>
 
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={avatarUrl} />
+                            <Avatar alt={user} src={''} />
                             <Typography variant="subtitle2" noWrap>
-                              {name}
+                              {user}
                             </Typography>
                           </Stack>
                         </TableCell>
 
-                        <TableCell align="left">{servicio}</TableCell>
-                        <TableCell align="left">{comentario}</TableCell>
+                        <TableCell align="left">{user_name}</TableCell>
+                        <TableCell align="left">{text}</TableCell>
 
 
                         <TableCell align="left">
-                          <Label color={(estadoComentario === 'Rechazado' && 'error') || (estadoComentario === 'Aceptado' && 'success') || 'primary'}>{sentenceCase(estadoComentario)}</Label>
+                          <Label >{business}</Label>
                         </TableCell>
 
                         <TableCell align="right">
@@ -456,7 +511,7 @@ export default function UserPage() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={USERLIST.length}
+            count={NEGOCIO.length}
             rowsPerPage={rowsPerPage2}
             page={page2}
             onPageChange={handleChangePage2}

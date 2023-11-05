@@ -111,6 +111,21 @@ export default function Nav({ openNav, onCloseNav }) {
   }
 
 
+  const maxFileNameLength = 17;
+  const getFileDisplayName = () => {
+    if (username) {
+      if (username.length > maxFileNameLength) {
+        return `${username.slice(0, maxFileNameLength)}...`;
+      }
+      return username;
+    }
+    return '';
+  };
+  
+  
+
+
+
   const renderContent = (
     <Scrollbar
       sx={{
@@ -145,9 +160,9 @@ export default function Nav({ openNav, onCloseNav }) {
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" onClick={handleClick3} sx={{ color: 'text.primary',cursor: 'pointer'  }}>
               {!myBar ? (
-                <>{username}</>
+                <>{getFileDisplayName(username)}</>
                 ) : (
-              <>{username}</>
+              <>{getFileDisplayName(username)}</>
              )}
                 
               </Typography>

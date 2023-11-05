@@ -5,10 +5,26 @@ import { Link as RouterLink } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { Box, Link } from '@mui/material';
 import MyLogo from './logo.png';
+import { useAuth } from '../../Auth'
+import { useMyBar } from '../../TengoBarAuth';
+import { useOnBoarding } from '../../OnBoarding';
 
 // ----------------------------------------------------------------------
 
 const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
+
+  const { auth, setAuth } = useAuth();
+  const { myBar, setMyBar } = useMyBar();  
+  const { onBoar, setOnBoar} = useOnBoarding();
+
+  const handleLogout = () => {
+    if (myBar && !onBoar){
+      document.cookie = `jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      setAuth(false);
+      setMyBar(false);
+      setOnBoar(true);
+    }
+  };
 
   const logo = (
     <Box
@@ -31,9 +47,10 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
   }
 
   return (
-    <Link to="/" component={RouterLink} sx={{ display: 'contents' }}>
+    <Link to="/" component={RouterLink} sx={{ display: 'contents' }}  onClick={handleLogout}>
       {logo}
     </Link>
+    
   );
 });
 
