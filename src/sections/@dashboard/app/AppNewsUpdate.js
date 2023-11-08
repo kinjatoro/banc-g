@@ -54,7 +54,6 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
     const formData = new FormData();
     formData.append('event', index);
     formData.append('text', text);
-    formData.append('rating', 3);
 
     try {
       await axios.post(

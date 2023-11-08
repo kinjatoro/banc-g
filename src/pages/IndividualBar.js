@@ -38,8 +38,8 @@ export default function BarPage() {
     setOpenFilter(false);
   };
 
-  const [EVENTO, setEVENTOS] = useState([]);
-  const [GG, setGG] = useState(null);
+  const [BB, setBB] = useState(null);
+  const [comentarios, setComentarios] = useState(null);
 
   useEffect(() => {
 
@@ -49,13 +49,13 @@ export default function BarPage() {
   const handleLogin = async () => {
 
     try {
-      const response = await axios.get('https://music-lovers-production.up.railway.app/business/get/');
+      const response = await axios.get(`https://music-lovers-production.up.railway.app/business/get/?id=${index}`);
       const aux = response.data;
-      setEVENTOS(aux);
 
-      const filteredBlogs = aux.filter((card) => card.id === index);
-      const blogData = filteredBlogs[0];
-      setGG(blogData);
+      setBB(aux.business);
+      setComentarios(aux.comments);
+
+
 
     } catch (error) {
       console.error('Ocurrió un error al intentar cargar los eventos', error);
@@ -63,7 +63,7 @@ export default function BarPage() {
 
   };
   
-  if (!GG) {
+  if (!BB) {
     return <div/>;
   }
 
@@ -72,27 +72,27 @@ export default function BarPage() {
   
     <>
       <Helmet>
-        <title> {GG.name} </title>
+        <title> {BB.name} </title>
       </Helmet>
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2} mt={-4}>
           <Typography variant="h3" gutterBottom>
-          {GG.name}
+          {BB.name}
           </Typography>
           
         </Stack>
 
         <Grid container spacing={3}>
         
-            <BarPostCardInd key={GG.id} post={GG} index={index} />
+            <BarPostCardInd key={BB.id} post={BB} index={index} />
             
         </Grid>
         <Grid item xs={12} md={6} lg={8} >
             <AppNewsUpdateBar
               sx={{borderRadius: "0px"}}
               title="Agregar un comentario sobre el bar"
-              list={COMENTARIOS}
+              list={comentarios}
             />
           </Grid>
           <Divider/>

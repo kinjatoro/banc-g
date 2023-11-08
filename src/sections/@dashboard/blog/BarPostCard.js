@@ -59,7 +59,8 @@ BarPostCard.propTypes = {
 };
 
 export default function BarPostCard({ post, index }) {
-  const { id, name, address, city, neighbourhood,phone, logo, banner,  description} = post;
+  /* eslint-disable camelcase */
+  const { id, name, address, city, neighbourhood,phone, logo, banner, description, average_rating} = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
 
@@ -198,7 +199,7 @@ export default function BarPostCard({ post, index }) {
           <Stack sx={{alignItems: "center",  display: 'flex', flexDirection: "row", justifyContent:"space-between", mt: 2 }}> 
           
           <Stack sx={{color: 'grey.500'}} alignItems="center">
-          <Typography sx={{alignItems: "center",display: 'flex'}}><Iconify sx={{mt:-0.35, mr:0.5}}  icon="solar:star-bold" />{'2.4'}</Typography>
+          <Typography sx={{alignItems: "center",display: 'flex'}}><Iconify sx={{mt:-0.35, mr:0.5}}  icon="solar:star-bold" />{average_rating.toFixed(1)} </Typography>
           </Stack>
           
           <Button onClick={handleClick} variant="outlined">Ver más</Button>

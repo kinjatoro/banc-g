@@ -188,7 +188,7 @@ const fechaFormateada = `${dia}/${mes}-${anio}-${hora}:${minutos}`;
 
             
               <Typography>
-               {business} 
+               {artist} 
                </Typography>
             
           </StyledTitle>

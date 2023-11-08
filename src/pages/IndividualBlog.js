@@ -41,7 +41,9 @@ export default function BlogPage() {
 
 
   const [GG, setGG] = useState(null);
+  const [BB, setBB] = useState(null);
   const [comentarios, setComentarios] = useState(null);
+
 
   useEffect(() => {
 
@@ -54,8 +56,9 @@ export default function BlogPage() {
       const response = await axios.get(`https://music-lovers-production.up.railway.app/business/events/get/?id=${index}`);
 
       const aux = response.data;
-
+      
       setGG(aux.event);
+      setBB(aux.business);
       setComentarios(aux.comments);
 
     } catch (error) {
@@ -88,7 +91,7 @@ export default function BlogPage() {
 
         <Grid container spacing={3}>
         
-            <BlogPostCardInd key={GG.id} post={GG} index={index} />
+            <BlogPostCardInd key={GG.id} post={GG} index={index} bs={BB} />
             
         </Grid>
         <Grid item xs={12} md={6} lg={8} >

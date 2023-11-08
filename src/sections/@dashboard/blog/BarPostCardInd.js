@@ -62,7 +62,8 @@ BarPostCardInd.propTypes = {
 };
 
 export default function BarPostCardInd({ post, index }) {
-  const { id, name, address, city, neighbourhood,phone, logo, banner,  description} = post;
+  /* eslint-disable camelcase */
+  const { id, name, address, city, neighbourhood,phone, logo, banner,  description, average_rating} = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
 
@@ -71,8 +72,8 @@ export default function BarPostCardInd({ post, index }) {
   const fullImageUrlBanner = baseUrl + banner;
 
   const POST_INFO = [
-    { string: address, icon: 'solar:calendar-bold-duotone' },
-    { string: '3.5', icon: 'solar:star-bold' },
+    { string: address, icon: 'line-md:map-marker-filled' },
+    { string: average_rating.toFixed(1), icon: 'solar:star-bold' },
   ];
 
   
@@ -166,10 +167,10 @@ export default function BarPostCardInd({ post, index }) {
               {neighbourhood} </Box>
           </StyledTitle>
           
-          <Typography sx={{textAlign: "justify", mt:-1}}>Únete a nosotros en una noche llena de música y emoción en nuestro acogedor bar. Disfruta de un ambiente íntimo y vibrante mientras músicos talentosos suben al escenario para ofrecer un concierto en vivo que te transportará a un mundo de sonidos cautivadores. </Typography>
+          <Typography sx={{textAlign: "justify", mt:-1}}>{description} </Typography>
           <Box sx={{borderTop: '1px solid #f0f0f0', mt:2}}> </Box>
           
-          <Typography sx={{textAlign: "justify", mt:2}}>Nicky Grill, el encantador cantante de jazz danés, es una verdadera joya en la escena musical internacional. Con una voz suave y seductora que evoca la nostalgia y la pasión, Nicky lleva a su audiencia a un viaje musical lleno de emociones profundas. Nacido en Copenhague, Nicky Grill ha perfeccionado su arte a lo largo de los años, fusionando el jazz tradicional con influencias contemporáneas para crear un sonido único y cautivador.</Typography>
+
             
           <StyledInfo>
             <div style={{display: 'flex', flexContent:"row"}}>

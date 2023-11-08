@@ -61,15 +61,16 @@ BlogPostCardInd.propTypes = {
   index: PropTypes.number,
 };
 
-export default function BlogPostCardInd({ post, index }) {
+export default function BlogPostCardInd({ post, index, bs }) {
   /* eslint-disable camelcase */
   const { business, address, city, neighbourhood, title,description, price, datetime, artist,genre_display,banner } = post;
+  const { name, logo } = bs;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
   
   const baseUrl = "https://music-lovers-production.up.railway.app";
   const fullImageUrl = baseUrl + banner;
-
+  const fullImageUrl2 = baseUrl + logo;
 
   function formatoConCero(numero) {
     // Agrega un cero inicial si el número es menor que 10
@@ -144,7 +145,7 @@ export default function BlogPostCardInd({ post, index }) {
           /> </div>
           <StyledAvatar
             alt={business}
-            src={fullImageUrl}
+            src={fullImageUrl2}
             sx={{
               ...((latestPostLarge || latestPost) && {
                 zIndex: 9,
@@ -185,13 +186,13 @@ export default function BlogPostCardInd({ post, index }) {
           > 
          
           <Box sx={{display: "flex", flexDirection: "row", alignItems: 'center'}}>
-              {business} </Box>
+              {name} </Box>
           </StyledTitle>
           
-          <Typography sx={{textAlign: "justify", mt:-1}}>Únete a nosotros en una noche llena de música y emoción en nuestro acogedor bar. Disfruta de un ambiente íntimo y vibrante mientras músicos talentosos suben al escenario para ofrecer un concierto en vivo que te transportará a un mundo de sonidos cautivadores. </Typography>
+          <Typography sx={{textAlign: "justify", mt:-1}}>{bs.description}</Typography>
           <Box sx={{borderTop: '1px solid #f0f0f0', mt:2}}> </Box>
           
-          <Typography sx={{textAlign: "justify", mt:2}}>Nicky Grill, el encantador cantante de jazz danés, es una verdadera joya en la escena musical internacional. Con una voz suave y seductora que evoca la nostalgia y la pasión, Nicky lleva a su audiencia a un viaje musical lleno de emociones profundas. Nacido en Copenhague, Nicky Grill ha perfeccionado su arte a lo largo de los años, fusionando el jazz tradicional con influencias contemporáneas para crear un sonido único y cautivador.</Typography>
+          <Typography sx={{textAlign: "justify", mt:2}}>{description}</Typography>
             
           <StyledInfo>
             <div style={{display: 'flex', flexContent:"row"}}>
