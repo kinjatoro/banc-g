@@ -9,6 +9,9 @@ import { fToNow } from '../../../utils/formatTime';
 // components
 import Iconify from '../../../components/iconify';
 import Scrollbar from '../../../components/scrollbar';
+import { useAuth } from '../../../Auth'
+import { useMyBar } from '../../../TengoBarAuth';
+import { useOnBoarding } from '../../../OnBoarding';
 
 // ----------------------------------------------------------------------
 
@@ -21,6 +24,10 @@ AppNewsUpdateBar.propTypes = {
 export default function AppNewsUpdateBar({ title, subheader, list, ...other }) {
   
   const [state, setState ] = useState(true);
+
+  const { auth, setAuth } = useAuth();
+  const { myBar, setMyBar } = useMyBar();  
+  const { onBoar, setOnBoar} = useOnBoarding();
 
   const [text, setText] = useState('');
   const [rating, setRating] = useState('');
@@ -76,10 +83,30 @@ export default function AppNewsUpdateBar({ title, subheader, list, ...other }) {
   }
 
   return (
-    <Card {...other}>
-      {(state ? (<>
-      <CardHeader title={title} subheader={subheader} />
-      <Stack spacing={2} sx={{ p: 3, px: 3 }}>
+  <>
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+
+      <Card {...other}>
+
+      {auth && !myBar ? (
+
+        
+      
+          <>
+           <CardHeader title={title} subheader={subheader} />
+      <Stack spacing={2} sx={{ pt: 3, px: 3 }}>
      
       <TextField name="comentario" label="Agregar un comentario" multiline rows={3} value={text} onChange={(e) => setText(e.target.value)}/>
 
@@ -102,28 +129,52 @@ export default function AppNewsUpdateBar({ title, subheader, list, ...other }) {
 
       <div style={{textAlign: "right"}}>
       <Button variant="outlined" onClick={handleClick}>Agregar comentario</Button></div>
-      </Stack></>
-      ):(
-      <>
-      <Stack spacing={2} sx={{ p: 3, px: 3 }}>
-        <Typography align="center">
-          El comentario fue enviado. Estará pendiente a revisión.
-        </Typography>
       </Stack>
-      </>))}
-      
-      <Scrollbar>
-        <Stack spacing={3} sx={{ p: 3, pr: 0, pt:0 }}>
-        <Typography variant="h6">Comentarios</Typography>
-          {list.map((news) => (
-            <NewsItem key={news.id} news={news} />
-          ))}
-        </Stack>
-      </Scrollbar>
+          </>
+   
+        
 
-    </Card>
-  );
-}
+
+
+    ) : (
+      <></>
+    )}
+
+
+
+
+        <Scrollbar>
+          <Stack spacing={3} sx={{ p: 3, pr: 0, pt: 2 }}>
+            <Typography variant="h6">Comentarios</Typography>
+            {list.map((news) => (
+              <NewsItem key={news.id} news={news} />
+            ))}
+          </Stack>
+        </Scrollbar>
+      </Card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </>
+);
+    }
 
 // ----------------------------------------------------------------------
 

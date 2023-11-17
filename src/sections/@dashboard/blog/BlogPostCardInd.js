@@ -170,9 +170,7 @@ export default function BlogPostCardInd({ post, index, bs }) {
             }),
           }}
         >
-          <Typography gutterBottom variant="subtitle1" sx={{ color: 'text.disabled', display: 'block' }}>
-            Publicación creada el ...
-          </Typography>
+
 
           <StyledTitle
             color="inherit"

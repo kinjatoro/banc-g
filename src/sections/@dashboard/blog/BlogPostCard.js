@@ -61,12 +61,13 @@ BlogPostCard.propTypes = {
 
 export default function BlogPostCard({ post, index }) {
   /* eslint-disable camelcase */
-  const { business, address, city, neighbourhood, title,description, price, datetime, artist,genre_display,banner } = post;
+  const { business, address, city, neighbourhood, title,description, price, datetime, artist,genre_display,banner,business_logo } = post;
   const latestPostLarge = index === 500;
   const latestPost = index === 501 || index === 502;
   
   const baseUrl = "https://music-lovers-production.up.railway.app";
   const fullImageUrl = baseUrl + banner;
+  const fullImageUrl2 = baseUrl + business_logo;
 
 
 
@@ -143,7 +144,7 @@ const fechaFormateada = `${dia}/${mes}-${anio}-${hora}:${minutos}`;
           />
           <StyledAvatar
             alt={business}
-            src={fullImageUrl }
+            src={fullImageUrl2 }
             sx={{
               ...((latestPostLarge || latestPost) && {
                 zIndex: 9,

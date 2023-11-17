@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, Navigate, useNavigate } from 'react-router-dom';
 // @mui
 import { styled, alpha } from '@mui/material/styles';
-import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
+import { Box, Link, Button, Drawer, Typography, Avatar, Stack, Divider} from '@mui/material';
 import jwtDecode from 'jwt-decode';
 // mock
 import account from '../../../_mock/account';
@@ -183,9 +183,11 @@ export default function Nav({ openNav, onCloseNav }) {
            <></>
             ) : (
             <>
+            
+            <Divider sx={{mt: 0.5, mr: 2, ml: 2, mb:2}}/>
              <Box sx={{ px: 2.5, pb: 0, mt: 2 }}>
       <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
-        
+              
                 <Box sx={{ textAlign: 'center' }}>
                 <Typography gutterBottom variant="h6">
                   ¿Sos usuario?
@@ -195,11 +197,13 @@ export default function Nav({ openNav, onCloseNav }) {
                 </Button><Button onClick={handleClick2} variant='outlined'>
                   Registarme
                 </Button></Stack></Box></>)}
+
+                <Divider sx={{mt: 5, mr: 2, ml: 2}}/>
       
 
 
 
-      {auth ? (
+      {/* {auth ? (
           <p>Auth es verdadera.</p>
         ) : (
           <p>Auth es falsa.</p>
@@ -215,12 +219,12 @@ export default function Nav({ openNav, onCloseNav }) {
           <p>myBar es verdadera.</p>
         ) : (
           <p>myBar es falsa.</p>
-        )}
+        )} */}
 
         
 
       
-      <Box sx={{ px: 2.5, pb: 0, mt: 2 }}>
+      <Box sx={{ px: 2.5, pb: 0, mt: 5 }}>
       <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
         
       {auth ? (

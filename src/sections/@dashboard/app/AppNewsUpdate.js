@@ -10,6 +10,9 @@ import { fToNow } from '../../../utils/formatTime';
 // components
 import Iconify from '../../../components/iconify';
 import Scrollbar from '../../../components/scrollbar';
+import { useAuth } from '../../../Auth'
+import { useMyBar } from '../../../TengoBarAuth';
+import { useOnBoarding } from '../../../OnBoarding';
 
 // ----------------------------------------------------------------------
 
@@ -20,6 +23,10 @@ AppNewsUpdate.propTypes = {
 };
 
 export default function AppNewsUpdate({ title, subheader, list, ...other }) {
+
+  const { auth, setAuth } = useAuth();
+  const { myBar, setMyBar } = useMyBar();  
+  const { onBoar, setOnBoar} = useOnBoarding();
   
   const [state, setState ] = useState(true);
   const [text, setText] = useState('');
@@ -74,22 +81,33 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
 
   return (
     <Card {...other}>
-      {(state ? (<>
+      {auth && !myBar ? (
+
+        
+      
+<>
+
       <CardHeader title={title} subheader={subheader} />
-      <Stack spacing={2} sx={{ p: 3, px: 3 }}>
+      <Stack spacing={2} sx={{ pt: 3, px: 3 }}>
       <TextField name="comentario" label="Agregá un comentario..." multiline rows={3} value={text}
            onChange={(e) => setText(e.target.value)}/>
 
       <div style={{textAlign: "right"}}>
       <Button variant="outlined" onClick={handleClick}>Publicar</Button></div>
-      </Stack></>
-      ):(
-      <>
+      </Stack>
 
-      </>))}
+      </>
+   
+        
+
+
+
+    ) : (
+      <></>
+    )}
       
       <Scrollbar>
-        <Stack spacing={3} sx={{ p: 3, pr: 0, pt:0 }}>
+        <Stack spacing={3} sx={{ p: 3, pr: 0, pt:2 }}>
         <Typography variant="h6">Comentarios</Typography>
           {list.map((news) => (
             <NewsItem key={news.id} news={news} />

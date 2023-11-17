@@ -12,8 +12,8 @@ import {
   Avatar,
   Button,
   Popover,
-  Checkbox,
-  TableRow,
+  Checkbox,Box,
+  TableRow,Modal,Grid,
   MenuItem,
   TableBody,
   TableCell,
@@ -48,11 +48,11 @@ const TABLE_HEAD = [
 
 const TABLE_HEAD2 = [
   { id: 'name', label: 'Usuario', alignRight: false },
-  { id: 'servicio', label: 'Publicación', alignRight: false },
+  { id: 'servicio', label: 'Comentario', alignRight: false },
 
-  { id: 'comentario', label: 'Comentario', alignRight: false },
+  { id: 'comentario', label: 'Calificación', alignRight: false },
 
-  { id: 'estadoComentario', label: 'Estado', alignRight: false },
+  { id: 'estadoComentario', label: 'Fecha creación', alignRight: false },
   { id: '' },
 ];
 
@@ -91,6 +91,8 @@ export default function UserPage() {
   
   const [open, setOpen] = useState(null);
 
+  const [esEvento, setEsEvento] = useState(false);
+
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
@@ -103,6 +105,7 @@ export default function UserPage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+  const [idEvento, setidEvento] = useState("");
 
   /* ----------------------------------------------------COOKIES-----------------------------------------*/
 
@@ -123,6 +126,34 @@ export default function UserPage() {
   }
 
   const cookieValue = getJwtToken();
+
+  const handleEliminarBack = async () => { 
+
+    console.log(idEvento)
+
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${cookieValue}`,
+        },
+      };
+
+      try {
+        if(esEvento){
+          await axios.delete(`https://music-lovers-production.up.railway.app/business/event/comments/delete/?id=${idEvento}`, config);
+        } else {
+          await axios.delete(`https://music-lovers-production.up.railway.app/business/comments/delete/?id=${idEvento}`, config);
+        }
+        
+
+        window.location.reload();
+
+      } catch (error) {
+        alert('Ocurrió un error inesperado. No se puedo eliminar el comentario.');
+      }
+      setOpenModal3(false);
+
+    };
+
 
   const handleLogin = async () => {
 
@@ -151,8 +182,10 @@ export default function UserPage() {
 
   /*--------------------------------------------------------------------------------------------*/
 
-  const handleOpenMenu = (event) => {
+  const handleOpenMenu = (event, id) => {
     setOpen(event.currentTarget);
+    setidEvento(id);
+    setEsEvento(true);
   };
 
   const handleCloseMenu = () => {
@@ -203,6 +236,7 @@ export default function UserPage() {
     setFilterName(event.target.value);
   };
 
+
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - EVENTOS.length) : 0;
 
   const filteredUsers = applySortFilter(EVENTOS, getComparator(order, orderBy), filterName);
@@ -230,8 +264,13 @@ export default function UserPage() {
 
   const [rowsPerPage2, setRowsPerPage2] = useState(5);
 
-  const handleOpenMenu2 = (event) => {
+
+  const [openModal3, setOpenModal3] = useState(false);
+
+  const handleOpenMenu2 = (event, id) => {
     setOpen2(event.currentTarget);
+    setidEvento(id);
+    setEsEvento(false);
   };
 
   const handleCloseMenu2 = () => {
@@ -282,6 +321,20 @@ export default function UserPage() {
     setFilterName2(event.target.value);
   };
 
+  const handleEliminar = () => { 
+    setOpenModal3(true);
+    setOpen(null);
+    setOpen2(null);
+  };
+
+  const handleEliminarNoBack = () => { 
+    setOpenModal3(false);
+  };
+
+  const handleCloseModal3 = () => {
+    setOpenModal3(false);
+  };
+
   const emptyRows2 = page2 > 0 ? Math.max(0, (1 + page2) * rowsPerPage2 - NEGOCIO.length) : 0;
 
   const filteredUsers2 = applySortFilter(NEGOCIO, getComparator(order2, orderBy2), filterName2);
@@ -330,10 +383,10 @@ export default function UserPage() {
                     const selectedUser = selected.indexOf(user) !== -1;
 
                     return (
-                      <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>
-                        <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, user)} />
-                        </TableCell>
+                      <TableRow hover key={id} tabIndex={-1}>
+                        <TableCell padding="checkbox"/>
+                          
+                    
 
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
@@ -355,7 +408,7 @@ export default function UserPage() {
                         </TableCell>
 
                         <TableCell align="right">
-                          <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
+                          <IconButton size="large" color="inherit" onClick={(event) => handleOpenMenu(event, id)}>
                             <Iconify icon={'eva:more-vertical-fill'} />
                           </IconButton>
                         </TableCell>
@@ -410,8 +463,8 @@ export default function UserPage() {
 
 
 
-
-
+      <Box sx={{m: 5}} />
+                          
 
 
       <Container>
@@ -444,30 +497,33 @@ export default function UserPage() {
                     const selectedUser2 = selected2.indexOf(user) !== -1;
 
                     return (
-                      <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser2}>
-                        <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser2} onChange={(event) => handleClick(event, user)} />
-                        </TableCell>
+                      <TableRow hover key={id} tabIndex={-1}>
+                        <TableCell padding="checkbox"/>
 
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={user} src={''} />
+                            <Avatar alt={user} src={baseURL+user_logo} />
                             <Typography variant="subtitle2" noWrap>
-                              {user}
+                              {user_name}
                             </Typography>
                           </Stack>
                         </TableCell>
 
-                        <TableCell align="left">{user_name}</TableCell>
                         <TableCell align="left">{text}</TableCell>
+                        
+                        <TableCell align="left">
+                          <Label color={ (rating === 1 && 'error') || (rating === 2 && 'error') || (rating === 3 && 'warning') || 'success'}>
+                          {rating}
+                          </Label>
+                          </TableCell>
 
 
                         <TableCell align="left">
-                          <Label >{business}</Label>
+                          <Label >{created_at.slice(0, 10)}</Label>
                         </TableCell>
 
                         <TableCell align="right">
-                          <IconButton size="large" color="inherit" onClick={handleOpenMenu2}>
+                          <IconButton size="large" color="inherit" onClick={(event) => handleOpenMenu2(event, id)}>
                             <Iconify icon={'eva:more-vertical-fill'} />
                           </IconButton>
                         </TableCell>
@@ -556,17 +612,7 @@ export default function UserPage() {
           },
         }}
       >
-        <MenuItem>
-          <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-          Aceptar
-        </MenuItem>
-
-        <MenuItem>
-          <Iconify icon={'eva:close-circle-outline'} sx={{ mr: 2 }} />
-          Rechazar
-        </MenuItem>
-
-        <MenuItem sx={{ color: 'error.main' }}>
+        <MenuItem onClick={handleEliminar} sx={{ color: 'error.main' }}>
           <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
           Eliminar
         </MenuItem>
@@ -607,21 +653,71 @@ export default function UserPage() {
           },
         }}
       >
-        <MenuItem>
-          <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-          Aceptar
-        </MenuItem>
-
-        <MenuItem>
-          <Iconify icon={'eva:close-circle-outline'} sx={{ mr: 2 }} />
-          Rechazar
-        </MenuItem>
-
-        <MenuItem sx={{ color: 'error.main' }}>
+       <MenuItem onClick={handleEliminar} sx={{ color: 'error.main' }}>
           <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
           Eliminar
         </MenuItem>
       </Popover>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <Modal
+        open={openModal3}
+        onClose={handleCloseModal3}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Container maxWidth="sm" sx={{ mt:25, padding: '20px', maxHeight: '675px', backgroundColor: 'white', borderRadius: 5 }}>
+
+          <Box mt={1} mb={2} backgroundColor='white' align='center'>
+            <Typography variant="h4" gutterBottom>
+
+            <strong>¿Estás seguro que deseas eliminar el comentario?</strong>
+            </Typography>
+          </Box>
+
+          <Box backgroundColor='white'>
+            <Grid align="center">
+              <Button variant="contained" size="large" color="primary" onClick={handleEliminarBack}>Eliminar</Button>
+              <Button sx= {{ml: 3}} variant="outlined" size="large" color="primary" onClick={handleEliminarNoBack}>Volver atrás</Button>
+            </Grid>
+          </Box>
+        </Container>
+      </Modal>
+
+
+
+
+
+
+
+
+
+
     </>
   );
 }
