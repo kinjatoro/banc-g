@@ -54,7 +54,7 @@ export default function OnBoardingPage() {
       <StyledRoot>
         <Logo
           sx={{
-            position: 'fixed',
+            position: 'absolute',
             top: { xs: 16, sm: 24, md: 40 },
             left: { xs: 16, sm: 24, md: 40 },
           }}
