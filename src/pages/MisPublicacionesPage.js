@@ -786,6 +786,7 @@ export default function UserPage() {
         onClose={handleCloseModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        sx={{overflow: 'auto'}}
       >
         <Container maxWidth="sm" sx={{ mt: 2, padding: '20px', maxHeight: '690px', backgroundColor: 'white', borderRadius: 5 }}>
 
@@ -1179,6 +1180,7 @@ export default function UserPage() {
         onClose={handleCloseModal2}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        sx={{overflow: 'auto'}}
       >
 
       

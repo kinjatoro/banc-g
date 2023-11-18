@@ -199,7 +199,12 @@ export default function BarPostCard({ post, index }) {
           <Stack sx={{alignItems: "center",  display: 'flex', flexDirection: "row", justifyContent:"space-between", mt: 2 }}> 
           
           <Stack sx={{color: 'grey.500'}} alignItems="center">
-          <Typography sx={{alignItems: "center",display: 'flex'}}><Iconify sx={{mt:-0.35, mr:0.5}}  icon="solar:star-bold" />{average_rating.toFixed(1)} </Typography>
+          <Typography sx={{alignItems: "center",display: 'flex'}}><Iconify sx={{mt:-0.35, mr:0.5}}  icon="solar:star-bold" />
+
+          {  ( average_rating === 0.0 ? (<> 0.0 </>) : (<> {average_rating.toFixed(1)}</>)) }
+          
+          
+          </Typography>
           </Stack>
           
           <Button onClick={handleClick} variant="outlined">Ver más</Button>

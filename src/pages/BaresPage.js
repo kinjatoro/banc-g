@@ -81,7 +81,7 @@ export default function BaresPage() {
     setSearchQuery(e.target.value);
     // Filtra las cartas en función de la búsqueda y orden actual
     const filtered = EVENTOS.filter((card) =>
-      card.title.toLowerCase().includes(e.target.value.toLowerCase())
+      card.name.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setFilteredBlog(filtered); // Actualiza el estado con el resultado de la búsqueda
   };
@@ -110,6 +110,17 @@ export default function BaresPage() {
     setOrden('Barrio'); // Establece la etiqueta del orden
   };
   
+  const handleCalificacion = () => {
+    const sortedBlog = [...filteredBlog];
+    sortedBlog.sort((a, b) => {
+      const priceA = parseFloat(a.average_rating);
+      const priceB = parseFloat(b.average_rating);
+      return  priceB - priceA;
+    });
+    setFilteredBlog(sortedBlog); // Actualiza el estado con el nuevo orden
+    setOpen(null);
+    setOrden('Calificación');
+  };
   
 
   
@@ -180,12 +191,21 @@ export default function BaresPage() {
 
 
                     <MenuItem
-                      key={"genero"}
-                      selected={"genero" === 'newest'}
+                      key={"barrio"}
+                      selected={"barrio" === 'newest'}
                       onClick={handleGenero}
                       sx={{ typography: 'body2' }}
                     >
                       {"Barrio"}
+                    </MenuItem>
+
+                    <MenuItem
+                      key={"calificacion"}
+                      selected={"calificacion" === 'newest'}
+                      onClick={handleCalificacion}
+                      sx={{ typography: 'body2' }}
+                    >
+                      {"Calificación"}
                     </MenuItem>
 
 

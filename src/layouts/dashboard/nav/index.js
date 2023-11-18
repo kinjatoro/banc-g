@@ -78,6 +78,7 @@ export default function Nav({ openNav, onCloseNav }) {
     setAuth(false);
     setMyBar(false);
     setOnBoar(true);
+    navigate('/inicio');
   };
 
   useEffect(() => {
@@ -228,7 +229,7 @@ export default function Nav({ openNav, onCloseNav }) {
       <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
         
       {auth ? (
-           <><Button onClick={handleAuth} variant='outlined' color="error" href="http://localhost:3000/inicio">
+           <><Button onClick={handleAuth} variant='outlined' color="error">
             Cerrar sesión
             </Button></>
             ) : (

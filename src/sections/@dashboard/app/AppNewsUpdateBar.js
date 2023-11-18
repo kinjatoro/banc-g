@@ -146,9 +146,9 @@ export default function AppNewsUpdateBar({ title, subheader, list, ...other }) {
         <Scrollbar>
           <Stack spacing={3} sx={{ p: 3, pr: 0, pt: 2 }}>
             <Typography variant="h6">Comentarios</Typography>
-            {list.map((news) => (
-              <NewsItem key={news.id} news={news} />
-            ))}
+            {  ( list.length === 0 ? (<div> No hay comentarios. </div>) : (<> {list.map((news) => (
+            <NewsItem key={news.id} news={news} />
+          ))}</>)) }
           </Stack>
         </Scrollbar>
       </Card>
@@ -207,9 +207,20 @@ function NewsItem({ news }) {
         </Typography>
       </Box>
 
-      <Typography variant="caption" sx={{ pr: 3, flexShrink: 0, color: 'text.secondary' }}>
-        {rating} estrellas
-      </Typography>
+      
+
+
+
+      <Stack sx={{color: 'grey.500', pr:3}} alignItems="center">
+          <Typography sx={{alignItems: "center",display: 'flex'}}><Iconify sx={{mt:-0.35, mr:0.5}}  icon="solar:star-bold" />
+
+          {rating}
+          
+          </Typography>
+          </Stack>
+      
+      
+
     </Stack>
   );
 }

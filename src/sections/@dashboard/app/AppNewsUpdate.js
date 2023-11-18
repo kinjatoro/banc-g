@@ -78,6 +78,7 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
     
     
   }
+  
 
   return (
     <Card {...other}>
@@ -86,7 +87,7 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
         
       
 <>
-
+        
       <CardHeader title={title} subheader={subheader} />
       <Stack spacing={2} sx={{ pt: 3, px: 3 }}>
       <TextField name="comentario" label="Agregá un comentario..." multiline rows={3} value={text}
@@ -105,13 +106,27 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
     ) : (
       <></>
     )}
+
+    
       
       <Scrollbar>
         <Stack spacing={3} sx={{ p: 3, pr: 0, pt:2 }}>
         <Typography variant="h6">Comentarios</Typography>
-          {list.map((news) => (
+
+
+
+
+        {  ( list.length === 0 ? (<div> No hay comentarios. </div>) : (<> {list.map((news) => (
             <NewsItem key={news.id} news={news} />
-          ))}
+          ))}</>)) }
+
+
+          
+
+
+
+
+
         </Stack>
       </Scrollbar>
 
