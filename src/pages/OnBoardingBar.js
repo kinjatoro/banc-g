@@ -64,7 +64,7 @@ export default function OnBoardingPage() {
 
         <Container maxWidth="sm">
           <StyledContent>
-            <Typography variant="h3" gutterBottom sx={{mt:-5}}>
+            <Typography variant="h3" gutterBottom >
             Registrá tu bar. 
             </Typography>
 

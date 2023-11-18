@@ -209,7 +209,7 @@ const handleBackGuardarCambios = async () => {
       <Container>
         <Stack spacing={3}>
           <div>
-            <Typography variant="h3" sx={{mb:2, ml:6}}>
+            <Typography variant="h3" sx={{mb:2, ml:2}}>
               Cuenta
             </Typography>
           </div>
@@ -226,7 +226,7 @@ const handleBackGuardarCambios = async () => {
                 
               >
                 <>
-    <Card sx={{mb:1,mr:3, ml:6}}>
+    <Card sx={{mb:1,mr:3, ml:2}}>
       <CardContent sx={{mb:-2}}>
         <Box
           sx={{
@@ -305,7 +305,7 @@ const handleBackGuardarCambios = async () => {
               >
                 <>
  
-      <Card sx={{ml:3}}> 
+      <Card sx={{ml:1}}> 
         <CardHeader
           title="Tus datos"
           sx={{py:2,ml:1}}

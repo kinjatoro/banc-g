@@ -68,7 +68,7 @@ export default function RegisterPage() {
 
         <Container maxWidth="sm">
           <StyledContent>
-            <Typography variant="h3" gutterBottom sx={{mt:-5}}>
+            <Typography variant="h3" gutterBottom sx={{mt:-2}}>
             Registro
             </Typography>
 
