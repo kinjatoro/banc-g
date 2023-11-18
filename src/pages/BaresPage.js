@@ -107,7 +107,7 @@ export default function BaresPage() {
   
     setFilteredBlog(sortedBlog); // Actualiza el estado con el nuevo orden
     setOpen(null);
-    setOrden('Género'); // Establece la etiqueta del orden
+    setOrden('Barrio'); // Establece la etiqueta del orden
   };
   
   
