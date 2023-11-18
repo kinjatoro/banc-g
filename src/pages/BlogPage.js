@@ -272,19 +272,21 @@ export default function BlogPage() {
         </Stack>
 
         <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between">
+
               <input
               type="text"
               placeholder="Buscar por título..."
               value={searchQuery}
               onChange={handleSearchChange}
               style={{
-                width: '300px',
+                width: '250px',
                 height: '55px', 
                 fontSize: '16px',
                 borderRadius: '10px', 
                 border: '2px solid #f0f0f0',
                 paddingLeft: "10px",
-                backgroundColor: '#F9FAFB'
+                backgroundColor: '#F9FAFB',
+                
               }}
             />
               
@@ -299,7 +301,11 @@ export default function BlogPage() {
                   color="inherit"
                   disableRipple
                   onClick={handleOpen}
-                  endIcon={<Iconify icon={open ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />}
+                  endIcon={<Iconify icon={open ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} 
+                   
+                  />
+                 
+                }
                 >
                   Ordenar Por:&nbsp;
                   <Typography component="span" variant="subtitle2" sx={{ color: 'text.secondary', ml:0.5 }}>
