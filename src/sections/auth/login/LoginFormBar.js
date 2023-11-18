@@ -63,19 +63,17 @@ export default function LoginFormBar() {
     if (!validateFields()) {
       alert('Por favor, complete los campos obligatorios.');
       return;
-    }console.log(0)
+    }
 
     try {
-      console.log(22)
+    
       const response = await axios.post('https://music-lovers-production.up.railway.app/business/login/', {
         email,
         password,
     
       });
-      console.log(43434)
       // Crea el token
       const token = response.data.access;
-      console.log(1)
       if (token){
         document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
         setAuth(true);
@@ -88,7 +86,6 @@ export default function LoginFormBar() {
         }
 
         navigate('/inicio');
-        console.log(2)
       } 
 
       if (response.data.detail && response.data.detail[0] === "No user with this email exists."){

@@ -62,16 +62,13 @@ export default function RegisterFormBar() {
   };
 
   const handleSubmit = async () => {
-    console.log(0);
     if (!validateFields()) {
       alert('Por favor, completá los campos obligatorios.');
       return;
     }
 
-    console.log(2);
    
     try {
-      console.log(3);
       const response = await axios.post(
         "https://music-lovers-production.up.railway.app/business/register/",
         {
@@ -98,7 +95,7 @@ export default function RegisterFormBar() {
 
       
     } catch (error) {
-      console.log(1);
+     
       alert('Ocurrió un error inesperado. No se pudo completar el registro.');
 
     }

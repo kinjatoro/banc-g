@@ -41,7 +41,7 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
   }
   const jwtToken = getJwtToken();
 
-  console.log(index);
+
 
   const handleClick = async () => {
 

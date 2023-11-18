@@ -75,7 +75,7 @@ export default function RegisterForm() {
       if (token){
         document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
 
-        console.log(response.data);
+       
         navigate('/registro/cliente/onboarding', { replace: true });
         setAuth(true);
 

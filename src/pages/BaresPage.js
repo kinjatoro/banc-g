@@ -43,14 +43,13 @@ export default function BaresPage() {
   }, []);
 
   const handleLogin = async () => {
-    console.log(1)
     try {
       const response = await axios.get('https://music-lovers-production.up.railway.app/business/filter/');
-      console.log(2)
+
       const aux = response.data;
       setEVENTOS(aux);
       setFilteredBlog(aux);
-      console.log(aux)
+
 
 
     } catch (error) {

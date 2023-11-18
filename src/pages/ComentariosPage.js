@@ -129,7 +129,7 @@ export default function UserPage() {
 
   const handleEliminarBack = async () => { 
 
-    console.log(idEvento)
+  
 
       const config = {
         headers: {

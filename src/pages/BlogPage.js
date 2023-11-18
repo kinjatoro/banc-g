@@ -53,30 +53,30 @@ export default function BlogPage() {
   }, []);
 
   const handleLogin = async () => {
-    console.log(1);
+
     try {
       let newURL = "https://music-lovers-production.up.railway.app/business/events/filter/?";
   
       if (dia && mes && anio) {
-        console.log(1);
+
         const fecha1 = `mindate=${anio}-${mes}-${dia}&`;
         newURL += fecha1;
       }
   
       if (dia2 && mes2 && anio2) {
-        console.log(2);
+
         const fecha2 = `maxdate=${anio2}-${mes2}-${dia2}&`;
         newURL += fecha2;
       }
   
       if (price) {
-        console.log(3);
+       
         const fecha3 = `minprice=${price}&`;
         newURL += fecha3;
       }
 
       if (price2) {
-        console.log(3);
+        
         const fecha4 = `maxprice=${price2}&`;
         newURL += fecha4;
       }
@@ -88,14 +88,14 @@ export default function BlogPage() {
   
       await setURL(newURL); // Actualiza URL de manera síncrona
 
-      console.log(newURL)
+
   
       const response = await axios.get(newURL); // Usa la nueva URL
-      console.log(2);
+
       const aux = response.data;
       setEVENTOS(aux);
       setFilteredBlog(aux);
-      console.log(aux);
+    
     } catch (error) {
       console.error('Ocurrió un error al intentar cargar los eventos', error);
     }

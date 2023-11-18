@@ -13,7 +13,7 @@ export function BoarProvider({ children }) {
     // decodifica el token (si lo encuentra)
     if (jwtToken) {
       const decodedToken = jwtDecode(jwtToken);
-      console.log(decodedToken);
+
       if (decodedToken.user_type === 1 && decodedToken.business_id === null){
         setOnBoar(false);
       }
