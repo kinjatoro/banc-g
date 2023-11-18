@@ -165,7 +165,10 @@ export default function BaresPage() {
                   onClick={handleOpen}
                   endIcon={<Iconify icon={open ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />}
                 >
-                  Ordenar Por:&nbsp;
+
+                  {/* Ordenar Por: */}
+                  
+                  &nbsp;
                   <Typography component="span" variant="subtitle2" sx={{ color: 'text.secondary', ml:0.5 }}>
                     {orden}
                   </Typography>

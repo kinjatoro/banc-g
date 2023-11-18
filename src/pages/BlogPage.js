@@ -279,7 +279,7 @@ export default function BlogPage() {
               value={searchQuery}
               onChange={handleSearchChange}
               style={{
-                width: '250px',
+                width: '300px',
                 height: '55px', 
                 fontSize: '16px',
                 borderRadius: '10px', 
@@ -291,6 +291,7 @@ export default function BlogPage() {
             />
               
             <Box sx={{textAlign: "right"}}>
+              
             <Button disableRipple color="inherit" endIcon={<Iconify icon="ic:round-filter-list" />} onClick={handleOpenFilter}>
                 Filtrar&nbsp;
              </Button>
@@ -307,7 +308,9 @@ export default function BlogPage() {
                  
                 }
                 >
-                  Ordenar Por:&nbsp;
+                  {/* // Ordenar Por: */}
+                  
+                  &nbsp;
                   <Typography component="span" variant="subtitle2" sx={{ color: 'text.secondary', ml:0.5 }}>
                     {orden}
                   </Typography>
