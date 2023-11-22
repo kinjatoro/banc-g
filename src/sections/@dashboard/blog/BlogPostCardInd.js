@@ -4,12 +4,15 @@ import { useNavigate } from 'react-router-dom';
 // @mui
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Link, Card, Button, Grid, Avatar, Typography, CardContent,Stack } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 // utils
 import { fDate } from '../../../utils/formatTime';
 import { fShortenNumber } from '../../../utils/formatNumber';
 //
 import SvgColor from '../../../components/svg-color';
 import Iconify from '../../../components/iconify';
+
+
 
 // ----------------------------------------------------------------------
 
@@ -72,6 +75,8 @@ export default function BlogPostCardInd({ post, index, bs }) {
   const fullImageUrl = baseUrl + banner;
   const fullImageUrl2 = baseUrl + logo;
 
+  const isMdScreenOrLarger = useMediaQuery((theme) => theme.breakpoints.up('md'));
+
   function formatoConCero(numero) {
     // Agrega un cero inicial si el número es menor que 10
     return numero < 10 ? `0${numero}` : numero;
@@ -101,7 +106,7 @@ export default function BlogPostCardInd({ post, index, bs }) {
       { string: fechaFormateada.slice(0, 5), icon: 'solar:calendar-bold-duotone' },
       { string: fechaFormateada.slice(11, 16), icon: 'mdi:clock' },
       { string: genre_display, icon: "eva:music-fill" },
-      { string: formattedAddress, icon: 'line-md:map-marker-filled' },
+      { string: isMdScreenOrLarger ? formattedAddress : null, icon: 'line-md:map-marker-filled' },
 
     ];
 
@@ -204,16 +209,17 @@ export default function BlogPostCardInd({ post, index, bs }) {
           <Typography sx={{textAlign: "justify", mt:2}}>{description}</Typography>
             
           <StyledInfo>
-            <div style={{display: 'flex', flexContent:"row"}}>
-          <Typography variant="h5" sx={{mr:1, color: "black"}}>{`$${price}`}</Typography>
+            <div style={{display: 'flex', flexContent:"row", alignItems: 'center'}}>
+          <Typography variant="h5" align="center" sx={{mr:1, color: "black"}}>{`$${price}`}</Typography>
             {POST_INFO.map((info, index) => (
               <Box
                 key={index}
                 sx={{
-                  display: 'flex',
+                
                   alignItems: 'center',
                   ml: 1.5,
                   pt: 0.5,
+                  display: info.string || info.string === 0 ? 'flex' : 'none',
                 }}
               >
                 <Iconify icon={info.icon} sx={{ width: 24, height: 24, mr: 0.5, mt:-1 }} />
