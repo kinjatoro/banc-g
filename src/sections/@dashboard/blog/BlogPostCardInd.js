@@ -90,17 +90,25 @@ export default function BlogPostCardInd({ post, index, bs }) {
     const fechaFormateada = `${dia}/${mes}-${anio}-${hora}:${minutos}`;
 
 
+    let formattedAddress = address;
+    if (neighbourhood) {
+      formattedAddress += `, ${neighbourhood}`;
+    }
+    formattedAddress += `, ${city}.`;
+
 
     const POST_INFO = [
       { string: fechaFormateada.slice(0, 5), icon: 'solar:calendar-bold-duotone' },
       { string: fechaFormateada.slice(11, 16), icon: 'mdi:clock' },
       { string: genre_display, icon: "eva:music-fill" },
+      { string: formattedAddress, icon: 'line-md:map-marker-filled' },
+
     ];
 
     const navigate = useNavigate();
 
     const handleClick = () => {
-      navigate(`/eventos/${post.id}`);
+      window.open(`/bares/${business}`, '_blank');
     };
 
   return (
@@ -184,7 +192,10 @@ export default function BlogPostCardInd({ post, index, bs }) {
           > 
          
           <Box sx={{display: "flex", flexDirection: "row", alignItems: 'center'}}>
-              {name} </Box>
+              <Link onClick={handleClick} underline='hover' sx={{ color: 'text.primary',cursor: 'pointer' }}>
+              {name} </Link>
+              
+              </Box>
           </StyledTitle>
           
           <Typography sx={{textAlign: "justify", mt:-1}}>{bs.description}</Typography>

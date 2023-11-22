@@ -153,8 +153,13 @@ function NewsItem({ news }) {
   const { id, event, user, user_name,user_logo,text,rating } = news;
   const baseUrl = "https://music-lovers-production.up.railway.app";
   const fullImageUrl = baseUrl + user_logo;
+  console.log(user_logo)
+
 
   return (
+
+    
+
     <Stack direction="row" alignItems="center" spacing={2} sx={{borderTop: '1px solid #f0f0f0', }}>
       <Box component="img" alt={user_name} src={fullImageUrl} sx={{ width: 48, height: 48, borderRadius: 1.5, flexShrink: 0 }} />
 

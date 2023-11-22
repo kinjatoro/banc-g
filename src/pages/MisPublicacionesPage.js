@@ -114,11 +114,27 @@ export default function UserPage() {
       const aux = response.data;
       setEVENTOS(aux);
 
+    } catch (error) {
+      console.error('Error de inicio de sesión', error);
+    }
+
+    try {
+      
+      const response2 = await axios.get('https://music-lovers-production.up.railway.app/business/view/', config);
+    
+      const aux2 = response2.data;
+      setAddress2(aux2.address);
+      setNeighbourhood2(aux2.neighbourhood);
+      setCity2(aux2.city);
+
 
 
     } catch (error) {
       console.error('Error de inicio de sesión', error);
     }
+
+
+
 
   };
 
@@ -137,7 +153,9 @@ export default function UserPage() {
   });
 
 
-
+  const [address2, setAddress2] = useState();
+  const [neighbourhood2, setNeighbourhood2] = useState();
+  const [city2, setCity2] = useState();
   
 
   const [open, setOpen] = useState(null);
@@ -454,9 +472,9 @@ export default function UserPage() {
     formData.append('datetime', datetime);
     formData.append('artist', artist);
     formData.append('genre', genreInUppercase);
-    formData.append('address', 'a');
-    formData.append('neighbourhood', 'a');
-    formData.append('city', 'a');
+    formData.append('address', address2);
+    formData.append('neighbourhood', neighbourhood2);
+    formData.append('city', city2);
     formData.append('banner', file); 
 
 
@@ -506,9 +524,9 @@ export default function UserPage() {
     formData.append('datetime', datetime);
     formData.append('artist', artist);
     formData.append('genre', genreInUppercase);
-    formData.append('address', 'a');
-    formData.append('neighbourhood', 'a');
-    formData.append('city', 'a');
+    formData.append('address', address2);
+    formData.append('neighbourhood', neighbourhood2);
+    formData.append('city', city2);
 
     if (file!=null){
        formData.append('banner', file); }

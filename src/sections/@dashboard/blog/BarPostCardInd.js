@@ -71,8 +71,15 @@ export default function BarPostCardInd({ post, index }) {
   const fullImageUrlLogo = baseUrl + logo;
   const fullImageUrlBanner = baseUrl + banner;
 
+  let formattedAddress = address;
+  if (neighbourhood) {
+    formattedAddress += `, ${neighbourhood}`;
+  }
+  formattedAddress += `, ${city}.`;
+
+
   const POST_INFO = [
-    { string: address, icon: 'line-md:map-marker-filled' },
+    { string: formattedAddress, icon: 'line-md:map-marker-filled' },
     { string: average_rating.toFixed(1), icon: 'solar:star-bold' },
   ];
 
@@ -164,7 +171,7 @@ export default function BarPostCardInd({ post, index }) {
           > 
          
           <Box sx={{display: "flex", flexDirection: "row", alignItems: 'center'}}>
-              {neighbourhood} </Box>
+              {name} </Box>
           </StyledTitle>
           
           <Typography sx={{textAlign: "justify", mt:-1}}>{description} </Typography>
