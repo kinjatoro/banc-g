@@ -391,7 +391,6 @@ const handleBackGuardarCambios = async () => {
                   label="Descripcion"
                   name="description"
                   onChange={handleChange}
-                  required
                   value={description}
                   multiline
                   rows={3}
@@ -407,7 +406,7 @@ const handleBackGuardarCambios = async () => {
               >
                 <TextField
                   fullWidth
-                  label="username"
+                  label="Nombre de usuario"
                   name="username"
                   onChange={handleChange}
                   
@@ -456,7 +455,6 @@ const handleBackGuardarCambios = async () => {
                   label="Ciudad"
                   name="city"
                   onChange={handleChange}
-                  required
                   value={city}
                   InputLabelProps={{
                     shrink: true,
@@ -472,7 +470,6 @@ const handleBackGuardarCambios = async () => {
                   label="Barrio"
                   name="neighbourhood"
                   onChange={handleChange}
-                  required
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -489,7 +486,6 @@ const handleBackGuardarCambios = async () => {
                   label="Dirección"
                   name="address"
                   onChange={handleChange}
-                  required
                   value={address}
                   InputLabelProps={{
                     shrink: true,
