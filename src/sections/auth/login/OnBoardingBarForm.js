@@ -336,7 +336,7 @@ export default function OnBoardingBarForm() {
       <label htmlFor="fileInput2" >
               <input
               type="file"
-              accept="image/*" // Puedes especificar el tipo de archivo que esperas aquí
+              accept="image/*" 
               style={{ display: 'none' }}
               onChange={handleBannerChange}
               id="fileInput2"

@@ -191,7 +191,7 @@ export default function RegisterForm() {
       <label htmlFor="fileInput" >
               <input
               type="file"
-              accept="image/*" // Puedes especificar el tipo de archivo que esperas aquí
+              accept="image/*" 
               style={{ display: 'none' }}
               onChange={handleLogoChange}
               id="fileInput"

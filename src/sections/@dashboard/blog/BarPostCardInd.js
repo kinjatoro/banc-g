@@ -79,8 +79,9 @@ export default function BarPostCardInd({ post, index }) {
 
 
   const POST_INFO = [
-    { string: formattedAddress, icon: 'line-md:map-marker-filled' },
     { string: average_rating.toFixed(1), icon: 'solar:star-bold' },
+    { string: formattedAddress, icon: 'line-md:map-marker-filled' },
+    { string: phone, icon: 'solar:phone-rounded-bold'}
   ];
 
   
@@ -180,29 +181,30 @@ export default function BarPostCardInd({ post, index }) {
 
             
           <StyledInfo>
-            <div style={{display: 'flex', flexContent:"row"}}>
-          
+          <Grid container spacing={1} sx={{ justifyContent: 'flex-start', margin: 'auto' }}>
             {POST_INFO.map((info, index) => (
-              <Box
+              <Grid
                 key={index}
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  ml: 1.5,
-                  pt: 0.5,
-                }}
+                item
+                xs={12} 
+                md="auto" 
               >
-                <Iconify icon={info.icon} sx={{ width: 24, height: 24, mr: 0.5, mt:-1 }} />
-                <Typography variant="body2" sx={{mt:-0.7}}>
-                  {(info.string)}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    pt: 0.5,
+                  }}
+                >
+                  <Iconify icon={info.icon} sx={{ width: 24, height: 24, mr: 0.5, mt: -1 }} />
+                  <Typography variant="body2" sx={{ mt: -0.7 }}>
+                    {info.string}
                   </Typography>
-                
-                
-              </Box>
+                </Box>
+              </Grid>
             ))}
-            </div>
-            
-          </StyledInfo>
+          </Grid>
+        </StyledInfo>
         </CardContent>
       </Card>
     </Grid>

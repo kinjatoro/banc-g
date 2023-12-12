@@ -472,9 +472,9 @@ export default function BlogPage() {
               </Grid>
               <Grid item xs={2} mt = {0.2} ml={-1} mr={-1}
               sx={{display: "flex",
-  justifyContent: "center",
-  alignIitems: "center",
-}}> _
+                  justifyContent: "center",
+                  alignIitems: "center",
+                  }}> _
                 
               </Grid>
 
@@ -702,7 +702,7 @@ export default function BlogPage() {
             </Grid>
           </Box>  
 
-
+         
           </div> 
 
           <Divider/>

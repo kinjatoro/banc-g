@@ -546,28 +546,6 @@ export default function UserPage() {
       alert('Ocurrió un error inesperado. No se pudo completar la creación del evento.');
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   };
 
   const maxFileNameLength = 40;

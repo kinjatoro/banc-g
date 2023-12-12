@@ -64,8 +64,6 @@ export default function BlogPage() {
     } catch (error) {
       console.error('Ocurrió un error al intentar cargar los eventos', error);
     }
-
-
   };
   if (!GG) {
     return <div/>;
