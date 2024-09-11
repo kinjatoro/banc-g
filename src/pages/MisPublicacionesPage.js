@@ -605,7 +605,7 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title> Mis Publicaciones | For The Music Lovers </title>
+        <title> Mis Publicaciones | Banco Galicia </title>
       </Helmet>
 
       <Container>

@@ -204,7 +204,7 @@ const handleBackGuardarCambios = async () => {
     <>
 
       <Helmet>
-        <title> Perfil Bar | For The Music Lovers </title>
+        <title> Perfil Bar | Banco Galicia </title>
       </Helmet>
 
       <Container>

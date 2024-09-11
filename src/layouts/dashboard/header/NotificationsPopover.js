@@ -86,7 +86,7 @@ export default function NotificationsPopover() {
             <Typography variant="subtitle1">Notificaciones</Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               Las notificaciones se implementarán en una futura versión.<br/>
-              ¡Gracias por usar For The Music Lovers!
+              ¡Gracias por usar Banco Galicia!
             </Typography>
           </Box>
 

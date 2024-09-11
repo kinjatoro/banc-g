@@ -22,7 +22,7 @@ import {
 } from '../sections/@dashboard/app';
 
 import gorro from '../gorro.png';
-import milogo from '../logo.svg';
+import milogo from '../galicia_1.svg';
 import musica from '../musica.png';
 import { useAuth } from '../Auth';
 
@@ -81,23 +81,23 @@ export default function LandingPage() {
   return (
     <>
       <Helmet>
-        <title> Inicio | FTML </title>
+        <title> Inicio | Banco Galicia </title>
       </Helmet>
 
       <Container sx={{mb: -10, ms: -3, me:-3 }} disableGutters maxWidth={false} >
-        <Typography variant="h4" sx={{ mb: 15 }}/>
+        <Typography variant="h4" sx={{ mb: 11 }}/>
           
         
         <Grid container spacing={2}>
           <Grid xs={12} lg={6}>  
             <Grid className="Altura" sx={{display: "flex", flexDirection: 'column', alignItems: 'center', justifyContent: "center", ml:3}}>
               <Grid>
-                <Typography variant='h1' align = 'center'>Bienvenido a <br /><span className="color-change">For The Music Lovers</span></Typography>
-                <Typography variant='h4' align='center' sx={{mt:1}}>¿Ya sabés a dónde vas a salir hoy?</Typography>
+                <Typography variant='h1' align = 'center'>Bienvenido al <br /><span className="color-change">Banco Galicia</span></Typography>
+                <Typography variant='h4' align='center' sx={{mt:1}}>Alcanzá lo que querés.</Typography>
               </Grid>
               
               <Grid sx={{display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "center", mt:3}}>
-                <Button variant = "contained" size ='large' sx={{mx:2}} onClick={handleClick} >Descubrir Música </Button> 
+                <Button variant = "contained" size ='large' sx={{mx:2}} onClick={handleClick} >Hacé click para ingresar</Button> 
                 
               </Grid>
             </Grid>
@@ -118,36 +118,16 @@ export default function LandingPage() {
 
 
 
-        <Box sx={{m: 50}} />
+        <Box sx={{m: 9}} />
 
 
-        <Box sx={{backgroundColor: "#EA4429", py:15}}>
-        <Stack spacing={2} sx={{display: "flex",flexDirection: 'column', alignItems: 'center', justifyContent: "center", my:6, px:2}}>
-
-          
-          <Typography variant="h2"  align = 'center' sx={{color: "white"}}> 
-            ¿Cuál es tu género favorito?
-          </Typography>
-          
-            <Typography variant="h2" style={{ opacity: mostrar ? 1 : 0, transition: 'opacity 0.5s', color: colorPalabra}}>{palabraActual}</Typography>
-            
-        </Stack>
-        </Box>
-        <Box sx={{m: 50}} />
-
-        <Grid sx={{display: "flex",flexDirection: 'column', alignItems: 'center', justifyContent: "center", my:30}}>
-        <Typography variant="h2"  align = 'center'>
-        ¿Estás listo para empezar?
-        </Typography>
-
-        <Button  variant = "contained" sx={{my:2, py:1}} onClick={handleClick} ><Typography variant="h6">Explorá eventos </Typography></Button>
-        </Grid>
+       
 
               
-                <AppBar position="relative" sx={{top: 'auto',bottom: 0, width: '100%' }}  >
+                <AppBar position="fixed" sx={{top: 'auto',bottom: 0, width: '100%' }}  >
                   <Toolbar>
                     <Typography variant="body1">
-                      © {new Date().getFullYear()} For The Music Lovers.
+                      © {new Date().getFullYear()} Banco Galicia.
                     </Typography>
                   </Toolbar>
                 </AppBar>

@@ -128,7 +128,7 @@ export default function BaresPage() {
   
     <>
       <Helmet>
-        <title> Bares | For The Music Lovers </title>
+        <title> Bares | Banco Galicia </title>
       </Helmet>
 
       <Container>

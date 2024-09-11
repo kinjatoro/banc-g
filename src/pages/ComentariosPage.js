@@ -350,7 +350,7 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title> Comentarios | For The Music Lovers </title>
+        <title> Comentarios | Banco Galicia </title>
       </Helmet>
 
       <Container>

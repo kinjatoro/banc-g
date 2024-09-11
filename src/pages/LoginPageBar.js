@@ -54,7 +54,7 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title> Login Bar | For The Music Lovers </title>
+        <title> Login Bar | Banco Galicia </title>
       </Helmet>
 
       <StyledRoot>

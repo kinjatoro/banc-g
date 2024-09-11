@@ -185,7 +185,7 @@ export default function Nav({ openNav, onCloseNav }) {
             ) : (
             <>
             
-            <Divider sx={{mt: 0.5, mr: 2, ml: 2, mb:2}}/>
+           
              <Box sx={{ px: 2.5, pb: 0, mt: 2 }}>
       <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
               
@@ -199,7 +199,7 @@ export default function Nav({ openNav, onCloseNav }) {
                   Registarme
                 </Button></Stack></Box></>)}
 
-                <Divider sx={{mt: 5, mr: 2, ml: 2}}/>
+                
       
 
 
@@ -225,32 +225,7 @@ export default function Nav({ openNav, onCloseNav }) {
         
 
       
-      <Box sx={{ px: 2.5, pb: 0, mt: 5 }}>
-      <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
-        
-      {auth ? (
-           <><Button onClick={handleAuth} variant='outlined' color="error">
-            Cerrar sesión
-            </Button></>
-            ) : (
-            <>
-            <Box sx={{ textAlign: 'center' }}>
-                <Typography gutterBottom variant="h6">
-                  ¿Sos dueño de un bar?
-                </Typography>
-              </Box><Button onClick={handleClick4} variant="contained" disableElevation>
-                  Iniciar sesión
-                </Button><Button onClick={handleClick5} variant='outlined'>
-                  Registarme
-                </Button>
-
-                </>
-         )}
-
-
-        
-      </Stack>
-     </Box>
+    
     </Scrollbar>
   );
 

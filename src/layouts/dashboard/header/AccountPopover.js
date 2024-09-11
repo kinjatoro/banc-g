@@ -152,17 +152,7 @@ export default function AccountPopover() {
             <MenuItem onClick={handleInicio}>
               Inicio
             </MenuItem>
-            {auth ? (<>
 
-            <MenuItem onClick={handlePerfil}>
-            Perfil
-            </MenuItem></>) : (<></>)}
-            <MenuItem onClick={handleEventos}>
-              Eventos
-            </MenuItem>
-            <MenuItem onClick={handleBares}>
-              Bares
-            </MenuItem>
             
             
            

@@ -48,7 +48,7 @@ export default function OnBoardingPage() {
   return (
     <>
       <Helmet>
-        <title> Registro Bar | For The Music Lovers </title>
+        <title> Registro Bar | Banco Galicia </title>
       </Helmet>
 
       <StyledRoot>

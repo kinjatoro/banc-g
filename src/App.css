@@ -29,14 +29,27 @@
 }
 
 .RotatingLogo {
-  width: 450px; 
-  height: 450px;
+  width: 400px; 
+  height: 400px;
   top: -54px;  
   right: 178px; 
-  animation: rotate 10s linear infinite;
   position: absolute;  
   z-index: 2;
+  animation: swing 6s infinite ease-in-out;
 }
+
+@keyframes swing {
+  0% {
+    transform: rotate(10deg); /* Inicia en 30 grados a la derecha */
+  }
+  50% {
+    transform: rotate(-10deg); /* Gira hasta -30 grados a la izquierda */
+  }
+  100% {
+    transform: rotate(10deg); /* Vuelve a 30 grados a la derecha */
+  }
+}
+
 
 
 .StaticLogo {
@@ -106,15 +119,15 @@
   }
 
   25% {
-    color:#EA4429 ; 
+    color:#FA6400 ; 
   }
 
   50% {
-    color:#EA4429 ;
+    color:#FA6400 ;
   }
 
   75% {
-    color:#EA4429 ; 
+    color:#FA6400 ; 
   }
 
   100% {

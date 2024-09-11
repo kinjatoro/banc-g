@@ -260,7 +260,7 @@ export default function BlogPage() {
   
     <>
       <Helmet>
-        <title> Eventos | For The Music Lovers </title>
+        <title> Eventos | Banco Galicia </title>
       </Helmet>
 
       <Container>
