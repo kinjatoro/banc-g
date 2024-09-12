@@ -34,13 +34,13 @@ export default function DashboardAppPage() {
           Billetera virtual
         </Typography>
         <Grid sx={{mb:-5}}>
+
+          
         <Grid container spacing={3}>
      
           <Grid item xs={12} sm={12} md={6}>
-            <AppWidgetSummary title="Tu saldo" total={1352831} color="info" icon={'material-symbols:attach-money-rounded'}/>
+            <AppWidgetSummary title="Tu saldo" total={1352831} color='orange' icon={'material-symbols:attach-money-rounded'}/>
           </Grid>
-
-          
 
           <Grid item xs={12} md={12} lg={6}>
             <AppOrderTimeline
@@ -61,7 +61,10 @@ export default function DashboardAppPage() {
             />
           </Grid>
           
-        </Grid> </Grid >
+        </Grid> 
+        
+        
+        </Grid >
 
         <AppBar position="fixed" sx={{top: 'auto',bottom: 0, width: '100%', p: 1.5}}  >
                   

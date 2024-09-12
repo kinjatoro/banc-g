@@ -31,18 +31,20 @@ AppWidgetSummary.propTypes = {
   sx: PropTypes.object,
 };
 
-export default function AppWidgetSummary({ title, total, icon, color = 'primary', sx, ...other }) {
+export default function AppWidgetSummary({ title, total, icon, color , sx, ...other }) {
   return (
     <Card
       sx={{
-        py: 19,
-        boxShadow: 0,
+        py: 20.3,
+        boxShadow: 1,
         textAlign: 'center',
         color: (theme) => theme.palette[color].darker,
         bgcolor: (theme) => theme.palette[color].lighter,
         ...sx,
         display: 'flex',
         justifyContent: 'center',
+        
+       
       }}
       {...other}
     >
@@ -52,7 +54,7 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
           backgroundImage: (theme) =>
             `linear-gradient(135deg, ${alpha(theme.palette[color].dark, 0)} 0%, ${alpha(
               theme.palette[color].dark,
-              0.24
+              0.4
             )} 100%)`,
         }}
       >

@@ -25,6 +25,7 @@ import { useAuth } from './Auth'
 import { useOnBoarding } from './OnBoarding'
 import { useMyBar } from './TengoBarAuth'
 import  DashboardAppPage  from './pages/DashboardAppPage'
+import  DashboardAppPage2  from './pages/DashboardAppPage2'
 
 // ----------------------------------------------------------------------
 
@@ -45,6 +46,7 @@ export default function Router() {
         { path: 'eventos/:idBlog', element: <IndividualBlog />,},
         { path: 'bares/:idBar', element: <IndividualBar />,},
         {path: 'dashboards', element: <DashboardAppPage />,},
+        {path: 'dashboards2', element: <DashboardAppPage2 />,},
       ],
     },
 

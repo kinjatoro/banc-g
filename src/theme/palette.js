@@ -70,6 +70,16 @@ const ERROR = {
   contrastText: '#fff',
 };
 
+const ORANGE = {
+  lighter: '#FFF3EB',  // Aclarado significativamente
+  light: '#fa6400',    // Aclarado moderadamente
+  main: '#FA6400',     // Color principal
+  dark: '#FA6400',     // Oscurecido moderadamente
+  darker: '#fa6400',   // Oscurecido significativamente
+  contrastText: '#fff' // Texto en blanco para mejor contraste
+};
+
+
 const palette = {
   common: { black: '#000', white: '#fff' },
   primary: PRIMARY,
@@ -79,6 +89,7 @@ const palette = {
   warning: WARNING,
   error: ERROR,
   grey: GREY,
+  orange: ORANGE,
   divider: alpha(GREY[500], 0.24),
   text: {
     primary: GREY[800],
