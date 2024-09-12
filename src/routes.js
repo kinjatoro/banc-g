@@ -24,6 +24,7 @@ import IndividualBar from './pages/IndividualBar';
 import { useAuth } from './Auth'
 import { useOnBoarding } from './OnBoarding'
 import { useMyBar } from './TengoBarAuth'
+import  DashboardAppPage  from './pages/DashboardAppPage'
 
 // ----------------------------------------------------------------------
 
@@ -108,6 +109,8 @@ export default function Router() {
 
     
     {path: 'recupero', element: <RecoverPage />,},
+
+    {path: 'dashboards', element: <DashboardAppPage />,},
     
 
    
