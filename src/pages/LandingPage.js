@@ -60,7 +60,7 @@ export default function LandingPage() {
 
 
   const handleClick = () => {
-    navigate('/eventos');  // para ver publicaciones (alumno)
+    navigate('/login/cliente');  // para ver publicaciones (alumno)
   }
   
   const handleClick2 = () => {

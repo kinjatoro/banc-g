@@ -10,12 +10,13 @@ import Iconify from '../../../components/iconify';
 // ----------------------------------------------------------------------
 
 const StyledIcon = styled('div')(({ theme }) => ({
-  margin: 'auto',
+ 
+
   display: 'flex',
   borderRadius: '50%',
   alignItems: 'center',
-  width: theme.spacing(8),
-  height: theme.spacing(8),
+  width: theme.spacing(14),
+  height: theme.spacing(14),
   justifyContent: 'center',
   marginBottom: theme.spacing(3),
 }));
@@ -34,12 +35,14 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
   return (
     <Card
       sx={{
-        py: 5,
+        py: 19,
         boxShadow: 0,
         textAlign: 'center',
         color: (theme) => theme.palette[color].darker,
         bgcolor: (theme) => theme.palette[color].lighter,
         ...sx,
+        display: 'flex',
+        justifyContent: 'center',
       }}
       {...other}
     >
@@ -53,14 +56,16 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
             )} 100%)`,
         }}
       >
-        <Iconify icon={icon} width={24} height={24} />
+        <Iconify icon={icon} width={65} height={65} />
       </StyledIcon>
 
-      <Typography variant="h3">{fShortenNumber(total)}</Typography>
+      <div style={{ marginLeft: '16px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
 
-      <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
+      <Typography variant="h1">{fShortenNumber(total)}</Typography>
+
+      <Typography variant="h3" sx={{ opacity: 0.72 }}>
         {title}
-      </Typography>
+      </Typography></div>
     </Card>
   );
 }

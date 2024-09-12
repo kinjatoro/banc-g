@@ -15,14 +15,16 @@ AppOrderTimeline.propTypes = {
 
 export default function AppOrderTimeline({ title, subheader, list, ...other }) {
   return (
-    <Card {...other}>
+    <Card {...other} >
       <CardHeader title={title} subheader={subheader} />
 
       <CardContent
         sx={{
           '& .MuiTimelineItem-missingOppositeContent:before': {
-            display: 'none',
+            display: 'none'
+
           },
+          
         }}
       >
         <Timeline>
@@ -53,10 +55,15 @@ function OrderItem({ item, isLast }) {
       <TimelineSeparator>
         <TimelineDot
           color={
-            (type === 'order1' && 'primary') ||
-            (type === 'order2' && 'success') ||
-            (type === 'order3' && 'info') ||
-            (type === 'order4' && 'warning') ||
+            (type === 'order1' && 'success') ||
+            (type === 'order2' && 'error') ||
+            (type === 'order3' && 'error') ||
+            (type === 'order4' && 'success') ||
+            (type === 'order5' && 'success') ||
+            (type === 'order6' && 'success') ||
+            (type === 'order7' && 'info') ||
+            (type === 'order8' && 'warning') ||
+            (type === 'order9' && 'primary') ||
             'error'
           }
         />

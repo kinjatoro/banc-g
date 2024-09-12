@@ -44,6 +44,7 @@ export default function Router() {
         { path: 'bares', element: <BaresPage /> },
         { path: 'eventos/:idBlog', element: <IndividualBlog />,},
         { path: 'bares/:idBar', element: <IndividualBar />,},
+        {path: 'dashboards', element: <DashboardAppPage />,},
       ],
     },
 
@@ -110,7 +111,7 @@ export default function Router() {
     
     {path: 'recupero', element: <RecoverPage />,},
 
-    {path: 'dashboards', element: <DashboardAppPage />,},
+   
     
 
    
