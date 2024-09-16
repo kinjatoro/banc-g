@@ -69,7 +69,7 @@ export default function Nav({ openNav, onCloseNav }) {
 
 
   const [username, setUsername] = useState(decodedToken ? decodedToken.username : accountNo.displayName);
-  const [logo, setLogo] = useState(decodedToken ? (baseUrl + decodedToken.logo) : accountNo.photoURL);
+  const [logo, setLogo] = useState( accountNo.photoURL);
   
 
   const handleAuth = () => {

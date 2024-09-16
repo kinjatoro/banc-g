@@ -63,14 +63,16 @@ export default function LoginForm() {
     }
 
     try {
-      const response = await axios.post('https://music-lovers-production.up.railway.app/client/login/', {
+      const response = await axios.post('http://35.169.125.92:3000/api/login', {
         email,
         password,
-    
-      });
 
+      });
+      console.log('HOLA1')
+      console.log(response.data)
+      console.log('HOLA2')
       // Crea el token
-      const token = response.data.access;
+      const token = response.data.token;
 
       if (token){
         document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
@@ -89,7 +91,7 @@ export default function LoginForm() {
       }
 
     } catch (error) {
-      
+      console.log(error)
       alert("Por favor, verifica los datos ingresados")
     }
 

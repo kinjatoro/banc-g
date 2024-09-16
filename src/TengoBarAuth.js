@@ -13,7 +13,7 @@ export function BarProvider({ children }) {
     // decodifica el token (si lo encuentra)
     if (jwtToken) {
       const decodedToken = jwtDecode(jwtToken);
-      if (decodedToken.user_type === 1){
+      if (decodedToken.rol === "admin"){
         setMyBar(true);
       }
 

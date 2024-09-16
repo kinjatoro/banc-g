@@ -86,7 +86,7 @@ export default function AccountPopover() {
 
   const [username, setUsername] = useState(decodedToken ? decodedToken.username : accountNo.displayName);
   const [email, setEmail] = useState(decodedToken ? decodedToken.email : accountNo.email);
-  const [logo, setLogo] = useState(decodedToken ? (baseUrl + decodedToken.logo) : accountNo.photoURL);
+  const [logo, setLogo] = useState( accountNo.photoURL);
   
 
   
