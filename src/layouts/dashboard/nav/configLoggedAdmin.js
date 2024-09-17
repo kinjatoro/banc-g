@@ -1,9 +1,9 @@
-// component
 import Iconify from '../../../components/iconify';
 
 // ----------------------------------------------------------------------
 
 const navConfig = [
+  
   {
     title: 'Inicio',
     path: '/inicio',
@@ -13,6 +13,11 @@ const navConfig = [
     title: 'billetera',
     path: '/dashboards',
     icon: <Iconify icon={"eva:person-fill"} />,  
+  },
+  {
+    title: 'estadísticas',
+    path: '/dashboards2',
+    icon: <Iconify icon={"eva:music-fill"} />,  
   },
 ];
 

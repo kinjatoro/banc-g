@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from './Auth';
 import { BarProvider } from './TengoBarAuth';
 import { BoarProvider } from './OnBoarding';
+import { AdminProvider } from './TengoAdminAuth';
 
 // routes
 import Router from './routes';
@@ -19,11 +20,13 @@ export default function App() {
   const [auth, setAuth] = useState(false);
   const [myBar, setMyBar] = useState(false);
   const [onBoar, setOnBoar] = useState(true);
+  const [myAdmin, setMyAdmin] = useState(false);
 
 
 
   return (   
     <AuthProvider value={{ auth, setAuth }}>
+    <AdminProvider value={{ myAdmin, setMyAdmin }}>
     <BarProvider value={{ myBar, setMyBar }}>
     <BoarProvider value={{ onBoar, setOnBoar }}>
     <HelmetProvider>
@@ -37,6 +40,7 @@ export default function App() {
     </HelmetProvider>
     </BoarProvider>
     </BarProvider>
+    </AdminProvider>
     </AuthProvider>
   );
 }

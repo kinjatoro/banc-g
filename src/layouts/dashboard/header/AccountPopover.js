@@ -88,7 +88,7 @@ export default function AccountPopover() {
   const [email, setEmail] = useState(decodedToken ? decodedToken.email : accountNo.email);
   const [logo, setLogo] = useState( accountNo.photoURL);
   
-
+  console.log(auth)
   
 
   
@@ -174,6 +174,7 @@ export default function AccountPopover() {
         </>) : (<></>)}
 
         <Divider sx={{ borderStyle: 'dashed' }} />
+
         {auth ? (<>
         <MenuItem onClick={handleAuth} sx={{ m: 1 }}>
           Cerrar sesión

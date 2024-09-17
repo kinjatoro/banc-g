@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
 
-const TengoBarContext = createContext();
+const TengoAdminContext = createContext();
 
-export function BarProvider({ children }) {
-  const [myBar, setMyBar] = useState(false);
+export function AdminProvider({ children }) {
+  const [myAdmin, setMyAdmin] = useState(false);
 
   useEffect(() => {
     // Verifica si existe un token JWT en la cookie
@@ -13,8 +13,8 @@ export function BarProvider({ children }) {
     // decodifica el token (si lo encuentra)
     if (jwtToken) {
       const decodedToken = jwtDecode(jwtToken);
-      if (decodedToken.rol === "master"){
-        setMyBar(true);
+      if (decodedToken.rol === "admin"){
+        setMyAdmin(true);
       }
 
     }
@@ -27,12 +27,12 @@ export function BarProvider({ children }) {
   }
 
   return (
-    <TengoBarContext.Provider value={{ myBar, setMyBar }}>
+    <TengoAdminContext.Provider value={{ myAdmin, setMyAdmin }}>
       {children}
-    </TengoBarContext.Provider>
+    </TengoAdminContext.Provider>
   );
 }
 
-export function useMyBar() {
-  return useContext(TengoBarContext);
+export function useMyAdmin() {
+  return useContext(TengoAdminContext);
 }

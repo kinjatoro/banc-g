@@ -199,9 +199,21 @@ export default function Nav({ openNav, onCloseNav }) {
                   Registarme
                 </Button></Stack></Box></>)}
 
-                
-      
+                <Divider sx={{mt: 5, mr: 2, ml: 2}}/>
 
+                <Box sx={{ px: 2.5, pb: 0, mt: 5 }}>
+                <Stack alignItems="center" spacing={1} sx={{ pt: 0, borderRadius: 2, position: 'relative' }}>
+      
+                {auth ? (
+           <><Button onClick={handleAuth} variant='outlined' color="error">
+            Cerrar sesión
+            </Button></>
+            ) : (
+            <>
+
+                </>
+         )}      </Stack>
+     </Box> 
 
 
       {/* {auth ? (

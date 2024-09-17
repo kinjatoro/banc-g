@@ -17,6 +17,7 @@ import ComentariosPage from './pages/ComentariosPage';
 import IndividualBlog from './pages/IndividualBlog';
 import ExpPage from './pages/ExpPage';
 import RecoverPage from './pages/RecoverPage';
+import VerificationPage from './pages/VerificationPage';
 import OnBoardingBar from './pages/OnBoardingBar';
 import PerfilBar from './pages/PerfilBar';
 import PerfilUsuario from './pages/PerfilUsuario';
@@ -74,10 +75,6 @@ export default function Router() {
     },
 
 
-
-
-
-
     {
       path: '/login',
       element: onBoar ? <SimpleLayout /> : <Navigate to="/registro/bar/onboarding" />,
@@ -113,7 +110,7 @@ export default function Router() {
     
     {path: 'recupero', element: <RecoverPage />,},
 
-   
+    {path: 'verificacion', element: <VerificationPage />,},
     
 
    
