@@ -97,7 +97,7 @@ export default function LoginForm() {
     try {
               // http://18.223.187.221:3000/api/login
               // http://35.169.125.92:3000/api/login
-        const response = await axios.post('http://localhost:4000/api/login', {
+        const response = await axios.post('http://35.169.125.92:3000/api/login', {
         email,
         password,
 
@@ -128,7 +128,7 @@ export default function LoginForm() {
         }
                                         // http://18.223.187.221:3000/api/login
                                         // http://35.169.125.92:3000/api/login
-        const response = await axios.post('http://localhost:4000/api/verify-code', {
+        const response = await axios.post('http://35.169.125.92:3000/api/verify-code', {
         email,
         code,
         ip,
