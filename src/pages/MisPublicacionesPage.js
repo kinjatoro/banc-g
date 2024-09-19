@@ -38,11 +38,10 @@ import USERLIST from '../_mock/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'servicio', label: 'Evento', alignRight: false },
-  { id: 'duracion', label: 'Fecha', alignRight: false },
-  { id: 'frecuencia', label: 'Hora', alignRight: false },
-  { id: 'costo', label: 'Precio', alignRight: false },
-  { id: 'genero', label: 'Genero', alignRight: false },
+  { id: 'servicio', label: 'ID', alignRight: false },
+  { id: 'duracion', label: 'Nombre', alignRight: false },
+  { id: 'frecuencia', label: 'Email', alignRight: false },
+  { id: 'costo', label: 'Rol', alignRight: false },
   { id: '' },
 ];
 
@@ -100,15 +99,8 @@ export default function UserPage() {
 
   const handleLogin = async () => {
 
-    const config = {
-      headers: {
-        'Authorization': `Bearer ${cookieValue}`,
-      },
-    };
-
-
     try {
-      const response = await axios.get('https://music-lovers-production.up.railway.app/business/events/', config);
+      const response = await axios.get('http://localhost:4000/api/users/');
       
       // Crea el token
       const aux = response.data;
@@ -118,23 +110,7 @@ export default function UserPage() {
       console.error('Error de inicio de sesión', error);
     }
 
-    try {
-      
-      const response2 = await axios.get('https://music-lovers-production.up.railway.app/business/view/', config);
-    
-      const aux2 = response2.data;
-      setAddress2(aux2.address);
-      setNeighbourhood2(aux2.neighbourhood);
-      setCity2(aux2.city);
-
-
-
-    } catch (error) {
-      console.error('Error de inicio de sesión', error);
-    }
-
-
-
+   
 
   };
 
@@ -391,7 +367,6 @@ export default function UserPage() {
   const [banner, setBanner] = useState("");
 
 
-
   const [idEvento, setidEvento] = useState("");
 
 
@@ -605,17 +580,15 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title> Mis Publicaciones | Banco Galicia </title>
+        <title> Lista de | Banco Galicia </title>
       </Helmet>
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Mis Publicaciones
+            Lista de usuarios
           </Typography>
-          <Button variant="contained" onClick={handlePublicarServicio} startIcon={<Iconify icon="eva:plus-fill" />}>
-            Nueva publicación
-          </Button>
+          
         </Stack>
 
         <Card>
@@ -633,7 +606,7 @@ export default function UserPage() {
                 />
                 <TableBody>
                   {EVENTOS.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, title, datetime, frecuencia, price, genre } = row;
+                    const { id, nombre, email, rol } = row;
                     const selectedUser = selected.indexOf(title) !== -1;
 
                     return (
@@ -644,13 +617,10 @@ export default function UserPage() {
 
 
 
-                        <TableCell align="left">{title}</TableCell>
-                        <TableCell align="left">{datetime.slice(0, 10)}</TableCell>
-                        <TableCell align="left">{datetime.slice(11, 16)}</TableCell>
-                        <TableCell align="left">{price}</TableCell>
-
-                        <TableCell align="left">{genre}</TableCell>
-                        
+                        <TableCell align="left">{id}</TableCell>
+                        <TableCell align="left">{nombre}</TableCell>
+                        <TableCell align="left">{email}</TableCell>
+                        <TableCell align="left">{rol}</TableCell>
 
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={(event) => handleOpenMenu(event, id)}>
@@ -730,10 +700,7 @@ export default function UserPage() {
         }}
       >
 
-        <MenuItem onClick={handleModificarServicio}> 
-          <Iconify  icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-          Editar
-        </MenuItem>
+        
 
         <MenuItem  onClick={handleEliminar}  sx={{ color: 'error.main' }}>
           <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
@@ -1593,7 +1560,7 @@ export default function UserPage() {
           <Box mt={1} mb={2} backgroundColor='white' align='center'>
             <Typography variant="h4" gutterBottom>
 
-            <strong>¿Estás seguro que deseas eliminar el evento?</strong>
+            <strong>¿Estás seguro que deseas eliminar al usuario?</strong>
             </Typography>
           </Box>
 

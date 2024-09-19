@@ -163,15 +163,7 @@ export default function AccountPopover() {
 
         
         
-        {myBar ? (<>
-        <MenuItem onClick={handleMisEventos} sx={{ m: 1 }}>
-          Mis Eventos
-        </MenuItem>
-        <MenuItem onClick={handleComentarios} sx={{ m: 1 }}>
-          Comentarios
-        </MenuItem>
-        
-        </>) : (<></>)}
+       
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 

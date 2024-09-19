@@ -20,9 +20,11 @@ import NavSection from '../../../components/nav-section';
 import navConfig from './config';
 import navConfigLogged from './configLogged';
 import navConfigLoggedBar from './configLoggedBar'; 
+import navConfigLoggedAdmin from './configLoggedAdmin'; 
 
 import { useAuth } from '../../../Auth'
 import { useMyBar } from '../../../TengoBarAuth';
+import { useMyAdmin } from '../../../TengoAdminAuth';
 import { useOnBoarding } from '../../../OnBoarding';
 
 
@@ -54,6 +56,7 @@ export default function Nav({ openNav, onCloseNav }) {
 
   const { auth, setAuth } = useAuth();
   const { myBar, setMyBar } = useMyBar();  
+  const { myAdmin, setMyAdmin } = useMyAdmin();  
   const {onBoar, setOnBoar} = useOnBoarding();
 
 
@@ -177,7 +180,23 @@ export default function Nav({ openNav, onCloseNav }) {
       </Box>) : (<></>)}
 
       
-      {auth ? ( myBar ? (<><NavSection data={navConfigLoggedBar} /></>) : (<><NavSection data={navConfigLogged} /></>)) : (<><NavSection data={navConfig} /></>)}  
+            {
+        auth ? (
+          myAdmin ? (
+            myBar ? (
+             
+              <NavSection data={navConfigLoggedBar} />
+            ) : (
+              <NavSection data={navConfigLoggedAdmin} />
+            )
+          ) : (
+            <NavSection data={navConfigLogged} />
+          )
+        ) : (
+          <NavSection data={navConfig} />
+        )
+      }
+  
         
 
       {auth ? (
@@ -215,17 +234,17 @@ export default function Nav({ openNav, onCloseNav }) {
          )}      </Stack>
      </Box> 
 
-
-      {/* {auth ? (
+         {/*
+       {auth ? (
           <p>Auth es verdadera.</p>
         ) : (
           <p>Auth es falsa.</p>
         )}
 
-    {onBoar ? (
-          <p>onBoar es verdadera.</p>
+    {myAdmin ? (
+          <p>myAdmin es verdadera.</p>
         ) : (
-          <p>onBoar es falsa.</p>
+          <p>myAdmin es falsa.</p>
         )}
 
     {myBar ? (

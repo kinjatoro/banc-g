@@ -70,13 +70,7 @@ export default function LoginPage() {
 
         <Container maxWidth="sm">
           <StyledContent>
-            <Typography variant="h3" gutterBottom>
-              Iniciar Sesión como Bar
-            </Typography>
-            <Typography variant="body2" sx={{ mb: 2 }}>
-              ¿No tenés cuenta? {''}
-              <Link variant="subtitle2" onClick={handleClick} sx={{ cursor: 'pointer' }}>Registrate</Link>
-            </Typography>
+            
 
             <LoginFormBar />
 

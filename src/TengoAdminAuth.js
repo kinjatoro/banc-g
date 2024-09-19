@@ -13,7 +13,7 @@ export function AdminProvider({ children }) {
     // decodifica el token (si lo encuentra)
     if (jwtToken) {
       const decodedToken = jwtDecode(jwtToken);
-      if (decodedToken.rol === "admin"){
+      if (decodedToken.rol === "admin" || decodedToken.rol === "master"){
         setMyAdmin(true);
       }
 

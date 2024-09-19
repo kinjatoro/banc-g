@@ -5,6 +5,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
 // @mui
+import { styled } from '@mui/material/styles';
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Typography, Container, Button } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
@@ -16,6 +17,17 @@ import { useMyBar } from '../../../TengoBarAuth'
 
 // ----------------------------------------------------------------------
 
+const StyledContent = styled('div')(({ theme }) => ({
+  maxWidth: 480,
+  margin: 'auto',
+  minHeight: '100vh',
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  padding: theme.spacing(12, 0),
+  
+}));
+
 export default function LoginForm() {
   const navigate = useNavigate();
 
@@ -25,8 +37,12 @@ export default function LoginForm() {
 
   const { myBar, setMyBar } = useMyBar();
 
+  const [ cambio, setCambio ] = useState(false);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const [code, setCode] = useState('');
 
   const handleClick = () => {
     navigate('/inicio');
@@ -35,6 +51,10 @@ export default function LoginForm() {
 
   const handleClick2 = () => {
     navigate('/recupero');
+  }
+
+  const handleClick3 = () => {
+    setCambio(false);
   }
 
   const handleLoginBar = () => {
@@ -63,42 +83,75 @@ export default function LoginForm() {
     }
 
     try {
-                                      // http://18.223.187.221:3000/api/login
-      const response = await axios.post('http://35.169.125.92:3000/api/login', {
+              // http://18.223.187.221:3000/api/login
+              // http://35.169.125.92:3000/api/login
+        const response = await axios.post('http://localhost:4000/api/login', {
         email,
         password,
 
-      });
-      console.log('HOLA1')
-      console.log(response.data)
-      console.log('HOLA2')
-      // Crea el token
-      const token = response.data.token;
+        });
+        console.log('HOLA1')
+        console.log(response.data)
+        console.log('HOLA2')
 
-      if (token){
-        document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
-        setAuth(true);
-        navigate('/inicio');
-      } 
 
-      if (response.data.detail && response.data.detail[0] === "No user with this email exists."){
-        alert('La dirección de correo electrónico no está registrada');  
-      } 
-      if (response.data.detail && response.data.detail[0] === "No active account found with the given credentials") {
-        alert('La contraseña no es válida');  
-      }
-      if (response.data.detail && response.data.detail[0] === "Access denied for this user type.") {
-        alert('El mail ingresado está registrado como bar');  
-      }
-
-    } catch (error) {
-      console.log(error)
-      alert("Por favor, verifica los datos ingresados")
-    }
-
+        if (response){
+        setCambio(true);
+        }
     
 
-  };
+  }catch (error) {
+    console.log(error)
+    alert("Por favor, verifica los datos ingresados")
+    }}
+
+  const handleLogin2 = async () => {
+  try {
+                                        // http://18.223.187.221:3000/api/login
+                                        // http://35.169.125.92:3000/api/login
+        const response = await axios.post('http://localhost:4000/api/verify-code', {
+        email,
+        code,
+
+        });
+        console.log('HOLA1')
+        console.log(response.data)
+        console.log('HOLA2')
+        // Crea el token
+        const token = response.data.token;
+
+        if (token){
+        document.cookie = `jwtToken=${token}; path=/; SameSite=Strict;`;
+        setAuth(true);
+        console.log (response.data.rol)
+        console.log(response.data.rol === 'master')
+        if (response.data.rol === 'master') {
+          window.location.replace('https://reconocimiento-facial-master-lucas-projects-1fbddc17.vercel.app/');
+        } else {
+          navigate('/inicio');
+        }
+        
+        } 
+
+        if (response.data.detail && response.data.detail[0] === "No user with this email exists."){
+        alert('La dirección de correo electrónico no está registrada');  
+        } 
+        if (response.data.detail && response.data.detail[0] === "No active account found with the given credentials") {
+        alert('La contraseña no es válida');  
+        }
+        if (response.data.detail && response.data.detail[0] === "Access denied for this user type.") {
+        alert('El mail ingresado está registrado como bar');  
+        }
+
+        } catch (error) {
+        console.log(error)
+        alert("Por favor, verifica los datos ingresados")
+        }
+} 
+
+
+
+
 
     // extrae el token de la cookie
     function getJwtToken() {
@@ -127,8 +180,17 @@ export default function LoginForm() {
     
 
   return (
+
     <>
-      <Stack spacing={3}>
+      { (!cambio ? (<><Stack spacing={3}>
+        <Typography variant="h3" gutterBottom>
+              Iniciar Sesión
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              ¿No tenés cuenta? {''}
+              <Link variant="subtitle2" onClick={handleClick} sx={{ cursor: 'pointer' }}>Registrate</Link>
+            </Typography>
+        
         <TextField name="correo"
            label="Correo electrónico"
            value={email}
@@ -165,7 +227,36 @@ export default function LoginForm() {
 
       <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleLogin}>
         Iniciar Sesión
-      </LoadingButton>
+      </LoadingButton></>) : (
+        
+        <><Container maxWidth="sm">
+      
+          <Typography variant="h3" gutterBottom>
+              Verificación de cuenta
+          </Typography>
+
+          <Typography variant="body2" sx={{ mb: 2 }}>
+            Por favor, ingresá el código que te enviamos a tu correo. 
+            <br/>
+            <Link sx={{ cursor: 'pointer'}} onClick={handleClick3}>Volver a inicio de sesión</Link>
+          </Typography>
+
+          <Stack spacing={3}>
+          <TextField name="codigo" label="Código" value={code} onChange={(e) => setCode(e.target.value)} sx={{my:2}}/>
+           </Stack>
+
+          <Button fullWidth size="large" type="submit" variant="contained" onClick={handleLogin2}sx={{mt:2}} disableElevation >
+           Enviar
+            </Button>
+            
+       
+      </Container></>
+
+
+
+        ))}
+
+      
 
       
     </>

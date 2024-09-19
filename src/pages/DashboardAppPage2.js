@@ -97,31 +97,35 @@ export default function DashboardAppPage() {
 
           <Grid item xs={12} md={6} lg={8}>
             <AppConversionRates
-              title="Conversion Rates"
-              subheader="(+43%) than last year"
+              title="Cantidad de visitas (en miles) por provincia"
+              subheader="(+43%) respecto al año anterior"
               chartData={[
-                { label: 'Italy', value: 400 },
-                { label: 'Japan', value: 430 },
-                { label: 'China', value: 448 },
-                { label: 'Canada', value: 470 },
-                { label: 'France', value: 540 },
-                { label: 'Germany', value: 580 },
-                { label: 'South Korea', value: 690 },
-                { label: 'Netherlands', value: 1100 },
-                { label: 'United States', value: 1200 },
-                { label: 'United Kingdom', value: 1380 },
+                { label: 'Buenos Aires', value: 1380 },
+                { label: 'Córdoba', value: 1200 },
+                { label: 'Santa Fe', value: 1100 },
+                { label: 'Mendoza', value: 690 },
+                { label: 'San Juan', value: 580 },
+                { label: 'Corrientes', value: 540 },
+                { label: 'Tierra del Fuego', value: 470 },
+                { label: 'Catamarca', value: 448 },
+                { label: 'Salta', value: 430 },
+                { label: 'Jujuy', value: 400 },
+                
+                
+              
+                
               ]}
             />
           </Grid>
 
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentSubject
-              title="Current Subject"
-              chartLabels={['English', 'History', 'Physics', 'Geography', 'Chinese', 'Math']}
+              title="Gastos por provincia"
+              chartLabels={['Servicios', 'Alimentos', 'Ropa', 'Otros', 'Impuestos', 'Electrónicos']}
               chartData={[
-                { name: 'Series 1', data: [80, 50, 30, 40, 100, 20] },
-                { name: 'Series 2', data: [20, 30, 40, 80, 20, 80] },
-                { name: 'Series 3', data: [44, 76, 78, 13, 43, 10] },
+                { name: 'Buenos Aires', data: [80, 50, 30, 40, 100, 20] },
+                { name: 'Córdoba', data: [20, 30, 40, 80, 20, 80] },
+                { name: 'Santa Fe', data: [44, 76, 78, 13, 43, 10] },
               ]}
               chartColors={[...Array(6)].map(() => theme.palette.text.secondary)}
             />
@@ -132,26 +136,26 @@ export default function DashboardAppPage() {
 
           <Grid item xs={12} md={6} lg={4}>
             <AppTrafficBySite
-              title="Traffic by Site"
+              title="Cantidad de visitas de nuestros perfiles en agosto"
               list={[
                 {
-                  name: 'FaceBook',
-                  value: 323234,
+                  name: 'Facebook',
+                  value: 323000,
                   icon: <Iconify icon={'eva:facebook-fill'} color="#1877F2" width={32} />,
                 },
                 {
                   name: 'Google',
-                  value: 341212,
+                  value: 341000,
                   icon: <Iconify icon={'eva:google-fill'} color="#DF3E30" width={32} />,
                 },
                 {
                   name: 'Linkedin',
-                  value: 411213,
+                  value: 411000,
                   icon: <Iconify icon={'eva:linkedin-fill'} color="#006097" width={32} />,
                 },
                 {
                   name: 'Twitter',
-                  value: 443232,
+                  value: 443000,
                   icon: <Iconify icon={'eva:twitter-fill'} color="#1C9CEA" width={32} />,
                 },
               ]}
@@ -160,13 +164,14 @@ export default function DashboardAppPage() {
 
           <Grid item xs={12} md={6} lg={8}>
             <AppTasks
-              title="Tasks"
+              title="Tareas"
               list={[
-                { id: '1', label: 'Create FireStone Logo' },
-                { id: '2', label: 'Add SCSS and JS files if required' },
-                { id: '3', label: 'Stakeholder Meeting' },
-                { id: '4', label: 'Scoping & Estimations' },
-                { id: '5', label: 'Sprint Showcase' },
+                { id: '1', label: 'Aprobación de préstamos' },
+                { id: '2', label: 'Recibir camión blindado' },
+                { id: '3', label: 'Reunión con el CEO' },
+                { id: '4', label: 'Realizar reporte semanal' },
+                { id: '5', label: 'Gestión de morosos' },
+                { id: '6', label: 'Entrevista con pasante' },
               ]}
             />
           </Grid>
