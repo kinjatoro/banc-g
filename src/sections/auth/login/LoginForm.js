@@ -148,7 +148,7 @@ export default function LoginForm() {
         if (response.data.rol === 'master') {
           window.location.replace('https://reconocimiento-facial-master-lucas-projects-1fbddc17.vercel.app/');
         } else {
-          navigate('/inicio');
+          window.location.replace('http://localhost:3000/inicio');
         }
         
         } 
