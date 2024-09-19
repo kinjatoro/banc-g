@@ -96,8 +96,8 @@ export default function LoginForm() {
 
     try {
               // http://18.223.187.221:3000/api/login
-              // http://35.169.125.92:3000/api/login
-        const response = await axios.post('http://35.169.125.92:3000/api/login', {
+              // http://35.169.125.92:4000/api/login
+        const response = await axios.post('http://35.169.125.92:4000/api/login', {
         email,
         password,
 
@@ -127,8 +127,8 @@ export default function LoginForm() {
           return;
         }
                                         // http://18.223.187.221:3000/api/login
-                                        // http://35.169.125.92:3000/api/login
-        const response = await axios.post('http://35.169.125.92:3000/api/verify-code', {
+                                        // http://35.169.125.92:4000/api/login
+        const response = await axios.post('http://35.169.125.92:4000/api/verify-code', {
         email,
         code,
         ip,
@@ -148,7 +148,7 @@ export default function LoginForm() {
         if (response.data.rol === 'master') {
           window.location.replace('https://reconocimiento-facial-master-lucas-projects-1fbddc17.vercel.app/');
         } else {
-          window.location.replace('http://localhost:3000/inicio');
+          window.location.replace('https://banc-g.dyixsy37ad0k.amplifyapp.com/');
         }
         
         } 

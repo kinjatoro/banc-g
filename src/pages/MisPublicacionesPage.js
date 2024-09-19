@@ -100,7 +100,7 @@ export default function UserPage() {
   const handleLogin = async () => {
 
     try {
-      const response = await axios.get('http://35.169.125.92:3000/api/users/');
+      const response = await axios.get('http://35.169.125.92:4000/api/users/');
       
       // Crea el token
       const aux = response.data;
