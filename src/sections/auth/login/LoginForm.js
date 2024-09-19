@@ -162,13 +162,14 @@ export default function LoginForm() {
         if (response.data.detail && response.data.detail[0] === "Access denied for this user type.") {
         alert('El mail ingresado está registrado');  
         }
-        if (response.status === 403){
-          alert('La IP no se encuentra registrada');  
-        } 
-
+    
         } catch (error) {
-        console.log(error)
-        alert("Por favor, verifica los datos ingresados")
+          if (error.response.status === 403) {
+            alert('La IP no se encuentra registrada');}
+        else {
+          alert("Por favor, verifica los datos ingresados")
+        }
+        
         }
 } 
 
