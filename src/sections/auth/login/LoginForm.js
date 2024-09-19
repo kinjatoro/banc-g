@@ -63,6 +63,18 @@ export default function LoginForm() {
     setMyBar(true);
   }
 
+  async function getPublicIp() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return data.ip;
+    } catch (error) {
+        console.error('Error al obtener la IP pública:', error);
+        return null;
+    }
+}
+
+
   const validateFields = () => {
     if (
       email.trim() === '' ||
@@ -106,12 +118,20 @@ export default function LoginForm() {
     }}
 
   const handleLogin2 = async () => {
+
   try {
+
+        const ip = await getPublicIp();
+        if (!ip) {
+          console.error('No se pudo obtener la IP pública.');
+          return;
+        }
                                         // http://18.223.187.221:3000/api/login
                                         // http://35.169.125.92:3000/api/login
         const response = await axios.post('http://localhost:4000/api/verify-code', {
         email,
         code,
+        ip,
 
         });
         console.log('HOLA1')
@@ -140,8 +160,11 @@ export default function LoginForm() {
         alert('La contraseña no es válida');  
         }
         if (response.data.detail && response.data.detail[0] === "Access denied for this user type.") {
-        alert('El mail ingresado está registrado como bar');  
+        alert('El mail ingresado está registrado');  
         }
+        if (response.status === 403){
+          alert('La IP no se encuentra registrada');  
+        } 
 
         } catch (error) {
         console.log(error)
