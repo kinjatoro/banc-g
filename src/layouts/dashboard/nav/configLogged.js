@@ -12,7 +12,7 @@ const navConfig = [
   {
     title: 'billetera',
     path: '/dashboards',
-    icon: <Iconify icon={"eva:person-fill"} />,  
+    icon: <Iconify icon={"fa6-solid:wallet"} />,  
   },
 ];
 

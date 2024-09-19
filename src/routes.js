@@ -25,6 +25,7 @@ import IndividualBar from './pages/IndividualBar';
 import { useAuth } from './Auth'
 import { useOnBoarding } from './OnBoarding'
 import { useMyBar } from './TengoBarAuth'
+import { useMyAdmin } from './TengoAdminAuth'
 import  DashboardAppPage  from './pages/DashboardAppPage'
 import  DashboardAppPage2  from './pages/DashboardAppPage2'
 
@@ -34,6 +35,7 @@ export default function Router() {
   const { auth } = useAuth();
   const { onBoar } = useOnBoarding();
   const { myBar } = useMyBar();
+  const { myAdmin } = useMyAdmin();
   
   const routes = useRoutes([
 
@@ -46,21 +48,33 @@ export default function Router() {
         { path: 'bares', element: <BaresPage /> },
         { path: 'eventos/:idBlog', element: <IndividualBlog />,},
         { path: 'bares/:idBar', element: <IndividualBar />,},
-        {path: 'dashboards', element: <DashboardAppPage />,},
+ 
+      ],
+    },
+
+    {
+      element: myAdmin ? <DashboardLayout /> : <Navigate to="/inicio" />,
+      children: [
+        { element: <Navigate to="/inicio" />, index: true },
         {path: 'dashboards2', element: <DashboardAppPage2 />,},
+      ],
+    },
+
+    {
+      element: auth ? <DashboardLayout /> : <Navigate to="/inicio" />,
+      children: [
+        { element: <Navigate to="/inicio" />, index: true },
+        {path: 'dashboards', element: <DashboardAppPage />,},
       ],
     },
 
 
 
     {
-      path: '/bar',
-      element: onBoar ? <DashboardLayout /> : <Navigate to="/registro/bar/onboarding" />,
+      element: myBar ? <DashboardLayout /> : <Navigate to="/inicio" />,
       children: [
         { element: <Navigate to="/inicio" />, index: true },
-        { path: 'mispublicaciones', element: <MisPublicacionesPage /> },
-        { path: 'comentarios', element: <ComentariosPage /> },
-        { path: 'perfil', element: <PerfilBar /> ,},
+        { path: 'usuarios', element: <MisPublicacionesPage /> },
       ],
     },
     
@@ -100,12 +114,6 @@ export default function Router() {
         {path: 'cliente/onboarding', element: onBoar ? <ExpPage /> : <Navigate to="/registro/bar/onboarding" />},
       ],
     },
-
-
-
-
-
-
 
     
     {path: 'recupero', element: <RecoverPage />,},

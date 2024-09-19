@@ -12,12 +12,12 @@ const navConfig = [
   {
     title: 'estadísticas',
     path: '/dashboards2',
-    icon: <Iconify icon={"eva:music-fill"} />,  
+    icon: <Iconify icon={"eva:bar-chart-outline"} />,  
   },
   {
     title: 'usuarios',
-    path: '/bar/mispublicaciones',
-    icon: <Iconify icon={'eva:layers-fill'} />
+    path: '/usuarios',
+    icon: <Iconify icon={'eva:person-fill'} />
   },
 ];
 
