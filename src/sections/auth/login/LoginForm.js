@@ -146,7 +146,7 @@ export default function LoginForm() {
         console.log (response.data.rol)
         console.log(response.data.rol === 'master')
         if (response.data.rol === 'master') {
-          window.location.replace('https://reconocimiento-facial-master-lucas-projects-1fbddc17.vercel.app/');
+          window.location.replace('https://reconocimiento-facial-master-dd5mmipsx-lucas-projects-1fbddc17.vercel.app/');
         } else {
           window.location.replace('http://localhost:3000/');
         }
